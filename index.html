@@ -3,511 +3,385 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- ============================================================
-     EDIT ME: page title + description (shown in Google + link previews)
-     ============================================================ -->
-<title>Mark Patel — Backend &amp; Systems Engineer</title>
-<meta name="description" content="Mark Patel — backend and systems engineer. I build agent infrastructure, CLIs and data-backed tools in TypeScript and Postgres.">
-<meta name="author" content="Mark Patel">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mark Patel — Backend &amp; Systems Engineer">
-<meta property="og:description" content="I build agent infrastructure, CLIs and data-backed tools in TypeScript and Postgres.">
-<meta name="twitter:card" content="summary">
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>%E2%96%B8</text></svg>">
-
+<title>Mark Patel</title>
+<meta name="description" content="Mark Patel. Coding since 10th grade, from Ahmedabad, now in Gurugram at Masters' Union. Not just a vibe coder. Open to internships.">
+<meta property="og:title" content="Mark Patel">
+<meta property="og:description" content="Coding since 10th grade. Not just a vibe coder. Open to internships.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231E1E1E'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='30' fill='%23ECECEC'>MP</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #0a0c0d;
-    --bg-raise:  #101314;
-    --line:      #1e2325;
-    --line-soft: #171b1d;
-    --text:      #d7dbdd;
-    --text-dim:  #7f878b;
-    --text-faint:#565e62;
-    --accent:    #ffb454;
-    --live:      #56d364;
-    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    color-scheme: dark;
+    --bg: #ECECEC;
+    --ink: #1E1E1E;
+    --mute: rgba(30, 30, 30, .5);
+    --faint: rgba(30, 30, 30, .28);
+    --line: rgba(30, 30, 30, .14);
+    --accent: #FF5B1F;
+    --sans: "Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --ease: cubic-bezier(.7, 0, .2, 1);
+    --left: 88px;
+    color-scheme: light;
   }
-
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  p, h1, h2, h3, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .label { font-size: 12px; font-weight: 500; letter-spacing: .01em; color: var(--mute); }
 
-  html { -webkit-text-size-adjust: 100%; }
+  /* ---------- logo + HUD ---------- */
+  .logo { position: fixed; left: 22px; top: 20px; z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; }
+  .logo b { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 30px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+  .logo small { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; font-weight: 500; color: var(--mute); letter-spacing: .02em; }
+  .hud { position: fixed; top: 0; left: 0; right: 0; z-index: 30; display: grid; grid-template-columns: 1.1fr 1fr 1fr auto; gap: 24px; padding: 18px 24px 16px var(--left); background: var(--bg); }
+  .hud .label { display: block; margin-bottom: 4px; }
+  .nav a { display: block; font-size: 19px; font-weight: 500; line-height: 1.02; letter-spacing: -.01em; text-transform: uppercase; text-decoration: none; transition: transform .35s var(--ease); }
+  .nav a::before { content: "\2192\00a0"; display: inline-block; width: 0; overflow: hidden; vertical-align: top; transition: width .35s var(--ease); }
+  .nav a[aria-current="true"]::before, .nav a:hover::before { width: 1.25em; }
+  .hud-val { font-size: 13px; font-weight: 500; }
+  .hud-val .t { color: var(--mute); font-variant-numeric: tabular-nums; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 6px; vertical-align: 1px; }
+  .hud-mail { text-align: right; }
+  .hud-mail a { font-size: 13px; font-weight: 500; }
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 15px;
-    line-height: 1.75;
-    font-variant-ligatures: none;
-    -webkit-font-smoothing: antialiased;
-  }
+  /* ---------- work (sticky stage) ---------- */
+  .work { position: relative; height: calc(100svh + (var(--n) - 1) * 75svh); }
+  .work-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; grid-template-columns: 250px minmax(0, 1fr) 300px; gap: 24px; padding: 150px 24px 24px var(--left); }
+  .panel { align-self: center; display: grid; gap: 28px; }
+  .fields { display: grid; gap: 10px; }
+  .fields div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; font-size: 12px; font-weight: 500; }
+  .fields dt { color: var(--mute); }
+  .panel-name { font-family: var(--serif); font-size: 34px; line-height: 1; text-transform: uppercase; }
+  .panel-desc { font-size: 13px; line-height: 1.45; max-width: 30ch; }
+  .stage { position: relative; }
+  .entry { position: absolute; left: 50%; top: 52%; width: min(40vw, 620px); transform: translate(-50%, -50%) translateY(80vh) rotate(9deg); opacity: 0; transition: transform 1s var(--ease), opacity .7s var(--ease); }
+  .entry.is-current { transform: translate(-50%, -50%) rotate(-3deg); opacity: 1; z-index: 5; }
+  .entry.is-prev1 { transform: translate(-50%, -50%) translate(10%, -62%) rotate(5deg) scale(.82); opacity: 1; z-index: 4; }
+  .entry.is-prev2 { transform: translate(-50%, -50%) translate(-6%, -104%) rotate(-7deg) scale(.68); opacity: 1; z-index: 3; }
+  .entry.is-gone { transform: translate(-50%, -50%) translateY(-130vh) rotate(-12deg); opacity: 0; }
+  .plate { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .45); transition: transform .6s var(--ease); }
+  .entry.is-current:hover .plate { transform: rotate(3deg) scale(1.02); }
+  .plate img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .plate-type { display: flex; flex-direction: column; justify-content: space-between; padding: 22px 24px; }
+  .plate-type .pt-top { font-size: 12px; font-weight: 500; letter-spacing: .01em; display: flex; justify-content: space-between; }
+  .plate-type .pt-big { font-size: clamp(56px, 7.5vw, 124px); font-weight: 600; letter-spacing: -.055em; line-height: .82; text-transform: uppercase; }
+  .plate-type .pt-serif { font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; text-transform: none; }
+  .p-dark { background: var(--ink); color: var(--bg); }
+  .p-light { background: #F8F8F6; color: var(--ink); }
+  .p-accent { background: var(--accent); color: var(--ink); }
+  .entry-meta { display: none; }
 
-  /* faint terminal grid, purely decorative */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,180,84,.055), transparent 70%);
-    z-index: 0;
-  }
+  .list-wrap { position: relative; overflow: hidden; }
+  .list-wrap::before, .list-wrap::after { content: ""; position: absolute; left: 0; right: 0; height: 90px; z-index: 2; pointer-events: none; }
+  .list-wrap::before { top: 0; background: linear-gradient(var(--bg), transparent); }
+  .list-wrap::after { bottom: 0; background: linear-gradient(transparent, var(--bg)); }
+  .list { position: absolute; left: 0; right: 0; top: 0; transition: transform .9s var(--ease); }
+  .list li a { display: grid; gap: 2px; padding: 14px 0; text-align: center; text-decoration: none; opacity: .28; transition: opacity .5s var(--ease); }
+  .list li.is-active a, .list li a:hover { opacity: 1; }
+  .list .cat { font-size: 11px; font-weight: 500; color: var(--mute); }
+  .list .nm { font-family: var(--serif); font-size: 22px; line-height: 1.05; text-transform: uppercase; }
+  .list .ds { font-size: 12px; line-height: 1.4; max-width: 30ch; margin: 4px auto 0; }
+  .list li:not(.is-active) .ds { display: none; }
 
-  .wrap {
-    position: relative;
-    z-index: 1;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 64px 28px 96px;
-  }
+  .count { position: absolute; left: calc(var(--left) + 250px + 24px); bottom: 10px; display: flex; align-items: flex-start; gap: 14px; pointer-events: none; }
+  .count .num { font-size: clamp(110px, 12.5vw, 190px); font-weight: 400; letter-spacing: -.06em; line-height: .78; font-variant-numeric: tabular-nums; }
+  .count .label { padding-top: 6px; }
+  .scroll-hint { position: absolute; left: 22px; bottom: 16px; }
 
-  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(255,180,84,.28); }
-  a:hover { border-bottom-color: var(--accent); }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  /* ---------- about ---------- */
+  section.pad { padding: 140px 24px 120px var(--left); }
+  .about-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 24px; }
+  .giant { font-size: clamp(150px, 27vw, 440px); font-weight: 400; letter-spacing: -.07em; line-height: .76; }
+  .giant.r { text-align: right; }
+  .about-mid { align-self: center; text-align: center; font-size: 13px; font-weight: 500; line-height: 1.45; }
+  .about-mid span { color: var(--mute); }
+  .facts { grid-column: 3; grid-row: 1; margin-bottom: 36px; font-size: clamp(22px, 2.3vw, 34px); font-weight: 500; line-height: 1.02; letter-spacing: -.02em; text-transform: uppercase; color: var(--accent); }
+  .about-top .giant.l { grid-column: 1; grid-row: 2; }
+  .about-top .about-mid { grid-column: 2; grid-row: 2; }
+  .about-top .giant.r { grid-column: 3; grid-row: 2; }
+  .about-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 120px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .about-grid h3 { font-size: 12px; font-weight: 500; color: var(--mute); margin-bottom: 14px; }
+  .about-grid li { font-size: 14px; font-weight: 500; line-height: 1.5; }
+  .about-grid li small { color: var(--mute); font-size: 12px; }
+  .statement { margin-top: 110px; max-width: 16ch; font-size: clamp(38px, 5.6vw, 92px); font-weight: 500; line-height: .95; letter-spacing: -.045em; text-transform: uppercase; }
+  .statement em { font-style: normal; color: var(--accent); }
 
-  /* ---------- prompt motif ---------- */
-  .prompt {
-    color: var(--text-faint);
-    font-size: 13px;
-    letter-spacing: .01em;
-    margin: 0 0 14px;
-  }
-  .prompt .u { color: var(--live); }
-  .prompt .p { color: var(--accent); }
-  .cursor {
-    display: inline-block;
-    width: 8px; height: 15px;
-    background: var(--accent);
-    vertical-align: -2px;
-    margin-left: 4px;
-    animation: blink 1.15s steps(1) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
-
-  /* ---------- header ---------- */
-  h1 {
-    font-size: clamp(30px, 6.5vw, 42px);
-    font-weight: 700;
-    letter-spacing: -.03em;
-    line-height: 1.15;
-    margin: 0 0 14px;
-    color: #fff;
-  }
-
-  .tagline {
-    font-size: 16px;
-    color: var(--text-dim);
-    margin: 0 0 26px;
-    max-width: 60ch;
-  }
-  .tagline strong { color: var(--text); font-weight: 500; }
-
-  .meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 40px;
-  }
-  .meta span::before { content: "· "; color: var(--text-faint); }
-  .meta span:first-child::before { content: ""; }
-
-  /* ---------- status / now ---------- */
-  .status {
-    border: 1px solid var(--line);
-    border-left: 2px solid var(--live);
-    background: var(--bg-raise);
-    border-radius: 3px;
-    padding: 16px 20px;
-    margin: 0 0 56px;
-  }
-  .status-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-bottom: 8px;
-  }
-  .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--live);
-    box-shadow: 0 0 0 3px rgba(86,211,100,.14);
-    flex: none;
-  }
-  .status p { margin: 0; font-size: 14.5px; color: var(--text); }
-  .status p + p { margin-top: 8px; color: var(--text-dim); }
-
-  /* ---------- sections ---------- */
-  section { margin-bottom: 60px; }
-
-  h2 {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin: 0 0 22px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  h2::before { content: "// "; color: var(--accent); opacity: .55; }
-
-  /* ---------- projects ---------- */
-  .project {
-    padding: 22px 0;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .project:first-of-type { padding-top: 0; }
-  .project:last-of-type { border-bottom: 0; padding-bottom: 0; }
-
-  .project-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 6px 12px;
-    margin-bottom: 10px;
-  }
-  .project-head h3 {
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -.01em;
-    margin: 0;
-    color: #fff;
-  }
-  .badge {
-    font-size: 10.5px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--live);
-    border: 1px solid rgba(86,211,100,.32);
-    border-radius: 100px;
-    padding: 1px 9px;
-    white-space: nowrap;
-  }
-  .badge.shipped { color: var(--text-dim); border-color: var(--line); }
-  .project-links {
-    margin-left: auto;
-    font-size: 12.5px;
-    display: flex;
-    gap: 14px;
-  }
-
-  .project > p {
-    margin: 0 0 12px;
-    color: var(--text-dim);
-    max-width: 68ch;
-  }
-
-  ul.points {
-    list-style: none;
-    margin: 0 0 14px;
-    padding: 0;
-    max-width: 68ch;
-  }
-  ul.points li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 6px;
-    font-size: 14px;
-    color: var(--text);
-  }
-  ul.points li::before {
-    content: "▸";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    opacity: .6;
-  }
-
-  .stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .stack span {
-    font-size: 11.5px;
-    color: var(--text-dim);
-    background: var(--bg-raise);
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 2px 8px;
-    white-space: nowrap;
-  }
-
-  /* ---------- experience ---------- */
-  .role {
-    display: grid;
-    grid-template-columns: 132px 1fr;
-    gap: 4px 22px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .role:first-of-type { padding-top: 0; }
-  .role:last-of-type { border-bottom: 0; padding-bottom: 0; }
-  .role .when {
-    font-size: 12.5px;
-    color: var(--text-faint);
-    padding-top: 4px;
-    white-space: nowrap;
-  }
-  .role h3 {
-    font-size: 15.5px;
-    font-weight: 700;
-    margin: 0 0 2px;
-    color: #fff;
-  }
-  .role .org { font-size: 13.5px; color: var(--accent); margin: 0 0 10px; }
-  .role .org .sep { color: var(--text-faint); }
-
-  @media (max-width: 620px) {
-    .role { grid-template-columns: 1fr; gap: 6px; }
-    .role .when { padding-top: 0; order: -1; }
-  }
-
-  /* ---------- skills ---------- */
-  .skillset { display: grid; gap: 18px; }
-  .skillset > div { display: grid; grid-template-columns: 132px 1fr; gap: 8px 22px; }
-  .skillset h3 {
-    font-size: 12.5px;
-    font-weight: 500;
-    color: var(--text-faint);
-    margin: 3px 0 0;
-    letter-spacing: .04em;
-  }
-  @media (max-width: 620px) {
-    .skillset > div { grid-template-columns: 1fr; gap: 6px; }
-  }
+  /* ---------- ask ---------- */
+  .ask { border-top: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 250px 1fr; gap: 24px; margin-bottom: 56px; }
+  .sec-head h2 { font-size: clamp(48px, 7vw, 120px); font-weight: 500; letter-spacing: -.055em; line-height: .88; text-transform: uppercase; }
+  .qa li { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); }
+  .qa li:last-child { border-bottom: 1px solid var(--line); }
+  .q { font-size: 13px; font-weight: 500; padding-top: 8px; }
+  .q span { color: var(--mute); margin-right: 8px; font-variant-numeric: tabular-nums; }
+  .a { font-family: var(--serif); font-size: clamp(30px, 3.6vw, 54px); line-height: 1.02; letter-spacing: -.01em; max-width: 24ch; }
 
   /* ---------- contact ---------- */
-  .contact-lines { margin: 0; }
-  .contact-lines div {
-    display: grid;
-    grid-template-columns: 132px 1fr;
-    gap: 22px;
-    padding: 7px 0;
-    font-size: 14px;
-  }
-  .contact-lines dt { color: var(--text-faint); font-size: 12.5px; }
-  @media (max-width: 620px) {
-    .contact-lines div { grid-template-columns: 92px 1fr; gap: 14px; }
-  }
+  .contact { background: var(--ink); color: var(--bg); }
+  .contact .label { color: rgba(236, 236, 236, .5); }
+  .contact-big { margin: 18px 0 90px; font-size: clamp(64px, 12vw, 210px); font-weight: 500; letter-spacing: -.065em; line-height: .82; text-transform: uppercase; }
+  .contact-big em { font-family: var(--serif); font-style: normal; font-weight: 400; letter-spacing: -.02em; text-transform: none; color: var(--accent); }
+  .links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; border-top: 1px solid rgba(236, 236, 236, .18); padding-top: 18px; }
+  .links a, .links .v { display: inline-block; margin-top: 6px; font-size: clamp(18px, 1.8vw, 26px); font-weight: 500; letter-spacing: -.02em; text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 0 2px; transition: background-size .45s var(--ease); }
+  .links a:hover { background-size: 100% 2px; }
+  .links .v { background: none; font-variant-numeric: tabular-nums; }
+  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 22px 24px 22px var(--left); background: var(--ink); color: rgba(236, 236, 236, .5); font-size: 12px; font-weight: 500; border-top: 1px solid rgba(236, 236, 236, .12); }
 
-  code {
-    font-family: var(--mono);
-    font-size: .92em;
-    color: var(--accent);
-    background: rgba(255,180,84,.07);
-    border: 1px solid rgba(255,180,84,.14);
-    border-radius: 3px;
-    padding: 0 4px;
+  /* ---------- tablet / mobile ---------- */
+  @media (max-width: 1100px) {
+    .work-sticky { grid-template-columns: 220px minmax(0, 1fr); }
+    .list-wrap { display: none; }
+    .count { left: calc(var(--left) + 220px + 24px); }
+    .hud { grid-template-columns: 1.2fr 1fr auto; }
+    .hud .status { display: none; }
+    .entry { width: min(52vw, 560px); }
   }
-
-  dl, dd { margin: 0; }
-
-  footer {
-    margin-top: 72px;
-    padding-top: 22px;
-    border-top: 1px solid var(--line-soft);
-    font-size: 12px;
-    color: var(--text-faint);
+  @media (max-width: 820px) {
+    :root { --left: 20px; }
+    .logo { position: fixed; top: 13px; left: 20px; flex-direction: row; }
+    .logo b, .logo small { writing-mode: horizontal-tb; transform: none; }
+    .logo b { font-size: 0; }
+    .logo b::after { content: "MP"; font-size: 22px; letter-spacing: -.03em; }
+    .logo small { display: none; }
+    .hud { position: sticky; grid-template-columns: 1fr; padding: 16px 20px 12px; gap: 0; }
+    .hud > div:not(.menu), .hud .label { display: none; }
+    .nav { display: flex; justify-content: flex-end; gap: 14px; }
+    .nav a { font-size: 13px; }
+    .nav a::before { display: none; }
+    .work { height: auto; }
+    .work-sticky { position: static; height: auto; overflow: visible; display: block; padding: 32px 20px 80px; }
+    .panel, .list-wrap, .count, .scroll-hint { display: none; }
+    .stage { display: grid; gap: 64px; }
+    .entry, .entry.is-current, .entry.is-prev1, .entry.is-prev2, .entry.is-gone { position: static; width: 100%; transform: none; opacity: 1; transition: none; }
+    .entry-meta { display: grid; gap: 8px; margin-top: 18px; }
+    .entry-meta .no { font-size: 56px; font-weight: 400; letter-spacing: -.06em; line-height: .8; }
+    .entry-meta h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; line-height: 1; text-transform: uppercase; }
+    .entry-meta p { font-size: 14px; }
+    .entry-meta .fields { margin-top: 6px; }
+    .plate-type .pt-big { font-size: 17vw; }
+    section.pad { padding: 90px 20px 80px; }
+    .about-top { grid-template-columns: 1fr 1fr; }
+    .facts { grid-column: 1 / -1; grid-row: 1; }
+    .about-top .giant.l { grid-column: 1; grid-row: 2; }
+    .about-top .giant.r { grid-column: 2; grid-row: 2; }
+    .about-top .about-mid { grid-column: 1 / -1; grid-row: 3; text-align: left; }
+    .giant { font-size: 42vw; }
+    .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 20px; margin-top: 70px; }
+    .statement { margin-top: 70px; }
+    .sec-head, .qa li { grid-template-columns: 1fr; gap: 10px; }
+    .q { padding-top: 0; }
+    .links { grid-template-columns: 1fr; }
+    footer { padding: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <!-- ============================================================
-       HEADER — EDIT: name, one-line pitch, location, availability
-       ============================================================ -->
-  <header>
-    <p class="prompt"><span class="u">mark</span>@<span class="p">portfolio</span>:~$ whoami<span class="cursor"></span></p>
+<a class="logo" href="#work" aria-label="Mark Patel, back to top"><b>MARK PATEL</b><small>&copy;2026 &middot; Ahmedabad &rarr; Gurugram</small></a>
 
-    <h1>Mark Patel</h1>
-
-    <p class="tagline">
-      <strong>Backend &amp; systems engineer.</strong>
-      I build the unglamorous infrastructure that agents and tools stand on —
-      typed APIs, real databases, CLIs people actually keep using.
-      <!-- EDIT: rewrite the line above in your own voice. One sentence. What you build, for whom. -->
-    </p>
-
-    <p class="meta">
-      <span>London, UK <!-- EDIT: your location --></span>
-      <span>Open to backend / platform roles <!-- EDIT: or "Not currently looking" --></span>
-      <span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></span>
-    </p>
-  </header>
-
-  <!-- ============================================================
-       NOW — the "what I'm doing" block. Keep this current; it is the
-       part a recruiter reads to see you are actually building.
-       ============================================================ -->
-  <div class="status">
-    <div class="status-label"><span class="dot"></span> Currently</div>
-    <p>Building <strong>Jarvis</strong>, a personal AI operating system — an agent-first backend with encrypted memory, a hash-chained audit log and an MCP server that plugs straight into Claude Code.</p>
-    <p>Also: <!-- EDIT: a second line — a course, a job hunt, contract work, open source, whatever is true --> reading up on retrieval evaluation and looking for backend/platform work.</p>
+<header class="hud">
+  <div class="menu">
+    <span class="label">Menu</span>
+    <nav class="nav" aria-label="Main">
+      <a href="#work" aria-current="true">Work</a>
+      <a href="#about">About</a>
+      <a href="#ask">Ask me</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
+  <div><span class="label">From Ahmedabad, now in</span><p class="hud-val">Gurugram, IN <span class="t" data-ist>--:--</span></p></div>
+  <div class="status"><span class="label">Status</span><p class="hud-val"><span class="dot"></span>Open to internships</p></div>
+  <div class="hud-mail"><span class="label">For internships</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
+</header>
 
-  <!-- ============================================================
-       PROJECTS — the section recruiters actually scan.
-       Rule of thumb: 3–5 projects. Each needs a WHAT, a WHY IT WAS
-       HARD, and a RESULT. Delete the TODO blocks you do not need.
-       ============================================================ -->
-  <section id="projects">
-    <h2>Projects</h2>
+<main>
+  <section class="work" id="work" style="--n:7" aria-label="Selected work">
+    <div class="work-sticky">
 
-    <article class="project">
-      <div class="project-head">
-        <h3>Jarvis</h3>
-        <span class="badge">Active</span>
-        <span class="project-links">
-          <!-- EDIT: real links, or delete the ones that do not exist -->
-          <a href="#">Source</a>
-          <a href="#">Notes</a>
-        </span>
+      <div class="panel" aria-live="polite">
+        <p class="panel-name" data-f="name">UniExplore</p>
+        <dl class="fields">
+          <div><dt>Type</dt><dd data-f="type">Hackathon</dd></div>
+          <div><dt>Role</dt><dd data-f="role">Frontend, team project</dd></div>
+          <div><dt>Where</dt><dd data-f="where">HackHarvard India</dd></div>
+        </dl>
+        <p class="panel-desc" data-f="desc">An AI admissions advisor that scores a student's profile and sorts universities into reach, target and safe.</p>
       </div>
-      <p>A personal AI operating system. Backend and agent first — no web UI. You talk to it through Claude Code via an MCP server, or through the <code>jarvis</code> CLI for scripting and scheduled runs.</p>
-      <ul class="points">
-        <li>pnpm monorepo where all behaviour lives in <code>@jarvis/core</code>; the CLI and MCP server are thin consumers, so a fourth surface costs nothing to add.</li>
-        <li>Secrets never sit on disk beside the data they protect: one master key in the macOS Keychain, credentials AES-256-GCM sealed in Postgres, with an env escape hatch for CI.</li>
-        <li>Hand-authored SQL migrations over a generator — the database holds the only copy of a personal history, so what runs against it stays readable.</li>
-        <li>Semantic memory on Postgres 17 + pgvector; <code>jarvis doctor</code> fails loudly when configured model ids drift out of what the API key can reach.</li>
+
+      <div class="stage">
+        <article class="entry is-current" id="e1">
+          <figure class="plate"><img src="uniexplore-landing.jpg" alt="UniExplore landing page: Your path to top universities starts here" width="1600" height="889"></figure>
+          <div class="entry-meta"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">An AI admissions advisor that scores a student's profile and sorts universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Frontend, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India</dd></div></dl></div>
+        </article>
+
+        <article class="entry" id="e2">
+          <figure class="plate"><img src="uniexplore-signin.jpg" alt="UniExplore sign-in page listing university matching, AI profile analysis and a personalised roadmap" width="1600" height="944" loading="lazy"></figure>
+          <div class="entry-meta"><span class="no">02</span><h3 data-k="name">UniExplore, sign-in</h3><p data-k="desc">The sign-in screen does the pitching too: matching, profile scoring and a roadmap, before anyone logs in.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Frontend, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India</dd></div></dl></div>
+        </article>
+
+        <article class="entry" id="e3">
+          <figure class="plate plate-type p-dark" aria-hidden="true"><span class="pt-top"><span>Internship</span><span>03</span></span><span class="pt-big">Omnia<br>Sys</span></figure>
+          <div class="entry-meta"><span class="no">03</span><h3 data-k="name">OmniaSys</h3><p data-k="desc">A tech and analytical role. Real problems, real deadlines, and learning to explain my work to people who aren't developers.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Internship</dd></div><div><dt>Role</dt><dd data-k="role">Intern</dd></div><div><dt>Where</dt><dd data-k="where">OmniaSys</dd></div></dl></div>
+        </article>
+
+        <article class="entry" id="e4">
+          <figure class="plate plate-type p-light" aria-hidden="true"><span class="pt-top"><span>Certification</span><span>04</span></span><span class="pt-big">OCI <span class="pt-serif">&times;2</span></span></figure>
+          <div class="entry-meta"><span class="no">04</span><h3 data-k="name">Oracle Certified</h3><p data-k="desc">Oracle Certified Professional in OCI Data Science (2025), plus Oracle Certified Associate in MySQL HeatWave Implementation.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Certification</dd></div><div><dt>Role</dt><dd data-k="role">Candidate</dd></div><div><dt>Where</dt><dd data-k="where">Oracle</dd></div></dl></div>
+        </article>
+
+        <article class="entry" id="e5">
+          <figure class="plate plate-type p-dark" aria-hidden="true"><span class="pt-top"><span>Research</span><span>05</span></span><span class="pt-big"><span class="pt-serif">Papers</span></span></figure>
+          <div class="entry-meta"><span class="no">05</span><h3 data-k="name">STEM research</h3><p data-k="desc">Authored research projects in STEM fields and presented the findings in academic settings.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Research</dd></div><div><dt>Role</dt><dd data-k="role">Author</dd></div><div><dt>Where</dt><dd data-k="where">Academic settings</dd></div></dl></div>
+        </article>
+
+        <article class="entry" id="e6">
+          <figure class="plate plate-type p-light" aria-hidden="true"><span class="pt-top"><span>Leadership</span><span>06</span></span><span class="pt-big">Found<br>er</span></figure>
+          <div class="entry-meta"><span class="no">06</span><h3 data-k="name">NGO founder</h3><p data-k="desc">Started and ran an NGO for community development and education: teaching, drives, fundraising and outreach.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Leadership</dd></div><div><dt>Role</dt><dd data-k="role">Founder</dd></div><div><dt>Where</dt><dd data-k="where">Education &amp; outreach</dd></div></dl></div>
+        </article>
+
+        <article class="entry" id="e7">
+          <figure class="plate plate-type p-accent" aria-hidden="true"><span class="pt-top"><span>Model United Nations</span><span>07</span></span><span class="pt-big">10+</span></figure>
+          <div class="entry-meta"><span class="no">07</span><h3 data-k="name">Model UN</h3><p data-k="desc">Ten-plus conferences and recognition in multiple committees. I argue with research.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Debate</dd></div><div><dt>Role</dt><dd data-k="role">Delegate</dd></div><div><dt>Where</dt><dd data-k="where">10+ conferences</dd></div></dl></div>
+        </article>
+      </div>
+
+      <div class="list-wrap">
+        <ol class="list">
+          <li class="is-active"><a href="#e1"><span class="cat">Hackathon</span><span class="nm">UniExplore</span><span class="ds">Frontend for an AI admissions advisor.</span></a></li>
+          <li><a href="#e2"><span class="cat">Hackathon</span><span class="nm">UniExplore sign-in</span><span class="ds">The screen that pitches while you log in.</span></a></li>
+          <li><a href="#e3"><span class="cat">Internship</span><span class="nm">OmniaSys</span><span class="ds">Tech and analytical work.</span></a></li>
+          <li><a href="#e4"><span class="cat">Certification</span><span class="nm">Oracle &times;2</span><span class="ds">OCI Data Science, MySQL HeatWave.</span></a></li>
+          <li><a href="#e5"><span class="cat">Research</span><span class="nm">STEM papers</span><span class="ds">Authored and presented.</span></a></li>
+          <li><a href="#e6"><span class="cat">Leadership</span><span class="nm">NGO founder</span><span class="ds">Community development and education.</span></a></li>
+          <li><a href="#e7"><span class="cat">Debate</span><span class="nm">Model UN</span><span class="ds">10+ conferences.</span></a></li>
+        </ol>
+      </div>
+
+      <div class="count" aria-hidden="true"><span class="label">Selected work</span><span class="num" data-f="num">01</span><span class="label">/07</span></div>
+      <span class="label scroll-hint">Scroll</span>
+    </div>
+  </section>
+
+  <section class="about pad" id="about" aria-label="About">
+    <div class="about-top">
+      <ul class="facts">
+        <li>Not just a vibe coder</li>
+        <li>HTML, Python, learning C</li>
+        <li>From Ahmedabad, now in Gurugram</li>
+        <li>Coffee &gt; chai. Fight me.</li>
       </ul>
-      <div class="stack">
-        <span>TypeScript</span><span>Node</span><span>Postgres 17</span><span>pgvector</span>
-        <span>Drizzle</span><span>MCP</span><span>Anthropic API</span><span>Docker</span><span>Vitest</span>
-      </div>
-    </article>
-
-    <!-- ---------- TODO: PROJECT 2 ---------- -->
-    <article class="project">
-      <div class="project-head">
-        <h3>TODO — Project two</h3>
-        <span class="badge shipped">Shipped</span>
-        <span class="project-links"><a href="#">Source</a><a href="#">Live</a></span>
-      </div>
-      <p>TODO — one or two sentences: what it does and who it was for.</p>
-      <ul class="points">
-        <li>TODO — the hardest technical decision and what you chose.</li>
-        <li>TODO — a number if you have one: users, latency, rows, time saved.</li>
-      </ul>
-      <div class="stack"><span>TODO</span><span>TODO</span><span>TODO</span></div>
-    </article>
-
-    <!-- ---------- TODO: PROJECT 3 ---------- -->
-    <article class="project">
-      <div class="project-head">
-        <h3>TODO — Project three</h3>
-        <span class="badge shipped">Shipped</span>
-        <span class="project-links"><a href="#">Source</a></span>
-      </div>
-      <p>TODO — one or two sentences.</p>
-      <ul class="points">
-        <li>TODO</li>
-        <li>TODO</li>
-      </ul>
-      <div class="stack"><span>TODO</span><span>TODO</span></div>
-    </article>
-  </section>
-
-  <!-- ============================================================
-       EXPERIENCE — jobs, internships, freelance, study.
-       If you are early career, put education last but keep it.
-       ============================================================ -->
-  <section id="experience">
-    <h2>Experience</h2>
-
-    <div class="role">
-      <div class="when">TODO — 2024 — now</div>
-      <div>
-        <h3>TODO — Job title</h3>
-        <p class="org">TODO — Company <span class="sep">/</span> TODO — City or Remote</p>
-        <ul class="points">
-          <li>TODO — what you owned, not what the team did.</li>
-          <li>TODO — the outcome, with a number where you can.</li>
-        </ul>
-      </div>
+      <p class="giant l" aria-hidden="true">10</p>
+      <p class="about-mid">The grade I wrote<br>my first line of code.<br><span>Been building since.</span></p>
+      <p class="giant r" aria-hidden="true">th</p>
     </div>
 
-    <div class="role">
-      <div class="when">TODO — 2022 — 2024</div>
-      <div>
-        <h3>TODO — Job title</h3>
-        <p class="org">TODO — Company <span class="sep">/</span> TODO — City or Remote</p>
-        <ul class="points">
-          <li>TODO</li>
-          <li>TODO</li>
-        </ul>
-      </div>
+    <div class="about-grid">
+      <div><h3>Education</h3><ul><li>Masters' Union<br><small>UG, Gurugram, ongoing</small></li><li>DPS Ahmedabad<br><small>High school</small></li></ul></div>
+      <div><h3>Receipts</h3><ul><li>Oracle Certified Professional, OCI Data Science</li><li>Oracle Certified Associate, MySQL HeatWave</li><li>HackHarvard India, UniExplore</li><li>Internship, OmniaSys</li><li>NGO founder</li><li>10+ MUN conferences</li><li>STEM research papers</li></ul></div>
+      <div><h3>What I write</h3><ul><li>Python</li><li>HTML</li><li>C <small>(learning, humbling)</small></li><li>Data analysis &amp; statistics</li><li>Excel</li><li>Basic machine learning</li></ul></div>
+      <div><h3>Off the keyboard</h3><ul><li>Finance &amp; the stock market</li><li>Mathematics</li><li>Fitness</li><li>Coffee, obviously</li></ul></div>
     </div>
 
-    <div class="role">
-      <div class="when">TODO — years</div>
-      <div>
-        <h3>TODO — Degree</h3>
-        <p class="org">TODO — University</p>
-      </div>
-    </div>
+    <p class="statement">Building since 10th grade. Learning C because Python was <em>too nice</em> to me.</p>
   </section>
 
-  <!-- ============================================================
-       SKILLS — seeded from what your Jarvis codebase actually uses.
-       Prune anything you would not want to be interviewed on.
-       ============================================================ -->
-  <section id="skills">
-    <h2>Stack</h2>
-    <div class="skillset">
-      <div>
-        <h3>Languages</h3>
-        <div class="stack"><span>TypeScript</span><span>SQL</span><span>Bash</span><span>TODO</span></div>
-      </div>
-      <div>
-        <h3>Backend</h3>
-        <div class="stack"><span>Node</span><span>Postgres</span><span>pgvector</span><span>Drizzle</span><span>REST</span></div>
-      </div>
-      <div>
-        <h3>AI / agents</h3>
-        <div class="stack"><span>Anthropic API</span><span>MCP</span><span>Embeddings</span><span>RAG</span></div>
-      </div>
-      <div>
-        <h3>Tooling</h3>
-        <div class="stack"><span>Docker</span><span>pnpm</span><span>Vitest</span><span>GitHub Actions</span><span>Git</span></div>
-      </div>
-    </div>
+  <section class="ask pad" id="ask" aria-labelledby="ask-t">
+    <div class="sec-head"><span class="label">Ask me</span><h2 id="ask-t">Questions I actually get</h2></div>
+    <ol class="qa">
+      <li><p class="q"><span>01</span>Who named you Mark Patel?</p><p class="a">My parents. They wanted a name that stands out. You're asking, so it worked.</p></li>
+      <li><p class="q"><span>02</span>So you're a vibe coder?</p><p class="a">I've been coding since 10th grade. Vibes don't compile.</p></li>
+      <li><p class="q"><span>03</span>Why learn C when Python exists?</p><p class="a">Python hides the hard parts. I wanted to meet them.</p></li>
+      <li><p class="q"><span>04</span>What did you build at HackHarvard India?</p><p class="a">The frontend of UniExplore. The part everyone actually clicks.</p></li>
+      <li><p class="q"><span>05</span>Why hire a student?</p><p class="a">I learn faster than your onboarding doc goes out of date.</p></li>
+    </ol>
   </section>
 
-  <!-- ============================================================
-       CONTACT — EDIT: real handles. Delete rows you do not use.
-       ============================================================ -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <dl class="contact-lines">
-      <div><dt>email</dt><dd><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></dd></div>
-      <div><dt>github</dt><dd><a href="https://github.com/NotMark-17">github.com/NotMark-17</a></dd></div>
-      <div><dt>linkedin</dt><dd><a href="#">TODO — linkedin.com/in/you</a></dd></div>
-      <div><dt>cv</dt><dd><a href="#">TODO — drop cv.pdf in this folder and link it</a></dd></div>
-    </dl>
+  <section class="contact pad" id="contact" aria-labelledby="contact-t">
+    <span class="label">Contact</span>
+    <h2 class="contact-big" id="contact-t">Slide into<br>my <em>inbox.</em></h2>
+    <ul class="links">
+      <li><span class="label">Internships, projects, questions</span><br><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></li>
+      <li><span class="label">The professional version</span><br><a href="https://www.linkedin.com/in/mark-patel-0aa212338" target="_blank" rel="noopener">LinkedIn &nearr;</a></li>
+      <li><span class="label">Local time, Gurugram</span><br><span class="v"><span data-ist>--:--</span> IST</span></li>
+    </ul>
   </section>
+</main>
 
-  <footer>
-    <p class="prompt" style="margin:0"><span class="u">mark</span>@<span class="p">portfolio</span>:~$ exit</p>
-  </footer>
+<footer><span>&copy; 2026 Mark Patel</span><span>From Ahmedabad. Now in Gurugram.</span></footer>
 
-</div>
+<script>
+(function () {
+  var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: false });
+  var clocks = document.querySelectorAll('[data-ist]');
+  function tick() { var t = fmt.format(new Date()); clocks.forEach(function (c) { c.textContent = t; }); }
+  tick(); setInterval(tick, 15000);
+
+  var work = document.getElementById('work');
+  var entries = Array.prototype.slice.call(work.querySelectorAll('.entry'));
+  var items = Array.prototype.slice.call(work.querySelectorAll('.list li'));
+  var list = work.querySelector('.list');
+  var wrap = work.querySelector('.list-wrap');
+  var panel = {};
+  work.querySelectorAll('[data-f]').forEach(function (el) { panel[el.getAttribute('data-f')] = el; });
+  var desktop = window.matchMedia('(min-width: 821px)');
+  var n = entries.length, cur = -1;
+
+  function centerList(i) {
+    var li = items[i];
+    if (!li || !wrap.clientHeight) return;
+    list.style.transform = 'translateY(' + (wrap.clientHeight / 2 - li.offsetTop - li.offsetHeight / 2) + 'px)';
+  }
+  function show(i) {
+    if (i === cur) return;
+    cur = i;
+    entries.forEach(function (e, k) {
+      e.className = 'entry' + (k === i ? ' is-current' : k === i - 1 ? ' is-prev1' : k === i - 2 ? ' is-prev2' : k < i ? ' is-gone' : '');
+    });
+    items.forEach(function (li, k) { li.classList.toggle('is-active', k === i); });
+    var meta = entries[i].querySelector('.entry-meta');
+    ['name', 'type', 'role', 'where', 'desc'].forEach(function (key) {
+      var src = meta.querySelector('[data-k="' + key + '"]');
+      if (src && panel[key]) panel[key].textContent = src.textContent;
+    });
+    panel.num.textContent = String(i + 1).padStart(2, '0');
+    centerList(i);
+  }
+  function onScroll() {
+    if (!desktop.matches) return;
+    var total = work.offsetHeight - window.innerHeight;
+    var p = Math.min(1, Math.max(0, (window.scrollY - work.offsetTop) / total));
+    show(Math.min(n - 1, Math.floor(p * n)));
+  }
+  items.forEach(function (li, k) {
+    li.querySelector('a').addEventListener('click', function (ev) {
+      if (!desktop.matches) return;
+      ev.preventDefault();
+      var total = work.offsetHeight - window.innerHeight;
+      window.scrollTo({ top: work.offsetTop + (k + 0.5) / n * total });
+    });
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function () { cur = -1; onScroll(); if (cur === -1) centerList(0); });
+  onScroll(); if (cur === -1) { cur = 0; centerList(0); }
+
+  var links = document.querySelectorAll('.nav a');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  ['work', 'about', 'ask', 'contact'].forEach(function (id) { io.observe(document.getElementById(id)); });
+})();
+</script>
 </body>
 </html>
