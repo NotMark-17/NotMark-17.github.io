@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     EDIT ME: page title + description (shown in Google + link previews)
+     ============================================================ -->
+<title>Mark Patel — Backend &amp; Systems Engineer</title>
+<meta name="description" content="Mark Patel — backend and systems engineer. I build agent infrastructure, CLIs and data-backed tools in TypeScript and Postgres.">
+<meta name="author" content="Mark Patel">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mark Patel — Backend &amp; Systems Engineer">
+<meta property="og:description" content="I build agent infrastructure, CLIs and data-backed tools in TypeScript and Postgres.">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>%E2%96%B8</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:        #0a0c0d;
+    --bg-raise:  #101314;
+    --line:      #1e2325;
+    --line-soft: #171b1d;
+    --text:      #d7dbdd;
+    --text-dim:  #7f878b;
+    --text-faint:#565e62;
+    --accent:    #ffb454;
+    --live:      #56d364;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.75;
+    font-variant-ligatures: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* faint terminal grid, purely decorative */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,180,84,.055), transparent 70%);
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 28px 96px;
+  }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(255,180,84,.28); }
+  a:hover { border-bottom-color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* ---------- prompt motif ---------- */
+  .prompt {
+    color: var(--text-faint);
+    font-size: 13px;
+    letter-spacing: .01em;
+    margin: 0 0 14px;
+  }
+  .prompt .u { color: var(--live); }
+  .prompt .p { color: var(--accent); }
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: var(--accent);
+    vertical-align: -2px;
+    margin-left: 4px;
+    animation: blink 1.15s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+  /* ---------- header ---------- */
+  h1 {
+    font-size: clamp(30px, 6.5vw, 42px);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    color: #fff;
+  }
+
+  .tagline {
+    font-size: 16px;
+    color: var(--text-dim);
+    margin: 0 0 26px;
+    max-width: 60ch;
+  }
+  .tagline strong { color: var(--text); font-weight: 500; }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+  }
+  .meta span::before { content: "· "; color: var(--text-faint); }
+  .meta span:first-child::before { content: ""; }
+
+  /* ---------- status / now ---------- */
+  .status {
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--live);
+    background: var(--bg-raise);
+    border-radius: 3px;
+    padding: 16px 20px;
+    margin: 0 0 56px;
+  }
+  .status-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 0 3px rgba(86,211,100,.14);
+    flex: none;
+  }
+  .status p { margin: 0; font-size: 14.5px; color: var(--text); }
+  .status p + p { margin-top: 8px; color: var(--text-dim); }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 60px; }
+
+  h2 {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  h2::before { content: "// "; color: var(--accent); opacity: .55; }
+
+  /* ---------- projects ---------- */
+  .project {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .project:first-of-type { padding-top: 0; }
+  .project:last-of-type { border-bottom: 0; padding-bottom: 0; }
+
+  .project-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 12px;
+    margin-bottom: 10px;
+  }
+  .project-head h3 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    margin: 0;
+    color: #fff;
+  }
+  .badge {
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--live);
+    border: 1px solid rgba(86,211,100,.32);
+    border-radius: 100px;
+    padding: 1px 9px;
+    white-space: nowrap;
+  }
+  .badge.shipped { color: var(--text-dim); border-color: var(--line); }
+  .project-links {
+    margin-left: auto;
+    font-size: 12.5px;
+    display: flex;
+    gap: 14px;
+  }
+
+  .project > p {
+    margin: 0 0 12px;
+    color: var(--text-dim);
+    max-width: 68ch;
+  }
+
+  ul.points {
+    list-style: none;
+    margin: 0 0 14px;
+    padding: 0;
+    max-width: 68ch;
+  }
+  ul.points li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  ul.points li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    opacity: .6;
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stack span {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    background: var(--bg-raise);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+
+  /* ---------- experience ---------- */
+  .role {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 4px 22px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .role:first-of-type { padding-top: 0; }
+  .role:last-of-type { border-bottom: 0; padding-bottom: 0; }
+  .role .when {
+    font-size: 12.5px;
+    color: var(--text-faint);
+    padding-top: 4px;
+    white-space: nowrap;
+  }
+  .role h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    margin: 0 0 2px;
+    color: #fff;
+  }
+  .role .org { font-size: 13.5px; color: var(--accent); margin: 0 0 10px; }
+  .role .org .sep { color: var(--text-faint); }
+
+  @media (max-width: 620px) {
+    .role { grid-template-columns: 1fr; gap: 6px; }
+    .role .when { padding-top: 0; order: -1; }
+  }
+
+  /* ---------- skills ---------- */
+  .skillset { display: grid; gap: 18px; }
+  .skillset > div { display: grid; grid-template-columns: 132px 1fr; gap: 8px 22px; }
+  .skillset h3 {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-faint);
+    margin: 3px 0 0;
+    letter-spacing: .04em;
+  }
+  @media (max-width: 620px) {
+    .skillset > div { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  /* ---------- contact ---------- */
+  .contact-lines { margin: 0; }
+  .contact-lines div {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 22px;
+    padding: 7px 0;
+    font-size: 14px;
+  }
+  .contact-lines dt { color: var(--text-faint); font-size: 12.5px; }
+  @media (max-width: 620px) {
+    .contact-lines div { grid-template-columns: 92px 1fr; gap: 14px; }
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: .92em;
+    color: var(--accent);
+    background: rgba(255,180,84,.07);
+    border: 1px solid rgba(255,180,84,.14);
+    border-radius: 3px;
+    padding: 0 4px;
+  }
+
+  dl, dd { margin: 0; }
+
+  footer {
+    margin-top: 72px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       HEADER — EDIT: name, one-line pitch, location, availability
+       ============================================================ -->
+  <header>
+    <p class="prompt"><span class="u">mark</span>@<span class="p">portfolio</span>:~$ whoami<span class="cursor"></span></p>
+
+    <h1>Mark Patel</h1>
+
+    <p class="tagline">
+      <strong>Backend &amp; systems engineer.</strong>
+      I build the unglamorous infrastructure that agents and tools stand on —
+      typed APIs, real databases, CLIs people actually keep using.
+      <!-- EDIT: rewrite the line above in your own voice. One sentence. What you build, for whom. -->
+    </p>
+
+    <p class="meta">
+      <span>London, UK <!-- EDIT: your location --></span>
+      <span>Open to backend / platform roles <!-- EDIT: or "Not currently looking" --></span>
+      <span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></span>
+    </p>
+  </header>
+
+  <!-- ============================================================
+       NOW — the "what I'm doing" block. Keep this current; it is the
+       part a recruiter reads to see you are actually building.
+       ============================================================ -->
+  <div class="status">
+    <div class="status-label"><span class="dot"></span> Currently</div>
+    <p>Building <strong>Jarvis</strong>, a personal AI operating system — an agent-first backend with encrypted memory, a hash-chained audit log and an MCP server that plugs straight into Claude Code.</p>
+    <p>Also: <!-- EDIT: a second line — a course, a job hunt, contract work, open source, whatever is true --> reading up on retrieval evaluation and looking for backend/platform work.</p>
+  </div>
+
+  <!-- ============================================================
+       PROJECTS — the section recruiters actually scan.
+       Rule of thumb: 3–5 projects. Each needs a WHAT, a WHY IT WAS
+       HARD, and a RESULT. Delete the TODO blocks you do not need.
+       ============================================================ -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <div class="project-head">
+        <h3>Jarvis</h3>
+        <span class="badge">Active</span>
+        <span class="project-links">
+          <!-- EDIT: real links, or delete the ones that do not exist -->
+          <a href="#">Source</a>
+          <a href="#">Notes</a>
+        </span>
+      </div>
+      <p>A personal AI operating system. Backend and agent first — no web UI. You talk to it through Claude Code via an MCP server, or through the <code>jarvis</code> CLI for scripting and scheduled runs.</p>
+      <ul class="points">
+        <li>pnpm monorepo where all behaviour lives in <code>@jarvis/core</code>; the CLI and MCP server are thin consumers, so a fourth surface costs nothing to add.</li>
+        <li>Secrets never sit on disk beside the data they protect: one master key in the macOS Keychain, credentials AES-256-GCM sealed in Postgres, with an env escape hatch for CI.</li>
+        <li>Hand-authored SQL migrations over a generator — the database holds the only copy of a personal history, so what runs against it stays readable.</li>
+        <li>Semantic memory on Postgres 17 + pgvector; <code>jarvis doctor</code> fails loudly when configured model ids drift out of what the API key can reach.</li>
+      </ul>
+      <div class="stack">
+        <span>TypeScript</span><span>Node</span><span>Postgres 17</span><span>pgvector</span>
+        <span>Drizzle</span><span>MCP</span><span>Anthropic API</span><span>Docker</span><span>Vitest</span>
+      </div>
+    </article>
+
+    <!-- ---------- TODO: PROJECT 2 ---------- -->
+    <article class="project">
+      <div class="project-head">
+        <h3>TODO — Project two</h3>
+        <span class="badge shipped">Shipped</span>
+        <span class="project-links"><a href="#">Source</a><a href="#">Live</a></span>
+      </div>
+      <p>TODO — one or two sentences: what it does and who it was for.</p>
+      <ul class="points">
+        <li>TODO — the hardest technical decision and what you chose.</li>
+        <li>TODO — a number if you have one: users, latency, rows, time saved.</li>
+      </ul>
+      <div class="stack"><span>TODO</span><span>TODO</span><span>TODO</span></div>
+    </article>
+
+    <!-- ---------- TODO: PROJECT 3 ---------- -->
+    <article class="project">
+      <div class="project-head">
+        <h3>TODO — Project three</h3>
+        <span class="badge shipped">Shipped</span>
+        <span class="project-links"><a href="#">Source</a></span>
+      </div>
+      <p>TODO — one or two sentences.</p>
+      <ul class="points">
+        <li>TODO</li>
+        <li>TODO</li>
+      </ul>
+      <div class="stack"><span>TODO</span><span>TODO</span></div>
+    </article>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE — jobs, internships, freelance, study.
+       If you are early career, put education last but keep it.
+       ============================================================ -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="role">
+      <div class="when">TODO — 2024 — now</div>
+      <div>
+        <h3>TODO — Job title</h3>
+        <p class="org">TODO — Company <span class="sep">/</span> TODO — City or Remote</p>
+        <ul class="points">
+          <li>TODO — what you owned, not what the team did.</li>
+          <li>TODO — the outcome, with a number where you can.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">TODO — 2022 — 2024</div>
+      <div>
+        <h3>TODO — Job title</h3>
+        <p class="org">TODO — Company <span class="sep">/</span> TODO — City or Remote</p>
+        <ul class="points">
+          <li>TODO</li>
+          <li>TODO</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">TODO — years</div>
+      <div>
+        <h3>TODO — Degree</h3>
+        <p class="org">TODO — University</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS — seeded from what your Jarvis codebase actually uses.
+       Prune anything you would not want to be interviewed on.
+       ============================================================ -->
+  <section id="skills">
+    <h2>Stack</h2>
+    <div class="skillset">
+      <div>
+        <h3>Languages</h3>
+        <div class="stack"><span>TypeScript</span><span>SQL</span><span>Bash</span><span>TODO</span></div>
+      </div>
+      <div>
+        <h3>Backend</h3>
+        <div class="stack"><span>Node</span><span>Postgres</span><span>pgvector</span><span>Drizzle</span><span>REST</span></div>
+      </div>
+      <div>
+        <h3>AI / agents</h3>
+        <div class="stack"><span>Anthropic API</span><span>MCP</span><span>Embeddings</span><span>RAG</span></div>
+      </div>
+      <div>
+        <h3>Tooling</h3>
+        <div class="stack"><span>Docker</span><span>pnpm</span><span>Vitest</span><span>GitHub Actions</span><span>Git</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT — EDIT: real handles. Delete rows you do not use.
+       ============================================================ -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <dl class="contact-lines">
+      <div><dt>email</dt><dd><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></dd></div>
+      <div><dt>github</dt><dd><a href="https://github.com/NotMark-17">github.com/NotMark-17</a></dd></div>
+      <div><dt>linkedin</dt><dd><a href="#">TODO — linkedin.com/in/you</a></dd></div>
+      <div><dt>cv</dt><dd><a href="#">TODO — drop cv.pdf in this folder and link it</a></dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <p class="prompt" style="margin:0"><span class="u">mark</span>@<span class="p">portfolio</span>:~$ exit</p>
+  </footer>
+
+</div>
+</body>
+</html>
