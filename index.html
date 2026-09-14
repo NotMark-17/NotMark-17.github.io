@@ -4,11 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>try{if(localStorage.getItem("mp-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
-<title>Mark Patel</title>
+<title>Mark Patel · Student developer, Gurugram</title>
+<link rel="canonical" href="https://markpatel.in/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markpatel.in/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mark Patel", "url": "https://markpatel.in/", "jobTitle": "Student developer", "description": "Coding since 10th grade. From Ahmedabad, now in Gurugram at Masters' Union.", "homeLocation": {"@type": "Place", "name": "Gurugram, India"}, "affiliation": {"@type": "CollegeOrUniversity", "name": "Masters' Union"}, "alumniOf": {"@type": "HighSchool", "name": "Delhi Public School Gandhinagar"}, "sameAs": ["https://www.linkedin.com/in/mark-patel-0aa212338"]}</script>
 <meta name="description" content="Mark Patel. Coding since 10th grade, from Ahmedabad, now in Gurugram at Masters' Union. Not just a vibe coder. Open to internships.">
 <meta property="og:title" content="Mark Patel">
 <meta property="og:description" content="Coding since 10th grade. Not just a vibe coder. Open to internships.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%231E1E1E'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='30' fill='%23ECECEC'>MP</text></svg>">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
@@ -56,7 +61,11 @@
   .nav a[aria-current="true"]::before, .nav a:hover::before { width: 1.25em; }
   .hud-val { font-size: 13px; font-weight: 500; }
   .hud-val .t { color: var(--mute); font-variant-numeric: tabular-nums; }
-  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 6px; vertical-align: 1px; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 6px; vertical-align: 1px;; position: relative; }
+  .dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: ping 1.8s cubic-bezier(0, 0, .2, 1) infinite; }
+  @keyframes ping { 70%, 100% { transform: scale(2.6); opacity: 0; } }
+  .caret { display: inline-block; width: 1.5px; height: 1em; margin-left: 2px; background: currentColor; vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
   .hud-mail { text-align: right; }
   .hud-mail a { font-size: 13px; font-weight: 500; }
 
@@ -292,7 +301,7 @@
     </nav>
   </div>
   <div><span class="label">From Ahmedabad, now in</span><p class="hud-val">Gurugram, IN <span class="t" data-ist>--:--</span></p></div>
-  <div class="status"><span class="label">Status</span><p class="hud-val"><span class="dot"></span>Open to internships</p></div>
+  <div class="status"><span class="label">Status</span><p class="hud-val" aria-live="off"><span class="dot"></span><span data-type>Accepting internships</span><span class="caret" aria-hidden="true"></span></p></div>
   <div class="mode"><span class="label">Mode</span><button class="hud-val theme-btn" type="button" data-theme-toggle aria-pressed="false">Light</button></div>
   <div class="hud-mail"><span class="label">For internships</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
 </header>
@@ -321,7 +330,7 @@
     <p class="m-tag">Not just a vibe coder. Coding since 10th grade.</p>
     <dl class="m-meta">
       <div><dt>From</dt><dd>Ahmedabad, now in Gurugram<span class="t" data-ist>--:--</span></dd></div>
-      <div><dt>Status</dt><dd><span class="dot"></span>Open to internships</dd></div>
+      <div><dt>Status</dt><dd><span class="dot"></span><span data-type>Accepting internships</span><span class="caret" aria-hidden="true"></span></dd></div>
       <div><dt>Email</dt><dd><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></dd></div>
     </dl>
   </section>
@@ -805,6 +814,23 @@
   track.addEventListener('scroll', function () { if (!mTick) { mTick = true; requestAnimationFrame(mobileTrack); } }, { passive: true });
   window.addEventListener('resize', function () { mActive = -1; mobileTrack(); });
   mobileTrack();
+
+  /* status line types itself */
+  var typers = document.querySelectorAll('[data-type]');
+  var lines = ['Accepting internships', 'Replies faster than HR', 'Will debug for coffee', 'Learning C, taking offers'];
+  if (!reduce && typers.length) {
+    var li = 0, ci = lines[0].length, del = true;
+    var tick = function () {
+      var w = lines[li];
+      ci += del ? -1 : 1;
+      typers.forEach(function (el) { el.textContent = w.slice(0, ci); });
+      var wait = del ? 28 : 55;
+      if (del && ci === 0) { del = false; li = (li + 1) % lines.length; w = lines[li]; wait = 260; }
+      else if (!del && ci === w.length) { del = true; wait = 2600; }
+      setTimeout(tick, wait);
+    };
+    setTimeout(tick, 3200);
+  }
 
   /* current section in the menu */
   var links = document.querySelectorAll('.nav a');
