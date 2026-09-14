@@ -76,7 +76,7 @@
   .entry.is-prev1 { transform: translate(-50%, -50%) translate(10%, -62%) rotate(5deg) scale(.82); opacity: 1; z-index: 4; }
   .entry.is-prev2 { transform: translate(-50%, -50%) translate(-6%, -104%) rotate(-7deg) scale(.68); opacity: 1; z-index: 3; }
   .entry.is-gone { transform: translate(-50%, -50%) translateY(-130vh) rotate(-12deg); opacity: 0; }
-  .plate { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; box-shadow: 0 26px 50px -28px rgba(0, 0, 0, .38); transition: transform .6s var(--ease); backface-visibility: hidden; }
+  .plate { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; box-shadow: 0 18px 36px -22px rgba(0, 0, 0, .3); transition: transform .6s var(--ease); backface-visibility: hidden; }
   .entry.is-current .plate:hover { transform: rotate(1.5deg) scale(1.015); }
   .plate img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
   .plate-type { display: flex; flex-direction: column; justify-content: space-between; padding: 22px 24px; }
@@ -458,7 +458,7 @@
   tick(); setInterval(tick, 15000);
 
   /* smooth scroll (falls back to native if Lenis didn't load) */
-  var lenis = (!reduce && window.Lenis) ? new window.Lenis({ lerp: 0.09, wheelMultiplier: 0.9, smoothWheel: true }) : null;
+  var lenis = (!reduce && window.Lenis) ? new window.Lenis({ lerp: 0.14, wheelMultiplier: 1, smoothWheel: true }) : null;
   function scrollToY(y) {
     if (lenis) { lenis.scrollTo(y, { duration: 1.1 }); }
     else { window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' }); }
@@ -504,8 +504,8 @@
   function posAt(p) {
     var raw = p * (n - 1), i = Math.floor(raw);
     if (i >= n - 1) return n - 1;
-    var t = Math.min(1, Math.max(0, (raw - i - 0.18) / 0.64)); /* each plate rests briefly */
-    return i + smooth(t);
+    var t = Math.min(1, Math.max(0, (raw - i - 0.08) / 0.84)); /* short rest, motion stays continuous */
+    return i + (0.5 - Math.cos(Math.PI * t) / 2);
   }
 
   function measure() {
