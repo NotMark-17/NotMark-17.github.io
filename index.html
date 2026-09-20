@@ -564,7 +564,7 @@
         entries[k].style.pointerEvents = parseFloat(parts[1]) > 0.5 ? '' : 'none';
       }
     }
-    setActive(Math.round(pos));
+    setActive(Math.min(n - 1, Math.floor(pos + 0.28))); /* label follows the plate, not the midpoint */
     var i = Math.min(n - 2, Math.floor(pos)), fr = pos - i;
     if (m.centers.length > 1 && m.wrapH) {
       var c = mix(m.centers[i], m.centers[i + 1], Math.min(1, Math.max(0, fr)));
@@ -792,6 +792,9 @@
     if (lenis) { if (open) { lenis.stop(); } else { lenis.start(); } }
   }
   menuBtn.addEventListener('click', function () { setMenu(mMenu.hidden); });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && !mMenu.hidden) { ev.preventDefault(); setMenu(false); menuBtn.focus(); }
+  });
   document.querySelectorAll('.m-menu a[href^="#"], .m-brand').forEach(function (a) {
     a.addEventListener('click', function (ev) {
       var el = document.getElementById(a.getAttribute('href').slice(1));
