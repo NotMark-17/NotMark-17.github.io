@@ -934,5 +934,17 @@
   ['work', 'about', 'ask', 'contact'].forEach(function (id) { io.observe(document.getElementById(id)); });
 })();
 </script>
+<script>
+  /* visit tagging: markpatel.in/?r=person shows up as its own line in analytics */
+  window.goatcounter = { path: function (p) {
+    try {
+      var q = new URLSearchParams(location.search);
+      var r = (q.get('r') || '').replace(/[^\w.-]/g, '').slice(0, 40);
+      var rec = document.documentElement.getAttribute('data-mode') === 'recruiter';
+      return p + (r ? '?r=' + r : '') + (rec ? (r ? '&' : '?') + 'mode=recruiter' : '');
+    } catch (e) { return p; }
+  } };
+</script>
+<script data-goatcounter="https://markpatel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
