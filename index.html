@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>try{if(localStorage.getItem("mp-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem("mp-theme")==="dark")d.setAttribute("data-theme","dark");var q=new URLSearchParams(location.search).get("mode");if(q==="recruiter"||(q!=="full"&&localStorage.getItem("mp-mode")==="recruiter"))d.setAttribute("data-mode","recruiter")}catch(e){}</script>
 <title>Mark Patel · Student developer, Gurugram</title>
 <link rel="canonical" href="https://markpatel.in/">
 <meta property="og:type" content="website">
@@ -289,6 +289,34 @@
     .plate-type .pt-big { font-size: 15vw; }
     section.pad { padding-top: 72px; }
   }
+  /* ---------- recruiter mode ---------- */
+  #recruiter { display: none; }
+  html[data-mode="recruiter"] body > *:not(#recruiter) { display: none !important; }
+  html[data-mode="recruiter"] #recruiter { display: flex; }
+  html[data-mode="recruiter"], html[data-mode="recruiter"] body { height: auto; overflow-y: auto; }
+  #recruiter { min-height: 100svh; flex-direction: column; justify-content: space-between; gap: 48px; padding: 20px 40px 40px; }
+  .rc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+  .rc-actions { display: flex; gap: 24px; align-items: baseline; }
+  .rc-exit { font: inherit; font-size: 13px; font-weight: 500; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
+  .rc-name { font-size: clamp(44px, 7.4vw, 124px); font-weight: 600; letter-spacing: -.055em; line-height: .88; text-transform: uppercase; margin: 0 0 16px; }
+  .rc-line { max-width: 62ch; font-size: clamp(15px, 1.25vw, 19px); margin: 0 0 36px; }
+  .rc-proof { margin: 0 0 36px; border-top: 1px solid var(--line); }
+  .rc-proof > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .rc-proof dt { font-size: 12px; font-weight: 500; color: var(--mute); }
+  .rc-proof dd { margin: 0; font-size: 15px; }
+  .rc-contact { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 15px; font-weight: 500; }
+  .rc-contact .rc-mute { color: var(--mute); }
+  .hud-mail .rc-open { display: block; margin-top: 3px; font: inherit; font-size: 12px; font-weight: 500; color: var(--mute); background: none; border: 0; padding: 0; cursor: pointer; }
+  .hud-mail .rc-open:hover { color: var(--ink); }
+  .m-menu-foot .rc-open { justify-self: start; font: inherit; font-size: 14px; font-weight: 500; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 820px) {
+    #recruiter { padding: 20px 20px 32px; gap: 32px; }
+    .rc-proof > div { grid-template-columns: 1fr; gap: 3px; }
+  }
+  @media print {
+    html[data-mode="recruiter"] .rc-top .rc-actions { display: none; }
+    html[data-mode="recruiter"] #recruiter { min-height: 0; padding: 0; }
+  }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -312,7 +340,7 @@
   <div><span class="label">From Ahmedabad, now in</span><p class="hud-val">Gurugram, IN <span class="t" data-ist>--:--</span></p></div>
   <div class="status"><span class="label">Status</span><p class="hud-val" aria-live="off"><span class="dot"></span><span data-type>Building since 10th grade</span><span class="caret" aria-hidden="true"></span></p></div>
   <div class="mode"><span class="label">Mode</span><button class="hud-val theme-btn" type="button" data-theme-toggle aria-pressed="false">Light</button></div>
-  <div class="hud-mail"><span class="label">Say hi</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
+  <div class="hud-mail"><span class="label">Say hi</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a><button class="rc-open" type="button">Recruiter mode &#8599;</button></div>
 </header>
 
 <div class="m-bar">
@@ -329,7 +357,7 @@
     <a href="#ask">Ask me</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="m-menu-foot"><span class="label">From Ahmedabad, now in Gurugram</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
+  <div class="m-menu-foot"><span class="label">From Ahmedabad, now in Gurugram</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a><button class="rc-open" type="button">Recruiter mode &#8599;</button></div>
 </div>
 
 <main>
@@ -445,6 +473,33 @@
     </ul>
   </section>
 </main>
+
+<section id="recruiter" aria-label="Short version for recruiters">
+  <div class="rc-top">
+    <span class="label">Mark Patel &middot; short version</span>
+    <div class="rc-actions">
+      <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false">Light</button>
+      <button class="rc-exit" type="button">See the full site &#8599;</button>
+    </div>
+  </div>
+  <div>
+    <h1 class="rc-name">Mark Patel</h1>
+    <p class="rc-line">First year at Masters&rsquo; Union, Gurugram. From Ahmedabad. Coding since 10th grade: Python, SQL, HTML, and C because Python was too nice to me.</p>
+    <dl class="rc-proof">
+      <div><dt>Hackathon</dt><dd>UniExplore, an AI admissions advisor that scores a profile and sorts universities into reach, target and safe. Built most of the product. Top 5 at HackHarvard India, January 2026.</dd></div>
+      <div><dt>Internships</dt><dd>Data science intern twice at OmniaSys, 2024 and 2025. Python and SQL on a transport management system: debugging, testing and small modules.</dd></div>
+      <div><dt>Certified</dt><dd>Oracle Certified Professional, OCI Data Science. Oracle Certified Associate, MySQL HeatWave.</dd></div>
+      <div><dt>Founded</dt><dd>Co-founded May Foundation, a youth-led nonprofit running mentorship, tuition and community drives, and built its website. Now closed.</dd></div>
+      <div><dt>Also</dt><dd>10+ Model UN conferences. Data analysis, Excel, basic machine learning. Finance, maths, fitness.</dd></div>
+    </dl>
+    <div class="rc-contact">
+      <a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a>
+      <a href="https://www.linkedin.com/in/mark-patel-0aa212338" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+      <span class="rc-mute">Gurugram, India</span>
+      <span class="rc-mute">Press R to switch back</span>
+    </div>
+  </div>
+</section>
 
 <footer><span>&copy; 2026 Mark Patel</span><span>From Ahmedabad. Now in Gurugram.</span></footer>
 
@@ -803,6 +858,30 @@
       setMenu(false);
       scrollToY(Math.max(0, el.getBoundingClientRect().top + window.scrollY - 56));
     });
+  });
+
+  /* ---------- recruiter mode ---------- */
+  var docEl = document.documentElement;
+  function recruiterOn() { return docEl.getAttribute('data-mode') === 'recruiter'; }
+  function setMode(rec, remember) {
+    if (rec) { docEl.setAttribute('data-mode', 'recruiter'); } else { docEl.removeAttribute('data-mode'); }
+    if (remember) { try { localStorage.setItem('mp-mode', rec ? 'recruiter' : 'full'); } catch (e) {} }
+    if (rec) { window.scrollTo(0, 0); }
+    else { refresh(); }
+  }
+  document.querySelectorAll('.rc-open').forEach(function (b) {
+    b.addEventListener('click', function () { setMenu(false); setMode(true, true); });
+  });
+  var rcExit = document.querySelector('.rc-exit');
+  if (rcExit) rcExit.addEventListener('click', function () { setMode(false, true); });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'r' && ev.key !== 'R') return;
+    if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    var t = ev.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (openIndex !== -1 || !mMenu.hidden) return;
+    ev.preventDefault();
+    setMode(!recruiterOn(), true);
   });
 
   /* ---------- mobile work carousel ---------- */
