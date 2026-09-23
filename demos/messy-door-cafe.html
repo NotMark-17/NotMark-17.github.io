@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Messy Door Cafe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fef8ee; --surface:#fff; --ink:#20201d; --muted:#736f66;
+  --accent:#e2542a; --accent-soft:#fde7dd; --ink2:#1d5c4f; --line:#e9ded0; --shadow:0 3px 0 var(--ink);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16150f; --surface:#211f18; --ink:#f5efe3; --muted:#a8a294;
+    --accent:#ff7a4d; --accent-soft:#33211a; --ink2:#5fbfa8; --line:#332f26; --shadow:0 3px 0 rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16150f; --surface:#211f18; --ink:#f5efe3; --muted:#a8a294;
+  --accent:#ff7a4d; --accent-soft:#33211a; --ink2:#5fbfa8; --line:#332f26; --shadow:0 3px 0 rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Space Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+h1,h2,h3,.brand{font-family:"Archivo Black",Impact,sans-serif;font-weight:400;line-height:1.05;margin:0;letter-spacing:-.02em}
+.demo-bar{background:var(--ink2);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.brand{font-size:20px;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:22px;font-size:14px;font-weight:500}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border:2px solid var(--ink);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:var(--shadow);font-family:"Space Grotesk",sans-serif}
+.btn.ghost{background:var(--surface);color:var(--ink)}
+.hero{padding:64px 0 52px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(38px,7vw,68px)}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--muted);font-size:17px;max-width:44ch}
+.rating{display:inline-block;background:var(--ink2);color:#fff;padding:5px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:18px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero-art{aspect-ratio:1/1;border:2px solid var(--ink);border-radius:14px;background:
+  radial-gradient(circle at 30% 30%, var(--accent) 0 14%, transparent 14%),
+  radial-gradient(circle at 70% 62%, var(--ink2) 0 18%, transparent 18%),
+  repeating-linear-gradient(45deg, var(--accent-soft) 0 14px, var(--surface) 14px 28px);box-shadow:6px 6px 0 var(--ink)}
+section{padding:58px 0;border-top:2px solid var(--ink)}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(28px,5vw,42px);margin-bottom:10px}
+.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+.mcol h3{font-size:22px;margin-bottom:14px;color:var(--accent)}
+.mrow{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.mrow span:last-child{font-weight:600;white-space:nowrap}
+.mrow em{display:block;font-style:normal;color:var(--muted);font-size:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:2px solid var(--ink);border-radius:12px;padding:22px;box-shadow:var(--shadow)}
+.card h3{font-size:19px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14px;margin:0}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+form{background:var(--surface);border:2px solid var(--ink);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
+label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:11px 13px;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+textarea{min-height:74px;resize:vertical}
+form .btn{width:100%;margin-top:20px;padding:13px}
+.info ul{list-style:none;padding:0;margin:0}
+.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
+.info strong{display:block;color:var(--ink);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+footer{border-top:2px solid var(--ink);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:840px){
+  .hero{grid-template-columns:1fr;padding:40px 0 30px}
+  .hero-art{aspect-ratio:16/10;order:-1}
+  .menu,.grid3,.book{grid-template-columns:1fr}
+  .navlinks{display:none}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for The Messy Door Cafe · sample menu and prices — real ones to come from the owner</div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#">The Messy <span>Door</span></a>
+  <div class="navlinks"><a href="#menu">Menu</a><a href="#space">The space</a><a href="#book">Book a table</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#book">Book a table</a>
+</nav></div></header>
+
+<div class="wrap"><div class="hero">
+  <div>
+    <span class="rating">★ 4.5 · 691 Google reviews</span>
+    <h1>Good coffee.<br><span>Messy door.</span></h1>
+    <p>All-day café on Judges Bunglow Road, Bodakdev. Come for the coffee, stay till someone asks you to leave.</p>
+    <div class="cta-row"><a class="btn" href="#menu">See the menu</a><a class="btn ghost" href="#book">Book a table</a></div>
+  </div>
+  <div class="hero-art"></div>
+</div></div>
+
+<section id="menu"><div class="wrap">
+  <div class="eyebrow">Menu</div>
+  <h2>What's on</h2>
+  <p class="sub">Sample items and prices — to be swapped for the café's real menu.</p>
+  <div class="menu">
+    <div class="mcol">
+      <h3>Coffee</h3>
+      <div class="mrow"><span>Cappuccino<em>Single origin, house blend</em></span><span>₹180</span></div>
+      <div class="mrow"><span>Cold brew<em>16 hour steep</em></span><span>₹220</span></div>
+      <div class="mrow"><span>Filter coffee<em>The South Indian way</em></span><span>₹120</span></div>
+      <div class="mrow"><span>Hot chocolate<em>For the non-coffee crowd</em></span><span>₹200</span></div>
+      <h3 style="margin-top:26px">All day</h3>
+      <div class="mrow"><span>Big breakfast<em>Eggs, toast, hash, sausage</em></span><span>₹380</span></div>
+      <div class="mrow"><span>Pancake stack<em>Maple, butter, berries</em></span><span>₹320</span></div>
+    </div>
+    <div class="mcol">
+      <h3>Plates</h3>
+      <div class="mrow"><span>Truffle mushroom pasta<em>Cream or aglio</em></span><span>₹420</span></div>
+      <div class="mrow"><span>Wood-fired margherita<em>San Marzano, basil</em></span><span>₹390</span></div>
+      <div class="mrow"><span>Peri peri loaded fries<em>Shareable, mostly</em></span><span>₹260</span></div>
+      <div class="mrow"><span>Paneer tikka sandwich<em>Sourdough, house chutney</em></span><span>₹290</span></div>
+      <h3 style="margin-top:26px">Sweet</h3>
+      <div class="mrow"><span>Tiramisu<em>Made in house</em></span><span>₹280</span></div>
+      <div class="mrow"><span>Brownie &amp; ice cream<em>Warm, obviously</em></span><span>₹260</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="space"><div class="wrap">
+  <div class="eyebrow">The space</div>
+  <h2>Why people stay</h2>
+  <div class="grid3">
+    <div class="card"><h3>Work-friendly</h3><p>Fast wifi, plug points at most tables, nobody rushing you.</p></div>
+    <div class="card"><h3>Private events</h3><p>Birthdays, shoots and small gatherings — the terrace books out.</p></div>
+    <div class="card"><h3>Open late</h3><p>Kitchen runs till close. Sample timings to be confirmed.</p></div>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <div class="eyebrow">Reservations</div>
+  <h2>Book a table</h2>
+  <p class="sub">Weekends fill up. Send a request and the café confirms on WhatsApp.</p>
+  <div class="book">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Name</label><input id="n" placeholder="Your name">
+      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
+      <label for="g">People</label><select id="g"><option>2</option><option>3–4</option><option>5–8</option><option>9+ (private event)</option></select>
+      <label for="d">Date</label><input id="d" type="date">
+      <label for="m">Anything else</label><textarea id="m" placeholder="Time, occasion, terrace or indoor"></textarea>
+      <button class="btn" type="submit">Request a table</button>
+    </form>
+    <div class="info" id="visit"><ul>
+      <li><strong>Call or WhatsApp</strong>082336 44262</li>
+      <li><strong>Where</strong>Pahelgam Bunglows 14, Judges Bunglow Road, opposite Akash Tower, Bodakdev, Ahmedabad</li>
+      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
+      <li><strong>Private events</strong>Terrace bookings, enquire at least a week ahead</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>The Messy Door Cafe · Bodakdev, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet</span>
+</div></footer>
+</body>
+</html>

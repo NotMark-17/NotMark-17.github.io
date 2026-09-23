@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>VBakesters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fffdf7; --surface:#fff; --ink:#2d2620; --muted:#7d7168;
+  --accent:#c2557c; --accent-soft:#fbe8ef; --mint:#4f9d84; --line:#f0e6da; --shadow:0 2px 22px rgba(90,60,40,.07);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17130f; --surface:#211b17; --ink:#f5ece2; --muted:#b0a297;
+    --accent:#e88bad; --accent-soft:#341f29; --mint:#6fc4a8; --line:#33291f; --shadow:0 2px 22px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17130f; --surface:#211b17; --ink:#f5ece2; --muted:#b0a297;
+  --accent:#e88bad; --accent-soft:#341f29; --mint:#6fc4a8; --line:#33291f; --shadow:0 2px 22px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 "DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
+.brand{font-family:"DM Serif Display",serif;font-size:22px;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;border:0;cursor:pointer;font-family:"DM Sans",sans-serif}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.hero{padding:66px 0 50px;display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center}
+.hero h1{font-size:clamp(36px,6.4vw,60px)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--muted);font-size:17px;max-width:45ch}
+.rating{display:inline-flex;gap:8px;background:var(--accent-soft);color:var(--accent);padding:6px 15px;border-radius:999px;font-size:13px;font-weight:500;margin-bottom:18px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero-art{aspect-ratio:1/1;border-radius:50% 50% 14px 14px;background:
+  radial-gradient(circle at 50% 70%, var(--accent) 0 22%, transparent 22%),
+  radial-gradient(circle at 50% 44%, var(--mint) 0 13%, transparent 13%),
+  linear-gradient(170deg,var(--accent-soft),var(--surface));border:1px solid var(--line);box-shadow:var(--shadow)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--mint);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(28px,4.6vw,40px);margin-bottom:10px}
+.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+.card .swatch{height:110px;border-radius:12px;margin-bottom:14px;background:var(--accent-soft)}
+.card h3{font-size:21px;margin-bottom:4px}
+.card p{color:var(--muted);font-size:14px;margin:0 0 12px}
+.card .price{color:var(--accent);font-weight:500;font-size:14px}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why div{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.why h3{font-size:19px;margin-bottom:5px}
+.why p{color:var(--muted);font-size:14px;margin:0}
+.order{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+textarea{min-height:78px;resize:vertical}
+form .btn{width:100%;margin-top:20px;padding:13px}
+.info ul{list-style:none;padding:0;margin:0}
+.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
+.info strong{display:block;color:var(--ink);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:840px){
+  .hero{grid-template-columns:1fr;padding:40px 0 30px}
+  .hero-art{aspect-ratio:4/3;border-radius:40% 40% 14px 14px;order:-1}
+  .grid,.why,.order{grid-template-columns:1fr}
+  .navlinks{display:none}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for VBakesters · sample range and prices — real ones to come from the baker</div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#">V<span>Bakesters</span></a>
+  <div class="navlinks"><a href="#range">Cakes</a><a href="#why">Why us</a><a href="#order">Order</a><a href="#visit">Contact</a></div>
+  <a class="btn" href="#order">Order now</a>
+</nav></div></header>
+
+<div class="wrap"><div class="hero">
+  <div>
+    <span class="rating">★ 5.0 · 417 Google reviews</span>
+    <h1>Home baked, <em>properly</em> baked.</h1>
+    <p>Custom cakes, brownies and dessert boxes made to order in Naranpura. Tell us the occasion and the date, and we'll take it from there.</p>
+    <div class="cta-row"><a class="btn" href="#order">Place an order</a><a class="btn ghost" href="#range">See the range</a></div>
+  </div>
+  <div class="hero-art"></div>
+</div></div>
+
+<section id="range"><div class="wrap">
+  <div class="eyebrow">The range</div>
+  <h2>What we bake</h2>
+  <p class="sub">Sample categories and prices — to be replaced with the baker's real range.</p>
+  <div class="grid">
+    <div class="card"><div class="swatch"></div><h3>Custom cakes</h3><p>Any theme, any flavour. Send a picture and we'll match it.</p><span class="price">from ₹900</span></div>
+    <div class="card"><div class="swatch"></div><h3>Eggless</h3><p>The full menu, eggless. Not an afterthought.</p><span class="price">from ₹850</span></div>
+    <div class="card"><div class="swatch"></div><h3>Brownies</h3><p>Fudgy, boxed in sixes or twelves. Good for gifting.</p><span class="price">from ₹400</span></div>
+    <div class="card"><div class="swatch"></div><h3>Dessert boxes</h3><p>Mixed jars, cupcakes and tarts for parties.</p><span class="price">from ₹650</span></div>
+    <div class="card"><div class="swatch"></div><h3>Bento cakes</h3><p>Small cakes for two, ready the same day.</p><span class="price">from ₹450</span></div>
+    <div class="card"><div class="swatch"></div><h3>Festive &amp; bulk</h3><p>Diwali hampers and corporate boxes, ordered ahead.</p><span class="price">on request</span></div>
+  </div>
+</div></section>
+
+<section id="why"><div class="wrap">
+  <div class="eyebrow">Why order here</div>
+  <h2>5.0 stars from 417 reviews</h2>
+  <p class="sub">Real rating from the Google listing. Customer quotes to be added with the baker's permission.</p>
+  <div class="why">
+    <div><h3>Baked to order</h3><p>Nothing sits in a display case. Your cake is made the day it's collected.</p></div>
+    <div><h3>You see it first</h3><p>A design mock-up and quote on WhatsApp before you pay anything.</p></div>
+    <div><h3>Nothing lost in DMs</h3><p>Orders come through this form with date, flavour and message attached.</p></div>
+  </div>
+</div></section>
+
+<section id="order"><div class="wrap">
+  <div class="eyebrow">Order</div>
+  <h2>Place an order</h2>
+  <p class="sub">Custom cakes need 48 hours. Bento cakes can often be done same day.</p>
+  <div class="order">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Name</label><input id="n" placeholder="Your name">
+      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
+      <label for="t">What do you need?</label>
+      <select id="t"><option>Custom cake</option><option>Eggless cake</option><option>Brownies</option><option>Dessert box</option><option>Bento cake</option><option>Festive / bulk order</option></select>
+      <label for="d">Date needed</label><input id="d" type="date">
+      <label for="m">Details</label><textarea id="m" placeholder="Flavour, weight, message on the cake, theme or reference picture"></textarea>
+      <button class="btn" type="submit">Send order request</button>
+    </form>
+    <div class="info" id="visit"><ul>
+      <li><strong>Call or WhatsApp</strong>096627 64310</li>
+      <li><strong>Where</strong>D-72, Rang Jyot Society, Naranpura, Ahmedabad</li>
+      <li><strong>Collection</strong>Pick up from Naranpura, or delivery arranged across Ahmedabad</li>
+      <li><strong>Advance</strong>Part payment confirms a custom order</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>VBakesters · Naranpura, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet</span>
+</div></footer>
+</body>
+</html>

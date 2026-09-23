@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>House of Cakes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fffaf6; --surface:#fff; --ink:#2a1d18; --muted:#7a655c;
+  --accent:#b8543f; --accent-soft:#f7e6df; --line:#efdfd7; --shadow:0 2px 20px rgba(80,40,25,.07);
+}
+:root:not([data-theme="light"]) { }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1a1311; --surface:#241a17; --ink:#f4e9e3; --muted:#b09a90;
+    --accent:#e0836a; --accent-soft:#3a241d; --line:#3a2b25; --shadow:0 2px 20px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1a1311; --surface:#241a17; --ink:#f4e9e3; --muted:#b09a90;
+  --accent:#e0836a; --accent-soft:#3a241d; --line:#3a2b25; --shadow:0 2px 20px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+a{color:inherit}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:500}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.brand{font-family:Fraunces,serif;font-size:19px;font-weight:600;text-decoration:none;letter-spacing:-.01em}
+.navlinks{display:flex;gap:22px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;border:0;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.hero{padding:64px 0 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(34px,6vw,56px);letter-spacing:-.02em}
+.hero p{color:var(--muted);font-size:17px;max-width:46ch}
+.rating{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:18px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero-art{aspect-ratio:4/5;border-radius:18px;background:
+   radial-gradient(circle at 50% 78%, var(--accent) 0 34%, transparent 34%),
+   radial-gradient(circle at 50% 52%, color-mix(in srgb,var(--accent) 55%,#fff) 0 27%, transparent 27%),
+   radial-gradient(circle at 50% 30%, color-mix(in srgb,var(--accent) 28%,#fff) 0 19%, transparent 19%),
+   var(--accent-soft);box-shadow:var(--shadow)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.01em;margin-bottom:8px}
+.sub{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.card .swatch{height:120px;border-radius:10px;margin-bottom:14px;background:var(--accent-soft)}
+.card h3{font-size:18px;margin-bottom:4px}
+.card p{color:var(--muted);font-size:14px;margin:0 0 12px}
+.price{font-weight:600;color:var(--accent)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{padding-left:44px;position:relative}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px}
+.step h3{font-size:16px;margin-bottom:4px}
+.step p{color:var(--muted);font-size:14px;margin:0}
+.order{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+textarea{min-height:80px;resize:vertical}
+form .btn{width:100%;margin-top:18px;padding:13px}
+.info li{margin-bottom:14px;color:var(--muted);font-size:15px;list-style:none}
+.info ul{padding:0;margin:0}
+.info strong{color:var(--ink);display:block;font-size:14px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;padding:40px 0 32px}
+  .hero-art{aspect-ratio:16/10;order:-1}
+  .grid,.steps,.order{grid-template-columns:1fr}
+  .navlinks{display:none}
+}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for House of Cakes · sample photos and prices — real ones to be supplied by the owner</div>
+<header>
+  <div class="wrap"><nav>
+    <a class="brand" href="#">House of Cakes</a>
+    <div class="navlinks">
+      <a href="#menu">Cakes</a><a href="#how">How to order</a><a href="#order">Order</a><a href="#visit">Visit</a>
+    </div>
+    <a class="btn" href="#order">Order a cake</a>
+  </nav></div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <span class="rating">★ 4.9 · 759 Google reviews</span>
+      <h1>Cakes worth the occasion, baked in Gurukul.</h1>
+      <p>Birthdays, weddings, anniversaries and the plain Tuesdays that need cake too. Order online and pick up, or get it delivered across Ahmedabad.</p>
+      <div class="cta-row">
+        <a class="btn" href="#order">Order a cake</a>
+        <a class="btn ghost" href="#menu">See the range</a>
+      </div>
+    </div>
+    <div class="hero-art"></div>
+  </div>
+</div>
+
+<section id="menu"><div class="wrap">
+  <div class="eyebrow">The range</div>
+  <h2>What we bake</h2>
+  <p class="sub">Sample categories — swap for the real menu and photos.</p>
+  <div class="grid">
+    <div class="card"><div class="swatch"></div><h3>Celebration cakes</h3><p>Custom designs for birthdays and anniversaries, half to three kilos.</p><span class="price">from ₹850</span></div>
+    <div class="card"><div class="swatch"></div><h3>Wedding tiers</h3><p>Two to four tiers, tasting session included before you confirm.</p><span class="price">on request</span></div>
+    <div class="card"><div class="swatch"></div><h3>Eggless classics</h3><p>Chocolate truffle, red velvet, pineapple and butterscotch.</p><span class="price">from ₹700</span></div>
+    <div class="card"><div class="swatch"></div><h3>Brownies &amp; cookies</h3><p>Boxes of six or twelve. The easy gift for an office desk.</p><span class="price">from ₹350</span></div>
+    <div class="card"><div class="swatch"></div><h3>Cupcakes</h3><p>Six-piece and twelve-piece boxes, mix your own flavours.</p><span class="price">from ₹420</span></div>
+    <div class="card"><div class="swatch"></div><h3>Corporate orders</h3><p>Branded cakes and dessert boxes for office celebrations.</p><span class="price">bulk rates</span></div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="eyebrow">Simple</div>
+  <h2>How to order</h2>
+  <p class="sub">No app, no account. Three steps.</p>
+  <div class="steps">
+    <div class="step"><h3>Tell us the cake</h3><p>Pick a flavour and size, or describe what you have in mind.</p></div>
+    <div class="step"><h3>Confirm on WhatsApp</h3><p>We send a quote and a design mock-up, then take a small advance.</p></div>
+    <div class="step"><h3>Pick up or delivered</h3><p>Ready at the Gurukul counter, or delivered anywhere in Ahmedabad.</p></div>
+  </div>
+</div></section>
+
+<section id="order"><div class="wrap">
+  <div class="eyebrow">Order</div>
+  <h2>Place an order</h2>
+  <p class="sub">Orders for custom cakes need 48 hours' notice.</p>
+  <div class="order">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Your name</label><input id="n" placeholder="Name">
+      <label for="p">WhatsApp number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
+      <label for="t">What do you need?</label>
+      <select id="t"><option>Celebration cake</option><option>Wedding tiers</option><option>Eggless classic</option><option>Brownies &amp; cookies</option><option>Cupcakes</option><option>Corporate order</option></select>
+      <label for="d">Date needed</label><input id="d" type="date">
+      <label for="m">Details</label><textarea id="m" placeholder="Flavour, size, message on the cake, any design ideas"></textarea>
+      <button class="btn" type="submit">Send order request</button>
+    </form>
+    <div class="info">
+      <ul>
+        <li><strong>Call or WhatsApp</strong>099240 28787</li>
+        <li><strong>Where</strong>Shop No. 6, Shanti Dayal Apartment, near H.B. Kapadia School, Gurukul, Ahmedabad</li>
+        <li><strong>Hours</strong>Sample timings — to be confirmed by the owner</li>
+        <li><strong>Delivery</strong>Across Ahmedabad; charges depend on distance</li>
+        <li><strong>Advance</strong>25% to confirm a custom order</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="visit"><div class="wrap">
+  <div class="eyebrow">Why order here</div>
+  <h2>759 reviews, 4.9 stars</h2>
+  <p class="sub">Real rating from the Google listing. Customer quotes to be added with the owner's permission.</p>
+</div></section>
+
+<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
+  <span>House of Cakes · Gurukul, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet</span>
+</div></footer>
+</body>
+</html>

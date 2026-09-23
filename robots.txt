@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /demos/
 
 Sitemap: https://markpatel.in/sitemap.xml
