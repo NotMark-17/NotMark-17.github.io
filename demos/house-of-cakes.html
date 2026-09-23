@@ -7,168 +7,235 @@
 <title>House of Cakes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fffaf6; --surface:#fff; --ink:#2a1d18; --muted:#7a655c;
-  --accent:#b8543f; --accent-soft:#f7e6df; --line:#efdfd7; --shadow:0 2px 20px rgba(80,40,25,.07);
+  --bg:#fbf5ef; --bg2:#f4e9df; --surface:#fff; --ink:#2a1a13; --muted:#7b6255;
+  --accent:#a82e4f; --accent-2:#c98a3e; --soft:#f8e3e8; --line:#ecdcd0;
+  --s1:0 1px 2px rgba(60,30,20,.06); --s2:0 4px 10px rgba(60,30,20,.06),0 14px 34px rgba(60,30,20,.09);
+  --s3:0 8px 18px rgba(60,30,20,.10),0 26px 60px rgba(60,30,20,.16);
 }
-:root:not([data-theme="light"]) { }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1a1311; --surface:#241a17; --ink:#f4e9e3; --muted:#b09a90;
-    --accent:#e0836a; --accent-soft:#3a241d; --line:#3a2b25; --shadow:0 2px 20px rgba(0,0,0,.35);
+    --bg:#171010; --bg2:#1e1513; --surface:#221816; --ink:#f6ebe4; --muted:#b39c90;
+    --accent:#f07d9c; --accent-2:#e0aa63; --soft:#33191f; --line:#33241f;
+    --s1:0 1px 2px rgba(0,0,0,.4); --s2:0 4px 10px rgba(0,0,0,.35),0 14px 34px rgba(0,0,0,.4);
+    --s3:0 8px 18px rgba(0,0,0,.45),0 26px 60px rgba(0,0,0,.55);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#1a1311; --surface:#241a17; --ink:#f4e9e3; --muted:#b09a90;
-  --accent:#e0836a; --accent-soft:#3a241d; --line:#3a2b25; --shadow:0 2px 20px rgba(0,0,0,.35);
+  --bg:#171010; --bg2:#1e1513; --surface:#221816; --ink:#f6ebe4; --muted:#b39c90;
+  --accent:#f07d9c; --accent-2:#e0aa63; --soft:#33191f; --line:#33241f;
+  --s1:0 1px 2px rgba(0,0,0,.4); --s2:0 4px 10px rgba(0,0,0,.35),0 14px 34px rgba(0,0,0,.4);
+  --s3:0 8px 18px rgba(0,0,0,.45),0 26px 60px rgba(0,0,0,.55);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;margin:0}
-a{color:inherit}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:500}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:-.015em}
+.demo-bar{background:linear-gradient(90deg,var(--accent),#7d2340);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:500;position:relative;z-index:40}
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line)}
 nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-.brand{font-family:Fraunces,serif;font-size:19px;font-weight:600;text-decoration:none;letter-spacing:-.01em}
-.navlinks{display:flex;gap:22px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}
-.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;border:0;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
-.hero{padding:64px 0 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(34px,6vw,56px);letter-spacing:-.02em}
-.hero p{color:var(--muted);font-size:17px;max-width:46ch}
-.rating{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:18px}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.hero-art{aspect-ratio:4/5;border-radius:18px;background:
-   radial-gradient(circle at 50% 78%, var(--accent) 0 34%, transparent 34%),
-   radial-gradient(circle at 50% 52%, color-mix(in srgb,var(--accent) 55%,#fff) 0 27%, transparent 27%),
-   radial-gradient(circle at 50% 30%, color-mix(in srgb,var(--accent) 28%,#fff) 0 19%, transparent 19%),
-   var(--accent-soft);box-shadow:var(--shadow)}
-section{padding:56px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.01em;margin-bottom:8px}
-.sub{color:var(--muted);margin:0 0 28px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
-.card .swatch{height:120px;border-radius:10px;margin-bottom:14px;background:var(--accent-soft)}
-.card h3{font-size:18px;margin-bottom:4px}
-.card p{color:var(--muted);font-size:14px;margin:0 0 12px}
-.price{font-weight:600;color:var(--accent)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
-.step{padding-left:44px;position:relative}
-.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px}
-.step h3{font-size:16px;margin-bottom:4px}
-.step p{color:var(--muted);font-size:14px;margin:0}
-.order{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
-label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+.brand{font-family:Fraunces,serif;font-size:20px;font-weight:700;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:9px}
+.brand i{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 34% 30%,var(--accent-2),var(--accent) 70%);box-shadow:var(--s1);display:block}
+.navlinks{display:flex;gap:26px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:3px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--accent);transition:right .28s}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{right:0}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:Inter,sans-serif;box-shadow:0 2px 6px rgba(168,46,79,.28),0 10px 24px rgba(168,46,79,.22);transition:transform .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(168,46,79,.3),0 16px 34px rgba(168,46,79,.3)}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid color-mix(in srgb,var(--accent) 45%,transparent);box-shadow:none}
+.btn.ghost:hover{background:var(--soft);box-shadow:var(--s1)}
+
+/* HERO */
+.hero{position:relative;padding:60px 0 72px}
+.hero::before{content:"";position:absolute;inset:-120px -20% auto -20%;height:520px;background:radial-gradient(ellipse at 30% 40%,var(--soft),transparent 62%),radial-gradient(ellipse at 78% 30%,color-mix(in srgb,var(--accent-2) 28%,transparent),transparent 58%);z-index:-1;filter:blur(6px)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
+.hero h1{font-size:clamp(38px,6.4vw,62px)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--muted);font-size:17.5px;max-width:44ch;margin:18px 0 0}
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:7px 15px 7px 8px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:var(--s2)}
+.pill b{background:var(--accent);color:#fff;border-radius:999px;padding:3px 9px;font-size:12px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.stack{position:relative;padding-bottom:54px;padding-right:38px}
+.stack .big{border-radius:20px;overflow:hidden;box-shadow:var(--s3);border:5px solid var(--surface);transform:rotate(-1.2deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:47%;border-radius:16px;overflow:hidden;box-shadow:var(--s3);border:5px solid var(--surface);transform:rotate(2.4deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:20px;left:16px;z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 15px;box-shadow:var(--s3);text-align:center}
+@media(min-width:901px){.badge{left:-18px}}
+.badge b{display:block;font-family:Fraunces,serif;font-size:22px;color:var(--accent);line-height:1}
+.badge span{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+/* STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-block:26px}
+.strip div{text-align:center}
+.strip b{display:block;font-family:Fraunces,serif;font-size:26px;color:var(--accent)}
+.strip span{font-size:12.5px;color:var(--muted)}
+
+section{padding:74px 0}
+.head{max-width:56ch;margin-bottom:38px}
+.eyebrow{display:inline-block;color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(30px,4.6vw,42px)}
+.sub{color:var(--muted);margin:12px 0 0}
+
+/* MENU CARDS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--s2);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.card:hover{transform:translateY(-7px);box-shadow:var(--s3)}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.card:hover .ph img{transform:scale(1.06)}
+.card .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:52%;background:linear-gradient(transparent,rgba(30,12,8,.42))}
+.card .tag{position:absolute;left:14px;bottom:12px;color:#fff;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.card .b{padding:20px}
+.card h3{font-size:20px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+.card .price{color:var(--accent);font-weight:700;font-size:15px}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split .imgwrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--s3);border:5px solid var(--surface)}
+.split .imgwrap img{aspect-ratio:5/4;object-fit:cover;width:100%}
+.steps{counter-reset:s;margin-top:26px}
+.step{position:relative;padding-left:56px;margin-bottom:26px}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-2px;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1px solid var(--line);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:15px;box-shadow:var(--s2)}
+.step h3{font-size:17px;margin-bottom:3px}
+.step p{color:var(--muted);font-size:14.5px;margin:0}
+
+/* ORDER */
+.order{background:var(--bg2);border-block:1px solid var(--line)}
+.ordergrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--s3)}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
 label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:80px;resize:vertical}
-form .btn{width:100%;margin-top:18px;padding:13px}
-.info li{margin-bottom:14px;color:var(--muted);font-size:15px;list-style:none}
-.info ul{padding:0;margin:0}
-.info strong{color:var(--ink);display:block;font-size:14px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:820px){
-  .hero{grid-template-columns:1fr;padding:40px 0 32px}
-  .hero-art{aspect-ratio:16/10;order:-1}
-  .grid,.steps,.order{grid-template-columns:1fr}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
+textarea{min-height:88px;resize:vertical}
+form .btn{width:100%;margin-top:22px;padding:14px}
+.info{display:flex;flex-direction:column;gap:14px}
+.irow{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--s2)}
+.irow i{width:34px;height:34px;flex:none;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent);font-weight:700;font-size:15px}
+.irow strong{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.irow span{font-size:15px}
+
+footer{padding:40px 0;background:var(--bg2);border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:900px){
+  .hero-grid,.split,.ordergrid{grid-template-columns:1fr;gap:38px}
+  .stack{order:-1;padding-right:26px;padding-bottom:42px;max-width:440px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:18px}
   .navlinks{display:none}
+  section{padding:56px 0}
 }
+@media(max-width:560px){ .grid{grid-template-columns:1fr} }
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for House of Cakes · sample photos and prices — real ones to be supplied by the owner</div>
-<header>
-  <div class="wrap"><nav>
-    <a class="brand" href="#">House of Cakes</a>
-    <div class="navlinks">
-      <a href="#menu">Cakes</a><a href="#how">How to order</a><a href="#order">Order</a><a href="#visit">Visit</a>
-    </div>
-    <a class="btn" href="#order">Order a cake</a>
-  </nav></div>
-</header>
+<div class="demo-bar">Demo site built for House of Cakes · stock photos and sample prices — real ones to be supplied by the owner</div>
 
-<div class="wrap">
-  <div class="hero">
-    <div>
-      <span class="rating">★ 4.9 · 759 Google reviews</span>
-      <h1>Cakes worth the occasion, baked in Gurukul.</h1>
-      <p>Birthdays, weddings, anniversaries and the plain Tuesdays that need cake too. Order online and pick up, or get it delivered across Ahmedabad.</p>
-      <div class="cta-row">
-        <a class="btn" href="#order">Order a cake</a>
-        <a class="btn ghost" href="#menu">See the range</a>
-      </div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#"><i></i>House of Cakes</a>
+  <div class="navlinks"><a href="#menu">Cakes</a><a href="#how">How to order</a><a href="#order">Order</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#order">Order a cake</a>
+</nav></div></header>
+
+<div class="wrap"><section class="hero"><div class="hero-grid">
+  <div>
+    <span class="pill"><b>4.9 ★</b> 759 Google reviews</span>
+    <h1>Cakes worth the <em>occasion</em>.</h1>
+    <p>Baked fresh in Gurukul for birthdays, weddings, anniversaries — and the ordinary Tuesdays that need cake too. Order online, collect or get it delivered across Ahmedabad.</p>
+    <div class="cta">
+      <a class="btn" href="#order">Order a cake</a>
+      <a class="btn ghost" href="#menu">See the range</a>
     </div>
-    <div class="hero-art"></div>
   </div>
-</div>
+  <div class="stack">
+    <div class="badge"><b>48h</b><span>Custom orders</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=900&q=72" alt="Chocolate drip cake on a cake stand" loading="eager"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1615796701805-2094ac54bbf9?w=600&q=72" alt="Slice of layered chocolate cake with chocolate chips" loading="lazy"></div>
+  </div>
+</div></section></div>
 
-<section id="menu"><div class="wrap">
-  <div class="eyebrow">The range</div>
-  <h2>What we bake</h2>
-  <p class="sub">Sample categories — swap for the real menu and photos.</p>
+<div class="strip"><div class="wrap">
+  <div><b>4.9★</b><span>Google rating</span></div>
+  <div><b>759</b><span>Reviews</span></div>
+  <div><b>100%</b><span>Baked to order</span></div>
+  <div><b>Eggless</b><span>Full menu available</span></div>
+</div></div>
+
+<div class="wrap"><section id="menu">
+  <div class="head">
+    <span class="eyebrow">The range</span>
+    <h2>What we bake</h2>
+    <p class="sub">Sample categories with stock photography — to be replaced with the bakery's own cakes and real prices.</p>
+  </div>
   <div class="grid">
-    <div class="card"><div class="swatch"></div><h3>Celebration cakes</h3><p>Custom designs for birthdays and anniversaries, half to three kilos.</p><span class="price">from ₹850</span></div>
-    <div class="card"><div class="swatch"></div><h3>Wedding tiers</h3><p>Two to four tiers, tasting session included before you confirm.</p><span class="price">on request</span></div>
-    <div class="card"><div class="swatch"></div><h3>Eggless classics</h3><p>Chocolate truffle, red velvet, pineapple and butterscotch.</p><span class="price">from ₹700</span></div>
-    <div class="card"><div class="swatch"></div><h3>Brownies &amp; cookies</h3><p>Boxes of six or twelve. The easy gift for an office desk.</p><span class="price">from ₹350</span></div>
-    <div class="card"><div class="swatch"></div><h3>Cupcakes</h3><p>Six-piece and twelve-piece boxes, mix your own flavours.</p><span class="price">from ₹420</span></div>
-    <div class="card"><div class="swatch"></div><h3>Corporate orders</h3><p>Branded cakes and dessert boxes for office celebrations.</p><span class="price">bulk rates</span></div>
+    <div class="card"><div class="ph"><span class="tag">Signature</span><img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=700&q=70" alt="White frosted cake with dark chocolate drip" loading="lazy"></div>
+      <div class="b"><h3>Celebration cakes</h3><p>Custom designs for birthdays and anniversaries, half kilo to three kilos.</p><span class="price">from ₹850</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Bestseller</span><img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?w=700&q=70" alt="Chocolate cake topped with cookies and chocolate drip" loading="lazy"></div>
+      <div class="b"><h3>Chocolate classics</h3><p>Truffle, chocolate cookie and dark chocolate ganache cakes.</p><span class="price">from ₹900</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Premium</span><img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=700&q=70" alt="Mirror glazed cake decorated with strawberries" loading="lazy"></div>
+      <div class="b"><h3>Mousse &amp; glaze</h3><p>Mirror-glaze and mousse cakes for when the photo matters.</p><span class="price">from ₹1,200</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Counter</span><img src="https://images.unsplash.com/photo-1583338917451-face2751d8d5?w=700&q=70" alt="Pastries and tarts in a patisserie display case" loading="lazy"></div>
+      <div class="b"><h3>Pastries &amp; slices</h3><p>Fresh from the counter — tarts, slices and berry pastries.</p><span class="price">from ₹120</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Gifting</span><img src="https://images.unsplash.com/photo-1615796701805-2094ac54bbf9?w=700&q=70" alt="Chocolate muffins and a chocolate cake slice" loading="lazy"></div>
+      <div class="b"><h3>Brownies &amp; muffins</h3><p>Boxes of six or twelve. The easy gift for an office desk.</p><span class="price">from ₹350</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Same day</span><img src="https://images.unsplash.com/photo-1584982890941-b788ae5a54df?w=700&q=70" alt="Small cake with chocolate drip and a strawberry on top" loading="lazy"></div>
+      <div class="b"><h3>Bento &amp; small cakes</h3><p>Little cakes for two, often ready the same day.</p><span class="price">from ₹450</span></div></div>
   </div>
-</div></section>
+</section></div>
 
-<section id="how"><div class="wrap">
-  <div class="eyebrow">Simple</div>
-  <h2>How to order</h2>
-  <p class="sub">No app, no account. Three steps.</p>
-  <div class="steps">
-    <div class="step"><h3>Tell us the cake</h3><p>Pick a flavour and size, or describe what you have in mind.</p></div>
-    <div class="step"><h3>Confirm on WhatsApp</h3><p>We send a quote and a design mock-up, then take a small advance.</p></div>
-    <div class="step"><h3>Pick up or delivered</h3><p>Ready at the Gurukul counter, or delivered anywhere in Ahmedabad.</p></div>
+<div class="wrap"><section id="how"><div class="split">
+  <div class="imgwrap"><img src="https://images.unsplash.com/photo-1595144780677-6d0b5abbd089?w=900&q=72" alt="Bakery display counter filled with cakes" loading="lazy"></div>
+  <div>
+    <span class="eyebrow">Simple</span>
+    <h2>How to order</h2>
+    <p class="sub">No app, no account. Three steps and a WhatsApp confirmation.</p>
+    <div class="steps">
+      <div class="step"><h3>Tell us the cake</h3><p>Pick a flavour and size, or describe what you have in mind.</p></div>
+      <div class="step"><h3>Confirm on WhatsApp</h3><p>We send a quote and a design mock-up, then take a small advance.</p></div>
+      <div class="step"><h3>Collect or delivered</h3><p>Ready at the Gurukul counter, or delivered anywhere in Ahmedabad.</p></div>
+    </div>
   </div>
-</div></section>
+</div></section></div>
 
-<section id="order"><div class="wrap">
-  <div class="eyebrow">Order</div>
-  <h2>Place an order</h2>
-  <p class="sub">Orders for custom cakes need 48 hours' notice.</p>
-  <div class="order">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+<div class="order"><div class="wrap"><section id="order">
+  <div class="head">
+    <span class="eyebrow">Order</span>
+    <h2>Place an order</h2>
+    <p class="sub">Custom cakes need 48 hours' notice. Bento cakes can often be done same day.</p>
+  </div>
+  <div class="ordergrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)'">
       <label for="n">Your name</label><input id="n" placeholder="Name">
       <label for="p">WhatsApp number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
       <label for="t">What do you need?</label>
-      <select id="t"><option>Celebration cake</option><option>Wedding tiers</option><option>Eggless classic</option><option>Brownies &amp; cookies</option><option>Cupcakes</option><option>Corporate order</option></select>
+      <select id="t"><option>Celebration cake</option><option>Chocolate classic</option><option>Mousse &amp; glaze cake</option><option>Pastries &amp; slices</option><option>Brownies &amp; muffins</option><option>Bento / small cake</option></select>
       <label for="d">Date needed</label><input id="d" type="date">
-      <label for="m">Details</label><textarea id="m" placeholder="Flavour, size, message on the cake, any design ideas"></textarea>
+      <label for="m">Details</label><textarea id="m" placeholder="Flavour, weight, message on the cake, any design ideas"></textarea>
       <button class="btn" type="submit">Send order request</button>
     </form>
-    <div class="info">
-      <ul>
-        <li><strong>Call or WhatsApp</strong>099240 28787</li>
-        <li><strong>Where</strong>Shop No. 6, Shanti Dayal Apartment, near H.B. Kapadia School, Gurukul, Ahmedabad</li>
-        <li><strong>Hours</strong>Sample timings — to be confirmed by the owner</li>
-        <li><strong>Delivery</strong>Across Ahmedabad; charges depend on distance</li>
-        <li><strong>Advance</strong>25% to confirm a custom order</li>
-      </ul>
+    <div class="info" id="visit">
+      <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span>099240 28787</span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Where</strong><span>Shop No. 6, Shanti Dayal Apartment, near H.B. Kapadia School, Gurukul, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed by the owner</span></div></div>
+      <div class="irow"><i>⛟</i><div><strong>Delivery</strong><span>Across Ahmedabad; charges depend on distance</span></div></div>
+      <div class="irow"><i>₹</i><div><strong>Advance</strong><span>25% to confirm a custom order</span></div></div>
     </div>
   </div>
-</div></section>
+</section></div></div>
 
-<section id="visit"><div class="wrap">
-  <div class="eyebrow">Why order here</div>
-  <h2>759 reviews, 4.9 stars</h2>
-  <p class="sub">Real rating from the Google listing. Customer quotes to be added with the owner's permission.</p>
-</div></section>
-
-<footer><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
+<footer><div class="wrap">
   <span>House of Cakes · Gurukul, Ahmedabad</span>
-  <span>Demo site — not affiliated with the business yet</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
 </div></footer>
 </body>
 </html>
