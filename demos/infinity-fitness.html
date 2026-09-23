@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Infinity Fitness 24×7</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1114;--surface:#171a1f;--ink:#eef1f5;--muted:#95a0ad;--accent:#2f6df6;--soft:#152034;--line:#242931;--sh:0 2px 24px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#f5f7fa;--surface:#fff;--ink:#121620;--muted:#5a6675;--accent:#1d4fd0;--soft:#e6edfd;--line:#e1e6ed;--sh:0 2px 20px rgba(20,30,50,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+h1,h2,h3,.brand{font-family:Oswald,Impact,sans-serif;font-weight:600;text-transform:uppercase;line-height:1.08;margin:0;letter-spacing:.01em}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:500}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.brand{font-size:23px;text-decoration:none;color:var(--ink)}.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;font-size:14px;font-weight:500}
+.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:4px;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;border:0;cursor:pointer;font-family:Oswald,sans-serif}
+.btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.hero{padding:70px 0 54px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(42px,7.6vw,74px)}.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{color:var(--muted);font-size:17px;max-width:44ch}
+.rating{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:5px 13px;border-radius:4px;font-size:13px;font-weight:600;margin-bottom:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.art{aspect-ratio:1/1;border-radius:10px;background:conic-gradient(from 210deg at 50% 50%,var(--accent) 0 25%,transparent 25% 50%,var(--accent) 50% 75%,transparent 75%),linear-gradient(160deg,var(--surface),var(--line));opacity:.95;border:1px solid var(--line);box-shadow:var(--sh)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.stats div{background:var(--bg);padding:24px 14px;text-align:center}
+.stats b{display:block;font-family:Oswald,sans-serif;font-size:34px;color:var(--accent);line-height:1}
+.stats span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+section{padding:58px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;font-family:"IBM Plex Sans",sans-serif}
+h2{font-size:clamp(30px,5vw,44px);margin-bottom:10px}
+.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:var(--sh)}
+.card h3{font-size:21px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pl{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:26px;position:relative}
+.pl.f{border-color:var(--accent)}
+.pl .tag{position:absolute;top:-11px;left:26px;background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;font-family:Oswald,sans-serif}
+.pl h3{font-size:20px;color:var(--muted)}
+.pl .amt{font-family:Oswald,sans-serif;font-size:44px;line-height:1.1;margin:6px 0 2px}
+.pl .per{color:var(--muted);font-size:13px;margin-bottom:18px}
+.pl ul{list-style:none;padding:0;margin:0 0 22px;font-size:14px;color:var(--muted)}
+.pl li{padding:7px 0 7px 20px;position:relative;border-top:1px solid var(--line)}
+.pl li:before{content:"▸";position:absolute;left:0;color:var(--accent)}
+.pl .btn{width:100%;text-align:center}
+.join{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px}
+label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+form .btn{width:100%;margin-top:20px;padding:14px}
+.info ul{list-style:none;padding:0;margin:0}
+.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
+.info strong{display:block;color:var(--ink);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:44px 0 32px}.art{aspect-ratio:16/10;order:-1}.g3,.plans,.join{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for Infinity Fitness · sample plans and photos — real details to come from the owner</div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#">Infinity<span>24×7</span></a>
+  <div class="navlinks"><a href="#floor">The floor</a><a href="#plans">Plans</a><a href="#join">Join</a><a href="#find">Find us</a></div>
+  <a class="btn" href="#join">Free trial</a>
+</nav></div></header>
+
+<div class="wrap"><div class="hero">
+  <div>
+    <span class="rating">★ 4.7 · 367 Google reviews</span>
+    <h1>Open when<br><em>you are.</em></h1>
+    <p>A 24×7 gym on SG Highway. Train at 5am or 11pm — the doors don't close and neither do we.</p>
+    <div class="cta"><a class="btn" href="#join">Book a free trial</a><a class="btn ghost" href="#plans">See plans</a></div>
+  </div>
+  <div class="art"></div>
+</div></div>
+
+<div class="stats">
+  <div><b>24×7</b><span>Always open</span></div>
+  <div><b>4.7</b><span>Google rating</span></div>
+  <div><b>367</b><span>Reviews</span></div>
+  <div><b>1:1</b><span>PT available</span></div>
+</div>
+
+<section id="floor"><div class="wrap">
+  <div class="eyebrow">Facilities</div><h2>The floor</h2>
+  <p class="sub">Sample sections — to be replaced with the real offering.</p>
+  <div class="g3">
+    <div class="card"><h3>Strength</h3><p>Racks, benches and a full free-weight area.</p></div>
+    <div class="card"><h3>Cardio</h3><p>Treadmills, bikes and rowers, never all occupied at 2am.</p></div>
+    <div class="card"><h3>Functional</h3><p>Turf, ropes, kettlebells and open training space.</p></div>
+    <div class="card"><h3>Personal training</h3><p>Coaches available across early and late slots.</p></div>
+    <div class="card"><h3>Night access</h3><p>Secure card entry and cameras through the night.</p></div>
+    <div class="card"><h3>Showers</h3><p>Changing rooms and lockers, so you can train before work.</p></div>
+  </div>
+</div></section>
+
+<section id="plans"><div class="wrap">
+  <div class="eyebrow">Membership</div><h2>Plans</h2>
+  <p class="sub">Placeholder pricing — the owner's real rates go here.</p>
+  <div class="plans">
+    <div class="pl"><h3>Monthly</h3><div class="amt">₹1,800</div><div class="per">per month</div>
+      <ul><li>24×7 access</li><li>Induction session</li><li>Locker &amp; showers</li></ul><a class="btn ghost" href="#join">Choose</a></div>
+    <div class="pl f"><span class="tag">Best value</span><h3>Quarterly</h3><div class="amt">₹4,500</div><div class="per">3 months · save ₹900</div>
+      <ul><li>Everything in monthly</li><li>Diet consultation</li><li>Monthly progress check</li></ul><a class="btn" href="#join">Choose</a></div>
+    <div class="pl"><h3>Annual</h3><div class="amt">₹14,000</div><div class="per">12 months · save ₹7,600</div>
+      <ul><li>Everything in quarterly</li><li>6 PT sessions free</li><li>Freeze up to 45 days</li></ul><a class="btn ghost" href="#join">Choose</a></div>
+  </div>
+</div></section>
+
+<section id="join"><div class="wrap">
+  <div class="eyebrow">Get started</div><h2>Book a free trial</h2>
+  <p class="sub">One session, no payment, any hour you like.</p>
+  <div class="join">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Name</label><input id="n" placeholder="Your name">
+      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
+      <label for="g">Goal</label><select id="g"><option>Fat loss</option><option>Build strength</option><option>General fitness</option><option>Personal training</option></select>
+      <label for="t">Usual training time</label><select id="t"><option>Early morning (5–8am)</option><option>Daytime</option><option>Evening (6–10pm)</option><option>Late night (10pm–5am)</option></select>
+      <button class="btn" type="submit">Book my trial</button>
+    </form>
+    <div class="info" id="find"><ul>
+      <li><strong>Call or WhatsApp</strong>096010 95005</li>
+      <li><strong>Where</strong>2nd Floor, Heritage Plaza, Sarkhej–Gandhinagar Highway, near The Grand, Ahmedabad</li>
+      <li><strong>Hours</strong>24×7, card access after staffed hours</li>
+      <li><strong>Trial</strong>First session free</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>Infinity Fitness 24×7 · SG Highway, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+</body>
+</html>

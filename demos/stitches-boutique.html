@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stitches</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf8f5;--surface:#fff;--ink:#1f1c19;--muted:#7a7069;--accent:#9a6a4f;--soft:#f2e9e1;--line:#ebe3da;--sh:0 2px 22px rgba(60,45,35,.07)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--surface:#1e1a16;--ink:#f2ece4;--muted:#a89c91;--accent:#cf9b78;--soft:#2a2019;--line:#2c2620;--sh:0 2px 22px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#15130f;--surface:#1e1a16;--ink:#f2ece4;--muted:#a89c91;--accent:#cf9b78;--soft:#2a2019;--line:#2c2620;--sh:0 2px 22px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 16px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:500;line-height:1.14;margin:0}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
+.brand{font-family:"Bodoni Moda",serif;font-size:24px;text-decoration:none;color:var(--ink);letter-spacing:.06em}
+.navlinks{display:flex;gap:26px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 24px;border-radius:2px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer;font-family:Jost,sans-serif;font-weight:400}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.hero{padding:70px 0 54px;display:grid;grid-template-columns:1fr .9fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(38px,6.6vw,64px)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--muted);font-size:17px;max-width:44ch}
+.rating{display:inline-block;color:var(--accent);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.art{aspect-ratio:4/5;background:repeating-linear-gradient(90deg,var(--soft) 0 26px,var(--surface) 26px 52px);border:1px solid var(--line);box-shadow:var(--sh)}
+section{padding:58px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(28px,4.6vw,42px);margin-bottom:10px}
+.sub{color:var(--muted);margin:0 0 32px;max-width:52ch}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.item{background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh)}
+.item .ph{aspect-ratio:3/4;background:linear-gradient(160deg,var(--soft),var(--surface));border-bottom:1px solid var(--line)}
+.item .b{padding:18px}
+.item h3{font-size:19px;margin-bottom:3px}
+.item p{color:var(--muted);font-size:13px;margin:0 0 10px}
+.item .price{color:var(--accent);font-size:14px;letter-spacing:.04em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{padding-left:42px;position:relative}
+.step:before{counter-increment:s;content:"0" counter(s);position:absolute;left:0;top:2px;color:var(--accent);font-family:"Bodoni Moda",serif;font-size:17px}
+.step h3{font-size:18px;margin-bottom:4px}.step p{color:var(--muted);font-size:14px;margin:0}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);padding:26px;box-shadow:var(--sh)}
+label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+textarea{min-height:76px;resize:vertical}
+form .btn{width:100%;margin-top:22px;padding:14px}
+.info ul{list-style:none;padding:0;margin:0}
+.info li{margin-bottom:18px;color:var(--muted);font-size:15px}
+.info strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:840px){.hero{grid-template-columns:1fr;padding:44px 0 32px}.art{aspect-ratio:4/3;order:-1}.g3,.steps,.book{grid-template-columns:1fr}.navlinks{display:none}}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for Stitches · sample pieces and prices — real ones to come from the owner</div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#">Stitches</a>
+  <div class="navlinks"><a href="#collection">Collection</a><a href="#custom">Custom</a><a href="#enquire">Enquire</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#enquire">Enquire</a>
+</nav></div></header>
+
+<div class="wrap"><div class="hero">
+  <div>
+    <div class="rating">★ 4.7 · 68 reviews · Bodakdev</div>
+    <h1>Made to fit <em>you</em>, not a size chart.</h1>
+    <p>A ladies' boutique in Bodakdev. Ready pieces, custom stitching and accessories — browse before you visit.</p>
+    <div class="cta"><a class="btn" href="#collection">See the collection</a><a class="btn ghost" href="#custom">Custom stitching</a></div>
+  </div>
+  <div class="art"></div>
+</div></div>
+
+<section id="collection"><div class="wrap">
+  <div class="eyebrow">Collection</div><h2>Pieces</h2>
+  <p class="sub">Sample categories and prices — to be replaced with real photos and the boutique's own range. A full online store with cart and payments can be added later.</p>
+  <div class="g3">
+    <div class="item"><div class="ph"></div><div class="b"><h3>Kurta sets</h3><p>Cotton and chanderi, everyday to festive.</p><span class="price">from ₹1,800</span></div></div>
+    <div class="item"><div class="ph"></div><div class="b"><h3>Ethnic gowns</h3><p>For sangeet, reception and party wear.</p><span class="price">from ₹4,500</span></div></div>
+    <div class="item"><div class="ph"></div><div class="b"><h3>Sarees &amp; blouses</h3><p>Draped and stitched to your measurements.</p><span class="price">from ₹3,200</span></div></div>
+    <div class="item"><div class="ph"></div><div class="b"><h3>Co-ord sets</h3><p>Office and brunch pieces in breathable fabric.</p><span class="price">from ₹2,200</span></div></div>
+    <div class="item"><div class="ph"></div><div class="b"><h3>Dupattas</h3><p>Bandhani, mirror work and plain silk.</p><span class="price">from ₹900</span></div></div>
+    <div class="item"><div class="ph"></div><div class="b"><h3>Accessories</h3><p>Juttis, potlis and oxidised jewellery.</p><span class="price">from ₹600</span></div></div>
+  </div>
+</div></section>
+
+<section id="custom"><div class="wrap">
+  <div class="eyebrow">Custom</div><h2>Stitched for you</h2>
+  <p class="sub">Bring a reference or a fabric — the rest is measured and made in store.</p>
+  <div class="steps">
+    <div class="step"><h3>Measurements</h3><p>Visit the boutique, or send existing measurements on WhatsApp.</p></div>
+    <div class="step"><h3>Fabric &amp; design</h3><p>Pick from the in-store range or bring your own material.</p></div>
+    <div class="step"><h3>Fitting &amp; delivery</h3><p>One fitting before final delivery, usually within two weeks.</p></div>
+  </div>
+</div></section>
+
+<section id="enquire"><div class="wrap">
+  <div class="eyebrow">Enquiries</div><h2>Ask about a piece</h2>
+  <p class="sub">Send what you're after and the boutique replies on WhatsApp with photos and prices.</p>
+  <div class="book">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Name</label><input id="n" placeholder="Your name">
+      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
+      <label for="s">Looking for</label><select id="s"><option>Kurta set</option><option>Ethnic gown</option><option>Saree or blouse</option><option>Co-ord set</option><option>Custom stitching</option><option>Accessories</option></select>
+      <label for="d">Needed by</label><input id="d" type="date">
+      <label for="m">Details</label><textarea id="m" placeholder="Occasion, colour, size, or a reference you've seen"></textarea>
+      <button class="btn" type="submit">Send enquiry</button>
+    </form>
+    <div class="info" id="visit"><ul>
+      <li><strong>Call or WhatsApp</strong>090543 58779</li>
+      <li><strong>Where</strong>4, Anandhari Tower, opposite Chanakya Tower, Sandesh Press Road, Bodakdev, Ahmedabad</li>
+      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
+      <li><strong>Custom orders</strong>Allow about two weeks, faster in emergencies</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>Stitches · Bodakdev, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+</body>
+</html>

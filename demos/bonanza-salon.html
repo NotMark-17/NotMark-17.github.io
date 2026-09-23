@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bonanza Ladies Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf7fb;--surface:#fff;--ink:#241d28;--muted:#7d6f85;--accent:#6b3fa0;--soft:#f0e6f7;--gold:#b98f3e;--line:#e9dff0;--sh:0 2px 22px rgba(70,40,90,.07)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17131a;--surface:#201a24;--ink:#f1eaf4;--muted:#ab9db3;--accent:#b98ae0;--soft:#2a1f33;--gold:#d9b569;--line:#2e2535;--sh:0 2px 22px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#17131a;--surface:#201a24;--ink:#f1eaf4;--muted:#ab9db3;--accent:#b98ae0;--soft:#2a1f33;--gold:#d9b569;--line:#2e2535;--sh:0 2px 22px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;line-height:1.15;margin:0}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
+.brand{font-family:Marcellus,serif;font-size:23px;text-decoration:none;color:var(--ink);letter-spacing:.04em}
+.brand small{display:block;font-family:Manrope,sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.navlinks{display:flex;gap:24px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;border:0;cursor:pointer;font-family:Manrope,sans-serif}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.hero{padding:66px 0 50px;display:grid;grid-template-columns:1fr .88fr;gap:42px;align-items:center}
+.hero h1{font-size:clamp(36px,6.4vw,58px)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--muted);font-size:17px;max-width:45ch}
+.rating{display:inline-flex;gap:8px;color:var(--gold);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.art{aspect-ratio:3/4;border-radius:999px 999px 12px 12px;background:radial-gradient(ellipse at 50% 34%,var(--soft) 0 58%,transparent 58%),linear-gradient(170deg,var(--soft),var(--surface));border:1px solid var(--line);box-shadow:var(--sh)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+h2{font-size:clamp(28px,4.6vw,40px);margin-bottom:10px}
+.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--sh)}
+.card h3{font-size:22px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0 0 12px}
+.card .price{color:var(--accent);font-size:14px;font-weight:700}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.p{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;position:relative}
+.p.f{border-color:var(--gold)}
+.p .tag{position:absolute;top:-10px;left:26px;background:var(--gold);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;font-weight:700}
+.p h3{font-size:23px}.p .amt{font-family:Marcellus,serif;font-size:32px;color:var(--accent);margin:8px 0 16px}
+.p ul{list-style:none;padding:0;margin:0 0 20px;font-size:14px;color:var(--muted)}
+.p li{padding:8px 0;border-top:1px solid var(--line)}
+.p .btn{width:100%;text-align:center}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--sh)}
+label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+textarea{min-height:74px;resize:vertical}
+form .btn{width:100%;margin-top:20px;padding:14px}
+.info ul{list-style:none;padding:0;margin:0}
+.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
+.info strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:840px){.hero{grid-template-columns:1fr;padding:40px 0 30px}.art{aspect-ratio:4/3;border-radius:200px 200px 12px 12px;order:-1}.g3,.pk,.book{grid-template-columns:1fr}.navlinks{display:none}}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for Bonanza · sample services and prices — real ones to come from the owner</div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#">Bonanza<small>Ladies Salon · Prahlad Nagar</small></a>
+  <div class="navlinks"><a href="#services">Services</a><a href="#packages">Packages</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#book">Book now</a>
+</nav></div></header>
+
+<div class="wrap"><div class="hero">
+  <div>
+    <div class="rating">★★★★★ &nbsp;4.7 · 379 reviews</div>
+    <h1>Your chair is <em>ready</em>.</h1>
+    <p>A ladies-only salon in Prahlad Nagar. Hair, skin, nails and bridal work — booked online, so you're not calling twice.</p>
+    <div class="cta"><a class="btn" href="#book">Book an appointment</a><a class="btn ghost" href="#packages">See packages</a></div>
+  </div>
+  <div class="art"></div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <div class="eyebrow">Services</div><h2>What we do</h2>
+  <p class="sub">Sample services and prices — to be replaced with the salon's real rate card.</p>
+  <div class="g3">
+    <div class="card"><h3>Hair</h3><p>Cuts, colour, smoothening, keratin and blow-dry.</p><span class="price">from ₹350</span></div>
+    <div class="card"><h3>Skin</h3><p>Facials, clean-ups, de-tan and glow treatments.</p><span class="price">from ₹750</span></div>
+    <div class="card"><h3>Nails</h3><p>Manicure, pedicure, gel polish and extensions.</p><span class="price">from ₹450</span></div>
+    <div class="card"><h3>Waxing &amp; threading</h3><p>Rica wax, full body options and face care.</p><span class="price">from ₹120</span></div>
+    <div class="card"><h3>Make-up</h3><p>Party, engagement and photoshoot looks with draping.</p><span class="price">from ₹2,200</span></div>
+    <div class="card"><h3>Mehendi</h3><p>Simple to full bridal designs, booked by the hour.</p><span class="price">on request</span></div>
+  </div>
+</div></section>
+
+<section id="packages"><div class="wrap">
+  <div class="eyebrow">Value</div><h2>Packages</h2>
+  <p class="sub">Placeholder pricing — the owner's real packages go here.</p>
+  <div class="pk">
+    <div class="p"><h3>Monthly care</h3><div class="amt">₹1,800</div>
+      <ul><li>One facial</li><li>One clean-up</li><li>Threading, unlimited</li></ul><a class="btn ghost" href="#book">Enquire</a></div>
+    <div class="p f"><span class="tag">Most booked</span><h3>Bridal</h3><div class="amt">₹22,000</div>
+      <ul><li>Trial session</li><li>Wedding day make-up &amp; hair</li><li>Full bridal mehendi</li><li>Pre-bridal skin package</li></ul><a class="btn" href="#book">Enquire</a></div>
+    <div class="p"><h3>Party ready</h3><div class="amt">₹3,000</div>
+      <ul><li>Make-up &amp; hair</li><li>Draping included</li><li>Same-day slots when free</li></ul><a class="btn ghost" href="#book">Enquire</a></div>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <div class="eyebrow">Appointments</div><h2>Book a slot</h2>
+  <p class="sub">Send a request and the salon confirms on WhatsApp. Bridal dates fill up well in advance.</p>
+  <div class="book">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Name</label><input id="n" placeholder="Your name">
+      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
+      <label for="s">Service</label><select id="s"><option>Hair</option><option>Skin</option><option>Nails</option><option>Waxing &amp; threading</option><option>Make-up</option><option>Bridal package</option><option>Mehendi</option></select>
+      <label for="d">Preferred date</label><input id="d" type="date">
+      <label for="m">Anything else</label><textarea id="m" placeholder="Preferred time, occasion, how many of you"></textarea>
+      <button class="btn" type="submit">Request appointment</button>
+    </form>
+    <div class="info" id="visit"><ul>
+      <li><strong>Call or WhatsApp</strong>092130 14074</li>
+      <li><strong>Where</strong>Shop No. 7, Parshwanath Business Park, opposite KFC, near the garden, Prahlad Nagar, Ahmedabad</li>
+      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
+      <li><strong>Note</strong>Ladies only</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>Bonanza Ladies Salon · Prahlad Nagar, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+</body>
+</html>

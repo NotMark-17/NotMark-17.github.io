@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Koffee Stories</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f3ed;--surface:#fff;--ink:#241f1a;--muted:#786d61;--accent:#8b5e34;--soft:#efe4d6;--line:#e6dbcc;--sh:0 2px 18px rgba(70,50,30,.07)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151210;--surface:#1f1b17;--ink:#f2ebe2;--muted:#a99d90;--accent:#d79b63;--soft:#2c2118;--line:#2e2822;--sh:0 2px 18px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#151210;--surface:#1f1b17;--ink:#f2ebe2;--muted:#a99d90;--accent:#d79b63;--soft:#2c2118;--line:#2e2822;--sh:0 2px 18px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;line-height:1.15;margin:0}
+.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
+.brand{font-family:"Playfair Display",serif;font-size:22px;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:4px;font-size:14px;font-weight:500;border:0;cursor:pointer;font-family:Karla,sans-serif}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.hero{padding:66px 0 50px;display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}
+.hero h1{font-size:clamp(36px,6.4vw,60px)}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--muted);font-size:17px;max-width:45ch}
+.rating{display:inline-block;background:var(--soft);color:var(--accent);padding:6px 15px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.art{aspect-ratio:1/1;border-radius:10px;background:radial-gradient(circle at 50% 42%,var(--accent) 0 24%,transparent 24%),radial-gradient(circle at 50% 42%,var(--soft) 24% 33%,transparent 33%),linear-gradient(160deg,var(--soft),var(--surface));border:1px solid var(--line);box-shadow:var(--sh)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(28px,4.6vw,40px);margin-bottom:10px}
+.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.mcol h3{font-size:21px;color:var(--accent);margin-bottom:12px}
+.mrow{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dotted var(--line);font-size:15px}
+.mrow b{font-weight:700;white-space:nowrap}
+.mrow em{display:block;font-style:normal;color:var(--muted);font-size:13px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;box-shadow:var(--sh)}
+.card h3{font-size:20px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:var(--sh)}
+label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+textarea{min-height:74px;resize:vertical}
+form .btn{width:100%;margin-top:20px;padding:13px}
+.info ul{list-style:none;padding:0;margin:0}
+.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
+.info strong{display:block;color:var(--ink);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:840px){.hero{grid-template-columns:1fr;padding:40px 0 30px}.art{aspect-ratio:16/10;order:-1}.menu,.g3,.book{grid-template-columns:1fr}.navlinks{display:none}}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo site built for Koffee Stories · sample menu and prices — real ones to come from the owner</div>
+<header><div class="wrap"><nav>
+  <a class="brand" href="#">Koffee <span>Stories</span></a>
+  <div class="navlinks"><a href="#menu">Menu</a><a href="#space">The space</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#book">Book a table</a>
+</nav></div></header>
+
+<div class="wrap"><div class="hero">
+  <div>
+    <span class="rating">★ 4.4 · 802 Google reviews</span>
+    <h1>Every cup has a <em>story</em>.</h1>
+    <p>All-day café on CG Road. Coffee, comfort food and a corner to sit in for longer than you planned.</p>
+    <div class="cta"><a class="btn" href="#menu">See the menu</a><a class="btn ghost" href="#book">Book a table</a></div>
+  </div>
+  <div class="art"></div>
+</div></div>
+
+<section id="menu"><div class="wrap">
+  <div class="eyebrow">Menu</div><h2>What's brewing</h2>
+  <p class="sub">Sample items and prices — to be swapped for the café's real menu.</p>
+  <div class="menu">
+    <div class="mcol"><h3>Coffee</h3>
+      <div class="mrow"><span>Cappuccino<em>House blend, double shot</em></span><b>₹170</b></div>
+      <div class="mrow"><span>Flat white<em>For the purists</em></span><b>₹190</b></div>
+      <div class="mrow"><span>Cold coffee<em>Thick, the Ahmedabad way</em></span><b>₹210</b></div>
+      <div class="mrow"><span>Masala chai<em>Cutting or full</em></span><b>₹90</b></div>
+      <h3 style="margin-top:24px">Breakfast</h3>
+      <div class="mrow"><span>Shakshuka<em>With sourdough</em></span><b>₹340</b></div>
+      <div class="mrow"><span>Waffle stack<em>Maple, banana, nutella</em></span><b>₹300</b></div>
+    </div>
+    <div class="mcol"><h3>Mains</h3>
+      <div class="mrow"><span>Pesto pasta<em>Basil, parmesan, pine nuts</em></span><b>₹380</b></div>
+      <div class="mrow"><span>Margherita pizza<em>Thin crust</em></span><b>₹350</b></div>
+      <div class="mrow"><span>Cheese garlic bread<em>Never enough</em></span><b>₹220</b></div>
+      <div class="mrow"><span>Grilled sandwich<em>Veg or paneer</em></span><b>₹250</b></div>
+      <h3 style="margin-top:24px">Desserts</h3>
+      <div class="mrow"><span>Biscoff cheesecake<em>Slice</em></span><b>₹280</b></div>
+      <div class="mrow"><span>Choco lava cake<em>With vanilla</em></span><b>₹240</b></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="space"><div class="wrap">
+  <div class="eyebrow">The space</div><h2>Why people stay</h2>
+  <div class="g3">
+    <div class="card"><h3>Work-friendly</h3><p>Wifi, plug points and nobody hurrying you out.</p></div>
+    <div class="card"><h3>Private events</h3><p>Birthdays, shoots and small gatherings — ask about the upper floor.</p></div>
+    <div class="card"><h3>Central</h3><p>On CG Road, easy parking, open till late.</p></div>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <div class="eyebrow">Reservations</div><h2>Book a table</h2>
+  <p class="sub">Weekends fill up fast. Send a request and we'll confirm on WhatsApp.</p>
+  <div class="book">
+    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+      <label for="n">Name</label><input id="n" placeholder="Your name">
+      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
+      <label for="g">People</label><select id="g"><option>2</option><option>3–4</option><option>5–8</option><option>9+ (private event)</option></select>
+      <label for="d">Date</label><input id="d" type="date">
+      <label for="m">Anything else</label><textarea id="m" placeholder="Time, occasion, seating preference"></textarea>
+      <button class="btn" type="submit">Request a table</button>
+    </form>
+    <div class="info" id="visit"><ul>
+      <li><strong>Call or WhatsApp</strong>082828 25376</li>
+      <li><strong>Where</strong>Koffee Stories, Bliss Homes G-1, Chimanlal Girdharlal Road, Vasant Vihar, Ahmedabad</li>
+      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
+      <li><strong>Events</strong>Enquire at least a week ahead</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>Koffee Stories · CG Road, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+</body>
+</html>
