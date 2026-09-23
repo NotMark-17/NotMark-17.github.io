@@ -4,157 +4,280 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Rhydham Beauty Studio</title>
+<title>Rhydham Beauty Studio — Satellite, Ahmedabad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fdfbf9; --surface:#fff; --ink:#2b2523; --muted:#8a7a74;
-  --accent:#9c5f6b; --accent-soft:#f6eaec; --gold:#c0a06a; --line:#ece2df; --shadow:0 2px 24px rgba(90,60,55,.07);
+  --bg:#faf6f1; --bg2:#f1e7db; --surface:#fffdfa; --ink:#241c17; --muted:#7d6a5c;
+  --accent:#a3743a; --accent-2:#8c3d4a; --soft:#f5e8d8; --line:#e8dac8;
+  --deep-a:#2a1d16; --deep-b:#49301f; --on-deep:#fbf3e9; --on-deep-mut:#cbb39c;
+  --s1:0 1px 2px rgba(60,40,22,.06);
+  --s2:0 3px 8px rgba(60,40,22,.06),0 14px 34px rgba(60,40,22,.10);
+  --s3:0 8px 18px rgba(60,40,22,.11),0 28px 64px rgba(60,40,22,.18);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#181312; --surface:#221b1a; --ink:#f3eae8; --muted:#b1a09b;
-    --accent:#d98e9c; --accent-soft:#332225; --gold:#d6bc86; --line:#332826; --shadow:0 2px 24px rgba(0,0,0,.35);
+    --bg:#16110d; --bg2:#1e1711; --surface:#231a14; --ink:#f6ece1; --muted:#b3a08e;
+    --accent:#dda862; --accent-2:#e08a99; --soft:#2f2115; --line:#342719;
+    --deep-a:#130d09; --deep-b:#2d1d13; --on-deep:#fbf3e9; --on-deep-mut:#c3ab94;
+    --s1:0 1px 2px rgba(0,0,0,.5);
+    --s2:0 3px 8px rgba(0,0,0,.4),0 14px 34px rgba(0,0,0,.45);
+    --s3:0 8px 18px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#181312; --surface:#221b1a; --ink:#f3eae8; --muted:#b1a09b;
-  --accent:#d98e9c; --accent-soft:#332225; --gold:#d6bc86; --line:#332826; --shadow:0 2px 24px rgba(0,0,0,.35);
+  --bg:#16110d; --bg2:#1e1711; --surface:#231a14; --ink:#f6ece1; --muted:#b3a08e;
+  --accent:#dda862; --accent-2:#e08a99; --soft:#2f2115; --line:#342719;
+  --deep-a:#130d09; --deep-b:#2d1d13; --on-deep:#fbf3e9; --on-deep-mut:#c3ab94;
+  --s1:0 1px 2px rgba(0,0,0,.5);
+  --s2:0 3px 8px rgba(0,0,0,.4),0 14px 34px rgba(0,0,0,.45);
+  --s3:0 8px 18px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:300 16px/1.65 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.15;margin:0}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:400}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
-.brand{font-family:"Cormorant Garamond",serif;font-size:23px;text-decoration:none;color:var(--ink);letter-spacing:.02em}
-.brand small{display:block;font-family:Jost,sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:-2px}
-.navlinks{display:flex;gap:26px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}
-.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 24px;border-radius:2px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:0;cursor:pointer;font-family:Jost,sans-serif;font-weight:400}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.hero{padding:70px 0 54px;display:grid;grid-template-columns:1fr .85fr;gap:44px;align-items:center}
-.hero h1{font-size:clamp(38px,6.5vw,62px);letter-spacing:-.01em}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:44ch}
-.rating{display:inline-flex;gap:8px;color:var(--gold);font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.hero-art{aspect-ratio:3/4;border-radius:200px 200px 6px 6px;background:
-  radial-gradient(ellipse at 50% 30%, var(--accent-soft) 0 60%, transparent 60%),
-  linear-gradient(170deg, var(--accent-soft), var(--surface));border:1px solid var(--line);box-shadow:var(--shadow)}
-section{padding:60px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:12px}
-h2{font-size:clamp(30px,4.6vw,42px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 32px;max-width:52ch}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:26px;box-shadow:var(--shadow)}
-.card h3{font-size:23px;margin-bottom:6px}
-.card p{color:var(--muted);font-size:14px;margin:0 0 14px}
-.card .price{color:var(--accent);font-size:14px;letter-spacing:.04em}
-.bridal{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.pkg{border:1px solid var(--line);border-radius:4px;padding:28px;background:var(--surface);position:relative}
-.pkg.featured{border-color:var(--gold)}
-.pkg .tag{position:absolute;top:-10px;left:28px;background:var(--gold);color:#fff;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px}
-.pkg h3{font-size:25px;margin-bottom:4px}
-.pkg .amt{font-family:"Cormorant Garamond",serif;font-size:34px;color:var(--accent);margin:8px 0 16px}
-.pkg ul{list-style:none;padding:0;margin:0 0 22px;font-size:14px;color:var(--muted)}
-.pkg li{padding:8px 0;border-top:1px solid var(--line)}
-.pkg .btn{width:100%;text-align:center}
-.book{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:26px;box-shadow:var(--shadow)}
-label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 16.5px/1.72 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Prata,Georgia,serif;font-weight:400;line-height:1.14;margin:0;letter-spacing:-.005em}
+a{color:inherit}
+
+.demo-bar{background:var(--deep-a);color:var(--on-deep);text-align:center;padding:10px 16px;font-size:12.5px;letter-spacing:.02em;position:relative;z-index:40}
+
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.brand i{width:30px;height:30px;flex:none;border-radius:50%;background:linear-gradient(140deg,var(--accent),var(--accent-2) 90%);box-shadow:var(--s1);display:block}
+.brand b{font-family:Prata,serif;font-weight:400;font-size:21px;line-height:1;letter-spacing:.01em}
+.brand s{display:block;text-decoration:none;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.navlinks{display:flex;gap:30px;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--accent);transition:right .3s}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{right:0}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:13px 26px;border-radius:2px;font-family:Outfit,sans-serif;font-size:12.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;border:0;cursor:pointer;box-shadow:0 2px 6px rgba(163,116,58,.26),0 12px 28px rgba(163,116,58,.22);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(163,116,58,.3),0 18px 40px rgba(163,116,58,.3)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent);background:var(--surface);box-shadow:var(--s1)}
+.btn.onDeep{background:var(--on-deep);color:var(--deep-a);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.btn.onDeep.ghost{background:transparent;color:var(--on-deep);border-color:rgba(255,255,255,.4)}
+.btn.onDeep.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* HERO */
+.hero{position:relative;padding:72px 0 84px}
+.hero::before{content:"";position:absolute;inset:-160px -25% auto -25%;height:620px;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 26% 38%,var(--soft),transparent 60%),radial-gradient(ellipse at 80% 22%,color-mix(in srgb,var(--accent-2) 20%,transparent),transparent 58%);filter:blur(8px)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;color:var(--accent);font-size:11px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;margin-bottom:16px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--accent)}
+.hero h1{font-size:clamp(40px,6.4vw,70px);line-height:1.04}
+.hero h1 em{font-style:italic;color:var(--accent-2)}
+.hero p.lede{color:var(--muted);font-size:17.5px;max-width:43ch;margin:22px 0 0}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:6px 16px 6px 6px;border-radius:999px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;box-shadow:var(--s2);margin-bottom:20px}
+.pill b{background:var(--accent);color:#fff;border-radius:999px;padding:4px 11px;font-size:11.5px;font-weight:500;letter-spacing:.05em}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+
+.stack{position:relative;padding:0 46px 58px 0}
+.stack::before{content:"";position:absolute;left:-18px;top:28px;right:68px;bottom:32px;border:1px solid var(--accent);opacity:.42;transform:rotate(-1.6deg);z-index:0}
+.stack .big{position:relative;z-index:1;overflow:hidden;box-shadow:var(--s3);border:7px solid var(--surface);transform:rotate(-1.3deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:47%;z-index:2;overflow:hidden;box-shadow:var(--s3);border:7px solid var(--surface);transform:rotate(2.8deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:22px;left:12px;z-index:3;background:var(--surface);border:1px solid var(--line);padding:13px 18px;box-shadow:var(--s3);text-align:center}
+@media(min-width:941px){.badge{left:-26px}}
+.badge b{display:block;font-family:Prata,serif;font-size:22px;color:var(--accent);line-height:1}
+.badge span{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-block:30px}
+.strip div{text-align:center;position:relative}
+.strip div+div::before{content:"";position:absolute;left:-12px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.strip b{display:block;font-family:Prata,serif;font-size:28px;color:var(--ink);line-height:1.15}
+.strip span{display:block;font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+
+section{padding:92px 0}
+.head{max-width:58ch;margin-bottom:44px}
+h2{font-size:clamp(32px,4.8vw,48px)}
+h2 em{font-style:italic;color:var(--accent-2)}
+.sub{color:var(--muted);margin:15px 0 0;max-width:54ch}
+.note{margin-top:16px;font-size:13px;color:var(--muted);border-left:2px solid var(--accent);padding-left:14px;max-width:56ch;line-height:1.6}
+
+/* SERVICES */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);overflow:hidden;box-shadow:var(--s2);transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s}
+.card:hover{transform:translateY(-7px);box-shadow:var(--s3)}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:56%;background:linear-gradient(transparent,rgba(30,18,10,.5))}
+.card .tag{position:absolute;left:16px;bottom:13px;z-index:2;color:#fff;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.card .b{padding:22px}
+.card h3{font-size:22px;margin-bottom:7px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+.card .price{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+
+/* BRIDAL — deep slab */
+.bridal{background:linear-gradient(155deg,var(--deep-a),var(--deep-b) 62%,var(--deep-a));color:var(--on-deep);position:relative;overflow:hidden}
+.bridal::before{content:"";position:absolute;width:720px;height:720px;right:-240px;top:-280px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 34%,transparent),transparent 66%);filter:blur(12px);pointer-events:none}
+.bridal .wrap{position:relative;z-index:2}
+.bridal h2{color:#fff}
+.bridal h2 em{color:var(--accent)}
+.bridal .sub{color:var(--on-deep-mut)}
+.bridal .eyebrow{color:var(--accent)}
+.bridal .eyebrow::before{background:var(--accent)}
+.bsplit{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:center;margin-top:12px}
+.bimg{position:relative;overflow:hidden;border:7px solid rgba(255,255,255,.9);box-shadow:var(--s3);transform:rotate(-1.4deg)}
+.bimg img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.pk{display:grid;gap:16px}
+.p{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px);padding:22px 24px;position:relative;transition:background .3s,transform .3s}
+.p:hover{background:rgba(255,255,255,.12);transform:translateX(4px)}
+.p.f{border-color:var(--accent)}
+.p .tag{position:absolute;top:-10px;left:22px;background:var(--accent);color:#2a1a09;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 11px;font-weight:600}
+.p h3{font-size:23px;color:#fff;margin-bottom:4px}
+.p .amt{font-family:Prata,serif;font-size:26px;color:var(--accent);margin:6px 0 10px}
+.p ul{list-style:none;padding:0;margin:0;font-size:14px;color:var(--on-deep-mut);display:flex;flex-wrap:wrap;gap:8px 18px}
+.p li{position:relative;padding-left:15px}
+.p li::before{content:"·";position:absolute;left:2px;color:var(--accent);font-weight:700}
+
+/* BOOK */
+.book{background:var(--bg2);border-block:1px solid var(--line)}
+.bookgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);padding:28px;box-shadow:var(--s3)}
+label{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px;font-weight:500}
 label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:76px;resize:vertical}
-form .btn{width:100%;margin-top:22px;padding:14px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:18px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:840px){
-  .hero{grid-template-columns:1fr;padding:44px 0 34px}
-  .hero-art{aspect-ratio:4/3;border-radius:140px 140px 6px 6px;order:-1}
-  .grid,.bridal,.book{grid-template-columns:1fr}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+textarea{min-height:86px;resize:vertical}
+form .btn{width:100%;margin-top:22px;padding:15px}
+.info{display:flex;flex-direction:column;gap:14px}
+.irow{display:flex;gap:15px;background:var(--surface);border:1px solid var(--line);padding:17px 19px;box-shadow:var(--s2)}
+.irow i{width:34px;height:34px;flex:none;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent);font-size:14px}
+.irow strong{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:500}
+.irow span{font-size:15px}
+
+footer{padding:42px 0;background:var(--deep-a);color:var(--on-deep-mut);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:940px){
+  .hero-grid,.bsplit,.bookgrid{grid-template-columns:1fr;gap:40px}
+  .stack{order:-1;max-width:440px;padding:0 30px 46px 0}
+  .grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:20px}
+  .strip div+div::before{display:none}
   .navlinks{display:none}
+  section{padding:66px 0}
 }
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Rhydham Beauty Studio · sample services and prices — real ones to come from the owner</div>
+<div class="demo-bar">Demo site built for Rhydham Beauty Studio · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Rhydham<small>Beauty Studio</small></a>
+  <a class="brand" href="#"><i></i><span><b>Rhydham</b><s>Beauty Studio</s></span></a>
   <div class="navlinks"><a href="#services">Services</a><a href="#bridal">Bridal</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
   <a class="btn" href="#book">Book now</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="wrap"><section class="hero"><div class="hero-grid">
   <div>
-    <div class="rating">★★★★★ &nbsp;4.8 · 328 reviews</div>
-    <h1>Looking like <em>yourself</em>, only lit better.</h1>
-    <p>Hair, skin, nails and bridal work in Satellite. Book a slot online instead of calling three times.</p>
-    <div class="cta-row"><a class="btn" href="#book">Book an appointment</a><a class="btn ghost" href="#bridal">Bridal packages</a></div>
+    <span class="pill"><b>4.8 ★</b> 328 Google reviews</span>
+    <div class="eyebrow">Satellite, Ahmedabad</div>
+    <h1>The day you'll look back on <em>a thousand times</em>.</h1>
+    <p class="lede">Bridal makeup, hair, skin and nails in Satellite. Book your date online instead of calling three times — and never share a trial slot with someone else's wedding week.</p>
+    <div class="cta">
+      <a class="btn" href="#bridal">Bridal packages</a>
+      <a class="btn ghost" href="#book">Book an appointment</a>
+    </div>
   </div>
-  <div class="hero-art"></div>
+  <div class="stack">
+    <div class="badge"><b>Trial</b><span>Before the date</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1610047614301-13c63f00c032?w=900&q=72" alt="Bride in a red and gold lehenga with traditional jewellery" loading="eager"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1631549424057-403e75d68e2f?w=600&q=72" alt="Bridal hair styled with red roses and gold jewellery" loading="lazy"></div>
+  </div>
+</div></section></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>4.8★</b><span>Google rating</span></div>
+  <div><b>328</b><span>Reviews</span></div>
+  <div><b>Trial</b><span>Included with bridal</span></div>
+  <div><b>On site</b><span>Or at your venue</span></div>
 </div></div>
 
-<section id="services"><div class="wrap">
-  <div class="eyebrow">Services</div>
-  <h2>What we do</h2>
-  <p class="sub">Sample services and prices — to be replaced with the studio's real menu.</p>
+<div class="wrap"><section id="services">
+  <div class="head">
+    <div class="eyebrow">Services</div>
+    <h2>What we <em>do</em></h2>
+    <p class="sub">Hair, skin, nails and everything a wedding week demands.</p>
+    <p class="note">Sample services and prices shown with stock photography — the studio's real rate card and photos would replace these.</p>
+  </div>
   <div class="grid">
-    <div class="card"><h3>Hair</h3><p>Cuts, colour, smoothening, keratin and styling for events.</p><span class="price">from ₹400</span></div>
-    <div class="card"><h3>Skin</h3><p>Facials, clean-ups, de-tan and seasonal treatments.</p><span class="price">from ₹800</span></div>
-    <div class="card"><h3>Nails</h3><p>Manicure, pedicure, gel polish and nail art.</p><span class="price">from ₹500</span></div>
-    <div class="card"><h3>Waxing &amp; threading</h3><p>Rica and regular wax, threading and face care.</p><span class="price">from ₹150</span></div>
-    <div class="card"><h3>Make-up</h3><p>Party, engagement and photoshoot make-up with draping.</p><span class="price">from ₹2,500</span></div>
-    <div class="card"><h3>Mehendi</h3><p>Simple to full bridal hands, booked by the hour.</p><span class="price">on request</span></div>
+    <div class="card"><div class="ph"><span class="tag">Hair</span><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=700&q=70" alt="Long brown hair being styled with a curling iron" loading="lazy"></div>
+      <div class="b"><h3>Hair</h3><p>Cuts, colour, smoothening, keratin and event styling.</p><span class="price">from ₹400</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Make-up</span><img src="https://images.unsplash.com/photo-1684868268327-7e5590bcfbd6?w=700&q=70" alt="Bride in pink and gold with detailed bridal make-up and jewellery" loading="lazy"></div>
+      <div class="b"><h3>Make-up</h3><p>Engagement, party and photoshoot looks, with draping.</p><span class="price">from ₹2,500</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Skin</span><img src="https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?w=700&q=70" alt="Bride in red with gold jewellery and finished bridal make-up" loading="lazy"></div>
+      <div class="b"><h3>Skin</h3><p>Facials, clean-ups, de-tan and pre-bridal skin plans.</p><span class="price">from ₹800</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Studio</span><img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=700&q=70" alt="Bright modern salon interior with mirror stations" loading="lazy"></div>
+      <div class="b"><h3>Nails</h3><p>Manicure, pedicure, gel polish and nail art.</p><span class="price">from ₹500</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Wedding week</span><img src="https://images.unsplash.com/photo-1600685890506-593fdf55949b?w=700&q=70" alt="Bridal portrait with jewellery and traditional styling" loading="lazy"></div>
+      <div class="b"><h3>Mehendi</h3><p>Simple to full bridal hands, booked by the hour.</p><span class="price">on request</span></div></div>
+    <div class="card"><div class="ph"><span class="tag">Everyday</span><img src="https://images.unsplash.com/photo-1554519934-e32b1629d9ee?w=700&q=70" alt="Back view of long layered hair after styling" loading="lazy"></div>
+      <div class="b"><h3>Waxing &amp; threading</h3><p>Rica and regular wax, threading and face care.</p><span class="price">from ₹150</span></div></div>
   </div>
-</div></section>
+</section></div>
 
-<section id="bridal"><div class="wrap">
-  <div class="eyebrow">For the big day</div>
-  <h2>Bridal packages</h2>
-  <p class="sub">Placeholder pricing. Trial session included before the wedding date so there are no surprises.</p>
-  <div class="bridal">
-    <div class="pkg"><h3>Engagement</h3><div class="amt">₹8,000</div>
-      <ul><li>Make-up &amp; hair</li><li>Draping</li><li>Basic mehendi</li></ul><a class="btn ghost" href="#book">Enquire</a></div>
-    <div class="pkg featured"><span class="tag">Most booked</span><h3>Complete bridal</h3><div class="amt">₹25,000</div>
-      <ul><li>Trial session</li><li>Wedding day make-up &amp; hair</li><li>Full bridal mehendi</li><li>Pre-bridal skin package</li></ul><a class="btn" href="#book">Enquire</a></div>
-    <div class="pkg"><h3>Family &amp; guests</h3><div class="amt">₹3,500</div>
-      <ul><li>Per person, make-up &amp; hair</li><li>Draping included</li><li>At the studio or on location</li></ul><a class="btn ghost" href="#book">Enquire</a></div>
+<div class="bridal"><div class="wrap"><section id="bridal">
+  <div class="head">
+    <div class="eyebrow">For the big day</div>
+    <h2>Bridal <em>packages</em></h2>
+    <p class="sub">A trial session before the wedding date, so there are no surprises on the morning that matters.</p>
   </div>
-</div></section>
+  <div class="bsplit">
+    <div class="bimg"><img src="https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?w=800&q=72" alt="Bride in pink and red with gold bridal jewellery" loading="lazy"></div>
+    <div class="pk">
+      <div class="p"><h3>Engagement</h3><div class="amt">₹8,000</div>
+        <ul><li>Make-up &amp; hair</li><li>Draping</li><li>Basic mehendi</li></ul></div>
+      <div class="p f"><span class="tag">Most booked</span><h3>Complete bridal</h3><div class="amt">₹25,000</div>
+        <ul><li>Trial session</li><li>Wedding day make-up &amp; hair</li><li>Full bridal mehendi</li><li>Pre-bridal skin package</li></ul></div>
+      <div class="p"><h3>Family &amp; guests</h3><div class="amt">₹3,500 <span style="font-size:13px;font-family:Outfit,sans-serif;color:var(--on-deep-mut)">per person</span></div>
+        <ul><li>Make-up &amp; hair</li><li>Draping included</li><li>At the studio or your venue</li></ul></div>
+      <p style="color:var(--on-deep-mut);font-size:13px;margin:6px 0 0">Placeholder pricing — the studio's real packages would go here.</p>
+    </div>
+  </div>
+</section></div></div>
 
-<section id="book"><div class="wrap">
-  <div class="eyebrow">Appointments</div>
-  <h2>Book a slot</h2>
-  <p class="sub">Send a request and the studio confirms on WhatsApp. Bridal dates should be booked well in advance.</p>
-  <div class="book">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
+<div class="book"><div class="wrap"><section id="book">
+  <div class="head">
+    <div class="eyebrow">Appointments</div>
+    <h2>Book a <em>slot</em></h2>
+    <p class="sub">Send a request and the studio confirms on WhatsApp. Bridal dates fill up months ahead in wedding season.</p>
+  </div>
+  <div class="bookgrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)'">
       <label for="n">Name</label><input id="n" placeholder="Your name">
       <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="s">Service</label><select id="s"><option>Hair</option><option>Skin</option><option>Nails</option><option>Waxing &amp; threading</option><option>Make-up</option><option>Bridal package</option></select>
+      <label for="s">Service</label>
+      <select id="s"><option>Bridal package</option><option>Make-up</option><option>Hair</option><option>Skin</option><option>Nails</option><option>Mehendi</option><option>Waxing &amp; threading</option></select>
       <label for="d">Preferred date</label><input id="d" type="date">
-      <label for="m">Anything else</label><textarea id="m" placeholder="Preferred time, occasion, or who's coming with you"></textarea>
+      <label for="m">Anything else</label><textarea id="m" placeholder="Preferred time, the occasion, how many of you are coming"></textarea>
       <button class="btn" type="submit">Request appointment</button>
     </form>
-    <div class="info" id="visit"><ul>
-      <li><strong>Call or WhatsApp</strong>098986 55285</li>
-      <li><strong>Where</strong>Satellite Apartment F/3, opposite Aakar Society, near Samaan Complex, Satellite, Ahmedabad</li>
-      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
-      <li><strong>Bridal bookings</strong>Trial session included, dates fill up in season</li>
-    </ul></div>
+    <div class="info" id="visit">
+      <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span>098986 55285</span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Where</strong><span>Satellite Apartment F/3, opposite Aakar Society, near Samaan Complex, Satellite, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed</span></div></div>
+      <div class="irow"><i>♡</i><div><strong>Bridal bookings</strong><span>Trial included; book early in wedding season</span></div></div>
+    </div>
   </div>
-</div></section>
+</section></div></div>
 
 <footer><div class="wrap">
   <span>Rhydham Beauty Studio · Satellite, Ahmedabad</span>
-  <span>Demo site — not affiliated with the business yet</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
 </div></footer>
 </body>
 </html>
