@@ -4,136 +4,401 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Infinity Fitness 24×7</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Infinity Fitness 24×7 — SG Highway, Ahmedabad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f1114;--surface:#171a1f;--ink:#eef1f5;--muted:#95a0ad;--accent:#2f6df6;--soft:#152034;--line:#242931;--sh:0 2px 24px rgba(0,0,0,.4)}
-:root[data-theme="light"]{--bg:#f5f7fa;--surface:#fff;--ink:#121620;--muted:#5a6675;--accent:#1d4fd0;--soft:#e6edfd;--line:#e1e6ed;--sh:0 2px 20px rgba(20,30,50,.08)}
+:root{
+  --bg:#f1f5f9; --bg2:#e4ebf2; --surface:#fff; --ink:#0c131b; --muted:#56687c;
+  --accent:#0f5fd0; --accent-2:#0e9aad; --soft:#e2ecfb; --line:#d3dfea; --grid:rgba(15,95,208,.07);
+  --on-accent:#fff;
+  --s1:0 1px 2px rgba(12,32,56,.07);
+  --s2:0 3px 8px rgba(12,32,56,.07),0 14px 32px rgba(12,32,56,.10);
+  --s3:0 8px 18px rgba(12,32,56,.11),0 28px 64px rgba(12,32,56,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#080d13; --bg2:#0d151e; --surface:#111a24; --ink:#e7eff8; --muted:#8ba1b8;
+    --accent:#4e9bff; --accent-2:#2fd3e3; --soft:#102338; --line:#1d2b3a; --grid:rgba(78,155,255,.09);
+    --on-accent:#04121f;
+    --s1:0 1px 2px rgba(0,0,0,.5);
+    --s2:0 3px 8px rgba(0,0,0,.4),0 14px 32px rgba(0,0,0,.5);
+    --s3:0 8px 18px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.65);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#080d13; --bg2:#0d151e; --surface:#111a24; --ink:#e7eff8; --muted:#8ba1b8;
+  --accent:#4e9bff; --accent-2:#2fd3e3; --soft:#102338; --line:#1d2b3a; --grid:rgba(78,155,255,.09);
+  --on-accent:#04121f;
+  --s1:0 1px 2px rgba(0,0,0,.5);
+  --s2:0 3px 8px rgba(0,0,0,.4),0 14px 32px rgba(0,0,0,.5);
+  --s3:0 8px 18px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.65);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-h1,h2,h3,.brand{font-family:Oswald,Impact,sans-serif;font-weight:600;text-transform:uppercase;line-height:1.08;margin:0;letter-spacing:.01em}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px;font-weight:500}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-.brand{font-size:23px;text-decoration:none;color:var(--ink)}.brand span{color:var(--accent)}
-.navlinks{display:flex;gap:24px;font-size:14px;font-weight:500}
-.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:4px;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;border:0;cursor:pointer;font-family:Oswald,sans-serif}
-.btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent)}
-.hero{padding:70px 0 54px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(42px,7.6vw,74px)}.hero h1 em{font-style:normal;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:44ch}
-.rating{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:5px 13px;border-radius:4px;font-size:13px;font-weight:600;margin-bottom:18px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.art{aspect-ratio:1/1;border-radius:10px;background:conic-gradient(from 210deg at 50% 50%,var(--accent) 0 25%,transparent 25% 50%,var(--accent) 50% 75%,transparent 75%),linear-gradient(160deg,var(--surface),var(--line));opacity:.95;border:1px solid var(--line);box-shadow:var(--sh)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
-.stats div{background:var(--bg);padding:24px 14px;text-align:center}
-.stats b{display:block;font-family:Oswald,sans-serif;font-size:34px;color:var(--accent);line-height:1}
-.stats span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
-section{padding:58px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;font-family:"IBM Plex Sans",sans-serif}
-h2{font-size:clamp(30px,5vw,44px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px;box-shadow:var(--sh)}
-.card h3{font-size:21px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.pl{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:26px;position:relative}
-.pl.f{border-color:var(--accent)}
-.pl .tag{position:absolute;top:-11px;left:26px;background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;font-family:Oswald,sans-serif}
-.pl h3{font-size:20px;color:var(--muted)}
-.pl .amt{font-family:Oswald,sans-serif;font-size:44px;line-height:1.1;margin:6px 0 2px}
-.pl .per{color:var(--muted);font-size:13px;margin-bottom:18px}
-.pl ul{list-style:none;padding:0;margin:0 0 22px;font-size:14px;color:var(--muted)}
-.pl li{padding:7px 0 7px 20px;position:relative;border-top:1px solid var(--line)}
-.pl li:before{content:"▸";position:absolute;left:0;color:var(--accent)}
-.pl .btn{width:100%;text-align:center}
-.join{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px}
-label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.62 Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Archivo,system-ui,sans-serif;font-weight:700;line-height:1.06;margin:0;letter-spacing:-.03em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+.demo-bar{background:linear-gradient(90deg,#0b3f86,var(--accent) 55%,#0e9aad);color:#fff;text-align:center;padding:10px 16px;font-size:12.5px;font-weight:500;position:relative;z-index:40;letter-spacing:.005em}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0}
+.brand{font-size:19px;font-weight:700;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px;letter-spacing:-.035em;white-space:nowrap}
+.brand i{width:26px;height:26px;flex:none;border-radius:8px;background:linear-gradient(145deg,var(--accent-2),var(--accent) 65%);box-shadow:var(--s1),inset 0 1px 0 rgba(255,255,255,.35);display:grid;place-items:center;font-style:normal;color:#fff;font-size:15px;font-weight:700;line-height:1}
+.navlinks{display:flex;gap:24px;font-size:13.5px}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0;letter-spacing:-.01em}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--accent);transition:right .28s}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{right:0}
+.nav-right{display:flex;align-items:center;gap:12px}
+.clockchip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 11px;font-size:12px;font-weight:600;box-shadow:var(--s1);white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:#16b66a;box-shadow:0 0 0 3px color-mix(in srgb,#16b66a 22%,transparent);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.clockchip s{text-decoration:none;color:var(--muted);font-weight:500}
+
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--on-accent);text-decoration:none;padding:11px 20px;border-radius:9px;font-size:13.5px;font-weight:600;border:0;cursor:pointer;font-family:Archivo,sans-serif;letter-spacing:-.01em;box-shadow:0 2px 6px color-mix(in srgb,var(--accent) 35%,transparent),0 12px 26px color-mix(in srgb,var(--accent) 26%,transparent);transition:transform .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 40%,transparent),0 18px 38px color-mix(in srgb,var(--accent) 34%,transparent)}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid color-mix(in srgb,var(--accent) 42%,transparent);box-shadow:none}
+.btn.ghost:hover{background:var(--soft);box-shadow:var(--s1)}
+
+/* HERO */
+.hero{position:relative;padding:58px 0 62px}
+.hero::before{content:"";position:absolute;inset:-160px -25% auto -25%;height:600px;z-index:-2;
+  background:radial-gradient(ellipse at 26% 38%,var(--soft),transparent 60%),radial-gradient(ellipse at 80% 24%,color-mix(in srgb,var(--accent-2) 24%,transparent),transparent 56%);filter:blur(8px)}
+.hero::after{content:"";position:absolute;inset:-60px 0 auto 0;height:560px;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:52px 52px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 20%,#000,transparent 72%);mask-image:radial-gradient(ellipse at 50% 20%,#000,transparent 72%)}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:50px;align-items:center}
+.kicker{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.kicker span{height:1px;flex:1;max-width:64px;background:linear-gradient(90deg,var(--accent),transparent)}
+.hero h1{font-size:clamp(36px,6.6vw,64px)}
+.hero h1 b{color:var(--accent);font-weight:700}
+.hero h1 u{text-decoration:none;display:inline-block;position:relative}
+.hero h1 u::after{content:"";position:absolute;left:0;right:0;bottom:.07em;height:.1em;background:color-mix(in srgb,var(--accent-2) 55%,transparent);border-radius:2px;z-index:-1}
+.hero p{color:var(--muted);font-size:17px;max-width:46ch;margin:20px 0 0}
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:6px 14px 6px 7px;border-radius:999px;font-size:12.5px;font-weight:600;box-shadow:var(--s2);margin-bottom:18px}
+.pill b{background:var(--accent);color:var(--on-accent);border-radius:999px;padding:3px 9px;font-size:11.5px;letter-spacing:.02em}
+.cta{display:flex;gap:11px;flex-wrap:wrap;margin-top:28px}
+.herometa{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;font-size:11.5px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
+.herometa i{font-style:normal;color:var(--accent)}
+
+.stack{position:relative;padding:0 30px 46px 0}
+.stack .big{border-radius:14px;overflow:hidden;box-shadow:var(--s3);border:1px solid var(--line);outline:6px solid var(--surface);outline-offset:0;transform:rotate(-1.4deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:48%;border-radius:12px;overflow:hidden;box-shadow:var(--s3);border:1px solid var(--line);outline:6px solid var(--surface);transform:rotate(2.6deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:18px;left:14px;z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:10px 14px;box-shadow:var(--s3)}
+@media(min-width:901px){.badge{left:-22px}}
+.badge b{display:flex;align-items:center;gap:7px;font-size:20px;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.badge span{display:block;font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
+
+/* 24H RIBBON */
+.ribbon{margin-top:46px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--s2);padding:16px 18px}
+.ribbon-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.ribbon-top strong{font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.ribbon-top em{font-style:normal;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.hours{display:grid;grid-template-columns:repeat(24,1fr);gap:3px}
+.hours i{display:block;height:34px;border-radius:3px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 22%,transparent),color-mix(in srgb,var(--accent) 46%,transparent));position:relative}
+.hours i.now{background:linear-gradient(180deg,var(--accent-2),var(--accent));box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
+.hours i.now::after{content:"NOW";position:absolute;top:-16px;left:50%;transform:translateX(-50%);font:600 8.5px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;color:var(--accent)}
+.hourlabels{display:flex;justify-content:space-between;margin-top:7px;font:500 10px/1 "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.06em}
+
+/* STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:24px}
+.strip div{text-align:center;position:relative}
+.strip div+div::before{content:"";position:absolute;left:-10px;top:8px;bottom:8px;width:1px;background:var(--line)}
+.strip b{display:block;font-size:26px;font-weight:700;letter-spacing:-.045em;color:var(--accent);line-height:1.1}
+.strip span{font-size:11px;color:var(--muted);letter-spacing:.13em;text-transform:uppercase}
+
+section{padding:76px 0}
+.head{max-width:60ch;margin-bottom:38px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:13px;font-family:"IBM Plex Mono",monospace}
+.eyebrow::before{content:"";width:18px;height:1.5px;background:var(--accent)}
+h2{font-size:clamp(28px,4.4vw,42px)}
+.sub{color:var(--muted);margin:13px 0 0;font-size:16px}
+.note{font-size:12.5px;color:var(--muted);margin-top:14px;padding-left:12px;border-left:2px solid var(--line);font-family:"IBM Plex Mono",monospace;line-height:1.55}
+
+/* TIME SLOTS */
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.slot{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:20px 18px;box-shadow:var(--s2);position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s,border-color .3s}
+.slot:hover{transform:translateY(-6px);box-shadow:var(--s3);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.slot::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,var(--accent-2),var(--accent))}
+.slot time{display:block;font:600 22px/1 "IBM Plex Mono",monospace;letter-spacing:-.02em;color:var(--ink)}
+.slot .who{display:block;margin:9px 0 8px;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.slot p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--s2);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.card:hover{transform:translateY(-7px);box-shadow:var(--s3)}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(transparent,rgba(5,14,24,.72))}
+.card .tag{position:absolute;left:14px;bottom:11px;z-index:2;color:#fff;font:600 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.card .idx{position:absolute;right:12px;top:11px;z-index:2;color:#fff;font:600 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;background:rgba(6,16,28,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);border-radius:6px;padding:4px 7px}
+.card .b{padding:19px 19px 21px}
+.card h3{font-size:18.5px;margin-bottom:7px}
+.card p{color:var(--muted);font-size:14px;margin:0}
+
+/* SPLIT */
+.tint{background:var(--bg2);border-block:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.split .imgwrap{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--s3);border:1px solid var(--line);outline:6px solid var(--surface)}
+.split .imgwrap img{aspect-ratio:5/4;object-fit:cover;width:100%}
+.split .imgwrap .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 16px 12px;background:linear-gradient(transparent,rgba(5,14,24,.78));color:#fff;font:500 11.5px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.steps{counter-reset:s;margin-top:26px}
+.step{position:relative;padding-left:54px;margin-bottom:24px}
+.step:last-child{margin-bottom:0}
+.step:before{counter-increment:s;content:"0" counter(s);position:absolute;left:0;top:-1px;width:36px;height:36px;border-radius:9px;background:var(--surface);border:1px solid var(--line);color:var(--accent);display:grid;place-items:center;font:600 12px/1 "IBM Plex Mono",monospace;box-shadow:var(--s2)}
+.step h3{font-size:16.5px;margin-bottom:3px}
+.step p{color:var(--muted);font-size:14px;margin:0}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 22px 24px;box-shadow:var(--s2);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--s3)}
+.plan.feat{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:var(--s3);position:relative}
+.plan.feat::after{content:"MOST ASKED FOR";position:absolute;top:-10px;left:22px;background:var(--accent);color:var(--on-accent);font:600 9.5px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;padding:6px 9px;border-radius:6px;box-shadow:var(--s1)}
+.plan h3{font-size:17px}
+.plan .amt{display:flex;align-items:baseline;gap:6px;margin:14px 0 4px}
+.plan .amt b{font:700 34px/1 Archivo,sans-serif;letter-spacing:-.05em;color:var(--accent)}
+.plan .amt s{text-decoration:none;font-size:12.5px;color:var(--muted)}
+.plan .tiny{font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.plan ul{list-style:none;padding:0;margin:18px 0 0;border-top:1px solid var(--line);padding-top:16px}
+.plan li{position:relative;padding-left:22px;font-size:14px;color:var(--muted);margin-bottom:9px}
+.plan li::before{content:"→";position:absolute;left:0;top:0;color:var(--accent);font-size:13px}
+
+/* BOOK */
+.bookgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--s3)}
+label{display:block;font:600 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
 label:first-child{margin-top:0}
-input,select{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-form .btn{width:100%;margin-top:20px;padding:14px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:860px){.hero{grid-template-columns:1fr;padding:44px 0 32px}.art{aspect-ratio:16/10;order:-1}.g3,.plans,.join{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
+textarea{min-height:86px;resize:vertical}
+form .btn{width:100%;margin-top:22px;padding:14px;justify-content:center}
+.info{display:flex;flex-direction:column;gap:12px}
+.irow{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px;box-shadow:var(--s2)}
+.irow i{width:34px;height:34px;flex:none;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent);font-weight:700;font-size:15px}
+.irow strong{display:block;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.irow span{font-size:14.5px}
+
+footer{padding:36px 0;background:var(--bg2);border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:980px){
+  .hero-grid,.split,.bookgrid{grid-template-columns:1fr;gap:38px}
+  .stack{order:-1;padding-right:24px;padding-bottom:40px;max-width:430px}
+  .grid,.plans{grid-template-columns:repeat(2,1fr);gap:16px}
+  .slots{grid-template-columns:repeat(2,1fr)}
+  .navlinks{display:none}
+  section{padding:58px 0}
+}
+@media(max-width:620px){
+  .grid,.plans,.slots{grid-template-columns:1fr}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:16px;row-gap:22px}
+  .strip div:nth-child(3)::before{display:none}
+  .hours{gap:2px}.hours i{height:28px}
+  .hourlabels{font-size:9px}
+  .clockchip s{display:none}
+  .brand{font-size:16.5px}
+  .btn{padding:10px 15px;font-size:12.5px}
+}
+@media(max-width:400px){ .nav-right .btn{display:none} }
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Infinity Fitness · sample plans and photos — real details to come from the owner</div>
+<div class="demo-bar">Demo site built for Infinity Fitness 24×7 · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Infinity<span>24×7</span></a>
-  <div class="navlinks"><a href="#floor">The floor</a><a href="#plans">Plans</a><a href="#join">Join</a><a href="#find">Find us</a></div>
-  <a class="btn" href="#join">Free trial</a>
+  <a class="brand" href="#"><i>∞</i>Infinity Fitness</a>
+  <div class="navlinks"><a href="#always">Always open</a><a href="#floor">The floor</a><a href="#training">Training</a><a href="#plans">Plans</a><a href="#visit">Visit</a></div>
+  <div class="nav-right">
+    <span class="clockchip"><span class="dot"></span><span class="mono" id="clock">--:--</span><s>· open</s></span>
+    <a class="btn" href="#book">Free trial</a>
+  </div>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
-  <div>
-    <span class="rating">★ 4.7 · 367 Google reviews</span>
-    <h1>Open when<br><em>you are.</em></h1>
-    <p>A 24×7 gym on SG Highway. Train at 5am or 11pm — the doors don't close and neither do we.</p>
-    <div class="cta"><a class="btn" href="#join">Book a free trial</a><a class="btn ghost" href="#plans">See plans</a></div>
+<div class="wrap"><section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="kicker">SG Highway · Ahmedabad <span></span></div>
+      <span class="pill"><b>4.7 ★</b> 367 Google reviews</span>
+      <h1>The floor is open. <b>It always <u>was</u>.</b></h1>
+      <p>Infinity Fitness runs twenty-four hours a day on SG Highway. Night shift, 5am start, or a 2am can't-sleep session — the lights are on and the racks are free.</p>
+      <div class="cta">
+        <a class="btn" href="#book">Book a free trial</a>
+        <a class="btn ghost" href="#floor">See the floor</a>
+      </div>
+      <div class="herometa">
+        <span><i>◷</i> 24 hrs × 7 days</span>
+        <span><i>◉</i> 2nd Floor, Heritage Plaza</span>
+        <span><i>☎</i> 096010 95005</span>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="badge"><b><span class="dot"></span>24/7</b><span>The doors don't lock</span></div>
+      <div class="big"><img src="https://images.unsplash.com/photo-1671970922029-0430d2ae122c?w=900&q=70" alt="Wide view of a gym floor at night with strip lighting and rows of machines" loading="eager" fetchpriority="high"></div>
+      <div class="small"><img src="https://images.unsplash.com/photo-1580977345188-0f9997ed457f?w=600&q=70" alt="Treadmills lined up along tall windows in a dimly lit cardio area" loading="lazy"></div>
+    </div>
   </div>
-  <div class="art"></div>
+
+  <div class="ribbon">
+    <div class="ribbon-top">
+      <strong>Access window · every day of the week</strong>
+      <em class="mono" id="ribbonNote">00:00 → 24:00</em>
+    </div>
+    <div class="hours" id="hours" aria-label="Open every hour of the day"></div>
+    <div class="hourlabels"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+  </div>
+</section></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>4.7★</b><span>Google rating</span></div>
+  <div><b>367</b><span>Reviews</span></div>
+  <div><b>24×7</b><span>Member access</span></div>
+  <div><b>SG Hwy</b><span>Near The Grand</span></div>
 </div></div>
 
-<div class="stats">
-  <div><b>24×7</b><span>Always open</span></div>
-  <div><b>4.7</b><span>Google rating</span></div>
-  <div><b>367</b><span>Reviews</span></div>
-  <div><b>1:1</b><span>PT available</span></div>
-</div>
-
-<section id="floor"><div class="wrap">
-  <div class="eyebrow">Facilities</div><h2>The floor</h2>
-  <p class="sub">Sample sections — to be replaced with the real offering.</p>
-  <div class="g3">
-    <div class="card"><h3>Strength</h3><p>Racks, benches and a full free-weight area.</p></div>
-    <div class="card"><h3>Cardio</h3><p>Treadmills, bikes and rowers, never all occupied at 2am.</p></div>
-    <div class="card"><h3>Functional</h3><p>Turf, ropes, kettlebells and open training space.</p></div>
-    <div class="card"><h3>Personal training</h3><p>Coaches available across early and late slots.</p></div>
-    <div class="card"><h3>Night access</h3><p>Secure card entry and cameras through the night.</p></div>
-    <div class="card"><h3>Showers</h3><p>Changing rooms and lockers, so you can train before work.</p></div>
+<div class="wrap"><section id="always">
+  <div class="head">
+    <span class="eyebrow">The whole point</span>
+    <h2>A gym built around your shift, not ours.</h2>
+    <p class="sub">Most gyms decide when you train. This one doesn't. The same floor, the same equipment, at whatever hour actually fits your week.</p>
   </div>
-</div></section>
+  <div class="slots">
+    <div class="slot"><time>05:30</time><span class="who">Before the highway wakes</span><p>Empty racks, no waiting for a bench, and you're showered before the SG Highway traffic starts.</p></div>
+    <div class="slot"><time>13:15</time><span class="who">Lunch-break lift</span><p>Forty-five minutes between meetings. Quick in, quick out, back at your desk.</p></div>
+    <div class="slot"><time>21:45</time><span class="who">After the late shift</span><p>Clocked out at nine? The floor is still exactly as open as it was at nine in the morning.</p></div>
+    <div class="slot"><time>02:40</time><span class="who">Because you're awake anyway</span><p>Odd hours are still hours. Tap in, train, tap out. Nobody is waiting to lock up behind you.</p></div>
+  </div>
+  <p class="note">Sample timings — to be confirmed. Staffed hours, trainer availability and peak-hour details will be set by the owner before this page goes live.</p>
+</section></div>
 
-<section id="plans"><div class="wrap">
-  <div class="eyebrow">Membership</div><h2>Plans</h2>
-  <p class="sub">Placeholder pricing — the owner's real rates go here.</p>
+<div class="tint"><div class="wrap"><section id="floor">
+  <div class="head">
+    <span class="eyebrow">Inside</span>
+    <h2>The floor</h2>
+    <p class="sub">Sample zones shown with stock photography — to be swapped for photos of the actual Heritage Plaza floor and the real equipment list.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="ph"><span class="idx">01</span><span class="tag">Free weights</span><img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=700&q=70" alt="A long row of dumbbells on a rack under moody lighting" loading="lazy"></div>
+      <div class="b"><h3>Strength &amp; dumbbells</h3><p>Full dumbbell run, benches and racks. The busiest corner at 7pm, all yours at 3am.</p></div></div>
+    <div class="card"><div class="ph"><span class="idx">02</span><span class="tag">Cardio</span><img src="https://images.unsplash.com/photo-1616279967983-ec413476e824?w=700&q=70" alt="A row of cardio machines facing a bright window in a gym" loading="lazy"></div>
+      <div class="b"><h3>Cardio deck</h3><p>Treadmills, ellipticals and cycles lined along the windows. Screens on, highway below.</p></div></div>
+    <div class="card"><div class="ph"><span class="idx">03</span><span class="tag">Functional</span><img src="https://images.unsplash.com/photo-1597076545399-91a3ff0e71b3?w=700&q=70" alt="Kettlebells on a gym floor with people training in the background" loading="lazy"></div>
+      <div class="b"><h3>Functional zone</h3><p>Kettlebells, turf and open floor for mobility, conditioning and anything that isn't a machine.</p></div></div>
+    <div class="card"><div class="ph"><span class="idx">04</span><span class="tag">Barbell</span><img src="https://images.unsplash.com/photo-1605490855119-94921710a47f?w=700&q=70" alt="A loaded barbell on the floor with a lifter reaching for the bar" loading="lazy"></div>
+      <div class="b"><h3>Lifting platform</h3><p>Loaded bars, plates in order, and enough space behind you to actually set up a pull.</p></div></div>
+    <div class="card"><div class="ph"><span class="idx">05</span><span class="tag">Plates</span><img src="https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=700&q=70" alt="Weight plates and dumbbell racks photographed in black and white" loading="lazy"></div>
+      <div class="b"><h3>Racked and reset</h3><p>Plates get put back, bars get wiped. The floor at 4am should look like the floor at 4pm.</p></div></div>
+    <div class="card"><div class="ph"><span class="idx">06</span><span class="tag">Night floor</span><img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=700&q=70" alt="A dark gym interior with mirrors and machines lit by overhead lights" loading="lazy"></div>
+      <div class="b"><h3>The quiet hours</h3><p>Between midnight and five it's you, the mirrors and whatever's in your headphones.</p></div></div>
+  </div>
+</section></div></div>
+
+<div class="wrap"><section id="training"><div class="split">
+  <div class="imgwrap">
+    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&q=70" alt="A trainer coaching a man through push-ups on push-up bars in a gym" loading="lazy">
+    <div class="cap">Personal training · sample photo</div>
+  </div>
+  <div>
+    <span class="eyebrow">One to one</span>
+    <h2>Train with someone watching the bar.</h2>
+    <p class="sub">Personal training slots, booked around your hours rather than a fixed batch timing.</p>
+    <div class="steps">
+      <div class="step"><h3>Free trial session</h3><p>Come in, use the floor, see whether the place suits how you train.</p></div>
+      <div class="step"><h3>Assessment</h3><p>A trainer walks you through movement, current strength and what you're actually training for.</p></div>
+      <div class="step"><h3>A plan and a slot</h3><p>Sessions get fixed to hours that work for you — including the ones other gyms are closed for.</p></div>
+      <div class="step"><h3>Review as you go</h3><p>Numbers get checked, the programme changes when it stops working.</p></div>
+    </div>
+  </div>
+</div></section></div>
+
+<div class="tint"><div class="wrap"><section id="plans">
+  <div class="head">
+    <span class="eyebrow">Membership</span>
+    <h2>Plans</h2>
+    <p class="sub">Placeholder structure and placeholder prices. Nothing on this page is Infinity Fitness's real pricing — the owner's actual rates replace these before launch.</p>
+  </div>
   <div class="plans">
-    <div class="pl"><h3>Monthly</h3><div class="amt">₹1,800</div><div class="per">per month</div>
-      <ul><li>24×7 access</li><li>Induction session</li><li>Locker &amp; showers</li></ul><a class="btn ghost" href="#join">Choose</a></div>
-    <div class="pl f"><span class="tag">Best value</span><h3>Quarterly</h3><div class="amt">₹4,500</div><div class="per">3 months · save ₹900</div>
-      <ul><li>Everything in monthly</li><li>Diet consultation</li><li>Monthly progress check</li></ul><a class="btn" href="#join">Choose</a></div>
-    <div class="pl"><h3>Annual</h3><div class="amt">₹14,000</div><div class="per">12 months · save ₹7,600</div>
-      <ul><li>Everything in quarterly</li><li>6 PT sessions free</li><li>Freeze up to 45 days</li></ul><a class="btn ghost" href="#join">Choose</a></div>
+    <div class="plan">
+      <h3>Monthly</h3>
+      <div class="amt"><b>₹1,800</b><s>/ month</s></div>
+      <span class="tiny">Sample price</span>
+      <ul><li>Full 24×7 floor access</li><li>Locker and shower</li><li>One induction session</li><li>Cancel any month</li></ul>
+    </div>
+    <div class="plan feat">
+      <h3>Quarterly</h3>
+      <div class="amt"><b>₹4,500</b><s>/ 3 months</s></div>
+      <span class="tiny">Sample price</span>
+      <ul><li>Everything in monthly</li><li>Body composition check</li><li>One PT session included</li><li>Freeze for up to 10 days</li></ul>
+    </div>
+    <div class="plan">
+      <h3>Annual</h3>
+      <div class="amt"><b>₹13,500</b><s>/ year</s></div>
+      <span class="tiny">Sample price</span>
+      <ul><li>Everything in quarterly</li><li>Quarterly progress review</li><li>Guest passes</li><li>Freeze for up to 30 days</li></ul>
+    </div>
   </div>
-</div></section>
+  <p class="note">Every price, inclusion and plan name above is an invented placeholder used to show layout only.</p>
+</section></div></div>
 
-<section id="join"><div class="wrap">
-  <div class="eyebrow">Get started</div><h2>Book a free trial</h2>
-  <p class="sub">One session, no payment, any hour you like.</p>
-  <div class="join">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="g">Goal</label><select id="g"><option>Fat loss</option><option>Build strength</option><option>General fitness</option><option>Personal training</option></select>
-      <label for="t">Usual training time</label><select id="t"><option>Early morning (5–8am)</option><option>Daytime</option><option>Evening (6–10pm)</option><option>Late night (10pm–5am)</option></select>
-      <button class="btn" type="submit">Book my trial</button>
+<div class="wrap"><section id="book">
+  <div class="head">
+    <span class="eyebrow">Get started</span>
+    <h2>Book a free trial</h2>
+    <p class="sub">Pick any hour — genuinely any hour. Someone from the gym gets back to you on WhatsApp.</p>
+  </div>
+  <div class="bookgrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)';b.style.boxShadow='none'">
+      <label for="n">Your name</label><input id="n" placeholder="Name">
+      <label for="p">WhatsApp number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
+      <label for="g">What are you after?</label>
+      <select id="g"><option>General fitness</option><option>Strength training</option><option>Weight loss</option><option>Personal training</option><option>Just want to see the floor</option></select>
+      <label for="t">Hour that suits you</label><input id="t" type="time">
+      <label for="m">Anything else</label><textarea id="m" placeholder="Training history, injuries, the hours you usually get free"></textarea>
+      <button class="btn" type="submit">Request a trial slot</button>
     </form>
-    <div class="info" id="find"><ul>
-      <li><strong>Call or WhatsApp</strong>096010 95005</li>
-      <li><strong>Where</strong>2nd Floor, Heritage Plaza, Sarkhej–Gandhinagar Highway, near The Grand, Ahmedabad</li>
-      <li><strong>Hours</strong>24×7, card access after staffed hours</li>
-      <li><strong>Trial</strong>First session free</li>
-    </ul></div>
+    <div class="info" id="visit">
+      <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span>096010 95005</span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Where</strong><span>2nd Floor, Heritage Plaza, SG Highway, near The Grand, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed. Member access shown as 24×7.</span></div></div>
+      <div class="irow"><i>★</i><div><strong>Google rating</strong><span>4.7 from 367 reviews</span></div></div>
+      <div class="irow"><i>◈</i><div><strong>Trial</strong><span>Sample offer — a free first session, to be confirmed by the owner</span></div></div>
+    </div>
   </div>
-</div></section>
+</section></div>
 
-<footer><div class="wrap"><span>Infinity Fitness 24×7 · SG Highway, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+<footer><div class="wrap">
+  <span>Infinity Fitness 24×7 · SG Highway, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
+</div></footer>
+
+<script>
+(function(){
+  var hoursEl=document.getElementById('hours');
+  if(hoursEl){
+    var h=new Date().getHours(),frag=document.createDocumentFragment();
+    for(var i=0;i<24;i++){var s=document.createElement('i');if(i===h)s.className='now';s.title=(i<10?'0':'')+i+':00 — open';frag.appendChild(s);}
+    hoursEl.appendChild(frag);
+  }
+  function pad(n){return (n<10?'0':'')+n}
+  function tick(){
+    var d=new Date(),c=document.getElementById('clock');
+    if(c)c.textContent=pad(d.getHours())+':'+pad(d.getMinutes());
+  }
+  tick();setInterval(tick,20000);
+})();
+</script>
 </body>
 </html>

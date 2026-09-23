@@ -4,128 +4,308 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Bonanza Ladies Salon</title>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Bonanza Ladies Salon — Prahlad Nagar, Ahmedabad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fbf7fb;--surface:#fff;--ink:#241d28;--muted:#7d6f85;--accent:#6b3fa0;--soft:#f0e6f7;--gold:#b98f3e;--line:#e9dff0;--sh:0 2px 22px rgba(70,40,90,.07)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17131a;--surface:#201a24;--ink:#f1eaf4;--muted:#ab9db3;--accent:#b98ae0;--soft:#2a1f33;--gold:#d9b569;--line:#2e2535;--sh:0 2px 22px rgba(0,0,0,.35)}}
-:root[data-theme="dark"]{--bg:#17131a;--surface:#201a24;--ink:#f1eaf4;--muted:#ab9db3;--accent:#b98ae0;--soft:#2a1f33;--gold:#d9b569;--line:#2e2535;--sh:0 2px 22px rgba(0,0,0,.35)}
+:root{
+  --bg:#fbf6fb; --bg2:#f2e8f3; --surface:#ffffff; --ink:#230d29; --muted:#6c556f;
+  --accent:#a3108d; --accent-2:#0f9c81; --soft:#f7e2f4; --line:#e7d6e8;
+  --plum-a:#2c0933; --plum-b:#54105b; --on-plum:#fdf3fb; --on-plum-mut:#d6b4d8;
+  --s1:0 1px 2px rgba(48,10,52,.07);
+  --s2:0 4px 10px rgba(48,10,52,.07),0 14px 34px rgba(48,10,52,.10);
+  --s3:0 8px 18px rgba(48,10,52,.12),0 26px 60px rgba(48,10,52,.20);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#130a16; --bg2:#1b0d1f; --surface:#221029; --ink:#f7ecf7; --muted:#b69dba;
+    --accent:#f06fd4; --accent-2:#3fd5b4; --soft:#341038; --line:#351a3b;
+    --plum-a:#1d0622; --plum-b:#3d0b44; --on-plum:#fdf3fb; --on-plum-mut:#cfa9d2;
+    --s1:0 1px 2px rgba(0,0,0,.5);
+    --s2:0 4px 10px rgba(0,0,0,.4),0 14px 34px rgba(0,0,0,.45);
+    --s3:0 8px 18px rgba(0,0,0,.5),0 26px 60px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#130a16; --bg2:#1b0d1f; --surface:#221029; --ink:#f7ecf7; --muted:#b69dba;
+  --accent:#f06fd4; --accent-2:#3fd5b4; --soft:#341038; --line:#351a3b;
+  --plum-a:#1d0622; --plum-b:#3d0b44; --on-plum:#fdf3fb; --on-plum-mut:#cfa9d2;
+  --s1:0 1px 2px rgba(0,0,0,.5);
+  --s2:0 4px 10px rgba(0,0,0,.4),0 14px 34px rgba(0,0,0,.45);
+  --s3:0 8px 18px rgba(0,0,0,.5),0 26px 60px rgba(0,0,0,.6);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;line-height:1.15;margin:0}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
-.brand{font-family:Marcellus,serif;font-size:23px;text-decoration:none;color:var(--ink);letter-spacing:.04em}
-.brand small{display:block;font-family:Manrope,sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.navlinks{display:flex;gap:24px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;border:0;cursor:pointer;font-family:Manrope,sans-serif}
-.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
-.hero{padding:66px 0 50px;display:grid;grid-template-columns:1fr .88fr;gap:42px;align-items:center}
-.hero h1{font-size:clamp(36px,6.4vw,58px)}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:45ch}
-.rating{display:inline-flex;gap:8px;color:var(--gold);font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:18px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.art{aspect-ratio:3/4;border-radius:999px 999px 12px 12px;background:radial-gradient(ellipse at 50% 34%,var(--soft) 0 58%,transparent 58%),linear-gradient(170deg,var(--soft),var(--surface));border:1px solid var(--line);box-shadow:var(--sh)}
-section{padding:56px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
-h2{font-size:clamp(28px,4.6vw,40px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--sh)}
-.card h3{font-size:22px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0 0 12px}
-.card .price{color:var(--accent);font-size:14px;font-weight:700}
-.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.p{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;position:relative}
-.p.f{border-color:var(--gold)}
-.p .tag{position:absolute;top:-10px;left:26px;background:var(--gold);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;font-weight:700}
-.p h3{font-size:23px}.p .amt{font-family:Marcellus,serif;font-size:32px;color:var(--accent);margin:8px 0 16px}
-.p ul{list-style:none;padding:0;margin:0 0 20px;font-size:14px;color:var(--muted)}
-.p li{padding:8px 0;border-top:1px solid var(--line)}
-.p .btn{width:100%;text-align:center}
-.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--sh)}
-label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:16px 0 6px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:Syne,Manrope,sans-serif;font-weight:700;line-height:1.08;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+
+.demo-bar{background:linear-gradient(90deg,var(--plum-a),var(--accent) 120%);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:500;position:relative;z-index:40}
+
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0}
+.brand{font-family:Syne,sans-serif;font-size:19px;font-weight:800;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+.brand i{width:28px;height:28px;border-radius:9px;background:linear-gradient(140deg,var(--accent),var(--plum-b) 85%);box-shadow:var(--s1);display:block;transform:rotate(-8deg)}
+.navlinks{display:flex;gap:28px;font-size:14px;font-weight:500}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;border-radius:2px;background:var(--accent);transition:right .28s}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:700;border:0;cursor:pointer;font-family:Manrope,sans-serif;box-shadow:0 2px 6px rgba(163,16,141,.3),0 10px 26px rgba(163,16,141,.26);transition:transform .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(163,16,141,.34),0 18px 38px rgba(163,16,141,.32)}
+.btn.ghost{background:transparent;color:var(--accent);border:2px solid color-mix(in srgb,var(--accent) 40%,transparent);box-shadow:none}
+.btn.ghost:hover{background:var(--soft);box-shadow:var(--s1)}
+.btn.onplum{background:#fff;color:var(--plum-a);box-shadow:0 4px 12px rgba(0,0,0,.3),0 18px 40px rgba(0,0,0,.35)}
+.btn.onplum.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45);box-shadow:none}
+.btn.onplum.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* HERO — dark plum slab */
+.hero{position:relative;background:linear-gradient(155deg,var(--plum-a) 0%,var(--plum-b) 58%,var(--plum-a) 100%);color:var(--on-plum);overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;width:760px;height:760px;right:-230px;top:-300px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 60%,transparent),transparent 65%);filter:blur(10px);pointer-events:none}
+.hero::after{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-280px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent-2) 45%,transparent),transparent 66%);filter:blur(12px);pointer-events:none}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.14fr .86fr;gap:46px;align-items:center;padding:58px 0 72px}
+.hero h1{font-size:clamp(33px,4.2vw,48px);font-weight:800;color:#fff;margin-top:20px}
+.hero h1 span{display:block;color:transparent;background:linear-gradient(92deg,#ffb3ee,#8ff0d8);-webkit-background-clip:text;background-clip:text}
+.hero p{color:var(--on-plum-mut);font-size:17.5px;max-width:45ch;margin:20px 0 0}
+.pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px 7px 8px;border-radius:999px;font-size:13px;font-weight:600;backdrop-filter:blur(6px)}
+.pill b{background:#fff;color:var(--plum-a);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.stack{position:relative;padding:0 42px 56px 0}
+.stack .big{border-radius:28px;overflow:hidden;box-shadow:var(--s3);border:7px solid rgba(255,255,255,.93);transform:rotate(-2deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:48%;border-radius:22px;overflow:hidden;box-shadow:var(--s3);border:7px solid rgba(255,255,255,.93);transform:rotate(3.4deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:18px;left:8px;z-index:3;background:var(--accent-2);color:#04241d;border-radius:18px;padding:12px 16px;box-shadow:var(--s3);text-align:center;transform:rotate(-4deg)}
+@media(min-width:901px){.badge{left:-22px}}
+.badge b{display:block;font-family:Syne,sans-serif;font-size:17px;font-weight:800;line-height:1.1}
+.badge span{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.8;font-weight:700}
+
+/* STRIP */
+.strip{background:var(--bg2);border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:26px}
+.strip div{text-align:center}
+.strip b{display:block;font-family:Syne,sans-serif;font-size:26px;font-weight:800;color:var(--accent);letter-spacing:-.02em}
+.strip span{font-size:12.5px;color:var(--muted);font-weight:500}
+
+section{padding:78px 0}
+.head{max-width:58ch;margin-bottom:38px}
+.eyebrow{display:inline-block;color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(31px,4.8vw,46px);font-weight:800}
+.sub{color:var(--muted);margin:13px 0 0}
+.note{display:inline-block;margin-top:16px;font-size:12.5px;color:var(--muted);background:var(--soft);border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent);border-radius:999px;padding:7px 16px;font-weight:600}
+
+/* SERVICES: asymmetric chunky grid */
+.svc{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.feat{grid-column:span 3;background:var(--surface);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--s2);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.feat:hover{transform:translateY(-8px);box-shadow:var(--s3)}
+.feat .ph{position:relative;overflow:hidden}
+.feat .ph img{aspect-ratio:16/10;object-fit:cover;width:100%;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+.feat:hover .ph img{transform:scale(1.07)}
+.feat .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(transparent,rgba(30,4,34,.68))}
+.feat .tag{position:absolute;left:18px;bottom:16px;z-index:2;color:#fff;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.feat .b{padding:22px 24px 26px}
+.feat h3{font-size:23px;margin-bottom:7px}
+.feat p{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+.tile{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px 22px;box-shadow:var(--s1);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.tile::before{content:"";position:absolute;right:-40px;top:-40px;width:110px;height:110px;border-radius:50%;background:var(--soft);transition:transform .4s}
+.tile:hover{transform:translateY(-6px);box-shadow:var(--s2);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.tile:hover::before{transform:scale(1.35)}
+.tile h3{font-size:19px;margin-bottom:6px;position:relative}
+.tile p{color:var(--muted);font-size:14px;margin:0 0 14px;position:relative}
+.price{display:inline-block;color:var(--accent);font-weight:800;font-size:14.5px;background:var(--soft);border-radius:999px;padding:5px 13px;position:relative}
+
+/* BAND with scrim */
+.band{position:relative;overflow:hidden}
+.band img{width:100%;aspect-ratio:21/7;object-fit:cover}
+.band .scrim{position:absolute;inset:0;background:linear-gradient(100deg,rgba(28,6,32,.88),rgba(28,6,32,.45) 55%,rgba(28,6,32,.72))}
+.band .cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;color:#fff}
+.band .cap h3{font-size:clamp(22px,3.4vw,36px);font-weight:800;max-width:20ch}
+.band .cap p{color:#e9cbe9;margin:10px 0 0;font-size:15px;max-width:44ch}
+
+/* SPLIT */
+.tinted{background:var(--bg2);border-block:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1.02fr;gap:58px;align-items:center}
+.imgwrap{position:relative;border-radius:30px;overflow:hidden;box-shadow:var(--s3);border:7px solid var(--surface)}
+.imgwrap img{aspect-ratio:5/4;object-fit:cover;width:100%;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.imgwrap:hover img{transform:scale(1.05)}
+.steps{counter-reset:s;margin-top:28px}
+.step{position:relative;padding-left:60px;margin-bottom:24px}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-3px;width:42px;height:42px;border-radius:14px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:Syne,sans-serif;font-weight:800;font-size:16px;box-shadow:var(--s2)}
+.step h3{font-size:17.5px;margin-bottom:3px}
+.step p{color:var(--muted);font-size:14.5px;margin:0}
+
+/* BOOK */
+.book{background:linear-gradient(160deg,var(--plum-a),var(--plum-b));color:var(--on-plum)}
+.book .eyebrow{color:#ffb3ee}
+.book h2{color:#fff}
+.book .sub{color:var(--on-plum-mut)}
+.book .note{color:#f4d9f2;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+.bookgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--s3);color:var(--ink)}
+label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
 label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:74px;resize:vertical}
-form .btn{width:100%;margin-top:20px;padding:14px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:3px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:840px){.hero{grid-template-columns:1fr;padding:40px 0 30px}.art{aspect-ratio:4/3;border-radius:200px 200px 12px 12px;order:-1}.g3,.pk,.book{grid-template-columns:1fr}.navlinks{display:none}}
+input,select,textarea{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+textarea{min-height:92px;resize:vertical}
+form .btn{width:100%;margin-top:22px;padding:15px;justify-content:center}
+.info{display:flex;flex-direction:column;gap:14px}
+.irow{display:flex;gap:15px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:17px 19px;backdrop-filter:blur(4px)}
+.irow i{width:38px;height:38px;flex:none;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-style:normal;color:#ffb3ee;font-weight:800;font-size:16px}
+.irow strong{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-plum-mut);margin-bottom:3px}
+.irow span{font-size:15px;color:#fff}
+.irow a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+footer{padding:42px 0;background:var(--bg2);border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:980px){
+  .hero-grid,.split,.bookgrid{grid-template-columns:1fr;gap:40px}
+  .stack{order:-1;padding-right:30px;padding-bottom:46px;max-width:430px}
+  .feat{grid-column:span 6}
+  .tile{grid-column:span 3}
+  .navlinks{display:none}
+  section{padding:58px 0}
+  .band img{aspect-ratio:3/2}
+}
+@media(max-width:600px){
+  .tile{grid-column:span 6}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:18px}
+  .band .cap{padding-block:0}
+  .band .scrim{background:linear-gradient(180deg,rgba(28,6,32,.55),rgba(28,6,32,.85))}
+  form{padding:22px;border-radius:22px}
+  .hero-grid{padding:40px 0 56px}
+  .brand{font-size:14px;gap:8px;line-height:1.2;max-width:58%}
+  .brand i{width:20px;height:20px;border-radius:6px;flex:none}
+  header .btn{padding:10px 14px;font-size:12.5px;white-space:nowrap}
+  nav{padding:11px 0}
+  .demo-bar{font-size:12px;line-height:1.45}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Bonanza · sample services and prices — real ones to come from the owner</div>
+<div class="demo-bar">Demo site built for Bonanza Ladies Salon · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Bonanza<small>Ladies Salon · Prahlad Nagar</small></a>
-  <div class="navlinks"><a href="#services">Services</a><a href="#packages">Packages</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
-  <a class="btn" href="#book">Book now</a>
+  <a class="brand" href="#"><i></i>Bonanza Ladies Salon</a>
+  <div class="navlinks"><a href="#services">Services</a><a href="#studio">The studio</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#book">Book a seat</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="hero"><div class="wrap"><div class="hero-grid">
   <div>
-    <div class="rating">★★★★★ &nbsp;4.7 · 379 reviews</div>
-    <h1>Your chair is <em>ready</em>.</h1>
-    <p>A ladies-only salon in Prahlad Nagar. Hair, skin, nails and bridal work — booked online, so you're not calling twice.</p>
-    <div class="cta"><a class="btn" href="#book">Book an appointment</a><a class="btn ghost" href="#packages">See packages</a></div>
+    <span class="pill"><b>4.7 ★</b> 379 Google reviews</span>
+    <h1>Hair, skin and<span>a chair that's yours.</span></h1>
+    <p>A ladies-only salon in Prahlad Nagar, opposite KFC. Cuts, colour, facials and bridal prep — booked by WhatsApp, done without the rush.</p>
+    <div class="cta">
+      <a class="btn onplum" href="#book">Book a seat</a>
+      <a class="btn onplum ghost" href="tel:09213014074">Call 092130 14074</a>
+    </div>
   </div>
-  <div class="art"></div>
+  <div class="stack">
+    <div class="badge"><b>Ladies only</b><span>Always</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=900&q=70" alt="Curling iron styling long brown wavy hair" loading="eager"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=70" alt="Salon interior with a black feature wall and round mirrors" loading="lazy"></div>
+  </div>
+</div></div></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>4.7★</b><span>Google rating</span></div>
+  <div><b>379</b><span>Reviews</span></div>
+  <div><b>Ladies</b><span>Only, always</span></div>
+  <div><b>Prahlad Nagar</b><span>Opposite KFC</span></div>
 </div></div>
 
-<section id="services"><div class="wrap">
-  <div class="eyebrow">Services</div><h2>What we do</h2>
-  <p class="sub">Sample services and prices — to be replaced with the salon's real rate card.</p>
-  <div class="g3">
-    <div class="card"><h3>Hair</h3><p>Cuts, colour, smoothening, keratin and blow-dry.</p><span class="price">from ₹350</span></div>
-    <div class="card"><h3>Skin</h3><p>Facials, clean-ups, de-tan and glow treatments.</p><span class="price">from ₹750</span></div>
-    <div class="card"><h3>Nails</h3><p>Manicure, pedicure, gel polish and extensions.</p><span class="price">from ₹450</span></div>
-    <div class="card"><h3>Waxing &amp; threading</h3><p>Rica wax, full body options and face care.</p><span class="price">from ₹120</span></div>
-    <div class="card"><h3>Make-up</h3><p>Party, engagement and photoshoot looks with draping.</p><span class="price">from ₹2,200</span></div>
-    <div class="card"><h3>Mehendi</h3><p>Simple to full bridal designs, booked by the hour.</p><span class="price">on request</span></div>
+<div class="wrap"><section id="services">
+  <div class="head">
+    <span class="eyebrow">The menu</span>
+    <h2>Services &amp; sample rates</h2>
+    <p class="sub">Everything under one roof, from a ten-minute threading to a full bridal morning.</p>
+    <span class="note">Sample services and prices — the salon's real menu and rates will replace these</span>
   </div>
-</div></section>
-
-<section id="packages"><div class="wrap">
-  <div class="eyebrow">Value</div><h2>Packages</h2>
-  <p class="sub">Placeholder pricing — the owner's real packages go here.</p>
-  <div class="pk">
-    <div class="p"><h3>Monthly care</h3><div class="amt">₹1,800</div>
-      <ul><li>One facial</li><li>One clean-up</li><li>Threading, unlimited</li></ul><a class="btn ghost" href="#book">Enquire</a></div>
-    <div class="p f"><span class="tag">Most booked</span><h3>Bridal</h3><div class="amt">₹22,000</div>
-      <ul><li>Trial session</li><li>Wedding day make-up &amp; hair</li><li>Full bridal mehendi</li><li>Pre-bridal skin package</li></ul><a class="btn" href="#book">Enquire</a></div>
-    <div class="p"><h3>Party ready</h3><div class="amt">₹3,000</div>
-      <ul><li>Make-up &amp; hair</li><li>Draping included</li><li>Same-day slots when free</li></ul><a class="btn ghost" href="#book">Enquire</a></div>
+  <div class="svc">
+    <div class="feat">
+      <div class="ph"><span class="tag">Hair</span><img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=800&q=70" alt="Long brown hair being curled with a styling iron" loading="lazy"></div>
+      <div class="b"><h3>Cuts, styling &amp; blow-dry</h3><p>Layers, fringes, a wash-and-blow-dry before an event, or curls set to last the evening.</p><span class="price">from ₹450</span></div>
+    </div>
+    <div class="feat">
+      <div class="ph"><span class="tag">Colour</span><img src="https://images.unsplash.com/photo-1554519934-e32b1629d9ee?w=800&q=70" alt="Back view of long layered blonde hair after colouring" loading="lazy"></div>
+      <div class="b"><h3>Colour, highlights &amp; balayage</h3><p>Global colour, root touch-ups, highlights and balayage — with a patch test first.</p><span class="price">from ₹1,800</span></div>
+    </div>
+    <div class="tile"><h3>Keratin &amp; smoothening</h3><p>Frizz control and smoothening treatments, aftercare explained before you leave.</p><span class="price">from ₹4,500</span></div>
+    <div class="tile"><h3>Facials &amp; clean-ups</h3><p>Clean-ups, fruit and hydrating facials, picked to suit your skin on the day.</p><span class="price">from ₹700</span></div>
+    <div class="tile"><h3>Threading &amp; waxing</h3><p>Eyebrows, upper lip, full arms and legs. The quick visits, done quickly.</p><span class="price">from ₹120</span></div>
+    <div class="tile"><h3>Manicure &amp; pedicure</h3><p>Classic and spa versions, with nail shaping, cuticle care and polish.</p><span class="price">from ₹600</span></div>
+    <div class="tile"><h3>Bridal &amp; party make-up</h3><p>Engagement, sangeet and wedding-day looks, with a trial sitting beforehand.</p><span class="price">from ₹4,000</span></div>
+    <div class="tile"><h3>Mehndi &amp; draping</h3><p>Bridal and guest mehndi, plus saree and dupatta draping before you head out.</p><span class="price">from ₹500</span></div>
   </div>
-</div></section>
+</section></div>
 
-<section id="book"><div class="wrap">
-  <div class="eyebrow">Appointments</div><h2>Book a slot</h2>
-  <p class="sub">Send a request and the salon confirms on WhatsApp. Bridal dates fill up well in advance.</p>
-  <div class="book">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="s">Service</label><select id="s"><option>Hair</option><option>Skin</option><option>Nails</option><option>Waxing &amp; threading</option><option>Make-up</option><option>Bridal package</option><option>Mehendi</option></select>
+<div class="band">
+  <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=1600&q=70" alt="Salon interior with a black feature wall and a row of round mirrors" loading="lazy">
+  <div class="scrim"></div>
+  <div class="cap"><div class="wrap">
+    <h3>Shop 7, Parshwanath Business Park</h3>
+    <p>Opposite KFC, Prahlad Nagar — easy parking, and a room that stays ladies-only through the day.</p>
+  </div></div>
+</div>
+
+<div class="tinted"><div class="wrap"><section id="studio"><div class="split">
+  <div class="imgwrap"><img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=900&q=70" alt="Bright modern salon with a brick wall and mirror stations" loading="lazy"></div>
+  <div>
+    <span class="eyebrow">How it works</span>
+    <h2>Book in three messages</h2>
+    <p class="sub">No app and no account. Tell us what you want done, we tell you how long it takes and what it costs.</p>
+    <div class="steps">
+      <div class="step"><h3>Send a message</h3><p>WhatsApp the service and a rough time that suits you.</p></div>
+      <div class="step"><h3>We confirm the slot</h3><p>You get a time, an estimate and how long the chair is booked for.</p></div>
+      <div class="step"><h3>Come in and sit</h3><p>Walk-ins are welcome too, though booked seats go first on weekends.</p></div>
+    </div>
+  </div>
+</div></section></div></div>
+
+<div class="book"><div class="wrap"><section id="book">
+  <div class="head">
+    <span class="eyebrow">Book</span>
+    <h2>Ask for a slot</h2>
+    <p class="sub">Send what you need and when. Bridal bookings are best made a few weeks ahead.</p>
+    <span class="note">Sample timings and prices — to be confirmed by the salon</span>
+  </div>
+  <div class="bookgrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)';b.style.boxShadow='none'">
+      <label for="n">Your name</label><input id="n" placeholder="Name">
+      <label for="p">WhatsApp number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
+      <label for="s">What would you like done?</label>
+      <select id="s">
+        <option>Cut, styling or blow-dry</option>
+        <option>Colour, highlights or balayage</option>
+        <option>Keratin or smoothening</option>
+        <option>Facial or clean-up</option>
+        <option>Threading or waxing</option>
+        <option>Manicure or pedicure</option>
+        <option>Bridal or party make-up</option>
+        <option>Mehndi or draping</option>
+      </select>
       <label for="d">Preferred date</label><input id="d" type="date">
-      <label for="m">Anything else</label><textarea id="m" placeholder="Preferred time, occasion, how many of you"></textarea>
-      <button class="btn" type="submit">Request appointment</button>
+      <label for="m">Anything we should know</label><textarea id="m" placeholder="Hair length, allergies, an event you're getting ready for"></textarea>
+      <button class="btn" type="submit">Send booking request</button>
     </form>
-    <div class="info" id="visit"><ul>
-      <li><strong>Call or WhatsApp</strong>092130 14074</li>
-      <li><strong>Where</strong>Shop No. 7, Parshwanath Business Park, opposite KFC, near the garden, Prahlad Nagar, Ahmedabad</li>
-      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
-      <li><strong>Note</strong>Ladies only</li>
-    </ul></div>
+    <div class="info" id="visit">
+      <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span><a href="tel:09213014074">092130 14074</a></span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Where</strong><span>Shop 7, Parshwanath Business Park, opp. KFC, Prahlad Nagar, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed</span></div></div>
+      <div class="irow"><i>♀</i><div><strong>Ladies only</strong><span>Women clients and women staff throughout</span></div></div>
+      <div class="irow"><i>★</i><div><strong>Rated</strong><span>4.7 out of 5 from 379 Google reviews</span></div></div>
+    </div>
   </div>
-</div></section>
+</section></div></div>
 
-<footer><div class="wrap"><span>Bonanza Ladies Salon · Prahlad Nagar, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+<footer><div class="wrap">
+  <span>Bonanza Ladies Salon · Prahlad Nagar, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
+</div></footer>
 </body>
 </html>

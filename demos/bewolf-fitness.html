@@ -4,162 +4,351 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Bewolf Fitness</title>
+<title>Bewolf Fitness — Drive In Road, Ahmedabad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0e0f11; --surface:#17191c; --ink:#f2f4f6; --muted:#9aa3ad;
-  --accent:#d7fd4f; --accent-ink:#15170d; --line:#262a2f; --shadow:0 2px 24px rgba(0,0,0,.4);
+  --bg:#f0f0ec; --bg2:#e3e3dd; --surface:#fff; --ink:#101012; --muted:#63646a; --line:#d8d8d1;
+  --volt:#d6ff3c; --on-volt:#0b0b0c; --accent:#4c6600;
+  --dark:#0b0b0c; --dark2:#16161a; --dark-line:#28282e; --on-dark:#f3f3f0; --on-dark-mute:#9a9ba2;
+  --s1:0 1px 2px rgba(10,10,12,.08);
+  --s2:0 3px 8px rgba(10,10,12,.08),0 14px 34px rgba(10,10,12,.10);
+  --s3:0 8px 18px rgba(10,10,12,.14),0 30px 70px rgba(10,10,12,.20);
 }
-:root[data-theme="light"]{
-  --bg:#f6f7f8; --surface:#fff; --ink:#15181c; --muted:#5d6771;
-  --accent:#5b7a00; --accent-ink:#fff; --line:#e3e6e9; --shadow:0 2px 20px rgba(20,25,30,.08);
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0b0c; --bg2:#111114; --surface:#17171b; --ink:#f3f3f0; --muted:#8e8f96; --line:#27272d;
+    --accent:#d6ff3c;
+    --s1:0 1px 2px rgba(0,0,0,.6);
+    --s2:0 3px 8px rgba(0,0,0,.5),0 14px 34px rgba(0,0,0,.55);
+    --s3:0 8px 18px rgba(0,0,0,.6),0 30px 70px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b0b0c; --bg2:#111114; --surface:#17171b; --ink:#f3f3f0; --muted:#8e8f96; --line:#27272d;
+  --accent:#d6ff3c;
+  --s1:0 1px 2px rgba(0,0,0,.6);
+  --s2:0 3px 8px rgba(0,0,0,.5),0 14px 34px rgba(0,0,0,.55);
+  --s3:0 8px 18px rgba(0,0,0,.6),0 30px 70px rgba(0,0,0,.7);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1060px;margin:0 auto;padding:0 16px}
-h1,h2,h3,.brand{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:700;text-transform:uppercase;line-height:1.05;margin:0;letter-spacing:.01em}
-.demo-bar{background:var(--accent);color:var(--accent-ink);text-align:center;padding:9px 16px;font-size:13px;font-weight:600}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-.brand{font-size:24px;text-decoration:none;color:var(--ink)}
-.brand span{color:var(--accent)}
-.navlinks{display:flex;gap:24px;font-size:14px;font-weight:500}
-.navlinks a{text-decoration:none;color:var(--muted)}
-.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);text-decoration:none;padding:12px 22px;border-radius:6px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border:0;cursor:pointer;font-family:"Barlow Condensed",sans-serif}
-.btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent)}
-.hero{padding:72px 0 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(44px,8vw,78px)}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:44ch}
-.rating{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--accent);color:var(--accent);padding:5px 13px;border-radius:5px;font-size:13px;font-weight:600;margin-bottom:18px}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.hero-art{aspect-ratio:1/1;border-radius:12px;background:
-  repeating-linear-gradient(115deg, var(--accent) 0 8px, transparent 8px 44px),
-  linear-gradient(160deg, var(--surface), var(--line));box-shadow:var(--shadow)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
-.stat{background:var(--bg);padding:26px 16px;text-align:center}
-.stat b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:36px;color:var(--accent);line-height:1}
-.stat span{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-section{padding:60px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;font-family:Inter,sans-serif}
-h2{font-size:clamp(30px,5vw,44px);margin-bottom:8px}
-.sub{color:var(--muted);margin:0 0 30px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:var(--shadow)}
-.card h3{font-size:22px;margin-bottom:6px}
-.card p{color:var(--muted);font-size:14px;margin:0}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.plan{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;position:relative}
-.plan.featured{border-color:var(--accent)}
-.plan .tag{position:absolute;top:-11px;left:26px;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:700;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.06em}
-.plan h3{font-size:20px;color:var(--muted)}
-.plan .amt{font-family:"Barlow Condensed",sans-serif;font-size:46px;font-weight:700;line-height:1.1;margin:6px 0 2px}
-.plan .per{color:var(--muted);font-size:13px;margin-bottom:18px}
-.plan ul{list-style:none;padding:0;margin:0 0 22px;font-size:14px;color:var(--muted)}
-.plan li{padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--line)}
-.plan li:before{content:"→";position:absolute;left:0;color:var(--accent)}
-.plan .btn{width:100%;text-align:center}
-.join{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}
-label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.62 Barlow,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 18px}
+h1,h2,h3,.disp{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;line-height:.94;margin:0;text-transform:uppercase;letter-spacing:.005em}
+.volt{color:var(--volt)}
+
+/* dark panels keep their colour in BOTH themes */
+.ink{background:var(--dark);color:var(--on-dark);position:relative}
+.ink h1,.ink h2,.ink h3{color:var(--on-dark)}
+.ink p{color:var(--on-dark-mute)}
+
+.demo-bar{background:var(--volt);color:var(--on-volt);text-align:center;padding:10px 16px;font-size:12.5px;font-weight:600;letter-spacing:.04em;position:relative;z-index:40}
+
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--dark) 84%,transparent);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--dark-line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--on-dark)}
+.brand i{width:30px;height:30px;flex:none;background:var(--volt);color:var(--on-volt);display:grid;place-items:center;font-style:normal;font-family:Anton,sans-serif;font-size:18px;clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%)}
+.brand b{font-family:Anton,sans-serif;font-weight:400;font-size:22px;letter-spacing:.04em;line-height:1;text-transform:uppercase;display:block}
+.brand s{display:block;text-decoration:none;font-family:Barlow,sans-serif;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--on-dark-mute);margin-top:2px}
+.navlinks{display:flex;gap:28px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.navlinks a{text-decoration:none;color:var(--on-dark-mute);position:relative;padding:5px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--volt);transition:right .3s cubic-bezier(.2,.7,.3,1)}
+.navlinks a:hover{color:var(--on-dark)}
+.navlinks a:hover::after{right:0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--volt);color:var(--on-volt);text-decoration:none;padding:14px 26px;border-radius:2px;font:700 13px/1 Barlow,sans-serif;letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer;box-shadow:0 2px 6px rgba(150,190,20,.30),0 14px 32px rgba(150,190,20,.22);transition:transform .22s,box-shadow .22s,background .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(150,190,20,.36),0 20px 44px rgba(150,190,20,.30)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--ink);background:var(--surface);box-shadow:var(--s2)}
+.ink .btn.ghost{color:var(--on-dark);border-color:var(--dark-line)}
+.ink .btn.ghost:hover{border-color:var(--volt);background:rgba(255,255,255,.04)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-bottom:14px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--volt);display:block}
+.ink .eyebrow{color:var(--volt)}
+section{padding:86px 0}
+.head{max-width:52ch;margin-bottom:40px}
+h2{font-size:clamp(34px,6vw,62px)}
+.sub{color:var(--muted);margin:14px 0 0;font-size:16.5px;max-width:56ch}
+.ink .sub{color:var(--on-dark-mute)}
+
+/* HERO */
+.hero{overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -10% -40% 40%;height:70%;background:radial-gradient(ellipse at center,rgba(214,255,60,.10),transparent 66%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:center;padding:74px 0 86px;position:relative;z-index:2}
+.hero h1{font-size:clamp(50px,9.2vw,104px);line-height:.9;margin:20px 0 0}
+.hero h1 span{display:block}
+.hero p.lede{color:var(--on-dark-mute);font-size:17.5px;max-width:44ch;margin:22px 0 0}
+.pill{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid var(--dark-line);color:var(--on-dark);padding:6px 16px 6px 6px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;box-shadow:var(--s1)}
+.pill b{background:var(--volt);color:var(--on-volt);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.cta{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
+.hero-note{margin-top:22px;font-size:13px;color:var(--on-dark-mute);letter-spacing:.06em}
+
+.stack{position:relative;padding:0 42px 56px 0}
+.stack .big{position:relative;overflow:hidden;box-shadow:var(--s3);border:1px solid var(--dark-line);transform:rotate(-1.5deg);border-radius:4px}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .big::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 45%,rgba(0,0,0,.5))}
+.stack .small{position:absolute;right:0;bottom:0;width:50%;overflow:hidden;box-shadow:var(--s3);border:4px solid var(--dark);transform:rotate(2.8deg);border-radius:4px}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:22px;left:12px;z-index:3;background:var(--volt);color:var(--on-volt);padding:12px 16px;box-shadow:var(--s3);text-align:center;border-radius:2px;transform:rotate(-3deg)}
+@media(min-width:961px){.badge{left:-24px}}
+.badge b{display:block;font-family:Anton,sans-serif;font-size:28px;line-height:1}
+.badge span{font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+
+/* STRIP — always dark */
+.strip{background:var(--dark2);border-block:1px solid var(--dark-line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:30px}
+.strip div{text-align:center;position:relative}
+.strip div+div::before{content:"";position:absolute;left:-10px;top:4px;bottom:4px;width:1px;background:var(--dark-line)}
+.strip b{display:block;font-family:Anton,sans-serif;font-size:clamp(26px,4.6vw,40px);color:var(--volt);line-height:1.05;text-transform:uppercase}
+.strip span{font-size:10.5px;font-weight:600;color:var(--on-dark-mute);letter-spacing:.2em;text-transform:uppercase}
+
+/* PROGRAMME CARDS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--s2);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-8px);box-shadow:var(--s3);border-color:color-mix(in srgb,var(--volt) 60%,var(--line))}
+.card .ph{position:relative;overflow:hidden;background:var(--dark)}
+.card .ph img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:66%;background:linear-gradient(transparent,rgba(5,5,7,.85))}
+.card .tag{position:absolute;left:16px;bottom:13px;z-index:2;color:#fff;font-family:Anton,sans-serif;font-size:21px;text-transform:uppercase;letter-spacing:.02em;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.card .num{position:absolute;right:13px;top:11px;z-index:2;font-family:Anton,sans-serif;font-size:13px;color:var(--volt);letter-spacing:.1em}
+.card .b{padding:20px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+.card .meta{display:flex;gap:8px;flex-wrap:wrap}
+.card .meta span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);padding:4px 9px;border-radius:2px}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:28px 24px 26px;box-shadow:var(--s2);display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.plan:hover{transform:translateY(-7px);box-shadow:var(--s3)}
+.plan.hot{background:var(--dark);border-color:var(--volt);color:var(--on-dark);position:relative}
+.plan.hot .kicker{color:var(--volt)}
+.plan.hot li{color:var(--on-dark-mute);border-color:var(--dark-line)}
+.plan.hot .price{color:var(--volt)}
+.plan.hot .per{color:var(--on-dark-mute)}
+.plan .flagtop{position:absolute;top:-1px;right:16px;background:var(--volt);color:var(--on-volt);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px}
+.kicker{font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.price{font-family:Anton,sans-serif;font-size:52px;line-height:1;margin:14px 0 2px;color:var(--ink)}
+.per{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.plan ul{list-style:none;padding:0;margin:20px 0 22px;flex:1}
+.plan li{font-size:14.5px;color:var(--muted);padding:9px 0 9px 22px;border-bottom:1px dashed var(--line);position:relative}
+.plan li:last-child{border-bottom:0}
+.plan li::before{content:"";position:absolute;left:0;top:17px;width:9px;height:2px;background:var(--volt)}
+.disclaimer{margin-top:26px;font-size:13px;color:var(--muted);border-left:2px solid var(--volt);padding-left:14px;max-width:60ch;line-height:1.6}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:.95fr 1.05fr;gap:58px;align-items:center}
+.imgwrap{position:relative;overflow:hidden;border-radius:4px;box-shadow:var(--s3);border:1px solid var(--line)}
+.imgwrap img{aspect-ratio:4/5;object-fit:cover;width:100%;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.imgwrap:hover img{transform:scale(1.05)}
+.steps{counter-reset:s;margin-top:30px}
+.step{position:relative;padding-left:60px;margin-bottom:26px}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;left:0;top:-4px;font-family:Anton,sans-serif;font-size:30px;color:var(--volt);-webkit-text-stroke:0}
+.step h3{font-size:22px;margin-bottom:4px}
+.step p{color:var(--on-dark-mute);font-size:14.5px;margin:0}
+
+/* JOIN */
+.join{background:var(--bg2);border-block:1px solid var(--line)}
+.joingrid{display:grid;grid-template-columns:1.02fr .98fr;gap:42px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:30px;box-shadow:var(--s3)}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:20px 0 7px}
 label:first-child{margin-top:0}
-input,select{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-form .btn{width:100%;margin-top:20px;padding:14px}
-.info ul{padding:0;margin:0;list-style:none}
-.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
-.info strong{color:var(--ink);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:860px){
-  .hero{grid-template-columns:1fr;padding:44px 0 32px}
-  .hero-art{aspect-ratio:16/10;order:-1}
-  .grid,.plans,.join{grid-template-columns:1fr}
-  .stats{grid-template-columns:repeat(2,1fr)}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);font:400 15px/1.5 Barlow,sans-serif;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--volt);box-shadow:0 0 0 3px rgba(214,255,60,.30)}
+textarea{min-height:88px;resize:vertical}
+form .btn{width:100%;margin-top:24px;padding:15px}
+.info{display:flex;flex-direction:column;gap:13px}
+.irow{display:flex;gap:15px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:17px 19px;box-shadow:var(--s2);transition:transform .25s,box-shadow .25s}
+.irow:hover{transform:translateY(-3px);box-shadow:var(--s3)}
+.irow i{width:36px;height:36px;flex:none;background:var(--dark);color:var(--volt);display:grid;place-items:center;font-style:normal;font-size:15px;border-radius:2px}
+.irow strong{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.irow span{font-size:15.5px;line-height:1.5}
+.irow a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--volt)}
+
+/* CTA BAND */
+.band{background:var(--dark);border-block:1px solid var(--dark-line);position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:-40% -10% auto 55%;height:180%;background:radial-gradient(ellipse at center,rgba(214,255,60,.12),transparent 64%)}
+.band .wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-block:56px}
+.band h2{font-size:clamp(30px,5vw,50px);color:var(--on-dark);max-width:18ch}
+
+footer{padding:44px 0;background:var(--bg);border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer b{font-family:Anton,sans-serif;font-weight:400;color:var(--ink);letter-spacing:.05em;font-size:16px;text-transform:uppercase}
+
+@media(max-width:960px){
+  .hero-grid,.split,.joingrid{grid-template-columns:1fr;gap:42px}
+  .hero-grid{padding:52px 0 62px}
+  .stack{order:-1;max-width:420px;padding:0 38px 48px 0}
+  .grid,.plans{grid-template-columns:repeat(2,1fr)}
   .navlinks{display:none}
+  section{padding:64px 0}
 }
+@media(max-width:620px){
+  .grid,.plans{grid-template-columns:1fr}
+  .strip .wrap{grid-template-columns:1fr 1fr;gap:24px 14px}
+  .strip div+div::before{display:none}
+  .stack{padding:0 26px 40px 0}
+  form{padding:22px}
+  .band .wrap{padding-block:44px}
+}
+@media(max-width:380px){
+  .brand b{font-size:19px}
+  .btn{padding:13px 18px;font-size:12px;letter-spacing:.1em}
+  .cta{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Bewolf Fitness · sample plans and photos — real details to come from the owner</div>
+<div class="demo-bar">Demo site built for Bewolf Fitness · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Be<span>wolf</span></a>
-  <div class="navlinks"><a href="#training">Training</a><a href="#plans">Plans</a><a href="#join">Join</a><a href="#find">Find us</a></div>
-  <a class="btn" href="#join">Free trial</a>
+  <a class="brand" href="#"><i>B</i><span><b>Bewolf Fitness</b><s>Drive In Road · Ahmedabad</s></span></a>
+  <div class="navlinks"><a href="#train">Training</a><a href="#plans">Plans</a><a href="#first">First session</a><a href="#join">Join</a></div>
+  <a class="btn" href="#join">Join now</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="ink hero"><div class="wrap"><div class="hero-grid">
   <div>
-    <span class="rating">★ 5.0 · 299 Google reviews</span>
-    <h1>Train like you<br><em>mean it.</em></h1>
-    <p>Strength, conditioning and personal coaching on Drive In Road. Walk in for a free trial session — no card, no contract.</p>
-    <div class="cta-row"><a class="btn" href="#join">Book a free trial</a><a class="btn ghost" href="#plans">See plans</a></div>
+    <span class="pill"><b>5.0 ★</b> 299 Google reviews</span>
+    <h1><span>Not a</span><span class="volt">gym habit.</span><span>A gym home.</span></h1>
+    <p class="lede">Strength, conditioning and coached lifting at Gala Empire on Drive In Road — opposite Doordarshan Tower. Real iron, unhurried floor space, and a trainer who knows your name by week two.</p>
+    <div class="cta">
+      <a class="btn" href="#join">Book a walkthrough</a>
+      <a class="btn ghost" href="#plans">See the plans</a>
+    </div>
+    <p class="hero-note">A straight 5.0 average across 299 Google reviews.</p>
   </div>
-  <div class="hero-art"></div>
+  <div class="stack">
+    <div class="badge"><b>5.0</b><span>299 reviews</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=900&q=70" alt="Lifter crouched over a loaded barbell under a single light in a dark gym" loading="eager" fetchpriority="high"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600&q=70" alt="Long row of dumbbells on a rack under moody lighting" loading="lazy"></div>
+  </div>
+</div></div></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>5.0★</b><span>Google rating</span></div>
+  <div><b>299</b><span>Reviews</span></div>
+  <div><b>Drive In</b><span>Road, Ahmedabad</span></div>
+  <div><b>209–211</b><span>Gala Empire</span></div>
 </div></div>
 
-<div class="stats">
-  <div class="stat"><b>5.0</b><span>Google rating</span></div>
-  <div class="stat"><b>299</b><span>Reviews</span></div>
-  <div class="stat"><b>6am</b><span>Doors open</span></div>
-  <div class="stat"><b>1:1</b><span>Coaching</span></div>
-</div>
-
-<section id="training"><div class="wrap">
-  <div class="eyebrow">What we do</div>
-  <h2>Training floors</h2>
-  <p class="sub">Sample sections — to be replaced with the real offering.</p>
+<div class="wrap"><section id="train">
+  <div class="head">
+    <span class="eyebrow">Training floor</span>
+    <h2>Pick your fight</h2>
+    <p class="sub">Sample programme cards, written as placeholders — to be swapped for whatever Bewolf actually runs, in the owner's own words.</p>
+  </div>
   <div class="grid">
-    <div class="card"><h3>Strength</h3><p>Racks, platforms and free weights, with coaching on form from day one.</p></div>
-    <div class="card"><h3>Conditioning</h3><p>Circuits and cardio built around what you can actually sustain.</p></div>
-    <div class="card"><h3>Personal training</h3><p>One-to-one plans for fat loss, strength or getting back after a break.</p></div>
-    <div class="card"><h3>Beginners</h3><p>First-timers get a walkthrough and a four-week starter plan.</p></div>
-    <div class="card"><h3>Nutrition</h3><p>Simple Indian-diet plans — no powders you don't need.</p></div>
-    <div class="card"><h3>Group classes</h3><p>Morning and evening batches, capped so everyone gets attention.</p></div>
+    <div class="card"><div class="ph"><span class="num">01</span><span class="tag">Strength</span><img src="https://images.unsplash.com/photo-1605490855119-94921710a47f?w=700&q=70" alt="Loaded barbell on the floor with a lifter reaching down for it in a dark gym" loading="lazy"></div>
+      <div class="b"><p>Squat, bench, deadlift and the accessory work that keeps them moving up. Coached form from day one.</p>
+        <div class="meta"><span>Barbell</span><span>4 days</span></div></div></div>
+    <div class="card"><div class="ph"><span class="num">02</span><span class="tag">Fat loss</span><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=70" alt="Dumbbell rack in a bright gym with someone training in the background" loading="lazy"></div>
+      <div class="b"><p>Weights first, conditioning second, and a food plan you can actually follow in Ahmedabad.</p>
+        <div class="meta"><span>Hybrid</span><span>5 days</span></div></div></div>
+    <div class="card"><div class="ph"><span class="num">03</span><span class="tag">Personal training</span><img src="https://images.unsplash.com/photo-1549476464-37392f717541?w=700&q=70" alt="Man in a lifting belt carrying a weight plate across a dark gym floor" loading="lazy"></div>
+      <div class="b"><p>One trainer, one plan, every session logged. For people who want the shortest route.</p>
+        <div class="meta"><span>1-on-1</span><span>By slot</span></div></div></div>
+    <div class="card"><div class="ph"><span class="num">04</span><span class="tag">Conditioning</span><img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=700&q=70" alt="Woman with a battle rope over her shoulders in front of a brick gym wall" loading="lazy"></div>
+      <div class="b"><p>Ropes, sleds, carries and intervals. Twenty-five minutes that feel considerably longer.</p>
+        <div class="meta"><span>Circuit</span><span>3 days</span></div></div></div>
+    <div class="card"><div class="ph"><span class="num">05</span><span class="tag">Beginners</span><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=700&q=70" alt="Close view of hands and legs gripping a barbell on rubber gym flooring" loading="lazy"></div>
+      <div class="b"><p>First month on the floor. Machines, then free weights, then the bar — in that order, with someone watching.</p>
+        <div class="meta"><span>Month 1</span><span>Guided</span></div></div></div>
+    <div class="card"><div class="ph"><span class="num">06</span><span class="tag">Open floor</span><img src="https://images.unsplash.com/photo-1544033527-b192daee1f5b?w=700&q=70" alt="Black and white weight plates and dumbbell racks lined up in a gym" loading="lazy"></div>
+      <div class="b"><p>Your own programme, our equipment. Full access to racks, plates and cardio.</p>
+        <div class="meta"><span>Self-led</span><span>Any day</span></div></div></div>
   </div>
-</div></section>
+</section></div>
 
-<section id="plans"><div class="wrap">
-  <div class="eyebrow">Membership</div>
-  <h2>Plans</h2>
-  <p class="sub">Placeholder pricing — the owner's real rates go here.</p>
+<div class="ink"><div class="wrap"><section id="first"><div class="split">
+  <div class="imgwrap"><img src="https://images.unsplash.com/photo-1605296867724-fa87a8ef53fd?w=800&q=70" alt="Lifter standing behind a loaded barbell in a very dark gym" loading="lazy"></div>
+  <div>
+    <span class="eyebrow">Day one</span>
+    <h2>What the first session looks like</h2>
+    <p class="sub">No contract signed at the door, no crowd watching. Just a walkthrough and an honest starting point.</p>
+    <div class="steps">
+      <div class="step"><h3>Walk the floor</h3><p>See the racks, the cardio deck and the changing rooms before anyone talks money.</p></div>
+      <div class="step"><h3>Baseline check</h3><p>Weight, a few movement screens, and what you want out of the next six months.</p></div>
+      <div class="step"><h3>Leave with a plan</h3><p>A written week one — which days, which lifts, which weights. Then we adjust as you go.</p></div>
+    </div>
+    <div class="cta"><a class="btn" href="#join">Book a walkthrough</a></div>
+  </div>
+</div></section></div></div>
+
+<div class="wrap"><section id="plans">
+  <div class="head">
+    <span class="eyebrow">Membership</span>
+    <h2>Plans</h2>
+    <p class="sub">Placeholder pricing for layout only. The real fees come from the owner before this page goes anywhere near a customer.</p>
+  </div>
   <div class="plans">
-    <div class="plan"><h3>Monthly</h3><div class="amt">₹1,500</div><div class="per">per month</div>
-      <ul><li>Full gym access</li><li>Induction session</li><li>Locker access</li></ul><a class="btn ghost" href="#join">Choose</a></div>
-    <div class="plan featured"><span class="tag">Most popular</span><h3>Quarterly</h3><div class="amt">₹3,900</div><div class="per">3 months · save ₹600</div>
-      <ul><li>Everything in monthly</li><li>Diet consultation</li><li>Monthly body check</li></ul><a class="btn" href="#join">Choose</a></div>
-    <div class="plan"><h3>Annual</h3><div class="amt">₹12,000</div><div class="per">12 months · save ₹6,000</div>
-      <ul><li>Everything in quarterly</li><li>4 PT sessions free</li><li>Freeze up to 30 days</li></ul><a class="btn ghost" href="#join">Choose</a></div>
+    <div class="plan">
+      <span class="kicker">Monthly</span>
+      <div class="price">₹1,500</div>
+      <span class="per">per month · sample</span>
+      <ul><li>Full floor access</li><li>Induction session</li><li>Locker and changing room</li><li>No joining fee</li></ul>
+      <a class="btn ghost" href="#join">Enquire</a>
+    </div>
+    <div class="plan hot">
+      <span class="flagtop">Sample pick</span>
+      <span class="kicker">Quarterly</span>
+      <div class="price">₹3,900</div>
+      <span class="per">for 3 months · sample</span>
+      <ul><li>Everything in monthly</li><li>Programme written for you</li><li>Monthly progress check</li><li>Diet guidance</li></ul>
+      <a class="btn" href="#join">Enquire</a>
+    </div>
+    <div class="plan">
+      <span class="kicker">Personal training</span>
+      <div class="price">₹6,000</div>
+      <span class="per">per month · sample</span>
+      <ul><li>12 one-to-one sessions</li><li>Dedicated trainer</li><li>Every session logged</li><li>Full floor access</li></ul>
+      <a class="btn ghost" href="#join">Enquire</a>
+    </div>
   </div>
-</div></section>
+  <p class="disclaimer">Every figure on this page is a placeholder chosen to show the layout. Nothing here is Bewolf Fitness' actual pricing, and timings are shown as sample timings until the owner confirms them.</p>
+</section></div>
 
-<section id="join"><div class="wrap">
-  <div class="eyebrow">Get started</div>
-  <h2>Book a free trial</h2>
-  <p class="sub">One session, no payment. Come see the floor first.</p>
-  <div class="join">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="g">Goal</label><select id="g"><option>Fat loss</option><option>Build strength</option><option>General fitness</option><option>Personal training</option></select>
-      <label for="t">Preferred time</label><select id="t"><option>Early morning (6–9am)</option><option>Midday</option><option>Evening (5–9pm)</option></select>
-      <button class="btn" type="submit">Book my trial</button>
-    </form>
-    <div class="info" id="find"><ul>
-      <li><strong>Call or WhatsApp</strong>093274 61580</li>
-      <li><strong>Where</strong>Gala Empire, 209/210/211, Drive In Road, opposite Doordarshan Tower, Ahmedabad</li>
-      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
-      <li><strong>Trial</strong>First session free, walk in any day</li>
-    </ul></div>
+<div class="join"><div class="wrap"><section id="join">
+  <div class="head">
+    <span class="eyebrow">Join</span>
+    <h2>Start this week</h2>
+    <p class="sub">A demo enquiry form — on the real site this would land straight on the gym's WhatsApp.</p>
   </div>
-</div></section>
+  <div class="joingrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)';b.style.color='#fff'">
+      <label for="n">Your name</label><input id="n" placeholder="Name">
+      <label for="p">WhatsApp number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
+      <label for="g">What are you after</label>
+      <select id="g"><option>Strength</option><option>Fat loss</option><option>Personal training</option><option>Conditioning</option><option>Just starting out</option><option>Open floor access</option></select>
+      <label for="d">Preferred start date</label><input id="d" type="date">
+      <label for="m">Anything we should know</label><textarea id="m" placeholder="Training history, injuries, the times you can actually come in"></textarea>
+      <button class="btn" type="submit">Send enquiry</button>
+    </form>
+    <div class="info">
+      <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span><a href="tel:+919327461580">093274 61580</a></span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Where</strong><span>Gala Empire 209/210/211, Drive In Road, opposite Doordarshan Tower, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed by the owner</span></div></div>
+      <div class="irow"><i>★</i><div><strong>On Google</strong><span>5.0 from 299 reviews</span></div></div>
+      <div class="irow"><i>₹</i><div><strong>Fees</strong><span>Placeholder pricing only — not the gym's real rates</span></div></div>
+    </div>
+  </div>
+</section></div></div>
+
+<div class="band"><div class="wrap">
+  <h2>Five stars, <span class="volt">299 times</span> over.</h2>
+  <a class="btn" href="#join">Book a walkthrough</a>
+</div></div>
 
 <footer><div class="wrap">
-  <span>Bewolf Fitness · Drive In Road, Ahmedabad</span>
-  <span>Demo site — not affiliated with the business yet</span>
+  <span><b>Bewolf Fitness</b> · Drive In Road, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
 </div></footer>
 </body>
 </html>

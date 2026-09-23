@@ -4,131 +4,307 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Dr Neha Modi · Dental Care</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Dr Neha Modi Dental Care — Vastrapur, Ahmedabad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6fafb;--surface:#fff;--ink:#16252b;--muted:#5f747d;--accent:#0d7a8c;--soft:#e2f2f5;--line:#dce9ed;--sh:0 2px 20px rgba(20,60,70,.07)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1517;--surface:#161f22;--ink:#e9f2f4;--muted:#9ab0b7;--accent:#4dc0d2;--soft:#15292e;--line:#222f33;--sh:0 2px 20px rgba(0,0,0,.35)}}
-:root[data-theme="dark"]{--bg:#0e1517;--surface:#161f22;--ink:#e9f2f4;--muted:#9ab0b7;--accent:#4dc0d2;--soft:#15292e;--line:#222f33;--sh:0 2px 20px rgba(0,0,0,.35)}
+:root{
+  --bg:#f6fafb; --bg2:#e9f2f5; --surface:#ffffff; --ink:#0e2b33; --muted:#557480;
+  --accent:#0b7684; --accent-ink:#0b7684; --accent-2:#3a7ba6; --soft:#ddeff2; --line:#d6e6ea;
+  --deep-a:#08363e; --deep-b:#0b5a66; --on-deep:#eefafb; --on-deep-mut:#b2d4da;
+  --s1:0 1px 2px rgba(10,50,60,.06);
+  --s2:0 3px 8px rgba(10,50,60,.06),0 12px 30px rgba(10,50,60,.09);
+  --s3:0 8px 16px rgba(10,50,60,.10),0 24px 54px rgba(10,50,60,.16);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#09151a; --bg2:#0e1f25; --surface:#12252c; --ink:#e9f5f8; --muted:#93b1ba;
+    --accent:#4ec5d5; --accent-ink:#4ec5d5; --accent-2:#85b9dc; --soft:#103139; --line:#1c343c;
+    --deep-a:#061f25; --deep-b:#0a3e47; --on-deep:#eefafb; --on-deep-mut:#a9cbd2;
+    --s1:0 1px 2px rgba(0,0,0,.5);
+    --s2:0 3px 8px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+    --s3:0 8px 16px rgba(0,0,0,.5),0 24px 54px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#09151a; --bg2:#0e1f25; --surface:#12252c; --ink:#e9f5f8; --muted:#93b1ba;
+  --accent:#4ec5d5; --accent-ink:#4ec5d5; --accent-2:#85b9dc; --soft:#103139; --line:#1c343c;
+  --deep-a:#061f25; --deep-b:#0a3e47; --on-deep:#eefafb; --on-deep-mut:#a9cbd2;
+  --s1:0 1px 2px rgba(0,0,0,.5);
+  --s2:0 3px 8px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+  --s3:0 8px 16px rgba(0,0,0,.5),0 24px 54px rgba(0,0,0,.6);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;line-height:1.18;margin:0}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
-.brand{font-family:"Source Serif 4",serif;font-size:20px;font-weight:600;text-decoration:none;color:var(--ink)}
-.brand small{display:block;font-family:Inter,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.navlinks{display:flex;gap:24px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:Inter,sans-serif}
-.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
-.hero{padding:64px 0 50px;display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}
-.hero h1{font-size:clamp(34px,6vw,54px)}
-.hero p{color:var(--muted);font-size:17px;max-width:46ch}
-.rating{display:inline-block;background:var(--soft);color:var(--accent);padding:6px 15px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:18px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.art{aspect-ratio:1/1;border-radius:14px;background:radial-gradient(circle at 50% 46%,var(--surface) 0 30%,transparent 30%),radial-gradient(circle at 50% 46%,var(--accent) 30% 34%,transparent 34%),linear-gradient(160deg,var(--soft),var(--surface));border:1px solid var(--line);box-shadow:var(--sh)}
-.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line)}
-.trust div{background:var(--bg);padding:24px 14px;text-align:center}
-.trust b{display:block;font-family:"Source Serif 4",serif;font-size:30px;color:var(--accent);line-height:1}
-.trust span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
-section{padding:56px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
-h2{font-size:clamp(27px,4.4vw,38px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 30px;max-width:54ch}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:var(--sh)}
-.card h3{font-size:19px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0 0 10px}
-.card .price{color:var(--accent);font-size:14px;font-weight:600}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
-.step{padding-left:42px;position:relative}
-.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:29px;height:29px;border-radius:50%;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-weight:600;font-size:14px}
-.step h3{font-size:16px;margin-bottom:3px}.step p{color:var(--muted);font-size:14px;margin:0}
-.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:var(--sh)}
-label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
-label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:74px;resize:vertical}
-form .btn{width:100%;margin-top:20px;padding:13px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:860px){.hero{grid-template-columns:1fr;padding:40px 0 30px}.art{aspect-ratio:16/10;order:-1}.g3,.book,.steps{grid-template-columns:1fr}.trust{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.7 "Source Sans 3",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:700;line-height:1.18;margin:0;letter-spacing:-.018em}
+
+.demo-bar{background:var(--deep-a);color:#dff2f4;text-align:center;padding:10px 16px;font-size:13px;font-weight:500;position:relative;z-index:40}
+
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(14px) saturate(1.25);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0}
+.brand{text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:11px}
+.brand i{width:34px;height:34px;flex:none;border-radius:10px;background:linear-gradient(150deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:14px;font-family:"Plus Jakarta Sans",sans-serif;box-shadow:var(--s1)}
+.brand b{font-family:"Plus Jakarta Sans",sans-serif;font-size:16.5px;font-weight:700;display:block;line-height:1.15;letter-spacing:-.02em}
+.brand em{display:block;font-style:normal;font-size:11.5px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;font-weight:600;line-height:1.5}
+.navlinks{display:flex;gap:26px;font-size:14.5px}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0;font-weight:500}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--accent);transition:right .3s}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-size:14.5px;font-weight:600;border:0;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;box-shadow:0 2px 5px rgba(11,118,132,.24),0 8px 22px rgba(11,118,132,.18);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 9px rgba(11,118,132,.26),0 14px 30px rgba(11,118,132,.24)}
+.btn.ghost{background:transparent;color:var(--accent-ink);border:1.5px solid color-mix(in srgb,var(--accent) 42%,transparent);box-shadow:none}
+.btn.ghost:hover{background:var(--soft);box-shadow:var(--s1)}
+.btn.onDeep{background:#fff;color:var(--deep-a);box-shadow:0 4px 12px rgba(0,0,0,.24)}
+.btn.onDeep.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45);box-shadow:none}
+.btn.onDeep.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* HERO */
+.hero{position:relative;padding:58px 0 70px}
+.hero::before{content:"";position:absolute;inset:-160px -25% auto -25%;height:560px;background:radial-gradient(ellipse at 28% 45%,var(--soft),transparent 60%),radial-gradient(ellipse at 76% 25%,color-mix(in srgb,var(--accent-2) 22%,transparent),transparent 58%);z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(32px,4.1vw,47px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--accent-ink)}
+.hero p{color:var(--muted);font-size:18px;max-width:46ch;margin:18px 0 0}
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:7px 15px 7px 7px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:var(--s2);font-family:"Plus Jakarta Sans",sans-serif}
+.pill b{background:var(--accent);color:#fff;border-radius:999px;padding:4px 10px;font-size:12.5px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.microline{margin-top:18px;font-size:14px;color:var(--muted)}
+.stack{position:relative;padding:0 40px 52px 0}
+.stack .big{border-radius:20px;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface);transform:rotate(-1.4deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:47%;border-radius:16px;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface);transform:rotate(2.6deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:18px;left:10px;z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 16px;box-shadow:var(--s3);text-align:center}
+@media(min-width:941px){.badge{left:-20px}}
+.badge b{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:15.5px;font-weight:800;color:var(--accent-ink);line-height:1.15}
+.badge span{font-size:10.5px;color:var(--muted);letter-spacing:.11em;text-transform:uppercase;font-weight:600}
+
+/* STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:26px}
+.strip div{text-align:center}
+.strip b{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:25px;font-weight:800;color:var(--accent-ink)}
+.strip span{font-size:12.5px;color:var(--muted)}
+
+section{padding:74px 0}
+.head{max-width:60ch;margin-bottom:36px}
+.eyebrow{display:inline-block;color:var(--accent-ink);font-size:11.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;margin-bottom:12px;font-family:"Plus Jakarta Sans",sans-serif}
+h2{font-size:clamp(27px,3.7vw,37px);font-weight:800}
+.sub{color:var(--muted);margin:12px 0 0}
+.note{display:block;margin-top:16px;font-size:13.5px;color:var(--muted);border-left:3px solid var(--accent);background:var(--soft);border-radius:0 10px 10px 0;padding:10px 16px;max-width:62ch}
+
+/* TREATMENTS */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 22px 22px;box-shadow:var(--s1);transition:transform .28s cubic-bezier(.2,.7,.3,1),box-shadow .28s,border-color .28s}
+.tcard:hover{transform:translateY(-5px);box-shadow:var(--s2);border-color:color-mix(in srgb,var(--accent) 38%,transparent)}
+.tcard i{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--soft);color:var(--accent-ink);font-style:normal;font-size:18px;font-weight:700;margin-bottom:15px}
+.tcard h3{font-size:18.5px;margin-bottom:7px}
+.tcard p{color:var(--muted);font-size:14.5px;margin:0 0 15px;line-height:1.6}
+.quoted{display:inline-block;font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-ink);border:1px solid color-mix(in srgb,var(--accent) 32%,transparent);border-radius:999px;padding:5px 12px}
+
+/* SPLIT */
+.tinted{background:var(--bg2);border-block:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1.04fr;gap:54px;align-items:center}
+.imgwrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface)}
+.imgwrap img{aspect-ratio:5/4;object-fit:cover;width:100%;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.imgwrap:hover img{transform:scale(1.04)}
+.steps{counter-reset:s;margin-top:26px}
+.step{position:relative;padding-left:56px;margin-bottom:22px}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1.5px solid color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent-ink);display:grid;place-items:center;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:15px;box-shadow:var(--s1)}
+.step h3{font-size:17px;margin-bottom:3px}
+.step p{color:var(--muted);font-size:14.5px;margin:0}
+
+/* GALLERY */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gitem{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--s2);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.gitem:hover{transform:translateY(-5px);box-shadow:var(--s3)}
+.gitem img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.gitem:hover img{transform:scale(1.06)}
+.gitem::after{content:"";position:absolute;inset:auto 0 0 0;height:60%;background:linear-gradient(transparent,rgba(6,34,40,.78))}
+.gitem span{position:absolute;left:16px;bottom:13px;z-index:2;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;font-size:13.5px;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+
+/* EMERGENCY */
+.emg{background:linear-gradient(140deg,var(--deep-a),var(--deep-b));color:var(--on-deep)}
+.emg .wrap{padding-block:44px;display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.emg h2{font-size:clamp(23px,2.9vw,30px);color:#fff}
+.emg p{color:var(--on-deep-mut);margin:9px 0 0;max-width:56ch;font-size:15.5px}
+.emg .who{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7fd6e2;font-weight:700;font-family:"Plus Jakarta Sans",sans-serif}
+
+/* APPOINTMENT */
+.apptgrid{display:grid;grid-template-columns:1.04fr .96fr;gap:40px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--s3)}
+.formnote{font-size:13.5px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 22px}
+label{display:block;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px;font-family:"Plus Jakarta Sans",sans-serif}
+input,select,textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:15.5px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3.5px color-mix(in srgb,var(--accent) 18%,transparent)}
+textarea{min-height:90px;resize:vertical}
+form .btn{width:100%;margin-top:22px;padding:14px;justify-content:center}
+.info{display:flex;flex-direction:column;gap:13px}
+.irow{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--s1)}
+.irow i{width:36px;height:36px;flex:none;border-radius:10px;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent-ink);font-weight:700;font-size:16px}
+.irow strong{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;font-family:"Plus Jakarta Sans",sans-serif}
+.irow span{font-size:15.5px}
+.irow a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.disclaimer{margin-top:26px;font-size:13px;color:var(--muted);line-height:1.65;border-top:1px solid var(--line);padding-top:18px}
+
+footer{padding:38px 0;background:var(--bg2);border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:940px){
+  .hero-grid,.split,.apptgrid{grid-template-columns:1fr;gap:38px}
+  .stack{order:-1;padding-right:28px;padding-bottom:44px;max-width:420px}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .gal{grid-template-columns:repeat(2,1fr)}
+  .navlinks{display:none}
+  section{padding:56px 0}
+}
+@media(max-width:600px){
+  .tgrid,.gal{grid-template-columns:1fr}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:18px}
+  .brand b{font-size:13.5px;line-height:1.22}.brand em{font-size:9.5px;letter-spacing:.06em}
+  .brand{gap:8px;max-width:60%}
+  .brand i{width:30px;height:30px}
+  header .btn{padding:10px 14px;font-size:13px;white-space:nowrap}
+  .demo-bar{font-size:12px;line-height:1.45}
+  form{padding:22px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Dr Neha Modi · sample treatments and prices — real ones to come from the clinic</div>
+<div class="demo-bar">Demo site built for Dr Neha Modi Dental Care · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Dr Neha Modi<small>Dental Care · Vastrapur</small></a>
-  <div class="navlinks"><a href="#treatments">Treatments</a><a href="#how">How it works</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
-  <a class="btn" href="#book">Book appointment</a>
+  <a class="brand" href="#"><i>NM</i><span><b>Dr Neha Modi Dental Care</b><em>Vastrapur, Ahmedabad</em></span></a>
+  <div class="navlinks"><a href="#treatments">Treatments</a><a href="#visit">Your visit</a><a href="#clinic">Clinic</a><a href="#appointment">Appointment</a></div>
+  <a class="btn" href="tel:09824085060">Call the clinic</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="wrap"><section class="hero"><div class="hero-grid">
   <div>
-    <span class="rating">★ 4.8 · 233 Google reviews</span>
-    <h1>Dentistry without the dread.</h1>
-    <p>General, cosmetic and paediatric dental care in Vastrapur. Book a slot online — no waiting on the phone.</p>
-    <div class="cta"><a class="btn" href="#book">Book an appointment</a><a class="btn ghost" href="#treatments">See treatments</a></div>
+    <span class="pill"><b>4.8 ★</b> 233 Google reviews</span>
+    <h1>Dental care in Vastrapur, <em>explained before it's done</em>.</h1>
+    <p>A general dental clinic near Vastrapur Lake. We examine first, tell you plainly what we find, and give you the cost of any treatment before it starts.</p>
+    <div class="cta">
+      <a class="btn" href="#appointment">Request an appointment</a>
+      <a class="btn ghost" href="tel:09824085060">Call 098240 85060</a>
+    </div>
+    <p class="microline">In pain, bleeding or after an injury? Please call the clinic rather than filling the form.</p>
   </div>
-  <div class="art"></div>
+  <div class="stack">
+    <div class="badge"><b>Near Vastrapur Lake</b><span>Shilalekh Complex</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=70" alt="A clean, white dental surgery room" loading="eager"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1606811856475-5e6fcdc6e509?w=600&q=70" alt="Dental mirror and scaler instruments laid out, in black and white" loading="lazy"></div>
+  </div>
+</div></section></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>4.8★</b><span>Google rating</span></div>
+  <div><b>233</b><span>Reviews</span></div>
+  <div><b>Vastrapur</b><span>Near the lake</span></div>
+  <div><b>By appointment</b><span>Walk-ins when free</span></div>
 </div></div>
 
-<div class="trust">
-  <div><b>4.8</b><span>Google rating</span></div>
-  <div><b>233</b><span>Reviews</span></div>
-  <div><b>Same&nbsp;day</b><span>Emergency slots</span></div>
-  <div><b>Digital</b><span>X-ray on site</span></div>
-</div>
-
-<section id="treatments"><div class="wrap">
-  <div class="eyebrow">Treatments</div><h2>What we treat</h2>
-  <p class="sub">Sample treatments and indicative prices — to be replaced with the clinic's real list. Every plan is quoted after an examination.</p>
-  <div class="g3">
-    <div class="card"><h3>Check-up &amp; cleaning</h3><p>Scaling, polishing and a full oral examination.</p><span class="price">from ₹800</span></div>
-    <div class="card"><h3>Fillings</h3><p>Tooth-coloured composite fillings, single sitting.</p><span class="price">from ₹1,200</span></div>
-    <div class="card"><h3>Root canal</h3><p>Single or multi-rooted, usually across two visits.</p><span class="price">from ₹4,500</span></div>
-    <div class="card"><h3>Crowns &amp; bridges</h3><p>Zirconia and metal-ceramic options.</p><span class="price">from ₹6,000</span></div>
-    <div class="card"><h3>Braces &amp; aligners</h3><p>Metal, ceramic and clear aligner plans.</p><span class="price">on consultation</span></div>
-    <div class="card"><h3>Kids' dentistry</h3><p>Gentle first visits, sealants and fluoride.</p><span class="price">from ₹600</span></div>
+<div class="wrap"><section id="treatments">
+  <div class="head">
+    <span class="eyebrow">Treatments</span>
+    <h2>What we treat</h2>
+    <p class="sub">Everyday dentistry, described plainly. What you actually need — and what it will cost — is decided after an examination, not from a page.</p>
+    <span class="note">Sample treatment list. The clinic's actual list of services, fees and timings will replace this before the site goes live. No prices are shown here because every plan is quoted individually.</span>
   </div>
-</div></section>
-
-<section id="how"><div class="wrap">
-  <div class="eyebrow">Simple</div><h2>How a visit works</h2>
-  <div class="steps">
-    <div class="step"><h3>Book</h3><p>Pick a slot online or on WhatsApp.</p></div>
-    <div class="step"><h3>Examination</h3><p>Digital X-ray where needed, explained clearly.</p></div>
-    <div class="step"><h3>Written plan</h3><p>Treatment and cost agreed before anything starts.</p></div>
-    <div class="step"><h3>Follow-up</h3><p>A reminder when your next check-up is due.</p></div>
+  <div class="tgrid">
+    <div class="tcard"><i>✓</i><h3>Check-up &amp; cleaning</h3><p>An examination of teeth and gums, with scaling and polishing to remove plaque and tartar build-up.</p><span class="quoted">Quoted after examination</span></div>
+    <div class="tcard"><i>◍</i><h3>Fillings</h3><p>Tooth-coloured fillings for decay or a chipped tooth, done in a single sitting in most cases.</p><span class="quoted">Quoted after examination</span></div>
+    <div class="tcard"><i>◉</i><h3>Root canal treatment</h3><p>For a tooth where the nerve is infected. Usually one or two sittings, often followed by a crown.</p><span class="quoted">Quoted after examination</span></div>
+    <div class="tcard"><i>◇</i><h3>Crowns &amp; bridges</h3><p>Caps to protect a weakened or root-treated tooth, and bridges to replace a missing one.</p><span class="quoted">Quoted after examination</span></div>
+    <div class="tcard"><i>≡</i><h3>Braces &amp; aligners</h3><p>Options for crowded or uneven teeth, with the likely duration explained before you decide.</p><span class="quoted">Quoted after examination</span></div>
+    <div class="tcard"><i>◎</i><h3>Extractions &amp; wisdom teeth</h3><p>Removal when a tooth cannot be saved or a wisdom tooth is causing trouble, with aftercare instructions.</p><span class="quoted">Quoted after examination</span></div>
   </div>
-</div></section>
+</section></div>
 
-<section id="book"><div class="wrap">
-  <div class="eyebrow">Appointments</div><h2>Book a slot</h2>
-  <p class="sub">Send a request and the clinic confirms on WhatsApp. For dental emergencies, please call directly.</p>
-  <div class="book">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="s">Reason for visit</label><select id="s"><option>Check-up &amp; cleaning</option><option>Tooth pain</option><option>Filling</option><option>Root canal</option><option>Crown or bridge</option><option>Braces / aligners</option><option>Child's appointment</option></select>
-      <label for="d">Preferred date</label><input id="d" type="date">
-      <label for="m">Anything we should know</label><textarea id="m" placeholder="Symptoms, previous treatment, preferred time"></textarea>
-      <button class="btn" type="submit">Request appointment</button>
+<div class="tinted"><div class="wrap"><section id="visit"><div class="split">
+  <div class="imgwrap"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=900&q=70" alt="Dental chair with orange upholstery in a clinic treatment room" loading="lazy"></div>
+  <div>
+    <span class="eyebrow">Your visit</span>
+    <h2>What a first appointment looks like</h2>
+    <p class="sub">Nothing is started on the first visit unless you have agreed to it and you know what it costs.</p>
+    <div class="steps">
+      <div class="step"><h3>We listen first</h3><p>What is bothering you, how long it has been there, and any medical history or medicines you are on.</p></div>
+      <div class="step"><h3>Examination, and an X-ray if needed</h3><p>A look at every tooth and the gums. An X-ray only where it changes what we would advise.</p></div>
+      <div class="step"><h3>Findings and options</h3><p>What we found, what can be done, what happens if you wait — and an estimate of the cost and number of sittings.</p></div>
+      <div class="step"><h3>You decide the pace</h3><p>Urgent things first, the rest planned around your time. Nothing is booked in without your say-so.</p></div>
+    </div>
+    <span class="note">Sample description of a visit — to be confirmed and corrected by the clinic.</span>
+  </div>
+</div></section></div></div>
+
+<div class="wrap"><section id="clinic">
+  <div class="head">
+    <span class="eyebrow">The clinic</span>
+    <h2>Inside the clinic</h2>
+    <p class="sub">Second floor, Shilalekh Complex, a short walk from Vastrapur Lake.</p>
+    <span class="note">Stock photographs, shown as placeholders — these will be replaced with photographs of the actual clinic.</span>
+  </div>
+  <div class="gal">
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=700&q=70" alt="Clean white dental surgery room" loading="lazy"><span>Treatment room</span></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1606811856475-5e6fcdc6e509?w=700&q=70" alt="Dental mirror and scaler instruments, black and white" loading="lazy"><span>Instruments</span></div>
+    <div class="gitem"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=700&q=70" alt="Dental chair with orange upholstery in a clinic room" loading="lazy"><span>The chair</span></div>
+  </div>
+</section></div>
+
+<div class="emg"><div class="wrap">
+  <div>
+    <span class="who">Dental emergency</span>
+    <h2>In pain right now? Call, don't type.</h2>
+    <p>Severe toothache, swelling, bleeding that will not stop, a knocked-out or broken tooth after an accident — phone the clinic directly. The form below is not monitored and is not for emergencies.</p>
+  </div>
+  <a class="btn onDeep" href="tel:09824085060">Call 098240 85060</a>
+</div></div>
+
+<div class="tinted"><div class="wrap"><section id="appointment">
+  <div class="head">
+    <span class="eyebrow">Appointment</span>
+    <h2>Request an appointment</h2>
+    <p class="sub">Tell us what is troubling you and when you are free. The clinic will call back to confirm a time.</p>
+  </div>
+  <div class="apptgrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)';b.style.boxShadow='none'">
+      <p class="formnote">Not for emergencies. If you are in pain or have had an injury, please call <a href="tel:09824085060">098240 85060</a> instead. Please do not send medical records or ID numbers through this form.</p>
+      <label for="n">Your name</label><input id="n" placeholder="Name">
+      <label for="p">Phone number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
+      <label for="r">Reason for the visit</label>
+      <select id="r">
+        <option>Check-up and cleaning</option>
+        <option>Toothache or sensitivity</option>
+        <option>Filling or a chipped tooth</option>
+        <option>Root canal or crown</option>
+        <option>Braces or aligners</option>
+        <option>Extraction or wisdom tooth</option>
+        <option>Second opinion</option>
+      </select>
+      <label for="d">Preferred day</label><input id="d" type="date">
+      <label for="m">Anything the clinic should know</label><textarea id="m" placeholder="How long it has been troubling you, and any medicines you take regularly"></textarea>
+      <button class="btn" type="submit">Send appointment request</button>
     </form>
-    <div class="info" id="visit"><ul>
-      <li><strong>Call or WhatsApp</strong>098240 85060</li>
-      <li><strong>Where</strong>21/22 Second Floor, Shilalekh Complex, near Vastrapur Lake, Vastrapur, Ahmedabad</li>
-      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
-      <li><strong>Emergencies</strong>Call rather than use this form</li>
-    </ul></div>
+    <div class="info">
+      <div class="irow"><i>☎</i><div><strong>Phone</strong><span><a href="tel:09824085060">098240 85060</a></span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Clinic</strong><span>21/22, Second Floor, Shilalekh Complex, near Vastrapur Lake, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed</span></div></div>
+      <div class="irow"><i>₹</i><div><strong>Fees</strong><span>Quoted after an examination, before any treatment begins</span></div></div>
+      <div class="irow"><i>★</i><div><strong>Rated</strong><span>4.8 out of 5 from 233 Google reviews</span></div></div>
+      <p class="disclaimer">This page is general information about common dental treatments. It is not medical advice, not a diagnosis, and not a promise of any result. Whether a treatment is suitable for you, how long it takes and what it costs can only be decided after an in-person examination at the clinic.</p>
+    </div>
   </div>
-</div></section>
+</section></div></div>
 
-<footer><div class="wrap"><span>Dr Neha Modi · Vastrapur, Ahmedabad</span><span>Demo site — not affiliated with the clinic yet</span></div></footer>
+<footer><div class="wrap">
+  <span>Dr Neha Modi Dental Care · Vastrapur, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
+</div></footer>
 </body>
 </html>

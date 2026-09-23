@@ -4,123 +4,435 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Stitches</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Stitches — ladies boutique, Bodakdev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#faf8f5;--surface:#fff;--ink:#1f1c19;--muted:#7a7069;--accent:#9a6a4f;--soft:#f2e9e1;--line:#ebe3da;--sh:0 2px 22px rgba(60,45,35,.07)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15130f;--surface:#1e1a16;--ink:#f2ece4;--muted:#a89c91;--accent:#cf9b78;--soft:#2a2019;--line:#2c2620;--sh:0 2px 22px rgba(0,0,0,.35)}}
-:root[data-theme="dark"]{--bg:#15130f;--surface:#1e1a16;--ink:#f2ece4;--muted:#a89c91;--accent:#cf9b78;--soft:#2a2019;--line:#2c2620;--sh:0 2px 22px rgba(0,0,0,.35)}
+:root{
+  --bg:#faf6f1; --bg2:#f2e9df; --surface:#fff; --ink:#1d1714; --muted:#7c6a60;
+  --accent:#6e2f4b; --accent-2:#b0873f; --soft:#f4e6ea; --line:#e8dbcd;
+  --btn-ink:#fff; --scrim:rgba(24,12,16,.55);
+  --s1:0 1px 2px rgba(45,25,20,.07);
+  --s2:0 3px 8px rgba(45,25,20,.06),0 14px 32px rgba(45,25,20,.08);
+  --s3:0 8px 18px rgba(45,25,20,.09),0 28px 64px rgba(45,25,20,.16);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12100f; --bg2:#191512; --surface:#1e1917; --ink:#f4ece4; --muted:#a3948a;
+    --accent:#e79fbc; --accent-2:#d8b476; --soft:#2f1d25; --line:#2d2620;
+    --btn-ink:#2a1019; --scrim:rgba(6,3,4,.6);
+    --s1:0 1px 2px rgba(0,0,0,.45);
+    --s2:0 3px 8px rgba(0,0,0,.4),0 14px 32px rgba(0,0,0,.45);
+    --s3:0 8px 18px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12100f; --bg2:#191512; --surface:#1e1917; --ink:#f4ece4; --muted:#a3948a;
+  --accent:#e79fbc; --accent-2:#d8b476; --soft:#2f1d25; --line:#2d2620;
+  --btn-ink:#2a1019; --scrim:rgba(6,3,4,.6);
+  --s1:0 1px 2px rgba(0,0,0,.45);
+  --s2:0 3px 8px rgba(0,0,0,.4),0 14px 32px rgba(0,0,0,.45);
+  --s3:0 8px 18px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.6);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:300 16px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:500;line-height:1.14;margin:0}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
-.brand{font-family:"Bodoni Moda",serif;font-size:24px;text-decoration:none;color:var(--ink);letter-spacing:.06em}
-.navlinks{display:flex;gap:26px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 24px;border-radius:2px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer;font-family:Jost,sans-serif;font-weight:400}
-.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.hero{padding:70px 0 54px;display:grid;grid-template-columns:1fr .9fr;gap:44px;align-items:center}
-.hero h1{font-size:clamp(38px,6.6vw,64px)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 16.5px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;line-height:1.08;margin:0;letter-spacing:-.005em}
+a{color:inherit}
+
+.demo-bar{background:linear-gradient(90deg,#6e2f4b,#3b1729);color:#fff;text-align:center;padding:10px 16px;font-size:12.5px;font-weight:400;letter-spacing:.02em;position:relative;z-index:40}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.35);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{width:30px;height:16px;flex:none;color:var(--accent-2)}
+.brand b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:25px;letter-spacing:.04em;line-height:1}
+.brand i{display:block;font-style:normal;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:1px}
+.navlinks{display:flex;gap:30px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--accent-2);transition:right .3s ease}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{right:0}
+
+.btn{display:inline-block;background:var(--accent);color:var(--btn-ink);text-decoration:none;padding:13px 26px;border-radius:2px;font-family:Jost,sans-serif;font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:0;cursor:pointer;box-shadow:0 2px 6px rgba(110,47,75,.24),0 12px 28px rgba(110,47,75,.2);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(110,47,75,.28),0 18px 40px rgba(110,47,75,.28)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent-2);background:var(--surface);box-shadow:var(--s1)}
+
+/* HERO */
+.hero{position:relative;padding:74px 0 86px}
+.hero::before{content:"";position:absolute;inset:-160px -25% auto -25%;height:600px;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 26% 38%,var(--soft),transparent 60%),radial-gradient(ellipse at 80% 22%,color-mix(in srgb,var(--accent-2) 24%,transparent),transparent 58%);filter:blur(8px)}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:64px;align-items:center}
+.eyebrow{display:inline-block;color:var(--accent-2);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(46px,7vw,80px);font-weight:300;letter-spacing:-.02em}
 .hero h1 em{font-style:italic;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:44ch}
-.rating{display:inline-block;color:var(--accent);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.art{aspect-ratio:4/5;background:repeating-linear-gradient(90deg,var(--soft) 0 26px,var(--surface) 26px 52px);border:1px solid var(--line);box-shadow:var(--sh)}
-section{padding:58px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--accent);font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:12px}
-h2{font-size:clamp(28px,4.6vw,42px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 32px;max-width:52ch}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.item{background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh)}
-.item .ph{aspect-ratio:3/4;background:linear-gradient(160deg,var(--soft),var(--surface));border-bottom:1px solid var(--line)}
-.item .b{padding:18px}
-.item h3{font-size:19px;margin-bottom:3px}
-.item p{color:var(--muted);font-size:13px;margin:0 0 10px}
-.item .price{color:var(--accent);font-size:14px;letter-spacing:.04em}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
-.step{padding-left:42px;position:relative}
-.step:before{counter-increment:s;content:"0" counter(s);position:absolute;left:0;top:2px;color:var(--accent);font-family:"Bodoni Moda",serif;font-size:17px}
-.step h3{font-size:18px;margin-bottom:4px}.step p{color:var(--muted);font-size:14px;margin:0}
-.book{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);padding:26px;box-shadow:var(--sh)}
-label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 0 7px}
+.hero p.lede{color:var(--muted);font-size:17px;max-width:42ch;margin:22px 0 0;font-weight:300}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:6px 16px 6px 7px;border-radius:999px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;box-shadow:var(--s2);margin-bottom:22px}
+.pill b{background:var(--accent);color:var(--btn-ink);border-radius:999px;padding:4px 11px;font-size:11.5px;font-weight:500;letter-spacing:.06em}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+
+.stack{position:relative;padding:0 44px 60px 0}
+.stack::before{content:"";position:absolute;left:-16px;top:26px;right:66px;bottom:34px;border:1px solid var(--accent-2);opacity:.5;transform:rotate(-1.4deg);z-index:0}
+.stack .big{position:relative;z-index:1;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface);transform:rotate(-1.1deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:46%;z-index:2;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface);transform:rotate(2.6deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:22px;left:12px;z-index:3;background:var(--surface);border:1px solid var(--line);padding:13px 18px;box-shadow:var(--s3);text-align:center}
+@media(min-width:941px){.badge{left:-26px}}
+.badge b{display:block;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:500;font-style:italic;color:var(--accent);line-height:1}
+.badge span{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+/* STAT STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-block:30px}
+.strip div{text-align:center}
+.strip b{display:block;font-family:"Cormorant Garamond",serif;font-size:29px;font-weight:500;color:var(--accent);line-height:1.1}
+.strip span{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+
+section{padding:96px 0}
+.head{max-width:58ch;margin-bottom:46px}
+h2{font-size:clamp(34px,5vw,54px);font-weight:300}
+h2 em{font-style:italic;color:var(--accent)}
+.sub{color:var(--muted);margin:16px 0 0;font-size:16px;max-width:52ch}
+.note{margin-top:16px;font-size:13px;color:var(--muted);border-left:2px solid var(--accent-2);padding-left:14px;max-width:56ch;line-height:1.6}
+
+/* LOOKBOOK */
+.look{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+.card{grid-column:span 4;background:var(--surface);border:1px solid var(--line);overflow:hidden;box-shadow:var(--s2);transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--s3)}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.card:hover .ph img{transform:scale(1.055)}
+.card .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:58%;background:linear-gradient(transparent,rgba(20,8,12,.62));pointer-events:none}
+.card .tag{position:absolute;left:18px;bottom:15px;z-index:2;color:#fff;font-size:10.5px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.card .b{padding:22px 22px 24px}
+.card h3{font-size:25px;font-weight:500;margin-bottom:7px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 16px;line-height:1.6}
+.card .price{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-2)}
+.c-a{grid-column:span 5}.c-a .ph{aspect-ratio:3/4}
+.c-b{grid-column:span 7}.c-b .ph{aspect-ratio:5/4}
+.c-q{grid-column:span 3}.c-q .ph{aspect-ratio:3/4}
+.c-wide{grid-column:span 12;position:relative;border:0;background:none;box-shadow:none}
+.c-wide:hover{transform:none}
+.c-wide .ph{aspect-ratio:21/8;box-shadow:var(--s3);overflow:hidden}
+.c-wide .ph::after{height:100%;background:linear-gradient(90deg,rgba(20,8,12,.72),rgba(20,8,12,.3) 62%,rgba(20,8,12,.1))}
+.c-wide .ov{position:absolute;z-index:3;left:clamp(20px,5%,56px);top:50%;transform:translateY(-50%);max-width:min(46ch,64%);color:#fff}
+.c-wide .ov h3{font-size:clamp(24px,3.4vw,38px);font-weight:300;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.c-wide .ov p{color:rgba(255,255,255,.86);font-size:14.5px;margin:10px 0 0;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+
+/* UPSELL */
+.upsell{margin-top:46px;display:flex;gap:24px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent-2);padding:26px 30px;box-shadow:var(--s2)}
+.upsell i{font-style:normal;font-family:"Cormorant Garamond",serif;font-size:34px;line-height:1;color:var(--accent-2);flex:none}
+.upsell h4{font-size:21px;font-weight:500;margin-bottom:5px}
+.upsell p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.65}
+
+/* JOURNEY */
+.journey{background:var(--bg2);border-block:1px solid var(--line)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.stepc{position:relative}
+.stepc .ph{position:relative;overflow:hidden;box-shadow:var(--s2);border:5px solid var(--surface);aspect-ratio:4/5;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s}
+.stepc:hover .ph{transform:translateY(-5px);box-shadow:var(--s3)}
+.stepc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.stepc:hover .ph img{transform:scale(1.06)}
+.stepc .n{position:absolute;top:-14px;left:-10px;z-index:3;width:46px;height:46px;border-radius:50%;background:var(--surface);border:1px solid var(--line);box-shadow:var(--s2);display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:21px;color:var(--accent)}
+.stepc h3{font-size:23px;font-weight:500;margin:20px 0 6px}
+.stepc p{color:var(--muted);font-size:14px;margin:0;line-height:1.65}
+.arrowline{display:flex;align-items:center;gap:14px;margin-bottom:38px;color:var(--muted);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.arrowline span{white-space:nowrap}
+.arrowline hr{flex:1;border:0;border-top:1px solid var(--line);margin:0}
+
+/* EDITORIAL BAND */
+.band{position:relative;overflow:hidden}
+.band img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.band .inner{position:relative;z-index:2;padding:130px 20px;text-align:center;max-width:820px;margin:0 auto}
+.band::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(18,8,12,.55),rgba(18,8,12,.72))}
+.band .inner span{display:block;color:var(--accent-2);font-size:11px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:22px}
+.band .inner h2{color:#fff;font-size:clamp(30px,4.6vw,50px);font-weight:300;font-style:italic;text-shadow:0 2px 20px rgba(0,0,0,.45)}
+.band .inner p{color:rgba(255,255,255,.82);margin:20px auto 0;max-width:52ch;font-size:15.5px}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:.92fr 1.08fr;gap:66px;align-items:center}
+.split .imgwrap{position:relative;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface)}
+.split .imgwrap img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.ticks{list-style:none;margin:28px 0 0;padding:0}
+.ticks li{position:relative;padding-left:34px;margin-bottom:17px;color:var(--muted);font-size:15px;line-height:1.6}
+.ticks li::before{content:"";position:absolute;left:0;top:11px;width:20px;height:1px;background:var(--accent-2)}
+.ticks li b{display:block;color:var(--ink);font-weight:400;font-family:"Cormorant Garamond",serif;font-size:20px;line-height:1.3;margin-bottom:1px}
+
+/* BOOK */
+.book{background:var(--bg2);border-block:1px solid var(--line)}
+.bookgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);padding:32px;box-shadow:var(--s3)}
+label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
 label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:76px;resize:vertical}
-form .btn{width:100%;margin-top:22px;padding:14px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:18px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:13px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:840px){.hero{grid-template-columns:1fr;padding:44px 0 32px}.art{aspect-ratio:4/3;order:-1}.g3,.steps,.book{grid-template-columns:1fr}.navlinks{display:none}}
+input,select,textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+textarea{min-height:92px;resize:vertical}
+form .btn{width:100%;margin-top:26px;padding:15px}
+.info{display:flex;flex-direction:column;gap:14px}
+.irow{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);padding:17px 20px;box-shadow:var(--s2);transition:transform .25s,box-shadow .25s}
+.irow:hover{transform:translateY(-3px);box-shadow:var(--s3)}
+.irow i{width:34px;height:34px;flex:none;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent);font-size:15px}
+.irow strong{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:500}
+.irow span{font-size:15px;line-height:1.55}
+.irow a{color:var(--accent);text-decoration:none}
+.irow a:hover{text-decoration:underline}
+
+footer{padding:46px 0;background:var(--bg);border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer b{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:500;color:var(--ink);letter-spacing:.05em}
+
+@media(max-width:1000px){
+  .look{gap:18px}
+  .c-a,.c-b{grid-column:span 6}
+  .c-a .ph,.c-b .ph{aspect-ratio:3/4}
+  .c-q{grid-column:span 6}
+  .steps4{grid-template-columns:repeat(2,1fr);gap:30px}
+}
+@media(max-width:940px){
+  .hero-grid,.split,.bookgrid{grid-template-columns:1fr;gap:44px}
+  .hero{padding:46px 0 64px}
+  .stack{order:-1;max-width:430px;padding:0 34px 46px 0}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:22px}
+  .navlinks{display:none}
+  section{padding:66px 0}
+  .band .inner{padding:92px 20px}
+  .c-wide .ph{aspect-ratio:16/10}
+  .c-wide .ov{max-width:none;width:calc(100% - 40px);top:auto;bottom:22px;transform:none}
+  .c-wide .ph::after{background:linear-gradient(transparent,rgba(20,8,12,.78))}
+}
+@media(max-width:620px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .c-a,.c-b,.c-q{grid-column:span 12}
+  .steps4{grid-template-columns:1fr;gap:34px}
+  .upsell{flex-direction:column;gap:12px;padding:22px}
+  .split .imgwrap img{aspect-ratio:4/3}
+  form{padding:22px}
+  .hero{padding:34px 0 52px}
+  .stack{padding:0 26px 38px 0}
+  footer .wrap{justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Stitches · sample pieces and prices — real ones to come from the owner</div>
+<div class="demo-bar">Demo site built for Stitches · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Stitches</a>
-  <div class="navlinks"><a href="#collection">Collection</a><a href="#custom">Custom</a><a href="#enquire">Enquire</a><a href="#visit">Visit</a></div>
-  <a class="btn" href="#enquire">Enquire</a>
+  <a class="brand" href="#">
+    <svg viewBox="0 0 40 20" aria-hidden="true"><path d="M2 10c4-8 8 8 12 0s8 8 12 0 8 8 12 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span><b>Stitches</b><i>Bodakdev</i></span>
+  </a>
+  <div class="navlinks">
+    <a href="#lookbook">Lookbook</a>
+    <a href="#custom">Custom stitching</a>
+    <a href="#boutique">Boutique</a>
+    <a href="#book">Visit</a>
+  </div>
+  <a class="btn" href="#book">Book a fitting</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="wrap"><section class="hero"><div class="hero-grid">
   <div>
-    <div class="rating">★ 4.7 · 68 reviews · Bodakdev</div>
-    <h1>Made to fit <em>you</em>, not a size chart.</h1>
-    <p>A ladies' boutique in Bodakdev. Ready pieces, custom stitching and accessories — browse before you visit.</p>
-    <div class="cta"><a class="btn" href="#collection">See the collection</a><a class="btn ghost" href="#custom">Custom stitching</a></div>
+    <span class="pill"><b>4.7 ★</b> 68 Google reviews</span>
+    <h1>Made to <em>your</em> measure.</h1>
+    <p class="lede">A ladies' boutique on Sandesh Press Road, Bodakdev. Ready-to-wear ethnic on the rail — and custom stitching drafted from your own measurements, not a size chart.</p>
+    <div class="cta">
+      <a class="btn" href="#book">Book a fitting</a>
+      <a class="btn ghost" href="#lookbook">View the lookbook</a>
+    </div>
   </div>
-  <div class="art"></div>
+  <div class="stack">
+    <div class="badge"><b>Custom</b><span>Fit to measure</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1756483509254-3cc48a5a15b2?w=960&q=70" alt="Two women in floor-length embroidered anarkali gowns, one navy blue and one deep red" loading="eager" fetchpriority="high"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1671535108620-d169ce916f09?w=620&q=70" alt="Floral hand embroidery in a wooden hoop on black fabric, beside a pair of small scissors" loading="lazy"></div>
+  </div>
+</div></section></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>4.7 ★</b><span>Google rating</span></div>
+  <div><b>68</b><span>Reviews</span></div>
+  <div><b>Bodakdev</b><span>Sandesh Press Rd</span></div>
+  <div><b>In-house</b><span>Custom stitching</span></div>
 </div></div>
 
-<section id="collection"><div class="wrap">
-  <div class="eyebrow">Collection</div><h2>Pieces</h2>
-  <p class="sub">Sample categories and prices — to be replaced with real photos and the boutique's own range. A full online store with cart and payments can be added later.</p>
-  <div class="g3">
-    <div class="item"><div class="ph"></div><div class="b"><h3>Kurta sets</h3><p>Cotton and chanderi, everyday to festive.</p><span class="price">from ₹1,800</span></div></div>
-    <div class="item"><div class="ph"></div><div class="b"><h3>Ethnic gowns</h3><p>For sangeet, reception and party wear.</p><span class="price">from ₹4,500</span></div></div>
-    <div class="item"><div class="ph"></div><div class="b"><h3>Sarees &amp; blouses</h3><p>Draped and stitched to your measurements.</p><span class="price">from ₹3,200</span></div></div>
-    <div class="item"><div class="ph"></div><div class="b"><h3>Co-ord sets</h3><p>Office and brunch pieces in breathable fabric.</p><span class="price">from ₹2,200</span></div></div>
-    <div class="item"><div class="ph"></div><div class="b"><h3>Dupattas</h3><p>Bandhani, mirror work and plain silk.</p><span class="price">from ₹900</span></div></div>
-    <div class="item"><div class="ph"></div><div class="b"><h3>Accessories</h3><p>Juttis, potlis and oxidised jewellery.</p><span class="price">from ₹600</span></div></div>
+<div class="wrap"><section id="lookbook">
+  <div class="head">
+    <span class="eyebrow">Lookbook</span>
+    <h2>The <em>collection</em></h2>
+    <p class="sub">Sample categories, shown here with stock photography so the layout can be judged. The real rail gets photographed for the live site.</p>
+    <p class="note">Every price, category and timing on this page is a placeholder. Nothing here is the boutique's actual range or rates — those come from the owner before anything goes live.</p>
   </div>
-</div></section>
+  <div class="look">
 
-<section id="custom"><div class="wrap">
-  <div class="eyebrow">Custom</div><h2>Stitched for you</h2>
-  <p class="sub">Bring a reference or a fabric — the rest is measured and made in store.</p>
-  <div class="steps">
-    <div class="step"><h3>Measurements</h3><p>Visit the boutique, or send existing measurements on WhatsApp.</p></div>
-    <div class="step"><h3>Fabric &amp; design</h3><p>Pick from the in-store range or bring your own material.</p></div>
-    <div class="step"><h3>Fitting &amp; delivery</h3><p>One fitting before final delivery, usually within two weeks.</p></div>
+    <div class="card c-a">
+      <div class="ph"><span class="tag">Bridal</span>
+        <img src="https://images.unsplash.com/photo-1767955694884-d4bf352c23c2?w=760&q=70" alt="Model in a full orange and gold embroidered bridal lehenga with a maroon bandhani dupatta" loading="lazy"></div>
+      <div class="b"><h3>Bridal lehenga</h3><p>Heavy zari and thread work, built over several fittings from first sketch to final drape.</p><span class="price">Sample · ₹18,000 onwards</span></div>
+    </div>
+
+    <div class="card c-b">
+      <div class="ph"><span class="tag">Functions</span>
+        <img src="https://images.unsplash.com/photo-1571587289339-cb7da03fb5a6?w=1000&q=70" alt="Three women in pastel embroidered lehengas standing together on a lawn" loading="lazy"></div>
+      <div class="b"><h3>Family &amp; function sets</h3><p>Matched pieces for the whole group — sangeet, haldi, reception — cut from one fabric lot so the colours agree.</p><span class="price">Sample · ₹6,500 per piece</span></div>
+    </div>
+
+    <div class="card c-q">
+      <div class="ph"><span class="tag">Drape</span>
+        <img src="https://images.unsplash.com/photo-1679006831648-7c9ea12e5807?w=620&q=70" alt="Woman in a pale green silk saree with a woven gold border and temple jewellery" loading="lazy"></div>
+      <div class="b"><h3>Saree &amp; blouse</h3><p>Blouse stitched to measure, saree pre-pleated and finished.</p><span class="price">Sample · ₹1,400 blouse</span></div>
+    </div>
+
+    <div class="card c-q">
+      <div class="ph"><span class="tag">Festive</span>
+        <img src="https://images.unsplash.com/photo-1756483488645-5973a1a92e33?w=620&q=70" alt="Woman in a magenta lehenga with a gold zardozi embroidered blouse and sheer dupatta" loading="lazy"></div>
+      <div class="b"><h3>Lehenga choli</h3><p>Lighter festive sets — silk, georgette, raw silk blends.</p><span class="price">Sample · ₹7,500 onwards</span></div>
+    </div>
+
+    <div class="card c-q">
+      <div class="ph"><span class="tag">Gowns</span>
+        <img src="https://images.unsplash.com/photo-1610048869310-d889ff25c374?w=620&q=70" alt="Woman in a pistachio green floor-length embroidered anarkali beside a carved wooden door" loading="lazy"></div>
+      <div class="b"><h3>Anarkali &amp; gowns</h3><p>Floor-length silhouettes, flare drafted to your height.</p><span class="price">Sample · ₹5,200 onwards</span></div>
+    </div>
+
+    <div class="card c-q">
+      <div class="ph"><span class="tag">Everyday</span>
+        <img src="https://images.unsplash.com/photo-1708534246051-7f47b279e94b?w=620&q=70" alt="Woman seated outdoors in a maroon kurta with white thread embroidery on the neckline and hem" loading="lazy"></div>
+      <div class="b"><h3>Kurta &amp; daily wear</h3><p>Cotton and rayon kurtas, co-ord sets, office-friendly.</p><span class="price">Sample · ₹900 onwards</span></div>
+    </div>
+
+    <div class="card c-wide">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1717585679395-bbe39b5fb6bc?w=1400&q=70" alt="Folded silk sarees in lime green, magenta and red with woven gold zari borders and tassels" loading="lazy">
+      </div>
+      <div class="ov">
+        <h3>Bring your own fabric, or pick from the shelf.</h3>
+        <p>Either way the pattern is drafted fresh. Nothing is cut from a standard block.</p>
+      </div>
+    </div>
+
   </div>
-</div></section>
 
-<section id="enquire"><div class="wrap">
-  <div class="eyebrow">Enquiries</div><h2>Ask about a piece</h2>
-  <p class="sub">Send what you're after and the boutique replies on WhatsApp with photos and prices.</p>
-  <div class="book">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="s">Looking for</label><select id="s"><option>Kurta set</option><option>Ethnic gown</option><option>Saree or blouse</option><option>Co-ord set</option><option>Custom stitching</option><option>Accessories</option></select>
-      <label for="d">Needed by</label><input id="d" type="date">
-      <label for="m">Details</label><textarea id="m" placeholder="Occasion, colour, size, or a reference you've seen"></textarea>
-      <button class="btn" type="submit">Send enquiry</button>
+  <div class="upsell">
+    <i>&#10070;</i>
+    <div>
+      <h4>This is the lookbook. The shop is the next step.</h4>
+      <p>A demo like this one gets Stitches found on Google and gives customers something to browse before they walk in. When the boutique is ready, the same design extends into a full online store — sizes, cart, online payment and delivery across Ahmedabad. That is a separate piece of work, quoted separately.</p>
+    </div>
+  </div>
+</section></div>
+
+<div class="journey"><div class="wrap"><section id="custom">
+  <div class="head">
+    <span class="eyebrow">Custom stitching</span>
+    <h2>Measurements, fabric, <em>fitting</em>.</h2>
+    <p class="sub">The part a size chart can't do. Four visits, roughly — and you see the piece before it is finished, not after.</p>
+  </div>
+  <div class="arrowline"><span>Measure</span><hr><span>Fabric</span><hr><span>Stitch</span><hr><span>Fit</span></div>
+  <div class="steps4">
+
+    <div class="stepc">
+      <div class="n">1</div>
+      <div class="ph"><img src="https://images.unsplash.com/photo-1470167290877-7d5d3446de4c?w=620&q=70" alt="A hand holding a white tape measure against a pale background" loading="lazy"></div>
+      <h3>Measurements</h3>
+      <p>Twelve to fourteen points taken and written down, kept on file so the next piece starts where this one left off.</p>
+    </div>
+
+    <div class="stepc">
+      <div class="n">2</div>
+      <div class="ph"><img src="https://images.unsplash.com/photo-1673551727871-951292d16bef?w=620&q=70" alt="Two hands holding a pale blue cloth panel with hand-embroidered flowers in rust and green" loading="lazy"></div>
+      <h3>Fabric &amp; work</h3>
+      <p>Choose the cloth, the lining, the neckline and how much hand work goes on it. Costs are agreed here, not later.</p>
+    </div>
+
+    <div class="stepc">
+      <div class="n">3</div>
+      <div class="ph"><img src="https://images.unsplash.com/photo-1606501126768-b78d4569d3f9?w=620&q=70" alt="A hand guiding grey fabric under the presser foot of a sewing machine" loading="lazy"></div>
+      <h3>Stitching</h3>
+      <p>Cut and stitched in-house. You get a message when the piece is ready for its first trial.</p>
+    </div>
+
+    <div class="stepc">
+      <div class="n">4</div>
+      <div class="ph"><img src="https://images.unsplash.com/photo-1571908599407-cdb918ed83bf?w=620&q=70" alt="Woman wearing an ivory and gold embroidered anarkali standing in a boutique showroom" loading="lazy"></div>
+      <h3>Trial &amp; fit</h3>
+      <p>Try it on, mark what moves. Adjustments are part of the job, not an extra line on the bill.</p>
+    </div>
+
+  </div>
+</section></div></div>
+
+<div class="band">
+  <img src="https://images.unsplash.com/photo-1746372283841-dbb3838f9935?w=1500&q=70" alt="Bride in a pink and teal heavily embroidered lehenga standing under stone arches" loading="lazy">
+  <div class="inner">
+    <span>Why bother</span>
+    <h2>Every drape sits differently. That is the whole point of stitching it for one person.</h2>
+    <p>Sample copy for the demo — the owner's own words go here on the live site.</p>
+  </div>
+</div>
+
+<div class="wrap"><section id="boutique"><div class="split">
+  <div class="imgwrap"><img src="https://images.unsplash.com/photo-1578353022142-09264fd64295?w=900&q=70" alt="Flat lay of tailoring tools: copper scissors, wooden ruler, yellow tape measure, thread spools and zips on a dark wooden table" loading="lazy"></div>
+  <div>
+    <span class="eyebrow">In the boutique</span>
+    <h2>Alterations, finishing, <em>rescues</em>.</h2>
+    <p class="sub">Not everything needs to be built from scratch. A fair amount of the work is making something you already own fit properly.</p>
+    <ul class="ticks">
+      <li><b>Alterations</b>Taking in, letting out, re-hemming, sleeve changes on pieces bought elsewhere.</li>
+      <li><b>Blouse &amp; fall work</b>Blouse stitching from a saree piece, fall and pico finishing, pre-pleating.</li>
+      <li><b>Lining &amp; padding</b>Cups, canvas, proper lining so a sheer fabric behaves on the day.</li>
+      <li><b>Last-minute fixes</b>Wedding-week emergencies, when the fit has gone wrong three days before.</li>
+    </ul>
+  </div>
+</div></section></div>
+
+<div class="book"><div class="wrap"><section id="book">
+  <div class="head">
+    <span class="eyebrow">Visit</span>
+    <h2>Book a <em>fitting</em></h2>
+    <p class="sub">Tell us roughly what you need and when you need it by. Bridal work wants the most notice; alterations are usually quick.</p>
+  </div>
+  <div class="bookgrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)';b.style.boxShadow='none'">
+      <label for="n">Your name</label>
+      <input id="n" name="n" placeholder="Name" autocomplete="off">
+      <label for="p">WhatsApp number</label>
+      <input id="p" name="p" placeholder="10-digit number" inputmode="numeric" autocomplete="off">
+      <label for="t">What do you need?</label>
+      <select id="t" name="t">
+        <option>Bridal lehenga</option>
+        <option>Lehenga choli</option>
+        <option>Anarkali or gown</option>
+        <option>Saree blouse</option>
+        <option>Kurta or daily wear</option>
+        <option>Alteration or finishing</option>
+      </select>
+      <label for="d">Needed by</label>
+      <input id="d" name="d" type="date">
+      <label for="m">Details</label>
+      <textarea id="m" name="m" placeholder="Fabric you already have, colour, the function it is for, anything you have seen and liked"></textarea>
+      <button class="btn" type="submit">Request a fitting</button>
     </form>
-    <div class="info" id="visit"><ul>
-      <li><strong>Call or WhatsApp</strong>090543 58779</li>
-      <li><strong>Where</strong>4, Anandhari Tower, opposite Chanakya Tower, Sandesh Press Road, Bodakdev, Ahmedabad</li>
-      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
-      <li><strong>Custom orders</strong>Allow about two weeks, faster in emergencies</li>
-    </ul></div>
+    <div class="info">
+      <div class="irow"><i>&#9742;</i><div><strong>Call or WhatsApp</strong><span><a href="tel:+919054358779">090543 58779</a></span></div></div>
+      <div class="irow"><i>&#9673;</i><div><strong>Where</strong><span>4, Anandhari Tower, opp. Chanakya Tower, Sandesh Press Rd, Bodakdev, Ahmedabad</span></div></div>
+      <div class="irow"><i>&#9711;</i><div><strong>Hours</strong><span>Sample timings — to be confirmed by the owner</span></div></div>
+      <div class="irow"><i>&#9733;</i><div><strong>Rated</strong><span>4.7 out of 5 across 68 Google reviews</span></div></div>
+      <div class="irow"><i>&#8767;</i><div><strong>Pricing</strong><span>Every figure on this page is a sample placeholder. Real rates depend on fabric and the amount of work.</span></div></div>
+    </div>
   </div>
-</div></section>
+</section></div></div>
 
-<footer><div class="wrap"><span>Stitches · Bodakdev, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+<footer><div class="wrap">
+  <span><b>Stitches</b> · Bodakdev, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
+</div></footer>
 </body>
 </html>

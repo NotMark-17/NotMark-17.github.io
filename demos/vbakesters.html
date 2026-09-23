@@ -4,152 +4,363 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>VBakesters</title>
+<title>VBakesters — home bakery, Naranpura</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fffdf7; --surface:#fff; --ink:#2d2620; --muted:#7d7168;
-  --accent:#c2557c; --accent-soft:#fbe8ef; --mint:#4f9d84; --line:#f0e6da; --shadow:0 2px 22px rgba(90,60,40,.07);
+  --bg:#f5f7ef; --bg2:#e9efdf; --surface:#fffefa; --ink:#25200f; --muted:#6c7360;
+  --accent:#4a6b3c; --accent-2:#6b4226; --soft:#e2ecd4; --line:#dde4cf;
+  --chip:#fff; --on-accent:#ffffff;
+  --s1:0 1px 2px rgba(40,50,25,.07);
+  --s2:0 3px 8px rgba(40,50,25,.06),0 12px 30px rgba(40,50,25,.08);
+  --s3:0 8px 16px rgba(40,50,25,.09),0 26px 58px rgba(40,50,25,.16);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#17130f; --surface:#211b17; --ink:#f5ece2; --muted:#b0a297;
-    --accent:#e88bad; --accent-soft:#341f29; --mint:#6fc4a8; --line:#33291f; --shadow:0 2px 22px rgba(0,0,0,.35);
+    --bg:#111409; --bg2:#171b0f; --surface:#1c2114; --ink:#eef2e2; --muted:#a2ac93;
+    --accent:#a6cb7f; --accent-2:#d4a077; --soft:#232d18; --line:#2c3522;
+    --chip:#232a1b; --on-accent:#131a0c;
+    --s1:0 1px 2px rgba(0,0,0,.45);
+    --s2:0 3px 8px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+    --s3:0 8px 16px rgba(0,0,0,.5),0 26px 58px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#17130f; --surface:#211b17; --ink:#f5ece2; --muted:#b0a297;
-  --accent:#e88bad; --accent-soft:#341f29; --mint:#6fc4a8; --line:#33291f; --shadow:0 2px 22px rgba(0,0,0,.35);
+  --bg:#111409; --bg2:#171b0f; --surface:#1c2114; --ink:#eef2e2; --muted:#a2ac93;
+  --accent:#a6cb7f; --accent-2:#d4a077; --soft:#232d18; --line:#2c3522;
+  --chip:#232a1b; --on-accent:#131a0c;
+  --s1:0 1px 2px rgba(0,0,0,.45);
+  --s2:0 3px 8px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+  --s3:0 8px 16px rgba(0,0,0,.5),0 26px 58px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 "DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
-.brand{font-family:"DM Serif Display",serif;font-size:22px;text-decoration:none;color:var(--ink)}
-.brand span{color:var(--accent)}
-.navlinks{display:flex;gap:24px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}
-.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;border:0;cursor:pointer;font-family:"DM Sans",sans-serif}
-.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
-.hero{padding:66px 0 50px;display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center}
-.hero h1{font-size:clamp(36px,6.4vw,60px)}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;line-height:1.08;margin:0;letter-spacing:-.005em}
+.demo-bar{background:linear-gradient(92deg,var(--accent-2),#3d5731 78%);color:#fff;text-align:center;padding:10px 16px;font-size:12.5px;font-weight:600;line-height:1.45;position:relative;z-index:40}
+
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0}
+.brand{font-family:"Instrument Serif",serif;font-size:23px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+.brand i{width:28px;height:28px;flex:none;border-radius:9px;background:conic-gradient(from 210deg at 40% 35%,var(--accent),var(--accent-2) 55%,var(--accent));box-shadow:var(--s1);display:block;transform:rotate(-8deg)}
+.navlinks{display:flex;gap:28px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0;font-weight:500}
+.navlinks a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{transform:scaleX(1)}
+
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);text-decoration:none;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:700;border:0;cursor:pointer;font-family:Karla,sans-serif;letter-spacing:.01em;box-shadow:0 2px 5px rgba(45,75,30,.26),0 10px 24px rgba(45,75,30,.22);transition:transform .22s,box-shadow .22s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 11px rgba(45,75,30,.28),0 18px 36px rgba(45,75,30,.3)}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid color-mix(in srgb,var(--accent) 42%,transparent);box-shadow:none;font-weight:700}
+.btn.ghost:hover{background:var(--soft);box-shadow:var(--s1)}
+
+/* HERO */
+.hero{position:relative;padding:58px 0 70px}
+.hero::before{content:"";position:absolute;inset:-140px -25% auto -25%;height:540px;z-index:-1;filter:blur(4px);
+  background:radial-gradient(ellipse at 26% 42%,var(--soft),transparent 60%),radial-gradient(ellipse at 80% 24%,color-mix(in srgb,var(--accent-2) 22%,transparent),transparent 56%)}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6.7vw,66px)}
 .hero h1 em{font-style:italic;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:45ch}
-.rating{display:inline-flex;gap:8px;background:var(--accent-soft);color:var(--accent);padding:6px 15px;border-radius:999px;font-size:13px;font-weight:500;margin-bottom:18px}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.hero-art{aspect-ratio:1/1;border-radius:50% 50% 14px 14px;background:
-  radial-gradient(circle at 50% 70%, var(--accent) 0 22%, transparent 22%),
-  radial-gradient(circle at 50% 44%, var(--mint) 0 13%, transparent 13%),
-  linear-gradient(170deg,var(--accent-soft),var(--surface));border:1px solid var(--line);box-shadow:var(--shadow)}
-section{padding:56px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--mint);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
-h2{font-size:clamp(28px,4.6vw,40px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
-.card .swatch{height:110px;border-radius:12px;margin-bottom:14px;background:var(--accent-soft)}
-.card h3{font-size:21px;margin-bottom:4px}
-.card p{color:var(--muted);font-size:14px;margin:0 0 12px}
-.card .price{color:var(--accent);font-weight:500;font-size:14px}
-.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.why div{padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px}
-.why h3{font-size:19px;margin-bottom:5px}
-.why p{color:var(--muted);font-size:14px;margin:0}
-.order{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
-label{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
-label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:78px;resize:vertical}
-form .btn{width:100%;margin-top:20px;padding:13px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:840px){
-  .hero{grid-template-columns:1fr;padding:40px 0 30px}
-  .hero-art{aspect-ratio:4/3;border-radius:40% 40% 14px 14px;order:-1}
-  .grid,.why,.order{grid-template-columns:1fr}
+.hero p{color:var(--muted);font-size:17.5px;max-width:45ch;margin:20px 0 0}
+.pill{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:6px 15px 6px 7px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:var(--s2)}
+.pill b{background:var(--accent);color:var(--on-accent);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.micro{margin-top:16px;font-size:13px;color:var(--muted)}
+
+.stack{position:relative;padding:0 0 58px 30px}
+.stack::before{content:"";position:absolute;left:6px;top:24px;right:24px;bottom:80px;border:1.5px solid color-mix(in srgb,var(--accent) 38%,transparent);border-radius:24px;z-index:0}
+.stack .big{position:relative;z-index:1;border-radius:22px;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface);transform:rotate(-1.6deg)}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;left:0;bottom:0;z-index:2;width:47%;border-radius:16px;overflow:hidden;box-shadow:var(--s3);border:5px solid var(--surface);transform:rotate(3.2deg)}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:26px;right:4px;z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 16px;box-shadow:var(--s3);text-align:center;transform:rotate(2deg)}
+@media(min-width:901px){.badge{right:-14px}}
+.badge b{display:block;font-family:"Instrument Serif",serif;font-size:25px;color:var(--accent);line-height:1}
+.badge span{font-size:10.5px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+
+/* STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:26px}
+.strip div{text-align:center}
+.strip b{display:block;font-family:"Instrument Serif",serif;font-size:29px;color:var(--accent);line-height:1.1}
+.strip span{font-size:12.5px;color:var(--muted)}
+
+section{padding:76px 0}
+.head{max-width:56ch;margin-bottom:36px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;margin-bottom:12px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);border-radius:2px}
+h2{font-size:clamp(32px,4.8vw,46px)}
+.sub{color:var(--muted);margin:12px 0 0}
+
+/* ORDER — the hero feature */
+.order{background:var(--bg2);border-block:1px solid var(--line);position:relative;overflow:hidden}
+.order::after{content:"";position:absolute;right:-160px;top:-120px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 16%,transparent),transparent 66%);pointer-events:none}
+.ordergrid{display:grid;grid-template-columns:.92fr 1.08fr;gap:48px;align-items:start;position:relative}
+.steps{counter-reset:s;margin-top:28px}
+.step{position:relative;padding-left:56px;margin-bottom:24px}
+.step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-3px;width:38px;height:38px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:15px;box-shadow:var(--s2)}
+.step h3{font-size:19px;margin-bottom:3px}
+.step p{color:var(--muted);font-size:14.5px;margin:0}
+.callout{margin-top:8px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:14px;padding:18px 20px;box-shadow:var(--s2)}
+.callout strong{display:block;font-size:14px;margin-bottom:5px}
+.callout p{margin:0;font-size:14px;color:var(--muted)}
+
+form{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--s3);overflow:hidden}
+.formhead{background:var(--accent);padding:18px 26px;color:var(--on-accent)}
+.formhead b{font-family:"Instrument Serif",serif;font-size:22px;font-weight:400;display:block;line-height:1.2}
+.formhead span{font-size:12.5px;opacity:.82}
+.formbody{padding:24px 26px 28px}
+.fld{margin-top:18px}
+.formbody>.fld:first-child{margin-top:0}
+label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
+textarea{min-height:86px;resize:vertical}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:18px}
+.frow .fld{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.chips label{margin:0;display:inline-flex;align-items:center;padding:9px 15px;border:1.5px solid var(--line);border-radius:999px;background:var(--chip);font-size:13.5px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.chips label:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);transform:translateY(-1px)}
+.chips input:checked+label{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chips input:focus-visible+label{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent)}
+form .btn{width:100%;margin-top:24px;padding:15px}
+.formnote{margin:12px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
+
+/* MENU */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--s2);transition:transform .32s cubic-bezier(.2,.7,.3,1),box-shadow .32s}
+.card:hover{transform:translateY(-7px);box-shadow:var(--s3)}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .55s cubic-bezier(.2,.7,.3,1)}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph::after{content:"";position:absolute;inset:auto 0 0 0;height:56%;background:linear-gradient(transparent,rgba(20,26,12,.5))}
+.card .tag{position:absolute;left:12px;top:12px;z-index:2;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);color:#26310f;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.card .b{padding:20px 20px 18px}
+.card h3{font-size:23px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 14px;min-height:44px}
+.card .pricerow{display:flex;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:12px}
+.card .pricerow span{font-size:11.5px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;font-weight:700}
+.card .pricerow b{color:var(--accent);font-weight:800;font-size:16px}
+.note{margin-top:26px;font-size:13.5px;color:var(--muted);background:var(--soft);border:1px dashed var(--line);border-radius:14px;padding:14px 18px}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split .imgwrap{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--s3);border:6px solid var(--surface);transform:rotate(-1deg)}
+.split .imgwrap img{aspect-ratio:5/4;object-fit:cover;width:100%;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.split .imgwrap:hover img{transform:scale(1.05)}
+.split .imgwrap .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(transparent,rgba(18,24,10,.72))}
+.ul{list-style:none;padding:0;margin:22px 0 0}
+.ul li{position:relative;padding-left:28px;margin-bottom:11px;color:var(--muted);font-size:15px}
+.ul li::before{content:"";position:absolute;left:0;top:9px;width:11px;height:11px;border-radius:4px;background:var(--accent);transform:rotate(45deg)}
+.ul li b{color:var(--ink);font-weight:700}
+
+/* VISIT */
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.irow{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--s2);transition:transform .25s,box-shadow .25s}
+.irow:hover{transform:translateY(-4px);box-shadow:var(--s3)}
+.irow i{width:36px;height:36px;flex:none;border-radius:11px;background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent);font-weight:800;font-size:16px}
+.irow strong{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.irow span{font-size:15px;line-height:1.5}
+.irow a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+
+footer{padding:38px 0;background:var(--bg2);border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:900px){
+  .hero-grid,.split,.ordergrid{grid-template-columns:1fr;gap:38px}
+  .stack{order:-1;padding:0 0 46px 22px;max-width:430px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .strip .wrap{grid-template-columns:repeat(2,1fr);gap:20px}
+  .info{grid-template-columns:repeat(2,1fr)}
   .navlinks{display:none}
+  section{padding:56px 0}
 }
+@media(max-width:600px){
+  .grid,.info{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr;gap:0}
+  .frow .fld+.fld{margin-top:18px}
+  .formhead,.formbody{padding-left:20px;padding-right:20px}
+  .card p{min-height:0}
+  nav .btn{padding:10px 16px;font-size:13px}
+  .brand{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for VBakesters · sample range and prices — real ones to come from the baker</div>
+<div class="demo-bar">Demo site built for VBakesters · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">V<span>Bakesters</span></a>
-  <div class="navlinks"><a href="#range">Cakes</a><a href="#why">Why us</a><a href="#order">Order</a><a href="#visit">Contact</a></div>
-  <a class="btn" href="#order">Order now</a>
+  <a class="brand" href="#"><i></i>VBakesters</a>
+  <div class="navlinks"><a href="#order">Order form</a><a href="#bakes">What we bake</a><a href="#how">How it works</a><a href="#visit">Find us</a></div>
+  <a class="btn" href="#order">Start an order</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="wrap"><section class="hero"><div class="hero-grid">
   <div>
-    <span class="rating">★ 5.0 · 417 Google reviews</span>
-    <h1>Home baked, <em>properly</em> baked.</h1>
-    <p>Custom cakes, brownies and dessert boxes made to order in Naranpura. Tell us the occasion and the date, and we'll take it from there.</p>
-    <div class="cta-row"><a class="btn" href="#order">Place an order</a><a class="btn ghost" href="#range">See the range</a></div>
+    <span class="pill"><b>5.0 ★</b> 417 Google reviews</span>
+    <h1>Home-baked in Naranpura. <em>Ordered in a minute.</em></h1>
+    <p>Cakes, bento boxes and dessert jars out of a home kitchen on Rang Jyot Society. Fill in the order form and we confirm on WhatsApp — your date goes on the list instead of sinking into a pile of Instagram DMs.</p>
+    <div class="cta">
+      <a class="btn" href="#order">Start an order</a>
+      <a class="btn ghost" href="#bakes">See what we bake</a>
+    </div>
+    <p class="micro">Festival weeks fill up first. The form takes about 40 seconds.</p>
   </div>
-  <div class="hero-art"></div>
+  <div class="stack">
+    <div class="badge"><b>24 hrs</b><span>Usual notice</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=900&q=70" alt="White frosted cake with a dark chocolate drip, standing on a cake stand" loading="eager" fetchpriority="high"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=600&q=70" alt="Orange mirror-glaze cake topped with fresh strawberries" loading="lazy"></div>
+  </div>
+</div></section></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>5.0★</b><span>Google rating</span></div>
+  <div><b>417</b><span>Reviews</span></div>
+  <div><b>Home</b><span>Kitchen in Naranpura</span></div>
+  <div><b>One form</b><span>Instead of a DM thread</span></div>
 </div></div>
 
-<section id="range"><div class="wrap">
-  <div class="eyebrow">The range</div>
-  <h2>What we bake</h2>
-  <p class="sub">Sample categories and prices — to be replaced with the baker's real range.</p>
-  <div class="grid">
-    <div class="card"><div class="swatch"></div><h3>Custom cakes</h3><p>Any theme, any flavour. Send a picture and we'll match it.</p><span class="price">from ₹900</span></div>
-    <div class="card"><div class="swatch"></div><h3>Eggless</h3><p>The full menu, eggless. Not an afterthought.</p><span class="price">from ₹850</span></div>
-    <div class="card"><div class="swatch"></div><h3>Brownies</h3><p>Fudgy, boxed in sixes or twelves. Good for gifting.</p><span class="price">from ₹400</span></div>
-    <div class="card"><div class="swatch"></div><h3>Dessert boxes</h3><p>Mixed jars, cupcakes and tarts for parties.</p><span class="price">from ₹650</span></div>
-    <div class="card"><div class="swatch"></div><h3>Bento cakes</h3><p>Small cakes for two, ready the same day.</p><span class="price">from ₹450</span></div>
-    <div class="card"><div class="swatch"></div><h3>Festive &amp; bulk</h3><p>Diwali hampers and corporate boxes, ordered ahead.</p><span class="price">on request</span></div>
-  </div>
-</div></section>
-
-<section id="why"><div class="wrap">
-  <div class="eyebrow">Why order here</div>
-  <h2>5.0 stars from 417 reviews</h2>
-  <p class="sub">Real rating from the Google listing. Customer quotes to be added with the baker's permission.</p>
-  <div class="why">
-    <div><h3>Baked to order</h3><p>Nothing sits in a display case. Your cake is made the day it's collected.</p></div>
-    <div><h3>You see it first</h3><p>A design mock-up and quote on WhatsApp before you pay anything.</p></div>
-    <div><h3>Nothing lost in DMs</h3><p>Orders come through this form with date, flavour and message attached.</p></div>
-  </div>
-</div></section>
-
-<section id="order"><div class="wrap">
-  <div class="eyebrow">Order</div>
-  <h2>Place an order</h2>
-  <p class="sub">Custom cakes need 48 hours. Bento cakes can often be done same day.</p>
-  <div class="order">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="t">What do you need?</label>
-      <select id="t"><option>Custom cake</option><option>Eggless cake</option><option>Brownies</option><option>Dessert box</option><option>Bento cake</option><option>Festive / bulk order</option></select>
-      <label for="d">Date needed</label><input id="d" type="date">
-      <label for="m">Details</label><textarea id="m" placeholder="Flavour, weight, message on the cake, theme or reference picture"></textarea>
-      <button class="btn" type="submit">Send order request</button>
+<div class="order"><div class="wrap"><section id="order">
+  <div class="ordergrid">
+    <div>
+      <span class="eyebrow">Start here</span>
+      <h2>The order form</h2>
+      <p class="sub">Everything we need in one go — the cake, the size, the date. No twenty-message back-and-forth, and nothing that can get buried under a week of festival messages.</p>
+      <div class="steps">
+        <div class="step"><h3>Send the form</h3><p>Flavour, size, date, and the message you want on the cake.</p></div>
+        <div class="step"><h3>We confirm on WhatsApp</h3><p>A price, a design idea, and the slot held against your date.</p></div>
+        <div class="step"><h3>Collect or delivered</h3><p>Pick up from Naranpura, or delivered across west Ahmedabad.</p></div>
+      </div>
+      <div class="callout">
+        <strong>Rakshabandhan, Navratri, Diwali</strong>
+        <p>Festival weeks book out early. An order that arrives through this form is queued by date, so nothing slips.</p>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)';b.style.boxShadow='none'">
+      <div class="formhead">
+        <b>Order request</b>
+        <span>Takes about 40 seconds · we reply on WhatsApp</span>
+      </div>
+      <div class="formbody">
+        <div class="frow">
+          <div class="fld"><label for="n">Your name</label><input id="n" name="n" placeholder="Name" autocomplete="name"></div>
+          <div class="fld"><label for="p">WhatsApp number</label><input id="p" name="p" placeholder="10-digit number" inputmode="numeric"></div>
+        </div>
+        <div class="fld">
+          <label for="t">What would you like?</label>
+          <select id="t" name="t">
+            <option>Celebration cake</option>
+            <option>Bento / small cake</option>
+            <option>Chocolate &amp; truffle cake</option>
+            <option>Brownies, cookies or muffins</option>
+            <option>Tarts, jars &amp; pastries</option>
+            <option>Hamper / bulk order</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label>Size</label>
+          <div class="chips">
+            <input type="radio" id="s1" name="size" checked><label for="s1">Bento</label>
+            <input type="radio" id="s2" name="size"><label for="s2">500 g</label>
+            <input type="radio" id="s3" name="size"><label for="s3">1 kg</label>
+            <input type="radio" id="s4" name="size"><label for="s4">1.5 kg</label>
+            <input type="radio" id="s5" name="size"><label for="s5">2 kg +</label>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fld"><label for="d">Date needed</label><input id="d" name="d" type="date"></div>
+          <div class="fld"><label for="c">Collect or delivery</label>
+            <select id="c" name="c"><option>Collect from Naranpura</option><option>Delivery in Ahmedabad</option><option>Not sure yet</option></select>
+          </div>
+        </div>
+        <div class="fld"><label for="m">Flavour, message on the cake, anything else</label><textarea id="m" name="m" placeholder="e.g. eggless chocolate truffle, 'Happy Birthday Dhruv' on top, pastel green icing"></textarea></div>
+        <button class="btn" type="submit">Send order request</button>
+        <p class="formnote">Demo form — it doesn't send anything yet.</p>
+      </div>
     </form>
-    <div class="info" id="visit"><ul>
-      <li><strong>Call or WhatsApp</strong>096627 64310</li>
-      <li><strong>Where</strong>D-72, Rang Jyot Society, Naranpura, Ahmedabad</li>
-      <li><strong>Collection</strong>Pick up from Naranpura, or delivery arranged across Ahmedabad</li>
-      <li><strong>Advance</strong>Part payment confirms a custom order</li>
-    </ul></div>
   </div>
-</div></section>
+</section></div></div>
+
+<div class="wrap"><section id="bakes">
+  <div class="head">
+    <span class="eyebrow">The bakes</span>
+    <h2>What comes out of the kitchen</h2>
+    <p class="sub">Sample categories shown with stock photography — to be swapped for VBakesters' own bakes, and the owner's real rates.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="ph"><span class="tag">Signature</span><img src="https://images.unsplash.com/photo-1595144780677-6d0b5abbd089?w=700&q=70" alt="Bakery counter lined with whole decorated cakes" loading="lazy"></div>
+      <div class="b"><h3>Celebration cakes</h3><p>Birthdays, anniversaries and house parties. Half kilo upwards, eggless on request.</p>
+      <div class="pricerow"><span>Sample price</span><b>from ₹800</b></div></div></div>
+
+    <div class="card"><div class="ph"><span class="tag">Same day</span><img src="https://images.unsplash.com/photo-1584982890941-b788ae5a54df?w=700&q=70" alt="Small round cake with a chocolate drip and a strawberry on top" loading="lazy"></div>
+      <div class="b"><h3>Bento &amp; small cakes</h3><p>Little cakes for two, hand-piped. Often possible the same day.</p>
+      <div class="pricerow"><span>Sample price</span><b>from ₹450</b></div></div></div>
+
+    <div class="card"><div class="ph"><span class="tag">Most ordered</span><img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?w=700&q=70" alt="Chocolate cake with a chocolate drip and cookies arranged on top" loading="lazy"></div>
+      <div class="b"><h3>Chocolate &amp; truffle</h3><p>Dark ganache, cookie-crumb and classic truffle. The safe bet in every house.</p>
+      <div class="pricerow"><span>Sample price</span><b>from ₹900</b></div></div></div>
+
+    <div class="card"><div class="ph"><span class="tag">Gifting</span><img src="https://images.unsplash.com/photo-1615796701805-2094ac54bbf9?w=700&q=70" alt="Chocolate muffins beside a slice of dark chocolate cake" loading="lazy"></div>
+      <div class="b"><h3>Brownies &amp; muffins</h3><p>Boxes of six or twelve — the easy thing to carry to an office or a neighbour.</p>
+      <div class="pricerow"><span>Sample price</span><b>from ₹300</b></div></div></div>
+
+    <div class="card"><div class="ph"><span class="tag">Counter</span><img src="https://images.unsplash.com/photo-1583338917451-face2751d8d5?w=700&q=70" alt="Patisserie display case with tarts, berry pastries and macarons" loading="lazy"></div>
+      <div class="b"><h3>Tarts &amp; pastries</h3><p>Fruit tarts, berry pastries and macarons, baked in small batches.</p>
+      <div class="pricerow"><span>Sample price</span><b>from ₹150</b></div></div></div>
+
+    <div class="card"><div class="ph"><span class="tag">Festive</span><img src="https://images.unsplash.com/photo-1591538519435-4578c3ba26d6?w=700&q=70" alt="Lit glass display case holding pastries and cake slices" loading="lazy"></div>
+      <div class="b"><h3>Hampers &amp; bulk</h3><p>Mixed boxes for Diwali, return gifts and office orders. Tell us a headcount.</p>
+      <div class="pricerow"><span>Sample price</span><b>on request</b></div></div></div>
+  </div>
+  <p class="note"><b>Placeholder pricing.</b> Every item, weight and rate on this page is a sample put in to show the layout. Nothing here is VBakesters' real menu or real price list yet — those come straight from the owner before the site goes live.</p>
+</section></div>
+
+<div class="wrap"><section id="how"><div class="split">
+  <div class="imgwrap">
+    <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=900&q=70" alt="Mirror-glaze cake decorated with strawberries" loading="lazy">
+    <span class="cap">Finished and ready for collection</span>
+  </div>
+  <div>
+    <span class="eyebrow">Good to know</span>
+    <h2>A home kitchen, not a factory</h2>
+    <p class="sub">Everything is baked to order in small batches, which is the reason the notice period matters more here than at a shop counter.</p>
+    <ul class="ul">
+      <li><b>24 hours' notice</b> for most cakes; custom designs and tiered cakes need longer.</li>
+      <li><b>Eggless on request</b> — say so in the form and it's baked that way from the start.</li>
+      <li><b>Collection from Naranpura</b>, or delivery across west Ahmedabad at a distance-based charge.</li>
+      <li><b>A small advance</b> confirms a custom order and holds your date.</li>
+      <li><b>Festival weeks close early</b> — Rakshabandhan and Diwali slots go first.</li>
+    </ul>
+    <div class="cta"><a class="btn" href="#order">Fill the order form</a></div>
+  </div>
+</div></section></div>
+
+<div class="wrap"><section id="visit">
+  <div class="head">
+    <span class="eyebrow">Find us</span>
+    <h2>Where to collect, who to call</h2>
+    <p class="sub">Timings below are a sample layout — the real ones will be confirmed by the owner.</p>
+  </div>
+  <div class="info">
+    <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span><a href="tel:+919662764310">096627 64310</a></span></div></div>
+    <div class="irow"><i>◉</i><div><strong>Kitchen &amp; collection</strong><span>D-72, Rang Jyot Society, Naranpura, Ahmedabad</span></div></div>
+    <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed</span></div></div>
+    <div class="irow"><i>⛟</i><div><strong>Delivery</strong><span>Across Ahmedabad; charge depends on distance</span></div></div>
+    <div class="irow"><i>₹</i><div><strong>Advance</strong><span>Part payment confirms a custom order</span></div></div>
+    <div class="irow"><i>✿</i><div><strong>Bulk &amp; festive</strong><span>Hampers and return gifts — send a headcount through the form</span></div></div>
+  </div>
+</section></div>
 
 <footer><div class="wrap">
-  <span>VBakesters · Naranpura, Ahmedabad</span>
-  <span>Demo site — not affiliated with the business yet</span>
+  <span>VBakesters · Naranpura, Ahmedabad · 096627 64310</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
 </div></footer>
 </body>
 </html>

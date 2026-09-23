@@ -4,132 +4,364 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Koffee Stories</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Koffee Stories — CG Road, Ahmedabad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f7f3ed;--surface:#fff;--ink:#241f1a;--muted:#786d61;--accent:#8b5e34;--soft:#efe4d6;--line:#e6dbcc;--sh:0 2px 18px rgba(70,50,30,.07)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151210;--surface:#1f1b17;--ink:#f2ebe2;--muted:#a99d90;--accent:#d79b63;--soft:#2c2118;--line:#2e2822;--sh:0 2px 18px rgba(0,0,0,.35)}}
-:root[data-theme="dark"]{--bg:#151210;--surface:#1f1b17;--ink:#f2ebe2;--muted:#a99d90;--accent:#d79b63;--soft:#2c2118;--line:#2e2822;--sh:0 2px 18px rgba(0,0,0,.35)}
+:root{
+  --bg:#f8f4ef; --bg2:#efe7de; --surface:#fffcf8; --ink:#1d1713; --muted:#7e7165;
+  --accent:#a1553a; --accent-2:#9a8455; --soft:#f2e4db; --line:#e4dbcc; --on-accent:#fffaf6;
+  --scrim:rgba(22,20,14,.55);
+  --s1:0 1px 2px rgba(40,32,18,.05);
+  --s2:0 2px 6px rgba(40,32,18,.05),0 12px 30px rgba(40,32,18,.07);
+  --s3:0 6px 14px rgba(40,32,18,.08),0 28px 64px rgba(40,32,18,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151110; --bg2:#1c1715; --surface:#211a17; --ink:#f3ece4; --muted:#a8998b;
+    --accent:#e09271; --accent-2:#cdb27c; --soft:#2b2019; --line:#302b22; --on-accent:#17120e;
+    --scrim:rgba(0,0,0,.6);
+    --s1:0 1px 2px rgba(0,0,0,.5);
+    --s2:0 2px 6px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+    --s3:0 6px 14px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151110; --bg2:#1c1715; --surface:#211a17; --ink:#f3ece4; --muted:#a8998b;
+  --accent:#e09271; --accent-2:#cdb27c; --soft:#2b2019; --line:#302b22; --on-accent:#17120e;
+  --scrim:rgba(0,0,0,.6);
+  --s1:0 1px 2px rgba(0,0,0,.5);
+  --s2:0 2px 6px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+  --s3:0 6px 14px rgba(0,0,0,.5),0 28px 64px rgba(0,0,0,.6);
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1020px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;line-height:1.15;margin:0}
-.demo-bar{background:var(--accent);color:#fff;text-align:center;padding:9px 16px;font-size:13px}
-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0}
-.brand{font-family:"Playfair Display",serif;font-size:22px;text-decoration:none;color:var(--ink)}
-.brand span{color:var(--accent)}
-.navlinks{display:flex;gap:24px;font-size:14px}
-.navlinks a{text-decoration:none;color:var(--muted)}.navlinks a:hover{color:var(--accent)}
-.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 22px;border-radius:4px;font-size:14px;font-weight:500;border:0;cursor:pointer;font-family:Karla,sans-serif}
-.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
-.hero{padding:66px 0 50px;display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}
-.hero h1{font-size:clamp(36px,6.4vw,60px)}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero p{color:var(--muted);font-size:17px;max-width:45ch}
-.rating{display:inline-block;background:var(--soft);color:var(--accent);padding:6px 15px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:18px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.art{aspect-ratio:1/1;border-radius:10px;background:radial-gradient(circle at 50% 42%,var(--accent) 0 24%,transparent 24%),radial-gradient(circle at 50% 42%,var(--soft) 24% 33%,transparent 33%),linear-gradient(160deg,var(--soft),var(--surface));border:1px solid var(--line);box-shadow:var(--sh)}
-section{padding:56px 0;border-top:1px solid var(--line)}
-.eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
-h2{font-size:clamp(28px,4.6vw,40px);margin-bottom:10px}
-.sub{color:var(--muted);margin:0 0 30px;max-width:52ch}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.mcol h3{font-size:21px;color:var(--accent);margin-bottom:12px}
-.mrow{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dotted var(--line);font-size:15px}
-.mrow b{font-weight:700;white-space:nowrap}
-.mrow em{display:block;font-style:normal;color:var(--muted);font-size:13px}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;box-shadow:var(--sh)}
-.card h3{font-size:20px;margin-bottom:5px}.card p{color:var(--muted);font-size:14px;margin:0}
-.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;box-shadow:var(--sh)}
-label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 16.5px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.narrow{max-width:900px;margin:0 auto}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.1;margin:0;letter-spacing:.002em}
+em{font-style:italic}
+
+.demo-bar{background:var(--ink);color:var(--bg);text-align:center;padding:11px 18px;font-size:12.5px;font-weight:400;letter-spacing:.03em;position:relative;z-index:40}
+
+header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.brand i{width:30px;height:30px;flex:none;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;font-style:normal;font-family:"Cormorant Garamond",serif;font-size:16px;color:var(--accent);box-shadow:var(--s1)}
+.brand b{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:22px;letter-spacing:.01em;line-height:1}
+.brand s{display:block;text-decoration:none;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-family:Jost,sans-serif}
+.navlinks{display:flex;gap:30px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:400}
+.navlinks a{text-decoration:none;color:var(--muted);position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--accent);transition:right .32s cubic-bezier(.2,.7,.3,1)}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{right:0}
+
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--on-accent);text-decoration:none;padding:13px 26px;border-radius:2px;font:500 12.5px/1 Jost,sans-serif;letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer;box-shadow:0 2px 5px color-mix(in srgb,var(--accent) 26%,transparent),0 12px 28px color-mix(in srgb,var(--accent) 20%,transparent);transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 10px color-mix(in srgb,var(--accent) 32%,transparent),0 18px 38px color-mix(in srgb,var(--accent) 26%,transparent)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:var(--surface);border-color:var(--accent);box-shadow:var(--s2)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent);display:block}
+.sub{color:var(--muted);margin:14px 0 0;font-size:16.5px;max-width:56ch}
+section{padding:96px 0}
+.head{max-width:60ch;margin-bottom:46px}
+h2{font-size:clamp(32px,5.2vw,50px)}
+
+/* HERO */
+.hero{position:relative;padding:74px 0 86px}
+.hero::before{content:"";position:absolute;inset:-160px -25% auto -25%;height:620px;z-index:-1;
+  background:radial-gradient(ellipse at 26% 36%,var(--soft),transparent 60%),radial-gradient(ellipse at 80% 24%,color-mix(in srgb,var(--accent-2) 22%,transparent),transparent 56%);filter:blur(10px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(42px,7.2vw,76px);line-height:1.02;margin:22px 0 0;letter-spacing:-.01em}
+.hero h1 em{color:var(--accent)}
+.hero p.lede{color:var(--muted);font-size:18px;max-width:42ch;margin:22px 0 0;line-height:1.72}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:6px 16px 6px 6px;border-radius:999px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;box-shadow:var(--s2)}
+.pill b{background:var(--accent);color:var(--on-accent);border-radius:999px;padding:4px 11px;font-size:11.5px;font-weight:500;letter-spacing:.06em}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.note{margin-top:26px;padding-left:16px;border-left:2px solid var(--accent-2);color:var(--muted);font-size:14.5px;max-width:44ch;line-height:1.6}
+.note b{color:var(--ink);font-weight:500}
+
+.stack{position:relative;padding:0 46px 60px 0}
+.stack .big{position:relative;overflow:hidden;box-shadow:var(--s3);border:7px solid var(--surface);transform:rotate(-1.4deg);border-radius:3px}
+.stack .big img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.stack .small{position:absolute;right:0;bottom:0;width:50%;overflow:hidden;box-shadow:var(--s3);border:7px solid var(--surface);transform:rotate(2.6deg);border-radius:3px}
+.stack .small img{aspect-ratio:1/1;object-fit:cover;width:100%}
+.badge{position:absolute;top:26px;left:14px;z-index:3;background:var(--surface);border:1px solid var(--line);padding:14px 18px;box-shadow:var(--s3);text-align:center;border-radius:2px}
+@media(min-width:901px){.badge{left:-26px}}
+.badge b{display:block;font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:600;color:var(--accent);line-height:1}
+.badge span{font-size:9.5px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+
+/* STRIP */
+.strip{background:var(--bg2);border-block:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-block:34px}
+.strip div{text-align:center;position:relative}
+.strip div+div::before{content:"";position:absolute;left:-12px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.strip b{display:block;font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:500;color:var(--ink);line-height:1.15}
+.strip b i{font-style:normal;font-size:.52em;color:var(--accent);vertical-align:.34em;margin-left:3px}
+.strip span{font-size:10.5px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+
+/* MENU */
+.menu-band{background:var(--bg2);border-block:1px solid var(--line)}
+.menu-top{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:12px}
+.placeholder-note{display:inline-block;background:var(--soft);border:1px solid var(--line);color:var(--muted);font-size:12px;letter-spacing:.06em;padding:9px 15px;border-radius:2px;max-width:40ch;line-height:1.5}
+.mcols{display:grid;grid-template-columns:1fr 1fr;gap:26px 64px;margin-top:42px}
+.mgroup{break-inside:avoid;margin-bottom:26px}
+.mgroup h3{font-size:14px;font-family:Jost,sans-serif;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.mgroup h3 u{text-decoration:none;font-family:"Cormorant Garamond",serif;font-size:17px;letter-spacing:0;color:var(--muted);font-style:italic}
+.mi{display:flex;align-items:baseline;gap:8px;padding:9px 0}
+.mi .nm{font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:500;color:var(--ink);white-space:nowrap}
+.mi .dot{flex:1 1 auto;min-width:16px;border-bottom:1px dotted var(--line);transform:translateY(-5px)}
+.mi .pr{font-size:14px;color:var(--muted);letter-spacing:.06em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.mi small{display:block;font-size:13px;color:var(--muted);line-height:1.5;margin-top:-4px;padding-bottom:4px}
+.mrow{display:block}
+.figpair{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:52px}
+.fig{position:relative;overflow:hidden;box-shadow:var(--s2);border:6px solid var(--surface);border-radius:3px;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s}
+.fig:hover{transform:translateY(-6px);box-shadow:var(--s3)}
+.fig img{aspect-ratio:16/10;object-fit:cover;width:100%;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+.fig:hover img{transform:scale(1.06)}
+.fig::after{content:"";position:absolute;inset:auto 0 0 0;height:60%;background:linear-gradient(transparent,var(--scrim));pointer-events:none}
+.fig figcaption{position:absolute;left:18px;right:18px;bottom:14px;z-index:2;color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+
+/* GALLERY */
+.gal{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:20px}
+.gal .fig:nth-child(1) img{aspect-ratio:4/5}
+.gal .fig:nth-child(2) img,.gal .fig:nth-child(3) img{aspect-ratio:4/5}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1.05fr;gap:66px;align-items:center}
+.imgwrap{position:relative;overflow:hidden;box-shadow:var(--s3);border:7px solid var(--surface);border-radius:3px;transform:rotate(-.8deg)}
+.imgwrap img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.steps{counter-reset:s;margin-top:34px}
+.step{position:relative;padding-left:62px;margin-bottom:30px}
+.step::before{counter-increment:s;content:"0" counter(s);position:absolute;left:0;top:0;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:500;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:2px;width:40px}
+.step h3{font-size:23px;margin-bottom:4px}
+.step p{color:var(--muted);font-size:15px;margin:0;line-height:1.65}
+
+/* ORDER */
+.order{background:var(--bg2);border-block:1px solid var(--line)}
+.ordergrid{display:grid;grid-template-columns:1.02fr .98fr;gap:46px;align-items:start}
+form{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:32px;box-shadow:var(--s3)}
+label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
 label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
-textarea{min-height:74px;resize:vertical}
-form .btn{width:100%;margin-top:20px;padding:13px}
-.info ul{list-style:none;padding:0;margin:0}
-.info li{margin-bottom:16px;color:var(--muted);font-size:15px}
-.info strong{display:block;color:var(--ink);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
-footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:14px}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:840px){.hero{grid-template-columns:1fr;padding:40px 0 30px}.art{aspect-ratio:16/10;order:-1}.menu,.g3,.book{grid-template-columns:1fr}.navlinks{display:none}}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);font:400 15px/1.5 Jost,sans-serif;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+textarea{min-height:92px;resize:vertical}
+form .btn{width:100%;justify-content:center;margin-top:26px;padding:15px}
+.info{display:flex;flex-direction:column;gap:14px}
+.irow{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:18px 20px;box-shadow:var(--s2);transition:transform .25s,box-shadow .25s}
+.irow:hover{transform:translateY(-3px);box-shadow:var(--s3)}
+.irow i{width:34px;height:34px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--soft);display:grid;place-items:center;font-style:normal;color:var(--accent);font-size:15px}
+.irow strong{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:4px}
+.irow span{font-size:15.5px;line-height:1.55}
+.irow a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+
+footer{padding:52px 0;background:var(--bg);border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer em{font-family:"Cormorant Garamond",serif;font-size:19px;color:var(--ink);font-style:italic}
+
+@media(max-width:960px){
+  .hero-grid,.split,.ordergrid{grid-template-columns:1fr;gap:44px}
+  .stack{order:-1;max-width:430px;padding:0 40px 52px 0}
+  .mcols{grid-template-columns:1fr;gap:0}
+  .gal{grid-template-columns:1fr 1fr}
+  .gal .fig:nth-child(1){grid-column:1/-1}
+  .gal .fig:nth-child(1) img{aspect-ratio:16/10}
+  .navlinks{display:none}
+  section{padding:70px 0}
+  .hero{padding:52px 0 64px}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  .strip .wrap{grid-template-columns:1fr 1fr;gap:26px 18px}
+  .strip div:nth-child(odd)+div::before,.strip div+div::before{display:none}
+  .strip div:nth-child(2)::before{display:block}
+  .figpair{grid-template-columns:1fr}
+  .gal{grid-template-columns:1fr}
+  .stack{padding:0 26px 42px 0}
+  .menu-top{align-items:flex-start}
+  form{padding:22px}
+  .mi .nm{font-size:19px;white-space:normal}
+}
+@media(max-width:380px){
+  .brand b{font-size:19px}
+  .btn{padding:12px 18px;font-size:11.5px;letter-spacing:.1em}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="demo-bar">Demo site built for Koffee Stories · sample menu and prices — real ones to come from the owner</div>
+<div class="demo-bar">Demo site built for Koffee Stories · stock photos and sample prices — real ones to come from the owner</div>
+
 <header><div class="wrap"><nav>
-  <a class="brand" href="#">Koffee <span>Stories</span></a>
-  <div class="navlinks"><a href="#menu">Menu</a><a href="#space">The space</a><a href="#book">Book</a><a href="#visit">Visit</a></div>
-  <a class="btn" href="#book">Book a table</a>
+  <a class="brand" href="#"><i>K</i><span><b>Koffee Stories</b><s>CG Road · Ahmedabad</s></span></a>
+  <div class="navlinks"><a href="#menu">Menu</a><a href="#inside">Inside</a><a href="#why">The idea</a><a href="#visit">Visit</a></div>
+  <a class="btn" href="#visit">Find us</a>
 </nav></div></header>
 
-<div class="wrap"><div class="hero">
+<div class="wrap"><section class="hero"><div class="hero-grid">
   <div>
-    <span class="rating">★ 4.4 · 802 Google reviews</span>
-    <h1>Every cup has a <em>story</em>.</h1>
-    <p>All-day café on CG Road. Coffee, comfort food and a corner to sit in for longer than you planned.</p>
-    <div class="cta"><a class="btn" href="#menu">See the menu</a><a class="btn ghost" href="#book">Book a table</a></div>
+    <span class="pill"><b>4.4 ★</b> 802 Google reviews</span>
+    <h1>The whole menu,<br>on <em>one page</em>.</h1>
+    <p class="lede">A coffee house on Chimanlal Girdharlal Road. Filter and espresso, all-day plates, and a corner table that nobody wants to give up.</p>
+    <div class="cta">
+      <a class="btn" href="#menu">Read the menu</a>
+      <a class="btn ghost" href="#visit">Get directions</a>
+    </div>
+    <p class="note"><b>Why this page:</b> right now the Google listing points to a Linktree — so the menu itself doesn't live anywhere a customer can actually read before walking in.</p>
   </div>
-  <div class="art"></div>
+  <div class="stack">
+    <div class="badge"><b>802</b><span>Reviews</span></div>
+    <div class="big"><img src="https://images.unsplash.com/photo-1572231086568-6984943e6629?w=900&q=70" alt="Narrow cafe interior with a wooden counter and pendant lights" loading="eager" fetchpriority="high"></div>
+    <div class="small"><img src="https://images.unsplash.com/photo-1593443320739-77f74939d0da?w=600&q=70" alt="Cappuccino with leaf latte art in a white cup on a sunlit wooden table" loading="lazy"></div>
+  </div>
+</div></section></div>
+
+<div class="strip"><div class="wrap">
+  <div><b>4.4<i>&#9733;</i></b><span>Google rating</span></div>
+  <div><b>802</b><span>Reviews</span></div>
+  <div><b>CG Road</b><span>Vasant Vihar</span></div>
+  <div><b>One page</b><span>Whole menu</span></div>
 </div></div>
 
-<section id="menu"><div class="wrap">
-  <div class="eyebrow">Menu</div><h2>What's brewing</h2>
-  <p class="sub">Sample items and prices — to be swapped for the café's real menu.</p>
-  <div class="menu">
-    <div class="mcol"><h3>Coffee</h3>
-      <div class="mrow"><span>Cappuccino<em>House blend, double shot</em></span><b>₹170</b></div>
-      <div class="mrow"><span>Flat white<em>For the purists</em></span><b>₹190</b></div>
-      <div class="mrow"><span>Cold coffee<em>Thick, the Ahmedabad way</em></span><b>₹210</b></div>
-      <div class="mrow"><span>Masala chai<em>Cutting or full</em></span><b>₹90</b></div>
-      <h3 style="margin-top:24px">Breakfast</h3>
-      <div class="mrow"><span>Shakshuka<em>With sourdough</em></span><b>₹340</b></div>
-      <div class="mrow"><span>Waffle stack<em>Maple, banana, nutella</em></span><b>₹300</b></div>
+<div class="menu-band"><div class="wrap"><section id="menu">
+  <div class="narrow">
+    <div class="menu-top">
+      <div>
+        <span class="eyebrow">The card</span>
+        <h2>What's on the <em>menu</em></h2>
+      </div>
+      <span class="placeholder-note">Sample menu. Every item and every price below is a placeholder, waiting on the real card from the owner.</span>
     </div>
-    <div class="mcol"><h3>Mains</h3>
-      <div class="mrow"><span>Pesto pasta<em>Basil, parmesan, pine nuts</em></span><b>₹380</b></div>
-      <div class="mrow"><span>Margherita pizza<em>Thin crust</em></span><b>₹350</b></div>
-      <div class="mrow"><span>Cheese garlic bread<em>Never enough</em></span><b>₹220</b></div>
-      <div class="mrow"><span>Grilled sandwich<em>Veg or paneer</em></span><b>₹250</b></div>
-      <h3 style="margin-top:24px">Desserts</h3>
-      <div class="mrow"><span>Biscoff cheesecake<em>Slice</em></span><b>₹280</b></div>
-      <div class="mrow"><span>Choco lava cake<em>With vanilla</em></span><b>₹240</b></div>
+
+    <div class="mcols">
+      <div>
+        <div class="mgroup">
+          <h3>Espresso <u>hot</u></h3>
+          <div class="mrow"><div class="mi"><span class="nm">Espresso</span><span class="dot"></span><span class="pr">₹110</span></div><small>Single or double, house blend.</small></div>
+          <div class="mrow"><div class="mi"><span class="nm">Cappuccino</span><span class="dot"></span><span class="pr">₹160</span></div><small>Wet, with a proper cap of microfoam.</small></div>
+          <div class="mrow"><div class="mi"><span class="nm">Flat white</span><span class="dot"></span><span class="pr">₹170</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Mocha</span><span class="dot"></span><span class="pr">₹190</span></div></div>
+        </div>
+        <div class="mgroup">
+          <h3>Cold <u>brew &amp; shake</u></h3>
+          <div class="mrow"><div class="mi"><span class="nm">Cold brew</span><span class="dot"></span><span class="pr">₹180</span></div><small>Steeped overnight, served long over ice.</small></div>
+          <div class="mrow"><div class="mi"><span class="nm">Iced americano</span><span class="dot"></span><span class="pr">₹150</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Cold coffee</span><span class="dot"></span><span class="pr">₹200</span></div><small>The thick one, with ice cream.</small></div>
+          <div class="mrow"><div class="mi"><span class="nm">Frappe</span><span class="dot"></span><span class="pr">₹220</span></div></div>
+        </div>
+        <div class="mgroup">
+          <h3>Not <u>coffee</u></h3>
+          <div class="mrow"><div class="mi"><span class="nm">Masala chai</span><span class="dot"></span><span class="pr">₹90</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Hot chocolate</span><span class="dot"></span><span class="pr">₹180</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Lemon iced tea</span><span class="dot"></span><span class="pr">₹140</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="mgroup">
+          <h3>All-day <u>plates</u></h3>
+          <div class="mrow"><div class="mi"><span class="nm">Eggs on toast</span><span class="dot"></span><span class="pr">₹260</span></div><small>Poached, on sourdough, with a side salad.</small></div>
+          <div class="mrow"><div class="mi"><span class="nm">Savoury tart</span><span class="dot"></span><span class="pr">₹280</span></div><small>Tomato and spinach, served with greens.</small></div>
+          <div class="mrow"><div class="mi"><span class="nm">Grilled sandwich</span><span class="dot"></span><span class="pr">₹240</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Pasta of the day</span><span class="dot"></span><span class="pr">₹320</span></div></div>
+        </div>
+        <div class="mgroup">
+          <h3>Small <u>things</u></h3>
+          <div class="mrow"><div class="mi"><span class="nm">Cheese garlic bread</span><span class="dot"></span><span class="pr">₹190</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Peri peri fries</span><span class="dot"></span><span class="pr">₹170</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Nachos</span><span class="dot"></span><span class="pr">₹230</span></div></div>
+        </div>
+        <div class="mgroup">
+          <h3>Sweet <u>finish</u></h3>
+          <div class="mrow"><div class="mi"><span class="nm">Tiramisu</span><span class="dot"></span><span class="pr">₹250</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Brownie &amp; ice cream</span><span class="dot"></span><span class="pr">₹220</span></div></div>
+          <div class="mrow"><div class="mi"><span class="nm">Cheesecake slice</span><span class="dot"></span><span class="pr">₹260</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="figpair">
+      <figure class="fig" style="margin:0">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=70" alt="Three espresso portafilters seen from above holding a latte, ground coffee and roasted beans" loading="lazy">
+        <figcaption>Ground, pulled, poured</figcaption>
+      </figure>
+      <figure class="fig" style="margin:0">
+        <img src="https://images.unsplash.com/photo-1518133683791-0b9de5a055f0?w=800&q=70" alt="Savoury tart with tomato served on a dark plate with a spinach salad" loading="lazy">
+        <figcaption>All-day plates</figcaption>
+      </figure>
     </div>
   </div>
-</div></section>
+</section></div></div>
 
-<section id="space"><div class="wrap">
-  <div class="eyebrow">The space</div><h2>Why people stay</h2>
-  <div class="g3">
-    <div class="card"><h3>Work-friendly</h3><p>Wifi, plug points and nobody hurrying you out.</p></div>
-    <div class="card"><h3>Private events</h3><p>Birthdays, shoots and small gatherings — ask about the upper floor.</p></div>
-    <div class="card"><h3>Central</h3><p>On CG Road, easy parking, open till late.</p></div>
+<div class="wrap"><section id="inside">
+  <div class="head">
+    <span class="eyebrow">Inside</span>
+    <h2>The room, and the <em>hours</em> people lose in it</h2>
+    <p class="sub">Stock photography standing in for Koffee Stories' own room — swapped for real photos of the cafe once the owner sends them.</p>
   </div>
-</div></section>
+  <div class="gal">
+    <figure class="fig" style="margin:0">
+      <img src="https://images.unsplash.com/photo-1464979681340-bdd28a61699e?w=800&q=70" alt="Busy cafe counter with staff serving customers in bright daylight" loading="lazy">
+      <figcaption>At the counter</figcaption>
+    </figure>
+    <figure class="fig" style="margin:0">
+      <img src="https://images.unsplash.com/photo-1529940122574-0096689bc5cf?w=700&q=70" alt="Poached egg on toast beside an iced coffee at a window table" loading="lazy">
+      <figcaption>Window seat</figcaption>
+    </figure>
+    <figure class="fig" style="margin:0">
+      <img src="https://images.unsplash.com/photo-1559001724-fbad036dbc9e?w=700&q=70" alt="Cappuccino with latte art and a dusting of cinnamon, seen from above on dark wood" loading="lazy">
+      <figcaption>The long sit</figcaption>
+    </figure>
+  </div>
+</section></div>
 
-<section id="book"><div class="wrap">
-  <div class="eyebrow">Reservations</div><h2>Book a table</h2>
-  <p class="sub">Weekends fill up fast. Send a request and we'll confirm on WhatsApp.</p>
-  <div class="book">
-    <form onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Demo form — not connected'">
-      <label for="n">Name</label><input id="n" placeholder="Your name">
-      <label for="p">WhatsApp number</label><input id="p" inputmode="numeric" placeholder="10-digit number">
-      <label for="g">People</label><select id="g"><option>2</option><option>3–4</option><option>5–8</option><option>9+ (private event)</option></select>
-      <label for="d">Date</label><input id="d" type="date">
-      <label for="m">Anything else</label><textarea id="m" placeholder="Time, occasion, seating preference"></textarea>
-      <button class="btn" type="submit">Request a table</button>
+<div class="wrap"><section id="why"><div class="split">
+  <div class="imgwrap"><img src="https://images.unsplash.com/photo-1551887196-72e32bfc7bf3?w=800&q=70" alt="Dark, cosy cafe corner lit by Edison bulbs with plants on the shelves" loading="lazy"></div>
+  <div>
+    <span class="eyebrow">The idea</span>
+    <h2>802 people found you. <em>Then what?</em></h2>
+    <p class="sub">A four-point-four rating from 802 reviews does the hard part. The link on the listing has to finish the job.</p>
+    <div class="steps">
+      <div class="step"><h3>Right now it's a Linktree</h3><p>Someone taps the website link on Google and lands on a stack of buttons, not on the menu.</p></div>
+      <div class="step"><h3>A menu that can be read</h3><p>Prices, plates and coffee in plain text — searchable on Google, readable on a phone, no PDF to pinch and zoom.</p></div>
+      <div class="step"><h3>One link that does everything</h3><p>Menu, directions, phone, and a table request, all at one address of the cafe's own instead of scattered across apps.</p></div>
+    </div>
+    <div class="cta"><a class="btn" href="#visit">Talk about the real version</a></div>
+  </div>
+</div></section></div>
+
+<div class="order"><div class="wrap"><section id="visit">
+  <div class="head">
+    <span class="eyebrow">Visit</span>
+    <h2>Save a table, or just <em>drop in</em></h2>
+    <p class="sub">A demo enquiry form — on the real site this would land on the cafe's WhatsApp.</p>
+  </div>
+  <div class="ordergrid">
+    <form onsubmit="event.preventDefault();var b=this.querySelector('.btn');b.textContent='Demo form — not connected';b.style.background='var(--muted)'">
+      <label for="n">Your name</label><input id="n" placeholder="Name">
+      <label for="p">WhatsApp number</label><input id="p" placeholder="10-digit number" inputmode="numeric">
+      <label for="g">How many of you</label>
+      <select id="g"><option>Table for 2</option><option>Table for 3–4</option><option>Table for 5–8</option><option>Larger group</option></select>
+      <label for="d">Day</label><input id="d" type="date">
+      <label for="m">Anything we should know</label><textarea id="m" placeholder="Rough time, a quiet corner, a laptop plug point"></textarea>
+      <button class="btn" type="submit">Send request</button>
     </form>
-    <div class="info" id="visit"><ul>
-      <li><strong>Call or WhatsApp</strong>082828 25376</li>
-      <li><strong>Where</strong>Koffee Stories, Bliss Homes G-1, Chimanlal Girdharlal Road, Vasant Vihar, Ahmedabad</li>
-      <li><strong>Hours</strong>Sample timings — to be confirmed</li>
-      <li><strong>Events</strong>Enquire at least a week ahead</li>
-    </ul></div>
+    <div class="info">
+      <div class="irow"><i>☎</i><div><strong>Call or WhatsApp</strong><span><a href="tel:+918282825376">082828 25376</a></span></div></div>
+      <div class="irow"><i>◉</i><div><strong>Where</strong><span>Bliss Homes G-1, Chimanlal Girdharlal Road, Vasant Vihar, Ahmedabad</span></div></div>
+      <div class="irow"><i>◷</i><div><strong>Hours</strong><span>Sample timings — to be confirmed by the owner</span></div></div>
+      <div class="irow"><i>★</i><div><strong>On Google</strong><span>4.4 from 802 reviews</span></div></div>
+      <div class="irow"><i>₹</i><div><strong>Prices</strong><span>Every price on this page is a placeholder, not the cafe's real rate</span></div></div>
+    </div>
   </div>
-</div></section>
+</section></div></div>
 
-<footer><div class="wrap"><span>Koffee Stories · CG Road, Ahmedabad</span><span>Demo site — not affiliated with the business yet</span></div></footer>
+<footer><div class="wrap">
+  <span><em>Koffee Stories</em> · CG Road, Ahmedabad</span>
+  <span>Demo site — not affiliated with the business yet · photos from Unsplash</span>
+</div></footer>
 </body>
 </html>
