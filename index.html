@@ -322,6 +322,77 @@
     html[data-mode="recruiter"] .rc-top .rc-actions { display: none; }
     html[data-mode="recruiter"] #recruiter { min-height: 0; padding: 0; }
   }
+  /* ---------- designed plates (sized in container units so the sheet and mobile scale them too) ---------- */
+  .plate { container-type: inline-size; }
+  .plate-type > .pt-top { position: relative; z-index: 2; }
+  .plate-type.pl-console .pt-big, .plate-type.pl-certs .pt-big, .plate-type.pl-may .pt-big, .plate-type.pl-mun .pt-big { position: relative; z-index: 0; }
+
+  .plate-type.pl-console .pt-big { font-size: 17cqw; }
+  .con { position: absolute; z-index: 1; right: 5cqw; top: 11cqw; width: 60cqw; background: #0B0B0B; border: 1px solid rgba(236, 236, 236, .12); border-radius: 1.4cqw; box-shadow: 0 3cqw 7cqw -3cqw rgba(0, 0, 0, .9); font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 1.85cqw; line-height: 1.5; color: rgba(236, 236, 236, .8); transform: rotate(2deg); }
+  .con-bar { display: flex; align-items: center; gap: .9cqw; padding: 1.2cqw 1.8cqw; border-bottom: 1px solid rgba(236, 236, 236, .08); color: rgba(236, 236, 236, .38); }
+  .con-bar i { width: 1.3cqw; height: 1.3cqw; border-radius: 50%; background: rgba(236, 236, 236, .16); }
+  .con-bar i:first-child { background: var(--accent); }
+  .con-bar span { margin: 0 auto; transform: translateX(-2cqw); }
+  .con-body { display: grid; gap: .5cqw; padding: 1.8cqw 2.2cqw 2.2cqw; }
+  .con .ln { white-space: nowrap; overflow: hidden; }
+  .con b { color: var(--accent); font-weight: 500; }
+  .con .s { color: #A9D8B0; }
+  .con .ok { color: #7ACB8C; letter-spacing: .08em; }
+  .con .cur { display: inline-block; width: 1cqw; height: 2cqw; vertical-align: -.3cqw; background: #ECECEC; animation: con-blink 1s steps(1) infinite; }
+  .entry.is-current .pl-console .ln { animation: con-type .6s steps(26, end) both; }
+  .entry.is-current .pl-console .ln:nth-child(2) { animation-delay: .6s; }
+  .entry.is-current .pl-console .ln:nth-child(3) { animation-delay: 1.1s; }
+  .entry.is-current .pl-console .ln:nth-child(4) { animation-delay: 1.6s; }
+  .entry.is-current .pl-console .ln:nth-child(5) { animation-delay: 2.1s; }
+  @keyframes con-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  @keyframes con-blink { 50% { opacity: 0; } }
+
+  .pl-certs { background: #F1F0EC; color: #1E1E1E; }
+  .certs { position: absolute; inset: 0; }
+  .cert { position: absolute; display: flex; flex-direction: column; gap: 1.2cqw; width: 50cqw; aspect-ratio: 1.55; padding: 3cqw 3.2cqw; background: #FFF; color: #1E1E1E; box-shadow: 0 2.6cqw 5cqw -2.8cqw rgba(0, 0, 0, .38); transition: transform .9s var(--ease); }
+  .cert::before { content: ""; position: absolute; inset: 1.2cqw; border: 1px solid rgba(30, 30, 30, .12); pointer-events: none; }
+  .cert-org { font-size: 1.6cqw; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(30, 30, 30, .55); }
+  .cert-name { font-family: var(--serif); font-size: 4.4cqw; line-height: 1; }
+  .cert-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: auto; font-size: 1.6cqw; font-weight: 500; }
+  .seal { display: grid; place-items: center; width: 8cqw; height: 8cqw; border-radius: 50%; background: var(--accent); color: #1E1E1E; font-style: normal; font-size: 1.7cqw; font-weight: 700; letter-spacing: .06em; box-shadow: inset 0 0 0 .5cqw rgba(255, 255, 255, .35), inset 0 0 0 .9cqw var(--accent), inset 0 0 0 1.05cqw rgba(30, 30, 30, .22); }
+  .c1 { left: 7cqw; top: 13cqw; transform: rotate(-5deg); }
+  .c2 { right: 7cqw; top: 21cqw; transform: rotate(3deg); }
+  .entry.is-current .c1 { transform: rotate(-8deg) translate(-1.5cqw, -1cqw); }
+  .entry.is-current .c2 { transform: rotate(6deg) translate(1.5cqw, 1cqw); }
+  .plate-type.pl-certs .pt-big { align-self: flex-start; font-family: var(--serif); font-weight: 400; font-size: 11cqw; letter-spacing: -.02em; text-transform: none; }
+
+  .pl-may { color: #1E1E1E; }
+  .plate-type.pl-may .pt-big { font-size: 30cqw; letter-spacing: -.065em; line-height: .76; }
+  .may-key { position: relative; z-index: 2; font-size: 2.2cqw; color: rgba(30, 30, 30, .5); }
+  .may-key b { color: #1E1E1E; font-weight: 600; }
+  .stamp { position: absolute; z-index: 1; right: 7cqw; top: 15cqw; display: grid; place-items: center; gap: 1cqw; padding: 2.2cqw 3.4cqw 2cqw; border: .6cqw solid var(--accent); border-radius: 1cqw; color: var(--accent); font-size: 7cqw; font-weight: 700; letter-spacing: .02em; line-height: .9; text-transform: uppercase; transform: rotate(-12deg); opacity: .92; }
+  .stamp small { font-size: 1.5cqw; font-weight: 600; letter-spacing: .14em; }
+  .entry.is-current .stamp { animation: stamp .5s .3s cubic-bezier(.3, 1.6, .5, 1) both; }
+  @keyframes stamp { from { transform: rotate(-12deg) scale(1.9); opacity: 0; } to { transform: rotate(-12deg) scale(1); opacity: .92; } }
+
+  .plate-type.pl-mun .pt-big { display: flex; align-items: baseline; gap: 2cqw; font-size: 24cqw; }
+  .pl-mun .pt-big small { font-family: var(--serif); font-size: 4.6cqw; font-weight: 400; letter-spacing: 0; text-transform: none; }
+  .placard { position: absolute; z-index: 1; right: 6cqw; top: 13cqw; width: 38cqw; perspective: 60cqw; }
+  .placard-face { display: grid; gap: 1.2cqw; padding: 3.2cqw 3.6cqw; background: #FFF; color: #1E1E1E; font-size: 4.4cqw; font-weight: 600; letter-spacing: -.03em; line-height: 1; text-transform: uppercase; transform: rotateX(16deg) rotate(4deg); transform-origin: 50% 100%; box-shadow: 0 2.6cqw 4cqw -2cqw rgba(0, 0, 0, .45); }
+  .placard-face small { font-size: 1.6cqw; font-weight: 500; letter-spacing: .16em; color: rgba(30, 30, 30, .5); }
+  .entry.is-current .placard-face { animation: raise .8s .2s var(--ease) both; }
+  @keyframes raise { from { transform: rotateX(82deg) rotate(4deg); } to { transform: rotateX(16deg) rotate(4deg); } }
+
+  /* ---------- logo stays readable on any ground; HUD turns dark over the contact section ---------- */
+  .logo { color: #FFF; mix-blend-mode: difference; }
+  .logo small { color: rgba(255, 255, 255, .5); }
+  .hud { transition: background-color .4s var(--ease), color .4s var(--ease); }
+  html.hud-dark .hud { background: var(--ink); color: var(--bg); }
+  html.hud-dark .hud .label { color: inherit; opacity: .55; }
+  html.hud-dark .hud .hud-val, html.hud-dark .hud button, html.hud-dark .hud a { color: inherit; }
+  html.hud-dark .hud .t { color: inherit; opacity: .55; }
+
+  /* ---------- scroll warp + particle headline ---------- */
+  .stage.warp .entry .plate { filter: drop-shadow(var(--rgb, 0px) 0 0 rgba(255, 40, 90, .55)) drop-shadow(calc(var(--rgb, 0px) * -1) 0 0 rgba(0, 190, 255, .55)); }
+  .contact { position: relative; overflow: clip; }
+  .pt-canvas { position: absolute; z-index: 1; pointer-events: none; }
+  .contact-big.is-particles, .contact-big.is-particles em { color: transparent; }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -397,22 +468,22 @@
         </article>
 
         <article class="entry" id="e2">
-          <figure class="plate plate-type p-dark" aria-hidden="true"><span class="pt-top"><span>Internship &times;2</span><span>02</span></span><span class="pt-big">Omnia<br>Sys</span></figure>
+          <figure class="plate plate-type p-dark pl-console" aria-hidden="true"><span class="pt-top"><span>Internship &times;2 &middot; 2024, 2025</span><span>02</span></span><div class="con"><p class="con-bar"><i></i><i></i><i></i><span>tms &mdash; zsh</span></p><div class="con-body"><p class="ln"><b>$</b> psql tms -c <span class="s">"SELECT * FROM trips LIMIT 5;"</span></p><p class="ln"><b>$</b> python -m pytest tms/ -q</p><p class="ln ok">........................ [100%]</p><p class="ln"><b>$</b> git commit -m <span class="s">"fix: trip status bug"</span></p><p class="ln"><b>$</b> <span class="cur"></span></p></div></div><span class="pt-big">Omnia<br>Sys</span></figure>
           <div class="entry-meta"><span class="no">02</span><h3 data-k="name">OmniaSys</h3><p data-k="desc">Two summer internships, 2024 and 2025, on a transport management system: debugging, testing and small modules in Python and SQL.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Internship</dd></div><div><dt>Role</dt><dd data-k="role">Data science intern</dd></div><div><dt>Where</dt><dd data-k="where">OmniaSys, Ahmedabad</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>May to June 2024, and May to June 2025</li><li>Worked on modules for a transport management system</li><li>Debugging and testing web applications</li><li>Python and SQL</li></ul></div></div>
         </article>
 
         <article class="entry" id="e3">
-          <figure class="plate plate-type p-light" aria-hidden="true"><span class="pt-top"><span>Certification</span><span>03</span></span><span class="pt-big">OCI <span class="pt-serif">&times;2</span></span></figure>
+          <figure class="plate plate-type p-light pl-certs" aria-hidden="true"><span class="pt-top"><span>Certification</span><span>03</span></span><div class="certs"><div class="cert c1"><span class="cert-org">Oracle &middot; Certified Associate</span><span class="cert-name">MySQL HeatWave Implementation</span><span class="cert-foot"><span>Mark Patel</span><i class="seal">OCA</i></span></div><div class="cert c2"><span class="cert-org">Oracle &middot; Certified Professional</span><span class="cert-name">OCI Data Science</span><span class="cert-foot"><span>Mark Patel &middot; 2025</span><i class="seal">OCP</i></span></div></div><span class="pt-big">&times;2</span></figure>
           <div class="entry-meta"><span class="no">03</span><h3 data-k="name">Oracle Certified</h3><p data-k="desc">Oracle Certified Professional in OCI Data Science (2025), plus Oracle Certified Associate in MySQL HeatWave Implementation.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Certification</dd></div><div><dt>Role</dt><dd data-k="role">Candidate</dd></div><div><dt>Where</dt><dd data-k="where">Oracle</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>Oracle Certified Professional: OCI Data Science, 2025</li><li>Oracle Certified Associate: MySQL HeatWave Implementation</li></ul></div></div>
         </article>
 
         <article class="entry" id="e4">
-          <figure class="plate plate-type p-light" aria-hidden="true"><span class="pt-top"><span>Nonprofit, closed</span><span>04</span></span><span class="pt-big">MAY</span></figure>
+          <figure class="plate plate-type p-light pl-may" aria-hidden="true"><span class="pt-top"><span>Nonprofit, closed</span><span>04</span></span><span class="may-key"><b>M</b>ark &middot; <b>A</b>ryan &middot; <b>Y</b>ashasvi</span><span class="pt-big">MAY</span><span class="stamp">Closed<small>2025 &middot; Ahmedabad</small></span></figure>
           <div class="entry-meta"><span class="no">04</span><h3 data-k="name">May Foundation</h3><p data-k="desc">Co-founded a youth-led nonprofit with Aryan and Yashasvi. MAY is our initials. Education support, menstrual health awareness, financial literacy workshops and community drives. I built its website too. Now closed.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Nonprofit</dd></div><div><dt>Role</dt><dd data-k="role">Co-founder</dd></div><div><dt>Where</dt><dd data-k="where">Ahmedabad, 2025</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>Co-founded in May 2025 with Aryan and Yashasvi</li><li>Education: mentorship, tuition support and scholarships</li><li>Menstrual health awareness sessions and sanitary product drives</li><li>Financial literacy workshops on budgeting and saving</li><li>Community drives: health camps and clean-ups</li><li>Built the foundation's website with no-code tools</li><li>Now closed</li></ul></div></div>
         </article>
 
         <article class="entry" id="e5">
-          <figure class="plate plate-type p-accent" aria-hidden="true"><span class="pt-top"><span>Model United Nations</span><span>05</span></span><span class="pt-big">10+</span></figure>
+          <figure class="plate plate-type p-accent pl-mun" aria-hidden="true"><span class="pt-top"><span>Model United Nations</span><span>05</span></span><div class="placard"><span class="placard-face"><small>Delegate</small>Mark Patel</span></div><span class="pt-big">10+<small>conferences</small></span></figure>
           <div class="entry-meta"><span class="no">05</span><h3 data-k="name">Model UN</h3><p data-k="desc">Ten-plus conferences and recognition in multiple committees. I argue with research.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Debate</dd></div><div><dt>Role</dt><dd data-k="role">Delegate</dd></div><div><dt>Where</dt><dd data-k="where">10+ conferences</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>10+ Model United Nations conferences</li><li>Recognised in multiple committees</li><li>Public speaking, diplomacy and policy writing</li></ul></div></div>
         </article>
       </div>
@@ -950,6 +1021,149 @@
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   ['work', 'about', 'ask', 'contact'].forEach(function (id) { io.observe(document.getElementById(id)); });
+})();
+</script>
+<script>
+/* ---------- fx: decode text, scroll warp, particle headline ---------- */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var desktop = window.matchMedia('(min-width: 821px)');
+  var root = document.documentElement;
+
+  /* decode: text runs through glyphs before it settles */
+  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+=/<>[]';
+  function decode(el, text, dur) {
+    if (text == null) text = el.textContent;
+    if (reduce) { el._shown = text; el.textContent = text; return; }
+    if (el._dec) cancelAnimationFrame(el._dec);
+    var live = el.closest('[aria-live]');
+    if (live) live.setAttribute('aria-busy', 'true');
+    var start = performance.now(), n = text.length, at = [];
+    for (var i = 0; i < n; i++) at.push(Math.random() * 0.65 + (i / n) * 0.35);
+    (function step(now) {
+      var t = Math.min(1, (now - start) / (dur || 520)), out = '';
+      for (var k = 0; k < n; k++) out += (t >= at[k] || text[k] === ' ') ? text[k] : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      el._shown = out; el.textContent = out;
+      if (t < 1) el._dec = requestAnimationFrame(step);
+      else { el._dec = 0; if (live) live.removeAttribute('aria-busy'); }
+    })(start);
+  }
+  document.querySelectorAll('.nav a, .list .nm, .contact .links a').forEach(function (el) {
+    if (el.children.length) return;
+    var txt = el.textContent;
+    el.addEventListener('mouseenter', function () { decode(el, txt, 420); });
+    el.addEventListener('focus', function () { decode(el, txt, 420); });
+  });
+  var pn = document.querySelector('.panel-name');
+  if (pn) new MutationObserver(function () { if (pn.textContent !== pn._shown) decode(pn, pn.textContent, 480); })
+    .observe(pn, { childList: true, characterData: true, subtree: true });
+
+  /* scroll warp on the work plates + dark HUD over the contact section */
+  var stage = document.querySelector('#work .stage');
+  var contact = document.getElementById('contact'), hud = document.querySelector('.hud');
+  var lastY = window.scrollY, v = 0, warping = false;
+  function loop() {
+    var y = window.scrollY, dy = y - lastY;
+    lastY = y;
+    v += (dy - v) * 0.2;
+    if (stage && desktop.matches && !reduce) {
+      var a = Math.max(-1, Math.min(1, v / 55));
+      if (Math.abs(a) > 0.03) {
+        stage.style.transform = 'skewY(' + (a * 2.6).toFixed(2) + 'deg)';
+        stage.style.setProperty('--rgb', (a * 7).toFixed(1) + 'px');
+        if (!warping) { stage.classList.add('warp'); warping = true; }
+      } else if (warping) { stage.style.transform = ''; stage.classList.remove('warp'); warping = false; }
+    }
+    if (contact && hud && (dy || !loop.ran)) {
+      loop.ran = true;
+      var hb = hud.offsetHeight / 2, r = contact.getBoundingClientRect();
+      root.classList.toggle('hud-dark', r.top < hb && r.bottom > hb);
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  /* particle headline: the contact line is drawn in dots that scatter from the cursor */
+  var h2 = document.querySelector('.contact-big');
+  if (!h2 || reduce || !window.HTMLCanvasElement) return;
+  var sec = h2.closest('.contact'), cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+  cv.className = 'pt-canvas'; cv.setAttribute('aria-hidden', 'true');
+  sec.appendChild(cv);
+  var PAD = 70, pts = [], cols = ['#ECECEC', '#FF5B1F'], W = 0, H = 0, dpr = 1, size = 2;
+  var mx = -1e4, my = -1e4, running = false, started = false, touchT = 0;
+
+  function readColors() {
+    cols[0] = getComputedStyle(sec).color;
+    cols[1] = getComputedStyle(root).getPropertyValue('--accent').trim() || '#FF5B1F';
+  }
+  function build(scatter) {
+    h2.classList.remove('is-particles');
+    var sr = sec.getBoundingClientRect(), hr = h2.getBoundingClientRect();
+    W = Math.ceil(hr.width + PAD * 2); H = Math.ceil(hr.height + PAD * 2);
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.style.left = (hr.left - sr.left - PAD) + 'px'; cv.style.top = (hr.top - sr.top - PAD) + 'px';
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    /* draw the real text offscreen: red for the plain words, blue for the serif ones */
+    var off = document.createElement('canvas'); off.width = W; off.height = H;
+    var o = off.getContext('2d'), walker = document.createTreeWalker(h2, NodeFilter.SHOW_TEXT), node;
+    while ((node = walker.nextNode())) {
+      var el = node.parentNode, cs = getComputedStyle(el), serif = el.tagName === 'EM';
+      o.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      if ('letterSpacing' in o) o.letterSpacing = cs.letterSpacing === 'normal' ? '0px' : cs.letterSpacing;
+      o.fillStyle = serif ? '#0000FF' : '#FF0000';
+      var re = /\S+/g, mt, txt = node.textContent;
+      while ((mt = re.exec(txt))) {
+        var rg = document.createRange(); rg.setStart(node, mt.index); rg.setEnd(node, mt.index + mt[0].length);
+        var r = rg.getBoundingClientRect(), word = cs.textTransform === 'uppercase' ? mt[0].toUpperCase() : mt[0];
+        var m = o.measureText(word), asc = m.fontBoundingBoxAscent || parseFloat(cs.fontSize) * 0.8, desc = m.fontBoundingBoxDescent || parseFloat(cs.fontSize) * 0.2;
+        o.fillText(word, r.left - hr.left + PAD, r.top - hr.top + PAD + (r.height - asc - desc) / 2 + asc);
+      }
+    }
+    var data = o.getImageData(0, 0, W, H).data, step = Math.max(3, Math.round(hr.height / 95));
+    var fresh = [];
+    for (var y = 0; y < H; y += step) for (var x = 0; x < W; x += step) {
+      var i = (y * W + x) * 4;
+      if (data[i + 3] < 140) continue;
+      fresh.push({ hx: x, hy: y, x: x, y: y, vx: 0, vy: 0, c: data[i + 2] > data[i] ? 1 : 0 });
+    }
+    if (scatter) fresh.forEach(function (p) { p.x = Math.random() * W; p.y = Math.random() * H; p.vx = (Math.random() - .5) * 30; p.vy = (Math.random() - .5) * 30; });
+    pts = fresh; size = Math.max(1.6, step * 0.62);
+    readColors();
+    h2.classList.add('is-particles');
+    wake();
+  }
+  function frame() {
+    var R = Math.max(80, H * 0.28), R2 = R * R, moving = false;
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i], dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+      if (d2 < R2) { var d = Math.sqrt(d2) || 1, f = (1 - d / R) * 5.5; p.vx += dx / d * f; p.vy += dy / d * f; }
+      p.vx = (p.vx + (p.hx - p.x) * 0.05) * 0.85;
+      p.vy = (p.vy + (p.hy - p.y) * 0.05) * 0.85;
+      p.x += p.vx; p.y += p.vy;
+      if (!moving && (Math.abs(p.vx) + Math.abs(p.vy) > 0.03 || Math.abs(p.hx - p.x) + Math.abs(p.hy - p.y) > 0.4)) moving = true;
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    for (var c = 0; c < 2; c++) {
+      ctx.fillStyle = cols[c];
+      for (var j = 0; j < pts.length; j++) { var q = pts[j]; if (q.c === c) ctx.fillRect(q.x, q.y, size, size); }
+    }
+    if (moving || mx > -1e3) requestAnimationFrame(frame); else running = false;
+  }
+  function wake() { if (!running) { running = true; requestAnimationFrame(frame); } }
+  function point(e) { var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; wake(); }
+  sec.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') point(e); });
+  sec.addEventListener('pointerdown', function (e) { point(e); clearTimeout(touchT); if (e.pointerType !== 'mouse') touchT = setTimeout(function () { mx = my = -1e4; }, 450); });
+  sec.addEventListener('pointerleave', function () { mx = my = -1e4; });
+  new IntersectionObserver(function (es) {
+    if (!es[0].isIntersecting || started) return;
+    started = true;
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { build(true); });
+  }, { threshold: 0.25 }).observe(h2);
+  var rt = 0;
+  window.addEventListener('resize', function () { if (!started) return; clearTimeout(rt); rt = setTimeout(function () { build(false); }, 200); });
+  new MutationObserver(function () { if (started) { readColors(); wake(); } }).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-mode'] });
 })();
 </script>
 <script>
