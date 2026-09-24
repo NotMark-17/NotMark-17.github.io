@@ -149,6 +149,12 @@
   .move p { font-size: 13px; }
   .move .who { font-size: 12px; color: var(--mute); }
   .move .btn { justify-self: start; height: 28px; font-size: 12px; }
+  .hist input.need { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+  .hint.need { color: var(--accent); font-weight: 500; }
+  .move.gate { grid-column: 1 / -1; border-style: dashed; border-color: var(--accent); }
+  .move.gate > b { font-size: 22px; letter-spacing: -.03em; }
+  .rough .pct::before { content: '~'; color: var(--mute); font-weight: 500; }
+  .rough .meter i { opacity: .45; }
   .moves-empty { font-size: 13px; color: var(--mute); padding: 14px; border: 1px dashed var(--line); border-radius: 10px; }
 
   .find { margin-bottom: 14px; max-width: 360px; }
@@ -585,6 +591,14 @@
     Object.keys(w).forEach(function (k) { var v = k === 'm12' ? pred : hv(P, k); if (v == null) v = pred; sum += v * w[k]; wt += w[k]; });
     return sum / wt + boost;
   }
+  function missingYears(P) {
+    if (!INDIAN[P.board]) return [];
+    var need = {};
+    P.countries.forEach(function (c) { Object.keys(YEAR_W[c] || {}).forEach(function (k) { if (k !== 'm12') need[k] = 1; }); });
+    return ['m9', 'm10', 'm11'].filter(function (k) { return need[k] && hv(P, k) == null; });
+  }
+  var YEAR_NAME = { m9: 'Class 9', m10: 'Class 10', m11: 'Class 11' };
+  function joinAnd(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
   function trend(P) { var a = hv(P, 'm10'), b = hv(P, 'm11'); return a == null || b == null ? 0 : b - a; }
   function reqPct(u, P) {
     var hi = COMPETITIVE[P.major];
@@ -755,7 +769,7 @@
     intakeEl.value = P.intake;
     $('#exampleTag').hidden = !P.example;
   }
-  function change(fn) { fn(); P.example = false; save(); syncInputs(); render(); }
+  function change(fn) { if (P.example) P.hist = { m9: null, m10: null, m11: null }; fn(); P.example = false; save(); syncInputs(); render(); }
 
   $$('[data-seg="board"] button').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -836,6 +850,14 @@
   function render() {
     var res = evaluate(P);
     lastResults = res;
+    var miss = missingYears(P);
+    board.classList.toggle('rough', miss.length > 0);
+    ['m9', 'm10', 'm11'].forEach(function (k) { $('#' + k).classList.toggle('need', miss.indexOf(k) !== -1); });
+    var hint = $('#histHint');
+    hint.classList.toggle('need', miss.length > 0);
+    hint.textContent = miss.length
+      ? 'Add ' + joinAnd(miss.map(function (k) { return YEAR_NAME[k]; })) + '. Your countries read ' + (miss.length > 1 ? 'these years' : 'this year') + ', so until then every chance below is a rough guess.'
+      : 'US universities read all four years, and 11th counts most. The UK and Australia go by your predicted 12th, checked against your 11th.';
     /* FLIP: remember where every card was */
     var first = {};
     Object.keys(cards).forEach(function (id) { if (cards[id].isConnected) first[id] = cards[id].getBoundingClientRect(); });
@@ -865,14 +887,21 @@
     $('#ringVal').style.strokeDashoffset = (276.46 * (1 - s.total / 100)).toFixed(1);
     $('#bars').innerHTML = s.parts.map(function (p) { return '<div class="bar"><span>' + p[0] + '</span><i style="--w:' + Math.round(p[1]) + '%"></i><span class="num">' + Math.round(p[1]) + '</span></div>'; }).join('');
     var weakest = s.parts.slice().sort(function (x, y) { return x[1] - y[1]; })[0];
-    $('#weak').innerHTML = weakest[1] < 70 ? 'Weakest area: <b>' + weakest[0] + '</b>. The moves below show what fixing it is worth.' : 'No weak spots. Now it\u2019s about essays and fit.';
+    $('#weak').innerHTML = weakest[1] < 70 ? 'Weakest area: <b>' + weakest[0] + '</b>. ' + (miss.length ? 'Add your earlier marks to see what fixing it is worth.' : 'The moves below show what fixing it is worth.') : 'No weak spots. Now it\u2019s about essays and fit.';
     applyFind();
-    renderMoves(res);
+    renderMoves(res, miss);
     renderRoadmap();
     updateTray();
   }
 
-  function renderMoves(base) {
+  function renderMoves(base, miss) {
+    if (miss && miss.length) {
+      $('#moves').innerHTML = '<div class="move gate"><b>First, add your ' + joinAnd(miss.map(function (k) { return YEAR_NAME[k]; })) + ' marks</b>' +
+        '<p>Moves are simulated on your full record. Without ' + (miss.length > 1 ? 'these years' : 'this year') + ' we\u2019d be guessing, and a guess dressed up as advice is worse than none. Universities ' + (miss.indexOf('m11') !== -1 ? 'lean hardest on <b>11th</b>, ' : '') + 'so it changes which moves matter.</p>' +
+        '<button class="btn" type="button" id="addMarks">Add my marks</button></div>';
+      $('#addMarks').addEventListener('click', function () { var f = $('#' + miss[0]); f.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); setTimeout(function () { f.focus({ preventScroll: true }); }, reduce ? 0 : 450); });
+      return;
+    }
     var list = MOVES.filter(function (m) { return m.test(P); }).map(function (m) { return scoreMove(P, base, m); })
       .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 4);
     var el = $('#moves');
