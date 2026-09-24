@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>try{if(localStorage.getItem("mp-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<script>addEventListener("pagereveal",function(e){if(e.viewTransition)document.documentElement.classList.add("ue-vt")})</script>
 <title>UniExplore · Where do you actually fit?</title>
 <meta name="description" content="Enter your marks, scores and activities. UniExplore sorts universities across the US, UK, Australia, Canada and Singapore into reach, target and safe, live. No sign-up. Built by Mark Patel.">
 <meta property="og:title" content="UniExplore by Mark Patel">
@@ -286,6 +287,152 @@
     .board { grid-template-columns: repeat(3, 1fr); }
     .board .col { display: grid !important; }
     .card { break-inside: avoid; }
+  }
+</style>
+<style id="ue-motion">
+  /* =====================================================================
+     Motion layer. Pure presentation: transform and opacity only, and all of it
+     switched off under prefers-reduced-motion (the global rule above plus the
+     block at the end of this sheet).
+     ===================================================================== */
+  :root { --ue-out: cubic-bezier(.2, .8, .2, 1); --ue-spring: cubic-bezier(.2, 1.5, .35, 1); --ue-grain-o: .07; }
+  html[data-theme="dark"] { --ue-grain-o: .1; }
+
+  /* ---------- scroll progress hairline under the top bar ---------- */
+  .top::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); transform-origin: 0 50%; scale: 0 1; pointer-events: none; }
+  @supports (animation-timeline: scroll()) {
+    .top::after { animation: ue-progress linear both; animation-timeline: scroll(root); }
+  }
+  @keyframes ue-progress { to { scale: 1 1; } }
+
+  /* ---------- hero: drifting accent glow, film grain, drawn underline ---------- */
+  .hero { position: relative; isolation: isolate; overflow: clip; --ue-px: 0; --ue-py: 0; }
+  .hero::before { content: ""; position: absolute; z-index: -1; --ue-o: min(900px, 150vw); width: var(--ue-o); aspect-ratio: 1; right: calc(var(--ue-o) * -.3); top: calc(var(--ue-o) * -.6); border-radius: 50%; pointer-events: none;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 24%, transparent), color-mix(in srgb, var(--accent) 7%, transparent) 55%, transparent 72%);
+    translate: calc(var(--ue-px) * 36px) calc(var(--ue-py) * 28px); transition: translate 1.2s var(--ue-out);
+    animation: ue-drift 16s ease-in-out infinite alternate; }
+  .hero::after { content: ""; position: absolute; z-index: -1; inset: -60px; pointer-events: none; opacity: var(--ue-grain-o);
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent calc(100% - 60px)); mask-image: linear-gradient(to bottom, #000 45%, transparent calc(100% - 60px));
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: ue-grain .9s steps(5) infinite; }
+  @keyframes ue-drift { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-7%, 9%) scale(1.08); } 100% { transform: translate(5%, -4%) scale(.96); } }
+  @keyframes ue-grain { 0% { transform: translate(0, 0); } 20% { transform: translate(-22px, 14px); } 40% { transform: translate(18px, -26px); } 60% { transform: translate(-12px, -8px); } 80% { transform: translate(26px, 20px); } 100% { transform: translate(0, 0); } }
+  .hero h1 em { position: relative; display: inline-block; }
+  .hero h1 em::after { content: ""; position: absolute; left: -2%; right: -3%; bottom: -.1em; height: .2em; pointer-events: none; transform-origin: 0 50%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C 40 4, 70 4, 100 10 S 165 17, 197 6' fill='none' stroke='%23FF5B1F' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+    animation: ue-draw .9s .45s cubic-bezier(.7, 0, .2, 1) both; }
+  @keyframes ue-draw { from { scale: 0 1; } }
+  .hero > div:first-child > *, .hero-side > * { animation: ue-rise .8s var(--ue-out) both; }
+  .hero h1 { animation-delay: .06s !important; }
+  .hero-side > p { animation-delay: .14s !important; }
+  .hero-stats { animation-delay: .22s !important; }
+  html.ue-vt .hero > div:first-child > *, html.ue-vt .hero-side > * { animation: none; }
+  @keyframes ue-rise { from { opacity: 0; translate: 0 22px; } }
+  @supports (animation-timeline: scroll()) {
+    .hero > div { animation: ue-par linear both; animation-timeline: scroll(root); animation-range: 0 70vh; }
+    .hero > div:first-child { --ue-par: -80px; }
+    .hero > div:last-child { --ue-par: -30px; }
+  }
+  @keyframes ue-par { to { transform: translateY(var(--ue-par, -40px)); opacity: .25; } }
+
+  /* ---------- inputs: filled sliders, springy toggles, focused labels ---------- */
+  input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; --ue-fill: 50%; }
+  input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--accent) var(--ue-fill), color-mix(in srgb, var(--ink) 16%, transparent) var(--ue-fill)); }
+  input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--ink) 16%, transparent); }
+  input[type="range"]::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--accent); }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -8px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--accent), 0 6px 14px -6px rgba(0, 0, 0, .6); transition: scale .25s var(--ue-spring); }
+  input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--accent); transition: scale .25s var(--ue-spring); }
+  input[type="range"]:hover::-webkit-slider-thumb { scale: 1.12; }
+  input[type="range"]:active::-webkit-slider-thumb { scale: 1.35; }
+  input[type="range"]:active::-moz-range-thumb { scale: 1.35; }
+  input[type="range"]:focus-visible { outline: none; }
+  input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 1px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 30%, transparent); }
+  input[type="range"]:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 1px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 30%, transparent); }
+  .big-slider output { transform-origin: 0 100%; }
+  .seg button, .lvl button { transition: background-color .2s, color .2s, border-color .2s, scale .25s var(--ue-spring); }
+  .btn { transition: border-color .2s, background-color .2s, scale .25s var(--ue-spring), translate .25s var(--ue-out); }
+  .seg button:active, .lvl button:active, .btn:active { scale: .92; }
+  .seg button[aria-pressed="true"], .lvl button[aria-pressed="true"] { animation: ue-pop .45s var(--ue-spring); }
+  @keyframes ue-pop { 0% { scale: .82; } 100% { scale: 1; } }
+  .field { transition: border-color .2s, background-color .2s; }
+  .field:hover { border-color: var(--faint); }
+  .field:focus { border-color: var(--ink); }
+  .row .label, .hist label > span { transition: color .2s; }
+  .row:focus-within > .label, .hist label:focus-within > span { color: var(--accent); }
+
+  /* ---------- summary: stacked plates and a giant editorial number ---------- */
+  .summary { position: relative; isolation: isolate; background: transparent; border-color: transparent; }
+  .ue-face { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 10px; pointer-events: none; }
+  .ue-giant { position: absolute; right: -.04em; bottom: -.3em; font: italic 400 clamp(150px, 17vw, 240px)/1 var(--serif); letter-spacing: -.05em; color: var(--ink); opacity: .07; white-space: nowrap; }
+  html[data-theme="dark"] .ue-giant { opacity: .06; }
+  .summary::before, .summary::after { content: ""; position: absolute; inset: 0; z-index: -2; border-radius: 10px; pointer-events: none; transition: rotate .7s var(--ue-spring), translate .7s var(--ue-spring); }
+  .summary::before { background: var(--ink); rotate: -.55deg; translate: -2px 4px; }
+  .summary::after { background: var(--accent); rotate: .45deg; translate: 3px 2px; }
+  .summary:hover::before { rotate: -1.1deg; translate: -4px 6px; }
+  .summary:hover::after { rotate: .9deg; translate: 5px 4px; }
+  .toast { transform: translate(-50%, calc(-100% - 30px)); }
+  .toast.on { transform: translate(-50%, 0); }
+  .count b { transform-origin: 0 100%; }
+  .col-h span { display: inline-block; transform-origin: 100% 100%; }
+  .d-band { display: inline-block; }
+  .col-h span { font-size: 20px; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+  .bar i::after { transform-origin: 0 50%; }
+
+  /* ---------- cards: tilt toward the pointer, sheen, pulse, delta chips ---------- */
+  .card { --ue-band: var(--accent); transition: border-color .2s, box-shadow .25s, rotate .45s var(--ue-out), translate .45s var(--ue-out); }
+  .card[data-band="reach"] { --ue-band: var(--reach); }
+  .card[data-band="target"] { --ue-band: var(--target); }
+  .card[data-band="safe"] { --ue-band: var(--safe); }
+  /* both pseudo-elements exist only while needed, so 53 cards don't carry 106 extra boxes through every restyle */
+  .card.ue-p::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; opacity: 0; border: 2px solid var(--ue-band); }
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover { rotate: var(--ue-tilt, -.6deg); translate: 0 -3px; box-shadow: 0 18px 30px -22px rgba(0, 0, 0, .55); }
+    .card:hover::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; animation: ue-fade .3s both;
+      background: radial-gradient(260px circle at var(--ue-mx, 50%) var(--ue-my, 0%), color-mix(in srgb, var(--ue-band) 13%, transparent), transparent 65%); }
+  }
+  @keyframes ue-fade { from { opacity: 0; } }
+  .meter i { transform-origin: 0 50%; }
+  .ue-delta { position: absolute; top: -9px; right: 12px; z-index: 2; padding: 1px 7px; border-radius: 999px; font: 600 11px/1.5 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: .01em; white-space: nowrap; pointer-events: none;
+    background: var(--safe); color: var(--bg); box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .5); }
+  .ue-delta.dn { background: var(--reach); color: #1E1E1E; }
+  .ue-delta.pop { animation: ue-chip-in .4s var(--ue-spring) both; }
+  .ue-delta.go { animation: ue-chip-out .9s var(--ue-out) forwards; }
+  @keyframes ue-chip-in { from { opacity: 0; scale: .4; translate: 0 8px; } }
+  @keyframes ue-chip-out { to { opacity: 0; translate: 0 -26px; scale: .9; } }
+  .ue-range { font-size: 11px; font-weight: 500; letter-spacing: .02em; color: var(--accent); animation: ue-chip-in .3s var(--ue-out) both; }
+  .field.ue-bad { border-color: var(--accent); }
+  .ue-fly { position: fixed; z-index: 70; margin: 0; pointer-events: none; transform-origin: 0 100%; }
+  .ue-ghost { position: fixed; z-index: 60; margin: 0; pointer-events: none; transform-origin: 0 0; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6); }
+
+  /* ---------- moves ---------- */
+  .move { position: relative; transition: translate .35s var(--ue-out), border-color .2s, box-shadow .35s; }
+  .move > b { transform-origin: 0 100%; transition: scale .4s var(--ue-spring); justify-self: start; }
+  @media (hover: hover) and (pointer: fine) {
+    .move:not(.gate):hover { translate: 0 -4px; border-color: var(--faint); box-shadow: 0 18px 30px -24px rgba(0, 0, 0, .55); }
+    .move:not(.gate):hover > b { scale: 1.14; }
+  }
+
+  /* ---------- scroll-driven reveals ---------- */
+  /* only on elements render() never rebuilds, so no timelines are recreated per keystroke */
+  @supports (animation-timeline: view()) {
+    .sec-h, .roadmap, .foot > p { animation: ue-reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+  }
+  @keyframes ue-reveal { from { opacity: 0; translate: 0 18px; } }
+
+  /* ---------- theme switch: a circular wipe from the toggle ---------- */
+  html.ue-theme-vt .hero { view-transition-name: none; }
+  html.ue-theme-vt::view-transition-old(root), html.ue-theme-vt::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+  html.ue-theme-vt::view-transition-new(root) { animation: ue-wipe .7s cubic-bezier(.7, 0, .2, 1); }
+  @keyframes ue-wipe { from { clip-path: circle(0 at var(--ue-x, 100%) var(--ue-y, 0)); } to { clip-path: circle(var(--ue-r, 150%) at var(--ue-x, 100%) var(--ue-y, 0)); } }
+
+  @media (max-width: 860px) {
+    .ue-giant { font-size: 150px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero::after { display: none; }
+    .card:hover, .move:hover, .summary:hover::before, .summary:hover::after { rotate: none !important; translate: none !important; }
+    .move:hover > b, .seg button:active, .lvl button:active, .btn:active { scale: none !important; }
+    .top::after { display: none; }
   }
 </style>
 </head>
@@ -963,7 +1110,22 @@
     intakeEl.value = P.intake;
     $('#exampleTag').hidden = !P.example;
   }
-  function change(fn) { if (P.example) P.hist = { m9: null, m10: null, m11: null }; fn(); P.example = false; save(); syncInputs(); render(); }
+  function change(fn) { if (P.example) P.hist = { m9: null, m10: null, m11: null }; fn(); P.example = false; save(); syncInputs(); if (pressing) held = true; else render(); }
+  /* A field's change fires on the mousedown that blurs it. Re-rendering then would move or
+     replace the button or card under the pointer and the click would never arrive, so hold
+     the render until the press (and its click) is over. */
+  var pressing = false, held = false;
+  document.addEventListener('pointerdown', function (e) { pressing = e.button === 0 && !!(e.target.closest && e.target.closest('button, a, #board .card, .cmp-box')); }, true);
+  var releaseT = 0;
+  function release() {
+    if (!pressing) return;
+    pressing = false; clearTimeout(releaseT);
+    setTimeout(function () { if (held && !pressing) { held = false; render(); } }, 0);
+  }
+  /* on touch the blur (and its change) comes after pointerup, so wait for the click itself */
+  document.addEventListener('pointerup', function () { if (pressing) { clearTimeout(releaseT); releaseT = setTimeout(release, 450); } }, true);
+  document.addEventListener('pointercancel', release, true);
+  document.addEventListener('click', release, true);
 
   $$('[data-seg="board"] button').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -1077,13 +1239,15 @@
       $('.col-empty', cols[b]).hidden = counts[b] > 0;
     });
     if (!reduce) {
+      var flips = [];   /* read every rect first, then animate: one layout per render, not one per card */
       Object.keys(first).forEach(function (id) {
         var el = cards[id]; if (!el.isConnected) return;
         var l = el.getBoundingClientRect(), f = first[id];
         var dx = f.left - l.left, dy = f.top - l.top;
         if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
-        el.animate([{ transform: 'translate(' + dx + 'px,' + dy + 'px)' }, { transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.7,0,.2,1)' });
+        flips.push([el, dx, dy]);
       });
+      flips.forEach(function (x) { x[0].animate([{ transform: 'translate(' + x[1] + 'px,' + x[2] + 'px)' }, { transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.7,0,.2,1)' }); });
     }
     $('#jumpN').textContent = counts.reach + ' \u00B7 ' + counts.target + ' \u00B7 ' + counts.safe;
     $('#cReach').textContent = counts.reach; $('#cTarget').textContent = counts.target; $('#cSafe').textContent = counts.safe;
@@ -1336,6 +1500,382 @@
   P = load();
   syncInputs();
   render();
+})();
+</script>
+<script>
+/* =======================================================================
+   Motion layer. It never touches the model: it watches what render() puts in
+   the DOM (MutationObserver, which runs before the next paint) and animates
+   from the previous state to the new one. Transform and opacity only.
+   ======================================================================= */
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var board = $('#board');
+  if (!board) return;
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var canAnimate = !!Element.prototype.animate;
+  function calm() { return mq.matches || !canAnimate; }
+  var EASE = 'cubic-bezier(.2,.8,.2,1)', INOUT = 'cubic-bezier(.7,0,.2,1)', SPRING = 'cubic-bezier(.2,1.5,.35,1)';
+  var RANK = { reach: 0, target: 1, safe: 2 };
+  function anim(el, kf, opt) { if (calm() || !el) return null; try { return el.animate(kf, opt); } catch (e) { return null; } }
+
+  /* ---------- number tweens: one rAF loop for every counter on the page ---------- */
+  var tweens = {}, last = {}, rafId = 0;
+  function outCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function frame(now) {
+    var live = false;
+    Object.keys(tweens).forEach(function (k) {
+      var tw = tweens[k], t = Math.min(1, (now - tw.start) / tw.dur);
+      tw.cur = tw.from + (tw.to - tw.from) * outCubic(Math.max(0, t));
+      if (tw.node.isConnected) tw.node.nodeValue = tw.fmt(t >= 1 ? tw.to : tw.cur);
+      if (t >= 1 || !tw.node.isConnected) delete tweens[k]; else live = true;
+    });
+    rafId = live ? requestAnimationFrame(frame) : 0;
+  }
+  function run(key, node, from, to, dur, fmt, delay) {
+    fmt = fmt || function (v) { return String(Math.round(v)); };
+    tweens[key] = { node: node, from: from, to: to, cur: from, start: performance.now() + (delay || 0), dur: dur, fmt: fmt };
+    node.nodeValue = fmt(from);
+    if (!rafId) rafId = requestAnimationFrame(frame);
+  }
+  /* animate the number in el from what was on screen to what render() just wrote */
+  function counter(key, el, dur, from) {
+    var node = el && el.firstChild;
+    if (!node || node.nodeType !== 3) return null;
+    var tw = tweens[key];
+    if (tw && tw.node === node) return null;                 /* still our node: nothing new was rendered */
+    var to = parseFloat(node.nodeValue);
+    if (isNaN(to)) return null;
+    if (from == null) from = tw ? tw.cur : last[key];
+    last[key] = to;
+    if (tw) delete tweens[key];
+    if (from == null || Math.round(from) === to || calm()) return null;
+    run(key, node, from, to, dur || 700);
+    return { from: from, to: to };
+  }
+  function bump(el, s) { anim(el, [{ scale: s || 1.18 }, { scale: 1 }], { duration: 420, easing: SPRING }); }
+
+  /* ---------- cards: count-ups, meters, band jumps, delta chips ---------- */
+  var state = {};            /* id -> { p, band } as last rendered */
+  var burst = null, burstT = 0, moveBurst = 0;
+  /* only cards on screen get the full treatment; the rest just take their new values */
+  var vis = new Set(), watched = new WeakSet();
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) vis.add(e.target); else vis.delete(e.target); });
+  }, { rootMargin: '120px 0px' }) : null;
+  function onScreen(el) { if (!io) return true; if (!watched.has(el)) { watched.add(el); io.observe(el); return true; } return vis.has(el); }
+  function truth(el) { var m = /about (\d+) percent/.exec(el.getAttribute('aria-label') || ''); return m ? +m[1] : null; }
+  function meter(el, from, to, delay) {
+    var i = $('.meter i', el);
+    if (!i || !to) return;
+    anim(i, [{ transform: 'scaleX(' + Math.max(0, Math.min(3, from / to)).toFixed(3) + ')' }, { transform: 'none' }], { duration: 650, delay: delay || 0, easing: EASE, fill: 'backwards' });
+  }
+  function pulse(el, strong) {
+    if (calm()) return;
+    el.classList.add('ue-p');
+    clearTimeout(el._ueP); el._ueP = setTimeout(function () { el.classList.remove('ue-p'); }, 1000);
+    anim(el, [{ opacity: strong ? 1 : .8, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(' + (strong ? 1.06 : 1.03) + ')' }], { duration: strong ? 900 : 650, easing: EASE, pseudoElement: '::after' });
+  }
+  function jump(el, from, to, k) {
+    var up = RANK[to] > RANK[from], d = moveBurst ? Math.min(k * 45, 450) : 0;
+    anim(el, [{ scale: 1, rotate: '0deg' }, { scale: moveBurst ? 1.07 : 1.04, rotate: (up ? -2.4 : 2.4) + 'deg', offset: .4 }, { scale: 1, rotate: '0deg' }], { duration: 720, delay: d, easing: EASE });
+    pulse(el, true);
+  }
+  function chip(el, id, d, newBand) {
+    var old = $('.ue-delta', el);
+    if (old) old.remove();
+    if (!d && !newBand) return;
+    var c = document.createElement('span');
+    c.className = 'ue-delta' + (d < 0 ? ' dn' : '');
+    c.setAttribute('aria-hidden', 'true');
+    c.textContent = (d > 0 ? '+' : d < 0 ? '−' : '') + (d ? Math.abs(d) : '') + (newBand ? (d ? ' · ' : '') + (d >= 0 ? '↑ ' : '↓ ') + newBand : '');
+    var sign = d < 0 ? -1 : 1;
+    if (!burst.shown[id] || burst.shown[id] !== sign) c.className += ' pop';
+    burst.shown[id] = sign;
+    el.appendChild(c);
+  }
+  function endBurst() {
+    $$('.ue-delta', board).forEach(function (c) { c.classList.remove('pop'); c.classList.add('go'); });
+    setTimeout(function () { $$('.ue-delta.go', board).forEach(function (c) { c.remove(); }); mo.takeRecords(); }, 900);
+    burst = null; moveBurst = 0;
+  }
+  function enter(list, base) {
+    list.forEach(function (el, i) {
+      anim(el, [{ opacity: 0, translate: '0 26px', rotate: (i % 2 ? 1.4 : -1.4) + 'deg' }, { opacity: 1, translate: '0 0', rotate: '0deg' }],
+        { duration: 600, delay: (base || 0) + Math.min(i * 30, 420), easing: EASE, fill: 'backwards' });
+    });
+  }
+
+  /* dragging a slider re-renders every few ms: then numbers just follow the thumb, no count-ups */
+  var lastT = 0, rapid = false;
+  function onBoard(initial) {
+    var jumped = 0, entered = [];
+    $$('.col', board).forEach(function (col, ci) {
+      $$('.card', col).forEach(function (el, k) {
+        var id = el.dataset.id, p = truth(el), band = el.dataset.band, prev = state[id];
+        if (p == null) return;
+        state[id] = { p: p, band: band };
+        var pctEl = $('.pct', el);
+        if (initial) {
+          onScreen(el);
+          if (!calm()) { run('c:' + id, pctEl.firstChild, 0, p, 900, null, 180 + Math.min(k * 30, 420) + ci * 60); last['c:' + id] = p; meter(el, 0, p, 180 + Math.min(k * 30, 420) + ci * 60); }
+          else last['c:' + id] = p;
+          return;
+        }
+        if (!prev) { entered.push(el); last['c:' + id] = p; return; }
+        if (!onScreen(el)) { last['c:' + id] = p; if (tweens['c:' + id]) delete tweens['c:' + id]; if (burst && !(id in burst.base)) { burst.base[id] = prev.p; burst.band[id] = prev.band; } return; }
+        var shown = tweens['c:' + id] ? tweens['c:' + id].cur : prev.p;
+        if (rapid) { delete tweens['c:' + id]; last['c:' + id] = p; }
+        else if (counter('c:' + id, pctEl, 650)) meter(el, shown, p);
+        if (!burst) burst = { base: {}, band: {}, shown: {} };
+        if (!(id in burst.base)) { burst.base[id] = prev.p; burst.band[id] = prev.band; }
+        var d = p - burst.base[id];
+        chip(el, id, d, band !== burst.band[id] ? band : null);
+        if (band !== prev.band) jump(el, prev.band, band, jumped++);
+        else if (p !== prev.p && !burst.shown['pulsed:' + id]) { burst.shown['pulsed:' + id] = 1; pulse(el, false); }
+      });
+    });
+    enter(entered, 0);
+    if (!rapid) $$('.col-h [data-n]', board).forEach(function (n) { if (counter('n:' + n.parentNode.parentNode.dataset.band, n, 500)) bump(n); });
+    if (!initial && burst) { clearTimeout(burstT); burstT = setTimeout(endBurst, moveBurst ? 1400 : 750); }
+  }
+
+  /* ---------- summary: ring draw, giant number, counts, bars ---------- */
+  var summary = $('.summary'), ringNum = $('#ringNum'), ringVal = $('#ringVal');
+  var face = document.createElement('div'); face.className = 'ue-face'; face.setAttribute('aria-hidden', 'true');
+  var giant = document.createElement('span'); giant.className = 'ue-giant num'; giant.textContent = ringNum.textContent;
+  face.appendChild(giant); summary.insertBefore(face, summary.firstChild);
+  var lastBars = {};
+  function onSummary(initial) {
+    if (rapid) {
+      ['ring', 'giant', 'cReach', 'cTarget', 'cSafe'].forEach(function (k) { delete tweens[k]; });
+      ['ringNum', 'cReach', 'cTarget', 'cSafe'].forEach(function (id) { last[id === 'ringNum' ? 'ring' : id] = parseFloat($('#' + id).textContent); });
+      giant.textContent = ringNum.textContent;
+      $$('#bars .bar').forEach(function (b) { lastBars[b.firstChild.textContent] = parseFloat($('i', b).style.getPropertyValue('--w')) || 0; });
+      return;
+    }
+    var r = counter('ring', ringNum, 900, initial ? 0 : null);
+    giant.textContent = ringNum.textContent;
+    if (r) { run('giant', giant.firstChild, r.from, r.to, 900); if (!initial) { bump(ringNum, 1.12); anim(summary, [{ rotate: '0deg' }, { rotate: (r.to > r.from ? -.5 : .5) + 'deg' }, { rotate: '0deg' }], { duration: 600, easing: EASE }); } }
+    else giant.textContent = last.ring != null ? last.ring : ringNum.textContent;
+    if (initial) {
+      anim(ringVal, [{ strokeDashoffset: 276.46 }, { strokeDashoffset: parseFloat(ringVal.style.strokeDashoffset) || 0 }], { duration: 1200, delay: 150, easing: INOUT, fill: 'backwards' });
+    }
+    ['cReach', 'cTarget', 'cSafe'].forEach(function (id) { var el = $('#' + id); if (counter(id, el, 600, initial ? 0 : null) && !initial) bump(el); });
+    $$('#bars .bar').forEach(function (b, i) {
+      var name = b.firstChild.textContent, i2 = $('i', b), w = parseFloat(i2.style.getPropertyValue('--w')) || 0, was = initial ? 0 : lastBars[name];
+      lastBars[name] = w;
+      if (was == null || was === w || !w) return;
+      anim(i2, [{ transform: 'scaleX(' + Math.min(3, was / w).toFixed(3) + ')' }, { transform: 'none' }], { duration: initial ? 1000 : 600, delay: initial ? 200 + i * 70 : 0, easing: EASE, pseudoElement: '::after', fill: 'backwards' });
+    });
+  }
+
+  /* ---------- moves: a flying +N when you apply one, a cascade when the list lands ---------- */
+  var movesEl = $('#moves'), moveFlag = 0;
+  movesEl.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-move]'); if (!b || calm()) return;
+    var card = b.closest('.move'), n = card && $('b', card);
+    moveBurst = 1; moveFlag = 1;
+    if (!n) return;
+    var r = n.getBoundingClientRect(), f = n.cloneNode(true);
+    f.className = 'ue-fly num'; f.setAttribute('aria-hidden', 'true');
+    f.style.cssText = 'left:' + r.left + 'px;top:' + r.top + 'px;font-size:30px;font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--accent)';
+    document.body.appendChild(f);
+    var a = f.animate([{ opacity: 1, transform: 'none' }, { opacity: 1, transform: 'translate(-6px,-40px) scale(2.2) rotate(-6deg)', offset: .45 }, { opacity: 0, transform: 'translate(-10px,-90px) scale(3) rotate(-8deg)' }], { duration: 900, easing: EASE });
+    a.onfinish = a.oncancel = function () { f.remove(); };
+  }, true);
+  function onMoves() {
+    if (!moveFlag) return;
+    moveFlag = 0;
+    $$('.move', movesEl).forEach(function (m, i) { anim(m, [{ opacity: 0, translate: '0 16px' }, { opacity: 1, translate: '0 0' }], { duration: 500, delay: 80 + i * 60, easing: EASE, fill: 'backwards' }); });
+  }
+
+  /* ---------- drawer: the card flies to the drawer heading, then the sections cascade in ---------- */
+  var drawer = $('#drawer'), source = null;
+  function noteSource(e) {
+    if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+    var c = e.target.closest('.card');
+    if (c && !e.target.closest('.cmp-box')) source = { el: c, t: performance.now() };
+  }
+  board.addEventListener('click', noteSource, true);
+  board.addEventListener('keydown', noteSource, true);
+  function ghost(card) {
+    var h = $('#dName', drawer); if (!h) return 0;
+    var r = card.getBoundingClientRect(), hr = h.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return 0;
+    var off = drawer.classList.contains('on') ? 0 : drawer.offsetWidth;
+    var tx = hr.left - off - r.left, ty = hr.top - r.top - 6;
+    var s = Math.max(1, Math.min(1.35, (drawer.offsetWidth - 52) / r.width));
+    var g = card.cloneNode(true);
+    g.classList.add('ue-ghost'); g.removeAttribute('data-id'); g.removeAttribute('tabindex'); g.removeAttribute('role'); g.removeAttribute('aria-label');
+    g.setAttribute('aria-hidden', 'true'); g.inert = true;
+    g.style.cssText = 'left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px';
+    document.body.appendChild(g);
+    var land = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+    var a = g.animate([{ transform: 'none', rotate: '0deg', opacity: 1 }, { transform: land, rotate: '-2deg', opacity: 1, offset: .72 }, { transform: land, rotate: '0deg', opacity: 0 }], { duration: 680, easing: INOUT });
+    a.onfinish = a.oncancel = function () { g.remove(); };
+    anim(card, [{ opacity: .25 }, { opacity: .25, offset: .6 }, { opacity: 1 }], { duration: 760, easing: EASE });
+    return 330;
+  }
+  function onDrawer() {
+    if (!drawer.firstChild || calm()) { source = null; return; }
+    var base = 60;
+    if (source && performance.now() - source.t < 400 && source.el.isConnected) base = ghost(source.el) || 60;
+    source = null;
+    $$(':scope > *', drawer).forEach(function (c, i) {
+      anim(c, [{ opacity: 0, translate: '28px 0' }, { opacity: 1, translate: '0 0' }], { duration: 520, delay: base + i * 50, easing: EASE, fill: 'backwards' });
+    });
+    var big = $('.d-chance b', drawer), m = big && /(\d+)\D+(\d+)/.exec(big.textContent);
+    if (m) { var lo = +m[1], hi = +m[2]; run('drawer', big.firstChild, 0, 1, 900, function (v) { return Math.round(lo * v) + '–' + Math.round(hi * v) + '%'; }, base + 60); }
+    anim($('.d-band', drawer), [{ opacity: 0, scale: .6 }, { opacity: 1, scale: 1 }], { duration: 500, delay: base + 700, easing: SPRING, fill: 'backwards' });
+  }
+
+  /* ---------- one observer, routed by what changed ---------- */
+  var mo = new MutationObserver(function (recs) {
+    var now = performance.now();
+    rapid = now - lastT < 140; lastT = now;
+    var hit = { board: 0, summary: 0, moves: 0, drawer: 0 };
+    recs.forEach(function (r) {
+      var t = r.target;
+      if (t === drawer) hit.drawer = 1;
+      else if (t === movesEl) hit.moves = 1;
+      else if (summary.contains(t)) hit.summary = 1;
+      else if (board.contains(t)) hit.board = 1;
+    });
+    if (hit.board) onBoard(false);
+    if (hit.summary) onSummary(false);
+    if (hit.moves) onMoves();
+    if (hit.drawer) onDrawer();
+    syncSliders();
+    mo.takeRecords();          /* drop the records our own chips produced */
+  });
+
+  /* ---------- sliders: filled track, a nudge on the big number ---------- */
+  var sliders = $$('input[type="range"]');
+  function fill(s) { var lo = +s.min || 0, hi = +s.max || 100; s.style.setProperty('--ue-fill', ((s.value - lo) / (hi - lo) * 100).toFixed(2) + '%'); }
+  function syncSliders() { sliders.forEach(fill); }
+  sliders.forEach(function (s) {
+    s.addEventListener('input', function () {
+      fill(s);
+      var o = s.parentNode.querySelector('output'), now = performance.now();
+      if (o && !calm() && now - (s._nudge || 0) > 260) { s._nudge = now; anim(o, [{ scale: 1.07 }, { scale: 1 }], { duration: 260, easing: EASE }); }
+    });
+  });
+
+  /* ---------- pointer: card tilt + sheen, hero glow parallax (one rAF each) ---------- */
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+  var tiltEv = null, tiltRaf = 0;
+  board.addEventListener('pointermove', function (e) {
+    if (!fine.matches || calm()) return;
+    tiltEv = e;
+    if (!tiltRaf) tiltRaf = requestAnimationFrame(function () {
+      tiltRaf = 0;
+      var c = tiltEv && tiltEv.target.closest && tiltEv.target.closest('.card'); if (!c) return;
+      var r = c.getBoundingClientRect(), x = (tiltEv.clientX - r.left) / r.width, y = (tiltEv.clientY - r.top) / r.height;
+      c.style.setProperty('--ue-tilt', ((x - .5) * 2.2).toFixed(2) + 'deg');
+      c.style.setProperty('--ue-mx', (x * 100).toFixed(1) + '%');
+      c.style.setProperty('--ue-my', (y * 100).toFixed(1) + '%');
+    });
+  });
+  var hero = $('.hero'), heroEv = null, heroRaf = 0;
+  if (hero) hero.addEventListener('pointermove', function (e) {
+    if (!fine.matches || calm()) return;
+    heroEv = e;
+    if (!heroRaf) heroRaf = requestAnimationFrame(function () {
+      heroRaf = 0;
+      hero.style.setProperty('--ue-px', (heroEv.clientX / innerWidth * 2 - 1).toFixed(3));
+      hero.style.setProperty('--ue-py', (heroEv.clientY / Math.max(1, hero.offsetHeight) * 2 - 1).toFixed(3));
+    });
+  });
+
+  /* ---------- theme: circular wipe out of the toggle (View Transitions) ---------- */
+  var passing = false;
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('[data-theme-toggle]');
+    if (!t || passing || calm() || !document.startViewTransition) return;
+    e.stopPropagation(); e.preventDefault();
+    var r = t.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2, html = document.documentElement;
+    html.style.setProperty('--ue-x', x + 'px'); html.style.setProperty('--ue-y', y + 'px');
+    html.style.setProperty('--ue-r', Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 'px');
+    html.classList.add('ue-theme-vt');
+    var vt = document.startViewTransition(function () { passing = true; try { t.click(); } finally { passing = false; } });
+    vt.finished.then(done, done);
+    function done() { html.classList.remove('ue-theme-vt'); }
+  }, true);
+
+  /* ---------- clicks that land while an input's change re-renders the list ----------
+     Typing a mark and then clicking a move or a card blurs the field on mousedown; its
+     change handler re-renders, and the element under the pointer is replaced before
+     mouseup, so the browser sends no click. Remember what was pressed, and if the click
+     never arrived, deliver it to the element that took its place. */
+  var press = null;
+  function keyOf(el) {
+    var m = el.closest('[data-move]'); if (m) return '[data-move="' + m.dataset.move + '"]';
+    if (el.closest('#addMarks')) return '#addMarks';
+    var c = el.closest('#board .card[data-id]'); if (!c) return null;
+    return el.closest('.cmp-box') ? '#board .card[data-id="' + c.dataset.id + '"] .cmp-box' : '#board .card[data-id="' + c.dataset.id + '"]';
+  }
+  document.addEventListener('pointerdown', function (e) {
+    press = null;
+    if (e.button !== 0 || !e.isPrimary) return;
+    var k = keyOf(e.target);
+    if (k) press = { el: e.target, key: k, x: e.clientX, y: e.clientY };
+  }, true);
+  document.addEventListener('click', function (e) {
+    if (!press || !e.target.closest) return;
+    if (e.target.closest(press.key)) { press = null; return; }
+    /* the pressed compare box was replaced and the click fell through to its card: don't open the drawer */
+    if (!press.el.isConnected && / \.cmp-box$/.test(press.key) && e.target.closest('.card')) { e.stopPropagation(); e.preventDefault(); }
+  }, true);
+  document.addEventListener('pointerup', function (e) {
+    var p = press; if (!p) return;
+    setTimeout(function () {
+      if (press !== p) return;
+      press = null;
+      if (p.el.isConnected || Math.hypot(e.clientX - p.x, e.clientY - p.y) > 10) return;   /* nothing was replaced, or it was a drag */
+      var t = $(p.key); if (!t) return;
+      var r = t.getBoundingClientRect();
+      if (e.clientX < r.left - 4 || e.clientX > r.right + 4 || e.clientY < r.top - 4 || e.clientY > r.bottom + 4) return;
+      (t.matches('.cmp-box') ? $('input', t) : t).click();
+    }, 0);
+  }, true);
+
+  /* ---------- out-of-range numbers: say so instead of silently blanking ---------- */
+  function rangeHint(inp) {
+    if (!inp.matches('input[type="number"]')) return;
+    var v = inp.value.trim(), lo = inp.min === '' ? -Infinity : +inp.min, hi = inp.max === '' ? Infinity : +inp.max;
+    var bad = v !== '' && (isNaN(+v) || +v < lo || +v > hi);
+    var host = inp.closest('label, .row') || inp.parentNode, h = host.querySelector('.ue-range');
+    inp.classList.toggle('ue-bad', bad);
+    if (!bad) { if (h && !h.dataset.hold) h.remove(); return; }
+    if (!h) { h = document.createElement('span'); h.className = 'ue-range'; h.setAttribute('role', 'status'); host.appendChild(h); }
+    h.textContent = 'Use ' + inp.min + ' to ' + inp.max;
+    return h;
+  }
+  document.addEventListener('input', function (e) { if (e.target.matches && e.target.closest('.profile')) rangeHint(e.target); }, true);
+  document.addEventListener('change', function (e) {
+    if (!e.target.matches || !e.target.closest('.profile')) return;
+    var h = rangeHint(e.target);
+    if (!h) return;
+    h.dataset.hold = '1';
+    var inp = e.target;
+    setTimeout(function () { inp.classList.remove('ue-bad'); }, 0);
+    clearTimeout(h._t); h._t = setTimeout(function () { h.remove(); }, 2600);
+  }, true);
+
+  /* ---------- first paint ---------- */
+  var stat = $('#statUnis');
+  if (stat && !calm()) run('stat', stat.firstChild, 0, parseFloat(stat.textContent) || 0, 1100, null, 250);
+  onBoard(true);
+  onSummary(true);
+  syncSliders();
+  if (!calm()) $$('.col', board).forEach(function (col, ci) { enter($$('.card', col), ci * 60); });
+  mo.observe(board, { childList: true, subtree: true });
+  mo.observe(summary, { childList: true, subtree: true });
+  mo.observe(movesEl, { childList: true });
+  mo.observe(drawer, { childList: true });
 })();
 </script>
 <script>

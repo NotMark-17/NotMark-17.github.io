@@ -49,6 +49,7 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
   - Tuition for King's College London, UCL, Edinburgh, Monash, Adelaide, Macquarie and Melbourne.
   - IELTS minimums for several UK universities.
 - Mark's real outcomes: he applied to 18 universities (the `MARK.applied` list) and was admitted to Penn State and the University of Sydney. He got into Penn State with a low SAT. Ask him before adding any other results.
+- Motion lives in the `ue-motion` style block and the motion script at the end of `uniexplore/index.html`. It only reads what `render()` wrote to the page, never the model, and turns off under prefers-reduced-motion. `change()` holds its re-render while a button or card is being pressed, so a click right after typing a mark still lands.
 - Test it by running `python3 -m http.server` at the repo root and opening `/uniexplore/`. Check that all 53 cards render and the console shows no errors.
 
 ## Content rules (from Mark)
