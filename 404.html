@@ -146,7 +146,7 @@
 <script>
 (function () {
   var path = document.querySelector('[data-path]');
-  path.textContent = decodeURIComponent(location.pathname) || '/';
+  try { path.textContent = decodeURIComponent(location.pathname) || '/'; } catch (e) { path.textContent = location.pathname || '/'; }
 
   var plates = Array.prototype.slice.call(document.querySelectorAll('.plate'));
   document.querySelector('.stack').addEventListener('click', function () {
