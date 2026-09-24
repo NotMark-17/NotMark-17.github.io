@@ -90,7 +90,11 @@
       "https://www.kcl.ac.uk/study/undergraduate/how-to-apply/english-language-requirements",
       "https://www.kcl.ac.uk/study/student-experience/living-expenses"
     ],
-    "patchNote": "IELTS: Band B (7.0 overall, 6.5 each) covers most UG faculties; Band D (6.5) for many Natural/Mathematical/Engineering Sciences courses. Living: 2026-27 average \u00a31,770/month x 9-month UG year = \u00a315,930 (KCL range \u00a311,979-\u00a321,078; 12 months = \u00a321,240). Tuition not confirmed (course pages only)."
+    "patchNote": "IELTS: Band B (7.0 overall, 6.5 each) covers most UG faculties; Band D (6.5) for many Natural/Mathematical/Engineering Sciences courses. Living: 2026-27 average \u00a31,770/month x 9-month UG year = \u00a315,930 (KCL range \u00a311,979-\u00a321,078; 12 months = \u00a321,240). Tuition not confirmed (course pages only). boards from the Indian-board note: \"CBSE/CISCE Class XII only\".",
+    "boards": [
+      "cbse",
+      "isc"
+    ]
   },
   "ucl": {
     "ieltsMin": 6.5,
@@ -105,8 +109,19 @@
       "https://study.ed.ac.uk/undergraduate/fees-funding/living-costs",
       "https://study.ed.ac.uk/undergraduate/entry-requirements/english-language"
     ],
-    "patchNote": "Living: 2026-27 average \u00a31,546/month = \u00a313,914 for 39-week academic year (\u00a318,552 full year). IELTS: standard 6.5 overall (5.5 each); Business 7.0, Nursing/Social Work higher. Tuition not confirmed (degree finder behind login redirect).",
-    "ieltsMin": 6.5
+    "patchNote": "Living: 2026-27 average \u00a31,546/month = \u00a313,914 for 39-week academic year (\u00a318,552 full year). IELTS: standard 6.5 overall (5.5 each); Business 7.0, Nursing/Social Work higher. Tuition not confirmed (degree finder behind login redirect). indiaReq.byMajor from the Indian-board note: \"Arts/Humanities/Social Sciences 80% overall ...; Science & Engineering 80% overall ...; Medicine/Vet 85% overall\" (Informatics counted as Science & Engineering).",
+    "ieltsMin": 6.5,
+    "indiaReq": {
+      "typical": 80,
+      "high": 85,
+      "byMajor": {
+        "soc": 80,
+        "sci": 80,
+        "eng": 80,
+        "cs": 80,
+        "health": 85
+      }
+    }
   },
   "oxford": {
     "tuitionGBP": 50100,
@@ -114,7 +129,11 @@
       "https://lincoln.ox.ac.uk/asset/Undergraduate-Fees-and-Funding-booklet-2026.WEB_.pdf",
       "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/course-fees?wssl=1"
     ],
-    "patchNote": "2026 entry overseas annual course fee \u00a337,380-\u00a362,820 (midpoint \u00a350,100; clinical Medicine higher). No separate college fee: the single course fee covers University and college services. Living 2026: \u00a31,405-\u00a32,105/month, \u00a312,645-\u00a318,945 for 9 months."
+    "patchNote": "2026 entry overseas annual course fee \u00a337,380-\u00a362,820 (midpoint \u00a350,100; clinical Medicine higher). No separate college fee: the single course fee covers University and college services. Living 2026: \u00a31,405-\u00a32,105/month, \u00a312,645-\u00a318,945 for 9 months. boards from the Indian-board note: \"Oxford accepts only CBSE and CISCE (ISC) Class XII, not state boards or NIOS\".",
+    "boards": [
+      "cbse",
+      "isc"
+    ]
   },
   "imperial": {
     "ieltsMin": 6.5,
@@ -123,7 +142,11 @@
       "https://www.imperial.ac.uk/study/apply/english-language/",
       "https://www.imperial.ac.uk/study/fees-and-funding/living-costs/"
     ],
-    "patchNote": "IELTS: standard level 6.5 (6.0 each); higher level 7.0 for some courses. Living: 2026 UG average range \u00a316,392-\u00a317,042 per 9-month academic year (value = midpoint)."
+    "patchNote": "IELTS: standard level 6.5 (6.0 each); higher level 7.0 for some courses. Living: 2026 UG average range \u00a316,392-\u00a317,042 per 9-month academic year (value = midpoint). tuitionByMajor from the fee note: \"overseas fee for all Faculty of Engineering departments (incl. Computing) is \u00a345,500\".",
+    "tuitionByMajor": {
+      "cs": 45500,
+      "eng": 45500
+    }
   },
   "manchester": {
     "livingGBP": 14840,
@@ -137,7 +160,14 @@
     "sources": [
       "https://warwick.ac.uk/study/undergraduate/applying/english-language-requirements/"
     ],
-    "patchNote": "IELTS not set: Warwick uses bands (A 6.0, B 6.5, C 7.0) by course with no stated standard."
+    "patchNote": "IELTS not set: Warwick uses bands (A 6.0, B 6.5, C 7.0) by course with no stated standard. tuitionByMajor from the fee note: \"Band 1 \u00a327,870 (humanities/social sciences), Band 2 \u00a335,530 (STEM, Economics, Management)\".",
+    "tuitionByMajor": {
+      "soc": 27870,
+      "cs": 35530,
+      "eng": 35530,
+      "sci": 35530,
+      "biz": 35530
+    }
   },
   "lse": {
     "ieltsMin": 7.0,
@@ -146,30 +176,50 @@
       "https://www.lse.ac.uk/study-at-lse/Undergraduate/Prospective-Students/How-to-Apply/English-language-requirements",
       "https://www.lse.ac.uk/study-at-lse/Undergraduate/fees-and-funding"
     ],
-    "patchNote": "IELTS 7.0 overall (high component minimums) for most UG programmes. Living: LSE publishes 'at least \u00a31,550 per month' only; value = \u00a31,550 x 9 months (derived; 12 months = \u00a318,600)."
+    "patchNote": "IELTS 7.0 overall (high component minimums) for most UG programmes. Living: LSE publishes 'at least \u00a31,550 per month' only; value = \u00a31,550 x 9 months (derived; 12 months = \u00a318,600). boards from the Indian-board note: \"CBSE/CISCE only\".",
+    "boards": [
+      "cbse",
+      "isc"
+    ]
   },
   "bristol": {
     "livingGBP": 12609,
     "sources": [
       "https://www.bristol.ac.uk/students/support/finances/advice/set-up-finances/living-expenses/"
     ],
-    "patchNote": "Living: Bristol publishes 2025/26 UG average \u00a31,401/month only; value = x9 months (derived; x12 = \u00a316,812). IELTS not set: course-specific 'profiles', no single standard."
+    "patchNote": "Living: Bristol publishes 2025/26 UG average \u00a31,401/month only; value = x9 months (derived; x12 = \u00a316,812). IELTS not set: course-specific 'profiles', no single standard. tuitionByMajor from the fee note: \"\u00a333,400 (Computer Science ...); Economics/History \u00a328,200\".",
+    "tuitionByMajor": {
+      "cs": 33400,
+      "biz": 28200
+    }
   },
   "glasgow": {
     "ieltsMin": 6.5,
     "livingGBP": 12600,
     "sources": [
       "https://www.gla.ac.uk/international/englishlanguage/",
-      "https://www.gla.ac.uk/study/studentlife/costofliving/"
+      "https://www.gla.ac.uk/study/studentlife/costofliving/",
+      "https://www.gla.ac.uk/undergraduate/fees/intlfees/"
     ],
-    "patchNote": "IELTS 6.5 (no subtest below 6.0) is the standard UG requirement per search snippet from gla.ac.uk English language page; some courses higher. Living: Glasgow publishes \u00a31,100-\u00a31,700/month (Aug 2026); value = midpoint \u00a31,400 x 9 months (derived)."
+    "patchNote": "IELTS 6.5 (no subtest below 6.0) is the standard UG requirement per search snippet from gla.ac.uk English language page; some courses higher. Living: Glasgow publishes \u00a31,100-\u00a31,700/month (Aug 2026); value = midpoint \u00a31,400 x 9 months (derived). tuitionByMajor from the fee note: \"\u00a327,720 (Arts & Social Sciences) to \u00a333,210 (Science, Engineering, Nursing, Life Sciences). MBChB \u00a362,730\".",
+    "tuitionByMajor": {
+      "soc": 27720,
+      "cs": 33210,
+      "eng": 33210,
+      "sci": 33210,
+      "health": 62730
+    }
   },
   "nottingham": {
     "livingGBP": 9000,
     "sources": [
       "https://www.nottingham.ac.uk/studywithus/ugstudy/campaigns/int-info-page.html"
     ],
-    "patchNote": "Living: Nottingham publishes 'around \u00a3800 to \u00a31,200 per month' incl. accommodation; value = midpoint \u00a31,000 x 9 months (derived). IELTS not confirmed on a citable page (course-specific)."
+    "patchNote": "Living: Nottingham publishes 'around \u00a3800 to \u00a31,200 per month' incl. accommodation; value = midpoint \u00a31,000 x 9 months (derived). IELTS not confirmed on a citable page (course-specific). tuitionByMajor from the fee note: \"Computer Science \u00a333,000; Economics/Law \u00a326,800\".",
+    "tuitionByMajor": {
+      "cs": 33000,
+      "biz": 26800
+    }
   },
   "leeds": {
     "livingGBP": 12480,
@@ -177,5 +227,64 @@
       "https://www.leeds.ac.uk/research-fees/doc/living-expenses"
     ],
     "patchNote": "2026/27 average for 39-week academic year (range \u00a36,670-\u00a318,170; 52 weeks avg \u00a316,640)."
+  },
+  "harvard": {
+    "aidPolicy": "need-blind-full",
+    "sources": [
+      "https://college.harvard.edu/financial-aid/how-aid-works"
+    ],
+    "patchNote": "aidPolicy from the note above: \"Need-blind for all applicants including internationals; meets 100% of demonstrated need\"."
+  },
+  "mit": {
+    "aidPolicy": "need-blind-full",
+    "sources": [
+      "https://ir.mit.edu/projects/2025-26-common-data-set/"
+    ],
+    "patchNote": "aidPolicy from the note above: \"Need-blind for international applicants too, meets full need\"."
+  },
+  "stanford": {
+    "aidPolicy": "need-aware-full",
+    "sources": [
+      "https://irds.stanford.edu/data-findings/cds"
+    ],
+    "patchNote": "aidPolicy from the note above: \"admission is need-aware (not need-blind) for them; meets full need once admitted\"."
+  },
+  "cornell": {
+    "aidPolicy": "need-aware-full",
+    "intlAdmitRate": 0.0358,
+    "sources": [
+      "http://irp.cornell.edu/wp-content/uploads/2026/09/CDS-Cornell-2025-2026-v2.xlsx"
+    ],
+    "patchNote": "intlAdmitRate = 664/18,566 from the note above (\"The nonresident admit rate is much lower: 664 of 18,566\"). aidPolicy: \"Need-aware for internationals, meets full demonstrated need once admitted\"."
+  },
+  "cambridge": {
+    "intlAdmitRate": 0.1027,
+    "collegeFee": 13225,
+    "tuitionByMajor": {
+      "soc": 29052,
+      "cs": 44214,
+      "eng": 44214,
+      "sci": 44214,
+      "health": 70554
+    },
+    "cbseRule": {
+      "apMin": 5,
+      "okMajors": [
+        "soc"
+      ]
+    },
+    "sources": [
+      "https://www.undergraduate.study.cam.ac.uk/sites/default/files/2026-05/ug_admissions_statistics_2025_cycle.pdf",
+      "https://www.undergraduate.study.cam.ac.uk/international-students/international-entry-requirements",
+      "https://www.undergraduate.study.cam.ac.uk/files/publications/undergraduate_tuition_fees_2026-27.pdf"
+    ],
+    "patchNote": "From the notes above: intlAdmitRate = \"India-domiciled applicants got 38 offers of 370\"; collegeFee = midpoint of \"college fee of GBP 11,500-14,950\"; tuitionByMajor = \"GBP 29,052 (most arts/humanities) to 44,214 (sciences/engineering/CS); Medicine and Vet Med GBP 70,554\"; cbseRule = \"for most courses CBSE applicants need AP scores (5+ APs at 5)\" and CBSE alone is accepted \"for a limited list of mostly arts/humanities courses\"."
+  },
+  "southampton": {
+    "tuitionByMajor": {
+      "cs": 33000,
+      "biz": 28300
+    },
+    "patchNote": "tuitionByMajor from the fee note: \"Computer Science \u00a333,000; Economics \u00a328,300\"."
   }
 }

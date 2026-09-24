@@ -11,6 +11,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://markpatel.in/uniexplore/">
 <meta property="og:image" content="https://markpatel.in/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UniExplore by Mark Patel">
+<meta name="twitter:description" content="Where do you actually fit? Live reach, target and safe matching across five countries. No sign-up.">
+<meta name="twitter:image" content="https://markpatel.in/og-image.png">
 <link rel="canonical" href="https://markpatel.in/uniexplore/">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -367,6 +373,11 @@
         <div class="row"><label class="label" for="act">ACT (1&ndash;36)</label><input class="field num" id="act" type="number" min="1" max="36" step="1" placeholder="Not taken"></div>
       </div>
       <div class="row-2">
+        <div class="row"><label class="label" for="apN">AP exams taken</label><input class="field num" id="apN" type="number" min="0" max="38" step="1" placeholder="None"></div>
+        <div class="row"><label class="label" for="ap45">AP scored 4 or 5</label><input class="field num" id="ap45" type="number" min="0" max="38" step="1" placeholder="None"></div>
+      </div>
+      <p class="hint">AP counts most in the US. Only 4s and 5s add anything, and you choose which scores to send.</p>
+      <div class="row-2">
         <div class="row"><label class="label" for="engType">English test</label>
           <select class="field" id="engType"><option value="ielts">IELTS</option><option value="toefl">TOEFL iBT</option><option value="duolingo">Duolingo</option><option value="none">Not taken yet</option></select></div>
         <div class="row"><label class="label" for="eng" id="engLabel">Overall band</label><input class="field num" id="eng" type="number" step="0.5"></div>
@@ -495,8 +506,20 @@
   var FX = { USD: 86, GBP: 115, AUD: 57, CAD: 63, SGD: 66 };              /* approximate INR rates */
   var LIVING = { US: 18000, UK: 15000, Australia: 27000, Canada: 20000, Singapore: 15000 };
   var CUR = { US: 'USD', UK: 'GBP', Australia: 'AUD', Canada: 'CAD', Singapore: 'SGD' };
+  /* Model heuristic, not data: a stand-in selectivity for a school that publishes neither an admit rate
+     nor an Indian-board bar. Never shown as an admit rate. */
   var BASE = { US: 0.5, UK: 0.6, Australia: 0.85, Canada: 0.55, Singapore: 0.15 };
-  var COMPETITIVE = { cs: 1, eng: 1, biz: 1, health: 1 };
+  /* Model heuristic: how far from a school's typical Indian-board bar toward its published "high" bar we aim
+     (0 = typical, 1 = high). Competitive majors go halfway; a subject the school is known for (its
+     `strengths` in data.js) adds FLAGSHIP_W. Both together use the high bar. */
+  var COMPETITIVE = { cs: 0.5, eng: 0.5, biz: 0.5, health: 0.5 };
+  var FLAGSHIP_W = 0.5;
+  var MAJOR_RX = {
+    cs: /comput|informatic|software|data|\bai\b|cyber/i, eng: /engineer|aeronaut|electronic/i,
+    biz: /business|commerce|econom|financ|accountan|actuar|\bmba\b/i, health: /medic|health|nurs|pharm|dent|veterinar/i,
+    sci: /natural sci|math|physic|chem|life sci|^science$/i, soc: /social|politic|law\b|history|philosoph|linguist|international rel|\bppe\b|humanit|asia-pacific/i,
+    design: /architect|design|\bart\b|media/i
+  };
   var ACTS = [
     ['leadership', 'Leadership role'],
     ['competition', 'Olympiads & competitions'],
@@ -520,14 +543,14 @@
   };
   var EXAMPLE = {
     board: 'cbse', score: 88, alevel: 'AAB', stream: 'pcm', hist: { m9: 86, m10: 91, m11: 84 },
-    sat: 1380, act: null, engType: 'ielts', eng: 7,
+    sat: 1380, act: null, apN: null, ap45: null, engType: 'ielts', eng: 7,
     acts: { leadership: 2, competition: 1, research: 0, project: 3, internship: 2, service: 1, arts: 0 },
     major: 'cs', countries: ['US', 'UK', 'Australia', 'Canada', 'Singapore'],
     budget: 60, needAid: false, intake: new Date().getFullYear() + 1, example: true
   };
   var FRESH = {
     board: 'cbse', score: 80, alevel: 'ABB', stream: 'pcm', hist: { m9: null, m10: null, m11: null },
-    sat: null, act: null, engType: 'none', eng: null,
+    sat: null, act: null, apN: null, ap45: null, engType: 'none', eng: null,
     acts: { leadership: 0, competition: 0, research: 0, project: 0, internship: 0, service: 0, arts: 0 },
     major: 'cs', countries: ['US', 'UK', 'Australia', 'Canada', 'Singapore'],
     budget: 50, needAid: false, intake: new Date().getFullYear() + 1, example: false
@@ -577,19 +600,55 @@
     all: { m9: .1, m10: .25, m11: .3, m12: .35 }
   };
   var INDIAN = { cbse: 1, isc: 1, state: 1 };
-  function hv(P, k) { var v = P.hist && P.hist[k]; return v == null || v === '' || isNaN(v) ? null : +v; }
+  /* AP exams as a rigor signal. Model heuristics, not any university's published policy.
+     cap: the most AP can add to z (4 marks points = 1.0 in z), per country. The US reads AP as
+     course rigor; elsewhere it is supplementary to Indian-board marks, so it barely moves.
+     half: how many 4s and 5s get you halfway to the cap (diminishing returns after that).
+     Scores of 1-3 add nothing and cost nothing: applicants choose which scores to report. */
+  var AP_W = { cap: { US: 0.4, UK: 0.12, Canada: 0.12, Singapore: 0.1, Australia: 0.08 }, half: 3 };
+  function apHi(P) {
+    var hi = +P.ap45 || 0, n = +P.apN || 0;
+    return n ? Math.min(hi, n) : hi;
+  }
+  function apLift(P, country) {
+    var k = apHi(P), cap = AP_W.cap[country] || 0;
+    return k > 0 ? cap * (1 - Math.pow(0.5, k / AP_W.half)) : 0;
+  }
+  function hv(P, k) { var v = P.hist && P.hist[k]; return v == null || v === '' || isNaN(v) ? null : clamp(+v, 0, 100); }
+  /* Model heuristics. A predicted 12th far above your record is discounted: past `gap` points above the
+     anchor, only `keep` of the excess counts. The anchor is your 11th, or your weakest earlier year if 11th
+     is blank, so leaving 11th out can't dodge it. The US reads the whole transcript, so its discount is milder. */
+  var PRED_DISCOUNT = { US: { gap: 12, keep: 0.75 }, other: { gap: 8, keep: 0.5 } };
+  /* Model heuristic: state-board percentages aren't normalised against CBSE/ISC. We take off a token 2 points
+     (smaller than the gaps some universities publish in data.js, e.g. Leeds and Adelaide) and say so. */
+  var STATE_ADJ = -2;
+  /* Board score ranges; scores are clamped to these inside the model. */
+  var BOARD_RANGE = { ib: [24, 45], gpa: [0, 4], pct: [33, 100] };
+  function ibToPct(pts) { return 60 + (pts - 24) * (38 / 21); }
+  function predInfo(P, country) {
+    var raw = clamp(+P.score || 0, BOARD_RANGE.pct[0], BOARD_RANGE.pct[1]), m11 = hv(P, 'm11');
+    var early = ['m9', 'm10'].map(function (k) { return hv(P, k); }).filter(function (v) { return v != null; });
+    var anchor = m11 != null ? m11 : early.length ? Math.min.apply(null, early) : null;
+    var d = country ? PRED_DISCOUNT[country === 'US' ? 'US' : 'other'] : null, pred = raw;
+    if (d && anchor != null && raw > anchor + d.gap) pred = anchor + d.gap + (raw - anchor - d.gap) * d.keep;
+    return { raw: raw, pred: pred, anchor: anchor, from11: m11 != null, discounted: pred < raw };
+  }
   function toPct(P, country) {
-    var boost = P.boost || 0;
-    if (P.board === 'ib') return 60 + (P.score - 24) * (38 / 21) + boost;
-    if (P.board === 'gpa') return gpaToPct(P.score) + boost;
-    if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); return (i < 0 ? 85 : ALEVEL_PCT[i]) + boost; }
-    var w = YEAR_W[country] || YEAR_W.all, m11 = hv(P, 'm11');
-    var pred = P.score;
-    /* predictions far above your 11th get discounted outside the US */
-    if (country && country !== 'US' && m11 != null && pred > m11 + 8) pred = m11 + 8 + (pred - m11 - 8) / 2;
-    var sum = 0, wt = 0;
-    Object.keys(w).forEach(function (k) { var v = k === 'm12' ? pred : hv(P, k); if (v == null) v = pred; sum += v * w[k]; wt += w[k]; });
-    return sum / wt + boost;
+    if (P.board === 'ib') return ibToPct(clamp(+P.score || 0, BOARD_RANGE.ib[0], BOARD_RANGE.ib[1]));
+    if (P.board === 'gpa') return gpaToPct(clamp(+P.score || 0, BOARD_RANGE.gpa[0], BOARD_RANGE.gpa[1]));
+    if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); return i < 0 ? 85 : ALEVEL_PCT[i]; }
+    var w = YEAR_W[country] || YEAR_W.all, pred = predInfo(P, country).pred;
+    var known = {}, sum = 0, wt = 0, all = 0, low = null;
+    ['m9', 'm10', 'm11'].forEach(function (k) { var v = hv(P, k); if (v != null) low = low == null ? v : Math.min(low, v); });
+    Object.keys(w).forEach(function (k) {
+      var v = k === 'm12' ? pred : hv(P, k); all += w[k];
+      if (v != null) { known[k] = v; sum += v * w[k]; wt += w[k]; }
+    });
+    /* weights renormalised over the years you gave, except that a blank year never counts for more than
+       your weakest reported year: leaving a weak year out can't score above reporting it */
+    var fill = low == null ? sum / wt : Math.min(low, sum / wt), tot = 0;
+    Object.keys(w).forEach(function (k) { tot += (k in known ? known[k] : fill) * w[k]; });
+    return tot / all + (P.board === 'state' ? STATE_ADJ : 0);
   }
   function missingYears(P) {
     if (!INDIAN[P.board]) return [];
@@ -599,57 +658,163 @@
   }
   var YEAR_NAME = { m9: 'Class 9', m10: 'Class 10', m11: 'Class 11' };
   function joinAnd(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
-  function trend(P) { var a = hv(P, 'm10'), b = hv(P, 'm11'); return a == null || b == null ? 0 : b - a; }
-  function reqPct(u, P) {
-    var hi = COMPETITIVE[P.major];
-    if (u.indiaReq && (u.indiaReq.typical || u.indiaReq.high)) {
-      var t = u.indiaReq.typical || u.indiaReq.high, h = u.indiaReq.high || t;
-      return hi ? h : t;
-    }
-    var bump = hi ? 3 : 0;   /* no separate bar published: competitive courses still sit higher */
-    if (u.gpaAvg) return gpaToPct(u.gpaAvg) + bump;
-    var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country];
-    return (u.country === 'US' ? 97 - ar * 30 : 97 - ar * 20) + bump;
+  /* Rising marks read well in the US. Model heuristic: 11th against the average of your earlier years you
+     gave, TREND_W per point, capped at TREND_CAP in z. TREND_W stays under the smallest weight a single
+     earlier year gets in the blend (US m9 .15 / 4), so raising any year's mark never lowers a chance. */
+  var TREND_W = 0.035, TREND_CAP = 0.3;
+  function trend(P) {
+    var b = hv(P, 'm11'), e = ['m9', 'm10'].map(function (k) { return hv(P, k); }).filter(function (v) { return v != null; });
+    return b == null || !e.length ? 0 : b - e.reduce(function (s, v) { return s + v; }, 0) / e.length;
   }
+  /* US bar when a school publishes no average GPA: a least-squares line of gpaToPct(gpaAvg) against
+     acceptanceRate over the US schools in data.js that publish both, fitted at load (not hand-set). */
+  var US_FIT = (function () {
+    var pts = U.filter(function (u) { return u.country === 'US' && u.gpaAvg && u.acceptanceRate != null; });
+    var n = pts.length, mx = 0, my = 0, sxy = 0, sxx = 0;
+    pts.forEach(function (u) { mx += u.acceptanceRate / n; my += gpaToPct(u.gpaAvg) / n; });
+    pts.forEach(function (u) { var dx = u.acceptanceRate - mx; sxy += dx * (gpaToPct(u.gpaAvg) - my); sxx += dx * dx; });
+    var b = n > 1 && sxx ? sxy / sxx : 0;
+    return { a: my - b * mx, b: b, n: n };
+  })();
+  function compW(u, P) {
+    var rx = MAJOR_RX[P.major], flag = !!(rx && (u.strengths || []).some(function (s) { return rx.test(s); }));
+    return { w: Math.min(1, (COMPETITIVE[P.major] || 0) + (flag ? FLAGSHIP_W : 0)), comp: !!COMPETITIVE[P.major], flag: flag };
+  }
+  /* Model heuristic: a published average GPA (and US_FIT) is the mean of ADMITTED students, not a pass bar.
+     The more a school admits, the further below that mean its bar sits and the flatter the slope:
+     bar = mean - drop x admit rate, and the marks gap counts 1 / (1 + widen x admit rate) as much. */
+  var ADMIT_MEAN = { drop: 8, widen: 1 };
+  /* the most a board's score can reach on our scale: a bar above it could never be met */
+  function maxPct(P) {
+    return P.board === 'ib' ? ibToPct(BOARD_RANGE.ib[1]) : P.board === 'gpa' ? gpaToPct(BOARD_RANGE.gpa[1]) : P.board === 'alevel' ? ALEVEL_PCT[0] : 100 + (P.board === 'state' ? STATE_ADJ : 0);
+  }
+  function reqInfo(u, P) {
+    var cw = compW(u, P), top = maxPct(P), ir = u.indiaReq;
+    var ib = P.board === 'ib' && u.ibReq && (u.ibReq.typical || u.ibReq.high);
+    /* a per-course figure from the university's own table beats the typical/high blend */
+    var bm = !ib && ir && ((P.board === 'isc' && ir.byMajorISC && ir.byMajorISC[P.major]) || (ir.byMajor && ir.byMajor[P.major]));
+    if (bm) return { v: Math.min(bm, top), raw: bm, src: 'india', t: bm, h: bm, cw: cw, course: true };
+    var r = ib ? u.ibReq : ir;
+    if (r && (r.typical || r.high)) {
+      var t = r.typical || r.high, h = r.high || t, raw = t + (h - t) * cw.w;
+      return { v: Math.min(ib ? ibToPct(raw) : raw, top), raw: raw, src: ib ? 'ib' : 'india', t: t, h: h, cw: cw };
+    }
+    var bump = 3 * cw.w;   /* no separate bar published: competitive courses still sit a little higher */
+    var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country];
+    if (u.country === 'US') {
+      var mean = u.gpaAvg ? gpaToPct(u.gpaAvg) : US_FIT.a + US_FIT.b * ar;
+      return { v: Math.min(mean - ADMIT_MEAN.drop * ar + bump, top), src: u.gpaAvg ? 'gpa' : 'est', cw: cw, flat: 1 + ADMIT_MEAN.widen * ar };
+    }
+    if (u.gpaAvg) return { v: Math.min(gpaToPct(u.gpaAvg) + bump, top), src: 'gpa', cw: cw };
+    return { v: Math.min(97 - ar * 20 + bump, top), src: 'est', cw: cw };
+  }
+  function reqPct(u, P) { return reqInfo(u, P).v; }
+  /* Selectivity for schools without a published admit rate. Model heuristic, never shown as an admit rate:
+     a higher Indian-board bar means a more selective school. We interpolate in log-odds from the country's
+     BASE at IMPLIED_FLOOR_BAR up to the schools in data.js that publish both a bar and a real admit rate
+     (Oxford, Cambridge), and never go below them. No bar published: BASE. */
+  var IMPLIED_FLOOR_BAR = 70;
+  var ANCHOR = (function () {
+    var s = 0, l = 0, n = 0;
+    U.forEach(function (u) { if (u.acceptanceRate != null && u.indiaReq && u.indiaReq.typical) { s += u.indiaReq.typical; l += logit(u.acceptanceRate); n++; } });
+    return n ? { bar: s / n, lo: l / n, n: n } : null;
+  })();
+  function selectivity(u) {
+    if (u.acceptanceRate != null) return { ar: u.acceptanceRate, real: true };
+    var base = BASE[u.country] || 0.5, t = u.indiaReq && (u.indiaReq.typical || u.indiaReq.high);
+    if (!t || !ANCHOR || ANCHOR.bar <= IMPLIED_FLOOR_BAR) return { ar: base, real: false };
+    var f = clamp((t - IMPLIED_FLOOR_BAR) / (ANCHOR.bar - IMPLIED_FLOOR_BAR), 0, 1), lb = logit(base);
+    return { ar: sig(lb + (Math.min(lb, ANCHOR.lo) - lb) * f), real: false, implied: true };
+  }
+  /* Model heuristic: selective schools turn down most applicants whatever their numbers, so a chance can't
+     exceed 1 - (1 - ar)^CEIL_K. That is about CEIL_K x the admit rate at the very selective end and fades
+     smoothly: 13% admit -> 37% max, 25% -> 60%, 30% -> 68%, 50% -> 89%. */
+  var CEIL_K = 3.2;
+  function ceilingFor(ar) { return 1 - Math.pow(1 - ar, CEIL_K); }
   function actScore(P) {
     var w = { leadership: 1.1, competition: 1.3, research: 1.3, project: 1.2, internship: 0.9, service: 0.8, arts: 0.8 };
     var s = 0, max = 0;
     Object.keys(w).forEach(function (k) { s += (P.acts[k] || 0) * w[k]; max += 3 * w[k]; });
     return clamp(s / (max * 0.55), 0, 1);   /* strong at ~55% of the maximum: nobody does everything */
   }
+  /* Beyond marks, model heuristics. ACT_W.avg (about four school-level activities, or two at city level) is
+     neutral. Above it the US reads activities heavily and elsewhere lightly; below it the penalty tapers to
+     `floor` at a blank section, since a blank form mostly means "not filled in yet". */
+  var ACT_W = { avg: 0.35, up: { US: 2.2, other: 0.5 }, floor: { US: -0.3, other: -0.1 } };
+  function actZ(P, country) {
+    var a = actScore(P), k = country === 'US' ? 'US' : 'other';
+    return a >= ACT_W.avg ? (a - ACT_W.avg) * ACT_W.up[k] : (ACT_W.avg - a) / ACT_W.avg * ACT_W.floor[k];
+  }
   function satOf(P) { return P.sat || (P.act ? actToSat(P.act) : null); }
+  /* SAT/ACT, model heuristics: a score moves z by `slope` per middle-50% width from the midpoint. Test-optional:
+     you'd withhold a weak score, so it never costs more than not sending (`optional`). No published middle 50%:
+     nothing to compare against, so a score is neutral and so is not sending one (a required test still counts). */
+  var TEST_W = { slope: 1.2, minSpread: 60, optional: -0.25, required: -1.6 };
   function engCheck(u, P) {
     if (P.engType === 'none' || P.eng == null || P.eng === '') return { state: 'missing' };
     var need = u[ENG[P.engType].key];
     if (need == null) return { state: 'unknown' };
     return P.eng >= need ? { state: 'ok', need: need } : { state: 'short', need: need, gap: +(need - P.eng).toFixed(1) };
   }
+  /* English, model heuristics. A published minimum is a hard requirement: below it, z drops with the gap
+     (`perRange` per full test range, at most `max`) and the chance is capped at `cap`, a reach. No test yet: a
+     small `missing` penalty. */
+  var ENG_W = { missing: -0.15, perRange: 4, max: 2, cap: 0.3 };
+  /* Hard gates. Each caps the chance at GATE_CAP (the same as a published minimum) and tags the card:
+     a required test you haven't taken, a missing Class 12 subject, a board the university doesn't accept,
+     Cambridge's AP rule for CBSE. Subject needs are model heuristics from the stream you picked. */
+  var GATE_CAP = 0.05;
+  var STREAM_HAS = { maths: { pcm: 1, pcmb: 1, com: 1 }, bio: { pcb: 1, pcmb: 1 } };
+  var MAJOR_NEEDS = { cs: 'maths', eng: 'maths', sci: 'maths', health: 'bio' };
+  /* Model heuristic: medicine and health courses add admissions tests and interviews, and schools without a
+     published admit rate or bar are guesses; neither is ever called safe. */
+  var NOT_SAFE_CAP = 0.67;
+  function hasHealth(u) {
+    return (u.strengths || []).some(function (s) { return MAJOR_RX.health.test(s); }) || !!(u.tuitionByMajor && u.tuitionByMajor.health) ||
+      !!(u.indiaReq && u.indiaReq.byMajor && u.indiaReq.byMajor.health) || /medicine|mbchb|nursing|pharmacy/i.test([u.tuitionNote, u.indiaReqNote, u.note].join(' '));
+  }
   function chance(u, P) {
-    var A = toPct(P, u.country), req = reqPct(u, P);
-    var z = (A - req) / 4;
-    if (u.country === 'US' && INDIAN[P.board]) z += clamp(trend(P) / 10, -0.3, 0.3);   /* rising marks read well */
+    var A = toPct(P, u.country), rq = reqInfo(u, P), req = rq.v;
+    var z = (A - req) / (4 * (rq.flat || 1));
+    if (u.country === 'US' && INDIAN[P.board]) z += clamp(trend(P) * TREND_W, -TREND_CAP, TREND_CAP) / (rq.flat || 1);   /* rising marks read well; scaled with the marks gap so it stays monotone */
     var sat = satOf(P), notes = [];
     if (u.country === 'US') {
       if (u.testPolicy === 'blind') { notes.push('blind'); }
-      else if (sat && u.satMid50) {
-        var mid = (u.satMid50[0] + u.satMid50[1]) / 2, spread = Math.max(60, u.satMid50[1] - u.satMid50[0]);
-        var eff = (sat - mid) / spread * 1.2;
-        if (u.testPolicy === 'optional' && eff < -0.25) { eff = -0.25; notes.push('withhold'); }   /* you'd simply not send it */
+      else if (!u.satMid50) {
+        if (!sat && u.testPolicy === 'required') { z += TEST_W.required; notes.push('needs-test'); }
+        else if (sat) notes.push('sat-neutral');
+      } else if (sat) {
+        var mid = (u.satMid50[0] + u.satMid50[1]) / 2, spread = Math.max(TEST_W.minSpread, u.satMid50[1] - u.satMid50[0]);
+        var eff = (sat - mid) / spread * TEST_W.slope;
+        if (u.testPolicy !== 'required') { eff = Math.max(eff, TEST_W.optional); if (sat < u.satMid50[0]) notes.push('withhold'); }   /* you'd simply not send it */
         z += eff;
-      } else if (!sat && u.testPolicy === 'required') { z -= 1.6; notes.push('needs-test'); }
-      else if (!sat && u.testPolicy === 'optional') { z -= 0.25; }
-      z += (actScore(P) - 0.35) * 2.2;
-    } else {
-      z += (actScore(P) - 0.35) * 0.5;
-      if (sat && u.satUsed) z += Math.max(0, (sat - 1300) / 200) * 0.4;
-    }
-    var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country] || 0.5;
+      } else if (u.testPolicy === 'required') { z += TEST_W.required; notes.push('needs-test'); }
+      else z += TEST_W.optional;
+    } else if (sat && u.satUsed) z += Math.max(0, (sat - 1300) / 200) * 0.4;
+    z += actZ(P, u.country);
+    var ap = apLift(P, u.country);
+    z += ap;
+    var e = engCheck(u, P), cfg = ENG[P.engType];
+    if (e.state === 'missing') z += ENG_W.missing;
+    else if (e.state === 'short') { z -= clamp(e.gap / (cfg.max - cfg.min) * ENG_W.perRange, 0, ENG_W.max); notes.push('eng-short'); }
+    var sel = selectivity(u), ar = sel.ar;
     var p = sig(logit(ar) + z * 0.9);
-    if (ar < 0.12) p = Math.min(p, ar * 3.2);
-    if (u.indiaReqMin && INDIAN[P.board] && A < u.indiaReqMin) { p = Math.min(p, 0.05); notes.push('below-min'); }   /* published hard minimum */
+    /* the ceiling uses the admit rate for applicants like you where the university publishes one */
+    var ceil = ceilingFor(u.intlAdmitRate != null ? Math.min(ar, u.intlAdmitRate) : ar);
+    if (p > ceil) { p = ceil; notes.push('ceiling'); }
+    if (e.state === 'short') p = Math.min(p, ENG_W.cap);
+    var gate = function (n) { p = Math.min(p, GATE_CAP); notes.push(n); };
+    if (u.indiaReqMin && INDIAN[P.board] && predInfo(P).raw < u.indiaReqMin) gate('below-min');   /* published hard minimum, on your Class 12 score */
+    if (notes.indexOf('needs-test') !== -1) p = Math.min(p, GATE_CAP);
+    var need = MAJOR_NEEDS[P.major];
+    if (need && P.stream && STREAM_HAS[need] && !STREAM_HAS[need][P.stream]) gate(need === 'bio' ? 'needs-bio' : 'needs-maths');
+    if (INDIAN[P.board] && u.boards && u.boards.indexOf(P.board) === -1) gate('board-not-accepted');
+    if (P.board === 'cbse' && u.cbseRule && (u.cbseRule.okMajors || []).indexOf(P.major) === -1 && apHi(P) < u.cbseRule.apMin) gate('cbse-ap');
+    if (P.major === 'health') { notes.push('health'); if (!hasHealth(u)) notes.push('no-med'); p = Math.min(p, NOT_SAFE_CAP); }
+    if (!sel.real && !sel.implied && rq.src === 'est') { notes.push('no-bar'); p = Math.min(p, NOT_SAFE_CAP); }
     p = clamp(p, 0.02, 0.97);
     var band = p >= 0.68 ? 'safe' : p >= 0.35 ? 'target' : 'reach';
-    return { p: p, band: band, A: A, req: req, sat: sat, notes: notes };
+    return { p: p, band: band, A: A, req: req, rq: rq, sel: sel, ceil: ceil, sat: sat, ap: ap, notes: notes };
   }
   var RANK = { reach: 0, target: 1, safe: 2 };
 
@@ -657,13 +822,27 @@
     return U.filter(function (u) { return P.countries.indexOf(u.country) !== -1; }).map(function (u) {
       var c = chance(u, P);
       var e = engCheck(u, P);
-      var over = u.costINR != null && u.costINR > P.budget * 1e5;
-      var aidRisk = P.needAid && (u.intlAid === 'none' || u.intlAid === 'limited');
-      return { u: u, c: c, e: e, over: over, aidRisk: aidRisk };
+      var k = costFor(u, P);
+      var over = k.cost != null && Math.round(k.cost / 1e5) > P.budget;   /* compared as shown, in whole lakh */
+      /* need-blind, full-need universities: if you need aid, the sticker price isn't what you'd pay */
+      var aidCover = P.needAid && over && u.aidPolicy === 'need-blind-full';
+      if (aidCover) over = false;
+      var aid = !P.needAid ? null : u.intlAid === 'none' ? 'none' : u.intlAid === 'limited' ? 'limited' : u.intlAid == null ? 'unknown' : null;
+      return { u: u, c: c, e: e, cost: k.cost, tuition: k.tuition, over: over, aidCover: aidCover, aid: aid, aidRisk: aid === 'none' || aid === 'limited' };
     }).sort(function (a, b) { return b.c.p - a.c.p; });
   }
+  /* yearly cost in INR for your major: the per-course fee where the university lists one, plus any college fee */
+  function costFor(u, P) {
+    var t = u.tuitionByMajor && u.tuitionByMajor[P.major] != null ? u.tuitionByMajor[P.major] : u.tuitionN;
+    return { tuition: t, cost: t == null ? null : Math.round((t + (u.collegeFee || 0) + u.livingN) * (FX[u.cur] || 86)) };
+  }
+  function testsCount(P) {
+    return P.countries.indexOf('US') !== -1 || U.some(function (u) { return u.satUsed && P.countries.indexOf(u.country) !== -1; });
+  }
   function strength(P) {
-    var A = toPct(P);
+    /* the same marks the cards use: averaged over your selected countries */
+    var cs = P.countries && P.countries.length ? P.countries : [null];
+    var A = cs.reduce(function (s, c) { return s + toPct(P, c); }, 0) / cs.length;
     var acad = clamp((A - 60) / 38 * 100, 0, 100);
     var sat = satOf(P);
     var test = sat ? clamp((sat - 1000) / 600 * 100, 0, 100) : 45;
@@ -672,31 +851,45 @@
       var cfg = ENG[P.engType]; eng = clamp((P.eng - cfg.min) / (cfg.top - cfg.min) * 100, 0, 100);
     }
     var act = actScore(P) * 100;
+    /* SAT/ACT only counts when a selected country reads it */
+    if (!testsCount(P)) return { total: Math.round((acad * 0.45 + eng * 0.1 + act * 0.3) / 0.85), parts: [['Academics', acad], ['English', eng], ['Beyond marks', act]] };
     var total = Math.round(acad * 0.45 + test * 0.15 + eng * 0.1 + act * 0.3);
     return { total: total, parts: [['Academics', acad], ['Tests', test], ['English', eng], ['Beyond marks', act]] };
   }
 
   /* ---------- moves: simulate a change, count who moves up ---------- */
+  /* Each move is previewed by running exactly what "Try it on my profile" does (doIt) on a copy. */
+  function marksRoom(P) {
+    if (P.board === 'ib') return +P.score < BOARD_RANGE.ib[1];
+    if (P.board === 'gpa') return +P.score < BOARD_RANGE.gpa[1];
+    if (P.board === 'alevel') return ALEVELS.indexOf(P.alevel) > 0;
+    return +P.score < 100;
+  }
   var MOVES = [
-    { id: 'marks', test: function (P) { return toPct(P) < 97; }, apply: function (P) { P.boost = (P.boost || 0) + 4; },
-      text: function () { return 'Push your boards <b>4 points higher</b>'; }, doIt: function (P) { if (P.board === 'ib') P.score = Math.min(45, P.score + 2); else if (P.board === 'gpa') P.score = Math.min(4, +(P.score + 0.2).toFixed(2)); else if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); P.alevel = ALEVELS[Math.max(0, i - 1)]; } else P.score = Math.min(100, P.score + 4); } },
-    { id: 'sat', test: function (P) { var s = satOf(P); return !s || s < 1480; }, apply: function (P) { P.sat = 1480; P.act = null; },
+    { id: 'marks', test: marksRoom,
+      text: function (P) { return P.board === 'ib' ? 'Push your IB prediction <b>2 points higher</b>' : P.board === 'gpa' ? 'Lift your GPA by <b>0.2</b>' : P.board === 'alevel' ? 'Raise your predicted A-Levels <b>one grade</b>' : 'Push your predicted 12th <b>4 points higher</b>'; },
+      doIt: function (P) { if (P.board === 'ib') P.score = Math.min(45, +P.score + 2); else if (P.board === 'gpa') P.score = Math.min(4, +(+P.score + 0.2).toFixed(2)); else if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); P.alevel = ALEVELS[Math.max(0, i - 1)]; } else P.score = Math.min(100, +P.score + 4); } },
+    { id: 'sat', test: function (P) { var s = satOf(P); return !s || s < 1480; },
       text: function (P) { return satOf(P) ? 'Retake the SAT and hit <b>1480</b>' : 'Take the SAT and score <b>1480</b>'; }, doIt: function (P) { P.sat = 1480; P.act = null; } },
     { id: 'eng', test: function (P) { return P.engType === 'none' || P.eng == null || P.eng < ENG[P.engType].top; },
-      apply: function (P) { if (P.engType === 'none') P.engType = 'ielts'; P.eng = ENG[P.engType].top; },
       text: function (P) { var t = P.engType === 'none' ? 'ielts' : P.engType; return 'Get ' + { ielts: 'IELTS', toefl: 'TOEFL', duolingo: 'Duolingo' }[t] + ' to <b>' + ENG[t].top + '</b>'; },
       doIt: function (P) { if (P.engType === 'none') P.engType = 'ielts'; P.eng = ENG[P.engType].top; } },
-    { id: 'comp', test: function (P) { return P.acts.competition < 3; }, apply: function (P) { P.acts.competition = 3; },
+    { id: 'comp', test: function (P) { return P.acts.competition < 3; },
       text: function () { return 'Place at a <b>national-level</b> competition or olympiad'; }, doIt: function (P) { P.acts.competition = 3; } },
-    { id: 'research', test: function (P) { return P.acts.research < 2; }, apply: function (P) { P.acts.research = 2; },
+    { id: 'research', test: function (P) { return P.acts.research < 2; },
       text: function () { return 'Do a real <b>research project</b> with a mentor'; }, doIt: function (P) { P.acts.research = 2; } },
-    { id: 'project', test: function (P) { return P.acts.project < 3; }, apply: function (P) { P.acts.project = 3; },
+    { id: 'project', test: function (P) { return P.acts.project < 3; },
       text: function () { return 'Ship a project <b>people actually use</b>'; }, doIt: function (P) { P.acts.project = 3; } },
-    { id: 'budget', test: function (P) { return P.budget < 120; }, apply: function (P) { P.budget = Math.min(120, P.budget + 20); },
+    /* only when AP counts for your countries and the next May exam session reports before US applications go in */
+    { id: 'ap', test: function (P) { var now = new Date(), may = now.getFullYear() + (now.getMonth() >= 4 ? 1 : 0); return P.countries.indexOf('US') !== -1 && apHi(P) < 6 && may <= P.intake - 1; },
+      text: function () { return 'Add <b>2 APs at 4+</b> in May'; }, doIt: function (P) { addAps(P); } },
+    /* budget changes no chance, only which schools fit: it is counted separately and listed after chance moves */
+    { id: 'budget', test: function (P) { return P.budget < 120 && !P.needAid; },
       text: function () { return 'Stretch the budget by <b>&#8377;20L a year</b>'; }, doIt: function (P) { P.budget = Math.min(120, P.budget + 20); }, budget: true }
   ];
+  function addAps(P) { var k = apHi(P); P.ap45 = k + 2; P.apN = Math.max(+P.apN || 0, k) + 2; }
   function scoreMove(P, base, m) {
-    var Q = clone(P); m.apply(Q);
+    var Q = clone(P); m.doIt(Q);
     var after = evaluate(Q), byId = {};
     after.forEach(function (r) { byId[r.u.id] = r; });
     var up = [], fits = [];
@@ -756,6 +949,7 @@
     }
     $('#stream').value = P.stream;
     $('#sat').value = P.sat || ''; $('#act').value = P.act || '';
+    $('#apN').value = P.apN == null ? '' : P.apN; $('#ap45').value = P.ap45 == null ? '' : P.ap45;
     $('#engType').value = P.engType;
     var ec = ENG[P.engType], engEl = $('#eng');
     engEl.disabled = !ec; engEl.placeholder = ec ? '' : '—';
@@ -791,6 +985,9 @@
   $('#stream').addEventListener('change', function (e) { change(function () { P.stream = e.target.value; }); });
   $('#sat').addEventListener('change', function (e) { change(function () { var v = parseInt(e.target.value, 10); P.sat = v >= 400 && v <= 1600 ? v : null; if (P.sat) P.act = null; }); });
   $('#act').addEventListener('change', function (e) { change(function () { var v = parseInt(e.target.value, 10); P.act = v >= 1 && v <= 36 ? v : null; if (P.act) P.sat = null; }); });
+  function apVal(e) { var v = parseInt(e.target.value, 10); return v >= 0 && v <= 38 ? v : null; }
+  $('#apN').addEventListener('change', function (e) { change(function () { P.apN = apVal(e); if (P.apN != null && P.ap45 > P.apN) P.ap45 = P.apN; }); });
+  $('#ap45').addEventListener('change', function (e) { change(function () { P.ap45 = apVal(e); if (P.ap45 != null && P.apN != null && P.apN < P.ap45) P.apN = P.ap45; }); });
   $('#engType').addEventListener('change', function (e) { change(function () { P.engType = e.target.value; P.eng = ENG[P.engType] ? ENG[P.engType].top - (P.engType === 'ielts' ? 1 : P.engType === 'toefl' ? 15 : 20) : null; }); });
   $('#eng').addEventListener('change', function (e) { change(function () { var c = ENG[P.engType], v = parseFloat(e.target.value); P.eng = c && v >= c.min && v <= c.max ? v : null; }); });
   $$('.lvl').forEach(function (g) { g.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; change(function () { P.acts[g.dataset.act] = +b.dataset.l; }); }); });
@@ -827,19 +1024,30 @@
     var tags = [];
     if (u.markAdmitted) tags.push('<span class="tag mark">Mark got in</span>');
     else if (u.markApplied) tags.push('<span class="tag">Mark applied</span>');
+    var has = function (n) { return r.c.notes.indexOf(n) !== -1; };
     if (r.over) tags.push('<span class="tag warn">Over budget</span>');
+    if (r.aidCover) tags.push('<span class="tag">Aid may cover it</span>');
+    if (r.cost == null) tags.push('<span class="tag">Cost unknown</span>');
+    if (has('needs-maths')) tags.push('<span class="tag warn">Needs Class 12 Maths</span>');
+    if (has('needs-bio')) tags.push('<span class="tag warn">Needs Class 12 Biology</span>');
+    if (has('board-not-accepted')) tags.push('<span class="tag warn">State board not accepted</span>');
+    if (has('cbse-ap')) tags.push('<span class="tag warn">CBSE needs 5+ APs</span>');
+    if (has('no-med')) tags.push('<span class="tag warn">No medicine listed</span>');
+    if (has('no-bar')) tags.push('<span class="tag">No published bar</span>');
     if (r.e.state === 'short') tags.push('<span class="tag warn">English +' + r.e.gap + '</span>');
     if (r.c.notes.indexOf('below-min') !== -1) tags.push('<span class="tag warn">Below their minimum</span>');
     if (r.c.notes.indexOf('needs-test') !== -1) tags.push('<span class="tag warn">Needs SAT/ACT</span>');
     if (r.c.notes.indexOf('withhold') !== -1) tags.push('<span class="tag">Don\u2019t send your SAT</span>');
-    if (r.aidRisk) tags.push('<span class="tag warn">Little aid</span>');
+    if (r.c.notes.indexOf('sat-neutral') !== -1) tags.push('<span class="tag">SAT not compared</span>');
+    if (r.aid) tags.push('<span class="tag' + (r.aid === 'unknown' ? '' : ' warn') + '">' + { none: 'No aid', limited: 'Little aid', unknown: 'Aid unknown' }[r.aid] + '</span>');
     el.dataset.band = r.c.band;
+    el.classList.toggle('rough', has('no-bar'));
     el.setAttribute('aria-label', u.name + ', ' + r.c.band + ', about ' + pct + ' percent');
     el.innerHTML =
       '<div class="card-top"><div><h5>' + esc(u.short || u.name) + '</h5><p class="where">' + esc(u.city) + ' &middot; ' + esc(u.country) + (u.acceptanceRate != null ? ' &middot; admits ' + Math.round(u.acceptanceRate * 100) + '%' : '') + '</p></div>' +
       '<span class="pct num">' + pct + '<small>%</small></span></div>' +
       '<div class="meter"><i style="width:' + pct + '%"></i></div>' +
-      '<div class="card-foot"><span class="num">' + (u.costINR ? lakh(u.costINR) + '/yr' : 'Cost n/a') + '</span>' +
+      '<div class="card-foot"><span class="num">' + (r.cost ? lakh(r.cost) + '/yr' : 'Cost n/a') + '</span>' +
       '<label class="cmp-box"><input type="checkbox" ' + (picked.indexOf(u.id) !== -1 ? 'checked' : '') + ' aria-label="Compare ' + esc(u.name) + '"> Compare</label></div>' +
       (tags.length ? '<div class="tags">' + tags.join('') + '</div>' : '');
     var box = $('.cmp-box input', el);
@@ -903,13 +1111,18 @@
       return;
     }
     var list = MOVES.filter(function (m) { return m.test(P); }).map(function (m) { return scoreMove(P, base, m); })
-      .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 4);
+      .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return (a.m.budget ? 1 : 0) - (b.m.budget ? 1 : 0) || b.n - a.n; }).slice(0, 4);
     var el = $('#moves');
-    if (!list.length) { el.innerHTML = '<p class="moves-empty">Nothing we can simulate moves your list right now. That usually means you’re already in good shape for your chosen countries.</p>'; return; }
+    if (!list.length) {
+      var good = base.some(function (r) { return r.c.band === 'safe'; });
+      el.innerHTML = '<p class="moves-empty">' + (good ? 'Nothing we can simulate moves your list right now. That usually means you’re already in good shape for your chosen countries.'
+        : 'None of the changes we can simulate lifts a university into a higher band. Your list is mostly reaches, so add universities whose bar sits closer to your marks.') + '</p>';
+      return;
+    }
     el.innerHTML = list.map(function (x, i) {
       var names = (x.m.budget ? x.fits : x.up).map(function (u) { return u.short || u.name; });
       return '<div class="move"><b class="num">+' + x.n + '</b><p>' + x.m.text(P) + '</p>' +
-        '<p class="who">' + (x.m.budget ? 'Brings into budget: ' : 'Moves up a band: ') + esc(names.slice(0, 4).join(', ')) + (names.length > 4 ? ' +' + (names.length - 4) + ' more' : '') + '</p>' +
+        '<p class="who">' + (x.m.budget ? 'Back in budget (chances unchanged): ' : 'Moves up a band: ') + esc(names.slice(0, 4).join(', ')) + (names.length > 4 ? ' +' + (names.length - 4) + ' more' : '') + '</p>' +
         '<button class="btn" type="button" data-move="' + x.m.id + '">Try it on my profile</button></div>';
     }).join('');
     $$('[data-move]', el).forEach(function (b) {
@@ -930,7 +1143,7 @@
     if (P.engType === 'none' || P.eng == null) add(Y - 1, 4, 1, 'Book IELTS, TOEFL or Duolingo. Most scores are valid for two years.', 'All');
     if (has('US')) add(Y - 1, 7, 1, 'Common App opens. Draft the personal essay and ask two teachers for recommendations.', 'US');
     if (has('UK')) add(Y - 1, 8, 1, 'UCAS opens. Write one personal statement that works for every course you pick.', 'UK');
-    if (has('UK') && P.major === 'health') add(Y - 1, 9, 15, 'UCAS deadline for medicine, dentistry and veterinary courses.', 'UK');
+    if (has('UK')) add(Y - 1, 9, 15, 'UCAS deadline for Oxford, Cambridge, medicine, dentistry and veterinary courses.', 'UK');
     if (has('US')) add(Y - 1, 10, 1, 'Early Action and Early Decision deadlines at most US universities.', 'US');
     if (has('Singapore')) add(Y - 1, 9, 1, 'NUS and NTU applications open for international students (they close early in the new year).', 'Singapore');
     if (has('US')) add(Y, 0, 1, 'Regular Decision deadlines (1–15 January).', 'US');
@@ -961,37 +1174,62 @@
     var lo = Math.max(1, pct - 8), hi = Math.min(99, pct + 8);
     var why = [];
     var margin = c.A - c.req;
-    why.push(margin >= 0 ? 'Your academics sit about <b>' + Math.round(margin) + ' points above</b> what they typically ask of Indian applicants' + (COMPETITIVE[P.major] ? ' for competitive courses.' : '.') : 'Your academics are about <b>' + Math.round(-margin) + ' points below</b> their usual bar' + (COMPETITIVE[P.major] ? ' for competitive courses like yours.' : '.'));
+    var pts = function (x) { x = Math.round(x); return x + (x === 1 ? ' point' : ' points'); };
+    var rq = c.rq, cw = rq.cw, split = rq.h > rq.t ? cw.w : 0;
+    var why0 = cw.comp && cw.flag ? 'a competitive course in a subject they\u2019re known for' : cw.comp ? 'a competitive course' : 'a subject they\u2019re known for';
+    var bar = rq.src === 'est' ? (c.notes.indexOf('no-bar') !== -1 ? 'our rough stand-in bar. They publish neither an admit rate nor a bar for Indian applicants, so this is a guess and we never call it safe.' : 'their usual bar (our estimate from their admit rate, set below their admitted students\u2019 average).') : rq.src === 'gpa' ? 'their usual bar (set below their admitted students\u2019 average GPA, since most admits beat the bar).'
+      : rq.course ? 'their published bar for this course.' : (split >= 1 ? 'their higher published bar, since this is ' + why0 + '.' : split > 0 ? 'a bar partway between their typical and higher published offers, since this is ' + why0 + '.' : 'what they typically ask of ' + (rq.src === 'ib' ? 'IB' : 'Indian') + ' applicants.');
+    if (rq.src === 'ib') { var mIb = clamp(+P.score, 24, 45) - rq.raw; why.push(Math.round(mIb) === 0 ? 'Your IB prediction sits <b>at</b> ' + bar : mIb >= 0 ? 'Your IB prediction sits about <b>' + pts(mIb) + ' above</b> ' + bar : 'Your IB prediction is about <b>' + pts(-mIb) + ' below</b> ' + bar); }
+    else why.push(Math.round(margin) === 0 ? 'Your academics sit <b>at</b> ' + bar : margin > 0 ? 'Your academics sit about <b>' + pts(margin) + ' above</b> ' + bar : 'Your academics are about <b>' + pts(-margin) + ' below</b> ' + bar);
+    if (P.board === 'state') why.push('State board percentages aren\u2019t normalised against CBSE/ISC, so treat this as rough. We take off 2 points to stay conservative, and some universities ask state boards for more (see their note below).');
     if (INDIAN[P.board]) {
-      var m11 = hv(P, 'm11'), tr = trend(P);
-      if (u.country === 'US') why.push('US universities read your whole transcript, so this blends Class 9 to 12 with <b>11th weighted most</b>' + (hv(P, 'm10') != null && m11 != null ? (tr >= 3 ? ', and your marks are <b>rising</b>, which helps.' : tr <= -3 ? ', and your marks <b>dipped</b> after 10th, which they will notice.' : '.') : '. Add your 9th to 11th marks for a sharper estimate.'));
-      else why.push('Here your <b>predicted 12th</b> leads' + (u.country === 'UK' || u.country === 'Singapore' ? ', with your 10th boards also read' : '') + (m11 != null && P.score > m11 + 8 ? '. It\u2019s well above your 11th, so we discount it the way admissions teams do.' : '.'));
+      var m11 = hv(P, 'm11'), tr = trend(P), pi = predInfo(P, u.country);
+      var disc = pi.discounted ? ' Your predicted 12th is well above your ' + (pi.from11 ? '11th' : 'earlier marks') + ', so we discount it' + (u.country === 'US' ? ' a little.' : ' the way admissions teams do.') : '';
+      if (u.country === 'US') why.push('US universities read your whole transcript, so this blends Class 9 to 12 with <b>11th weighted most</b>' + (m11 != null && (hv(P, 'm10') != null || hv(P, 'm9') != null) ? (tr >= 3 ? ', and your marks are <b>rising</b>, which helps.' : tr <= -3 ? ', and your marks <b>dipped</b> in 11th, which they will notice.' : '.') : '. Add your 9th to 11th marks for a sharper estimate.') + disc);
+      else why.push('Here your <b>predicted 12th</b> leads' + (u.country === 'UK' || u.country === 'Singapore' ? ', with your 10th boards also read' : '') + '.' + disc);
     }
     if (u.country === 'US') {
       if (u.testPolicy === 'blind') why.push('They are <b>test-blind</b>: SAT and ACT scores aren\u2019t looked at, so your marks and what you\u2019ve done carry everything.');
-      else if (c.sat && u.satMid50) why.push(c.sat >= u.satMid50[1] ? 'Your SAT is above their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). That helps a lot.' : c.sat >= u.satMid50[0] ? 'Your SAT is inside their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + ').' : (u.testPolicy === 'optional' ? 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), but they\u2019re <b>test-optional</b>: don\u2019t send it. The estimate assumes you won\u2019t.' : 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), and they require a score, so it counts against you. A retake is worth it here.'));
+      else if (c.sat && !u.satMid50) why.push('They don\u2019t publish an SAT middle 50%, so there\u2019s nothing to compare your score against. We treat it as neutral.');
+      else if (!c.sat && !u.satMid50 && u.testPolicy !== 'required') why.push('You\u2019d be applying test-optional. They don\u2019t publish SAT ranges, so we don\u2019t count it against you.');
+      else if (c.sat && u.satMid50) why.push(c.sat >= u.satMid50[1] ? 'Your SAT is above their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). That helps a lot.' : c.sat >= u.satMid50[0] ? 'Your SAT is inside their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + ').' : (u.testPolicy !== 'required' ? 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), but they\u2019re <b>test-optional</b>: don\u2019t send it. The estimate assumes you won\u2019t.' : 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), and they require a score, so it counts against you. A retake is worth it here.'));
       else if (!c.sat && u.testPolicy !== 'blind') why.push(u.testPolicy === 'required' ? 'They <b>require</b> the SAT or ACT. Without one, you can’t apply.' : 'You’d be applying test-optional. Fine, but a strong score still helps internationals.');
       why.push('US admissions read the whole profile, so what you do beyond marks moves the needle here more than anywhere else.');
     }
-    if (c.notes.indexOf('below-min') !== -1) why.push('They set a hard minimum of <b>' + u.indiaReqMin + '%</b> for Indian boards. Below it, your application usually isn\u2019t considered.');
-    if (u.acceptanceRate != null && u.acceptanceRate < 0.12) why.push('They admit under 12% of applicants. Nobody is “safe” here.');
-    if (r.e.state === 'short') why.push('Your English score is ' + r.e.gap + ' short of their minimum. Many offer a pathway course, but plan a retake.');
-    if (r.e.state === 'missing') why.push('Add an English test score to check eligibility.');
-    if (r.over) why.push('Cost is about <b>' + lakh(u.costINR) + '/yr</b>, above your ' + '₹' + P.budget + 'L budget.');
-    if (r.aidRisk) why.push('Aid for international students here is ' + u.intlAid + '. Don’t count on it.');
+    var apK = apHi(P);
+    if (c.ap > 0) why.push('AP: <b>' + apK + ' exam' + (apK > 1 ? 's' : '') + ' at 4+</b> ' + (u.country === 'US' ? 'helps a little as a sign of course rigor.' : 'is a small plus here. Your board marks still decide.'));
+    else if (+P.apN > 0 && u.country === 'US') why.push('AP: scores below 4 don\u2019t count against you. Report only the ones that help.');
+    var hasN = function (n) { return c.notes.indexOf(n) !== -1; };
+    if (hasN('below-min')) why.push('They set a hard minimum of <b>' + u.indiaReqMin + '%</b> for Indian boards, and your predicted Class 12 is below it. Below it, your application usually isn\u2019t considered.');
+    if (hasN('needs-maths')) why.push('This course needs <b>Class 12 Maths</b>, and your stream doesn\u2019t include it, so we treat it as closed.');
+    if (hasN('needs-bio')) why.push('Medicine and health courses need <b>Class 12 Biology</b>, and your stream doesn\u2019t include it, so we treat it as closed.');
+    if (hasN('board-not-accepted')) why.push('They accept only <b>CBSE and ISC</b> Class XII, not state boards, so a state-board application isn\u2019t considered.');
+    if (hasN('cbse-ap')) why.push('With CBSE, most Cambridge courses also need <b>5+ AP scores of 5</b>. CBSE alone is accepted only by some colleges, mostly for arts and humanities.');
+    if (hasN('health')) why.push('Medicine and health courses usually add an <b>admissions test and an interview</b> on top of marks, so we never call them safe.');
+    if (hasN('no-med')) why.push('We don\u2019t have a medicine or health course listed for them. Check they offer one before you apply.');
+    if (c.sel.real && (c.sel.ar < 0.3 || u.intlAdmitRate != null)) why.push('They admit about ' + Math.round(c.sel.ar * 100) + '% of applicants' + (u.intlAdmitRate != null ? ', but only about <b>' + Math.round(u.intlAdmitRate * 100) + '%</b> of applicants like you (their own figures)' : '') + ', so however strong the profile, we cap the estimate near <b>' + Math.round(c.ceil * 100) + '%</b>.' + (c.ceil < 0.68 ? ' Nobody is \u201csafe\u201d here.' : ''));
+    else if (c.sel.implied) why.push('They don\u2019t publish an overall admit rate, so we judge how selective they are from their bar for Indian applicants.');
+    if (r.e.state === 'short') why.push('Your English score is ' + r.e.gap + ' short of their minimum, which is a hard requirement, so we count this as a <b>reach</b> until you retake. Some offer a pathway course.');
+    if (r.e.state === 'missing') why.push('Add an English test score to check eligibility. Until then we take a little off.');
+    if (r.over) why.push('Cost is about <b>' + lakh(r.cost) + '/yr</b>, above your ' + '₹' + P.budget + 'L budget.');
+    if (r.aidCover) why.push('Cost is about ' + lakh(r.cost) + '/yr, but they\u2019re need-blind and meet full demonstrated need for internationals too, so <b>need-based aid may cover</b> the gap to your budget.');
+    else if (P.needAid && u.aidPolicy === 'need-aware-full') why.push('They meet full demonstrated need once you\u2019re admitted, but admission is need-aware for internationals, so asking for aid can affect your chances.');
+    if (r.aid === 'none') why.push('There\u2019s <b>no aid</b> for international students here.');
+    else if (r.aid === 'limited') why.push('Aid for international students here is limited. Don\u2019t count on it.');
+    else if (r.aid === 'unknown') why.push('We couldn\u2019t confirm aid for international students here. Ask them before you count on it.');
     if (u.markAdmitted) why.push('<b>Mark applied here and got in.</b>');
     else if (u.markApplied) why.push('Mark applied here in his own application year.');
 
     var ec = r.e, engName = { ielts: 'IELTS', toefl: 'TOEFL', duolingo: 'Duolingo', none: 'English' }[P.engType];
-    var reqLabel = u.indiaReq ? (COMPETITIVE[P.major] ? (u.indiaReq.high || u.indiaReq.typical) : (u.indiaReq.typical || u.indiaReq.high)) + '%' : Math.round(c.req) + '% (est.)';
+    var reqLabel = c.rq.src === 'ib' ? Math.round(c.rq.raw) + ' pts' : c.rq.src === 'india' ? Math.round(c.req) + '%' : Math.round(c.req) + '% (est.)';
     var vs = '<div class="vs"><div><span class="h"></span><span class="h">You</span><span class="h">They look for</span><span></span></div>' +
-      row(INDIAN[P.board] ? 'Marks, weighted' : 'Academics', Math.round(c.A) + '%', reqLabel, c.A >= c.req) +
+      row(INDIAN[P.board] ? 'Marks, weighted' : 'Academics', c.rq.src === 'ib' ? clamp(+P.score, 24, 45) + ' pts' : Math.round(c.A) + '%', reqLabel, c.A >= c.req) +
       (u.country === 'US' ? u.testPolicy === 'blind' ? row('SAT', c.sat || '—', 'Not used', null) : row('SAT', c.sat || '—', u.satMid50 ? u.satMid50[0] + '–' + u.satMid50[1] : (u.testPolicy || 'n/a'), u.satMid50 && c.sat ? c.sat >= u.satMid50[0] : (u.testPolicy === 'required' && !c.sat ? false : null)) : '') +
       row(engName, P.engType === 'none' || P.eng == null ? '—' : P.eng, ec.need != null ? ec.need + '+' : 'check', ec.state === 'ok' ? true : ec.state === 'short' ? false : null) +
-      row('Cost / yr', '₹' + P.budget + 'L budget', u.costINR ? lakh(u.costINR) : 'n/a', u.costINR ? !r.over : null) +
+      row('Cost / yr', '₹' + P.budget + 'L budget', r.cost ? lakh(r.cost) : 'n/a', r.cost ? !r.over : null) +
       '</div>';
 
-    var cost = u.tuitionN != null ? '<p class="hint">Tuition ~' + u.cur + ' ' + Math.round(u.tuitionN).toLocaleString('en-IN') + ' + living ~' + u.cur + ' ' + Math.round(u.livingN).toLocaleString('en-IN') + (u.livingEst ? ' (our estimate)' : '') + ' a year.' + (u.tuitionNote ? ' ' + esc(u.tuitionNote) : '') + '</p>' : '';
+    var cost = r.tuition != null ? '<p class="hint">Tuition ~' + u.cur + ' ' + Math.round(r.tuition).toLocaleString('en-IN') + (u.collegeFee ? ' + college fee ~' + u.cur + ' ' + Math.round(u.collegeFee).toLocaleString('en-IN') : '') + ' + living ~' + u.cur + ' ' + Math.round(u.livingN).toLocaleString('en-IN') + (u.livingEst ? ' (our estimate)' : '') + ' a year.' + (u.tuitionNote ? ' ' + esc(u.tuitionNote) : '') + '</p>' : '';
     var src = (u.sources || []).map(function (s) { return '<a href="' + esc(s) + '" target="_blank" rel="noopener">' + esc(s.replace(/^https?:\/\//, '').slice(0, 70)) + '</a>'; }).join('');
 
     drawer.innerHTML =
@@ -1041,7 +1279,7 @@
       line('Academic bar', function (r) { return Math.round(r.c.req) + '% (you ' + Math.round(r.c.A) + '%)'; }) +
       line('SAT mid-50', function (r) { return r.u.satMid50 ? r.u.satMid50.join('–') : (r.u.country === 'US' ? esc(r.u.testPolicy || '—') : 'Not used'); }) +
       line('IELTS min', function (r) { return r.u.ieltsMin != null ? r.u.ieltsMin : '—'; }) +
-      line('Cost / yr', function (r) { return r.u.costINR ? lakh(r.u.costINR) : '—'; }) +
+      line('Cost / yr', function (r) { return r.cost ? lakh(r.cost) : '—'; }) +
       line('Aid for you', function (r) { return esc(r.u.intlAid || '—'); }) +
       line('Known for', function (r) { return esc((r.u.strengths || []).slice(0, 3).join(', ')); }) +
       line('Deadlines', function (r) { return esc(r.u.deadlines || '—'); }) + '</tbody>';

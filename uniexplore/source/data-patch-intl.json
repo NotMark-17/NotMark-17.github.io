@@ -6,9 +6,13 @@
       "https://www.ntu.edu.sg/admissions/undergraduate/financial-matters/tuition-fees/accepted-programme-offer-in-2026",
       "https://www.ntu.edu.sg/admissions/undergraduate/admission-guide/international-qualifications/india-standard-12"
     ],
-    "patchNote": "Indians fall under 'Other International Students' (non-ASEAN) TG rate; TG carries a 3-year Singapore work bond. IELTS: min Overall 6, Writing 6 (only if English not medium of study/2nd language). Minimum to apply with India Std 12: at least 90% in all subjects incl. English (excl. other languages/technical subjects); NTU publishes no grade profile for Indian applicants, so indiaReq typical/high not set (indiaReqMin = official eligibility floor).",
+    "patchNote": "Indians fall under 'Other International Students' (non-ASEAN) TG rate; TG carries a 3-year Singapore work bond. IELTS: min Overall 6, Writing 6 (only if English not medium of study/2nd language). Minimum to apply with India Std 12: at least 90% in all subjects incl. English (excl. other languages/technical subjects); NTU publishes no grade profile for Indian applicants, so indiaReq typical/high not set (indiaReqMin = official eligibility floor). tuitionByMajor from the fee note: \"S$21,800 Business/Accountancy, S$91,250 Medicine\".",
     "ieltsMin": 6.0,
-    "indiaReqMin": 90
+    "indiaReqMin": 90,
+    "tuitionByMajor": {
+      "biz": 21800,
+      "health": 91250
+    }
   },
   "mcgill": {
     "tuition": 63000,
@@ -18,14 +22,23 @@
       "https://www.mcgill.ca/student-accounts/files/student-accounts/new_intl_ugrad_degree_students_admitted_2026-27_0.pdf",
       "https://www.mcgill.ca/undergraduate-admissions/apply/english-proficiency"
     ],
-    "patchNote": "IELTS Academic 6.5 overall, each component 6.0+. McGill India page publishes no percentage/competitive range for CBSE/ISC, so indiaReq not set."
+    "patchNote": "IELTS Academic 6.5 overall, each component 6.0+. McGill India page publishes no percentage/competitive range for CBSE/ISC, so indiaReq not set. tuitionByMajor from the fee note: \"Arts C$54,000; Science C$64,785.90; Engineering C$65,167.50; Management (BCom) C$71,687.40\".",
+    "tuitionByMajor": {
+      "soc": 54000,
+      "sci": 64785.9,
+      "eng": 65167.5,
+      "biz": 71687.4
+    }
   },
   "nus": {
     "ieltsMin": 6.5,
     "sources": [
       "https://www.nus.edu.sg/oam/docs/default-source/default-document-library/english-test-scores.pdf"
     ],
-    "patchNote": "IELTS Academic 6.5 in Overall, Reading and Writing (NUS English Language Test Scores doc, updated Sept 2026). No official Indian-qualification grade profile found; indiaReq not set."
+    "patchNote": "IELTS Academic 6.5 in Overall, Reading and Writing (NUS English Language Test Scores doc, updated Sept 2026). No official Indian-qualification grade profile found; indiaReq not set. tuitionByMajor from the fee note: \"22,200 (Business)\" with the Tuition Grant.",
+    "tuitionByMajor": {
+      "biz": 22200
+    }
   },
   "unsw": {
     "tuition": 56000,
@@ -38,14 +51,52 @@
       "https://www.unsw.edu.au/study/how-to-apply/english-language-requirements",
       "https://www.unsw.edu.au/study/how-to-apply/fees"
     ],
-    "patchNote": "IELTS Academic 6.5 overall, min 6.0 each subtest (some programs e.g. Education/Social Work/some Business higher)."
+    "patchNote": "IELTS Academic 6.5 overall, min 6.0 each subtest (some programs e.g. Education/Social Work/some Business higher). indiaReq.byMajor from the Indian-board note: CBSE \"B Arts / B Science (ATAR 78) = 75%; B Engineering (Hons) (ATAR 89) = 81%; B Commerce (ATAR 92) and B Advanced CS (ATAR 91) = 85%\"; ISC \"Arts/Science 83, Engineering 90, Commerce 92\". tuitionByMajor from the fee note (A$/yr): Arts 47,280; Business/Commerce 56,640; Engineering & Computer Science 60,960; Science 62,640; Medicine 99,600.",
+    "indiaReq": {
+      "typical": 75,
+      "high": 85,
+      "byMajor": {
+        "soc": 75,
+        "sci": 75,
+        "eng": 81,
+        "biz": 85,
+        "cs": 85
+      },
+      "byMajorISC": {
+        "soc": 83,
+        "sci": 83,
+        "eng": 90,
+        "biz": 92
+      }
+    },
+    "tuitionByMajor": {
+      "soc": 47280,
+      "biz": 56640,
+      "eng": 60960,
+      "cs": 60960,
+      "sci": 62640,
+      "health": 99600
+    }
   },
   "anu": {
     "ieltsMin": 6.5,
     "sources": [
       "https://study.anu.edu.au/apply/english-language-requirements"
     ],
-    "patchNote": "IELTS Academic (incl. UKVI, One Skill Retake) overall 6.5 with 6.0 in each of Reading, Writing, Listening, Speaking (official domain search snippet). ANU uses its own 20-point conversion for AISSC, not percentages."
+    "patchNote": "IELTS Academic (incl. UKVI, One Skill Retake) overall 6.5 with 6.0 in each of Reading, Writing, Listening, Speaking (official domain search snippet). ANU uses its own 20-point conversion for AISSC, not percentages. indiaReq.byMajor from the Indian-board note: \"ISC table: ATAR 80 = 84, ATAR 85 = 87 ... B Commerce 80, B Advanced Computing (Hons) 85, B Engineering (Hons) 85\". tuitionByMajor from the fee note: \"AUD 57,640/yr indicative (2027) for B Commerce and B Advanced Computing (Hons)\".",
+    "indiaReq": {
+      "typical": 84,
+      "high": 87,
+      "byMajor": {
+        "biz": 84,
+        "cs": 87,
+        "eng": 87
+      }
+    },
+    "tuitionByMajor": {
+      "biz": 57640,
+      "cs": 57640
+    }
   },
   "macquarie": {
     "ieltsMin": 6.5,
@@ -58,8 +109,61 @@
     "living": 24505,
     "livingNote": "USyd living-costs page states 'at least A$24,505 per year' (~A$2,042/month), citing the Home Affairs visa financial-capacity figure. That figure appears stale: the current Home Affairs requirement is A$29,710/yr (as cited on UNSW's page). Consider using 29,710 or flagging.",
     "sources": [
-      "https://www.sydney.edu.au/study/fees-and-loans/other-costs/living-costs.html"
+      "https://www.sydney.edu.au/study/fees-and-loans/other-costs/living-costs.html",
+      "https://www.sydney.edu.au/content/dam/corporate/documents/study/how-to-apply/international-admission-guide.pdf"
     ],
-    "patchNote": "Living = minimum visa-based figure published by USyd, not a lifestyle estimate."
+    "patchNote": "Living = minimum visa-based figure published by USyd, not a lifestyle estimate. indiaReq.byMajor from the Indian-board note (ISC %): \"B Arts (ATAR 75) = ISC 81; Engineering Hons (ATAR 85) = ISC 87; Advanced Computing (ATAR 90) = ISC 90; B Commerce (ATAR 96) = ISC 94\" (biz uses B Commerce). tuitionByMajor from the fee note: \"AUD 55,100 (Arts) to 59,100 (Commerce/Economics) to 63,600 (Engineering/Advanced Computing)\".",
+    "indiaReq": {
+      "typical": 81,
+      "high": 94,
+      "byMajor": {
+        "soc": 81,
+        "eng": 87,
+        "cs": 90,
+        "biz": 94
+      }
+    },
+    "tuitionByMajor": {
+      "soc": 55100,
+      "biz": 59100,
+      "eng": 63600,
+      "cs": 63600
+    }
+  },
+  "waterloo": {
+    "indiaReq": {
+      "typical": 80,
+      "high": 85,
+      "byMajor": {
+        "soc": 80,
+        "cs": 85
+      }
+    },
+    "tuitionByMajor": {
+      "sci": 54000,
+      "soc": 58000,
+      "cs": 73000,
+      "eng": 75000
+    },
+    "sources": [
+      "https://uwaterloo.ca/future-students/admissions/admission-requirements/computer-science/high-school/international-system/indian-system",
+      "https://uwaterloo.ca/future-students/financing/tuition"
+    ],
+    "patchNote": "indiaReq.byMajor from the Indian-board note (published minimums): \"Honours Arts 80% ...; Computer Science 85% overall\". tuitionByMajor from the fee note: \"Science CAD 54,000; Arts 58,000; ... Computer Science 73,000; Engineering/Software Eng 75,000\"."
+  },
+  "uoft": {
+    "tuitionByMajor": {
+      "eng": 73056
+    },
+    "patchNote": "tuitionByMajor from the fee note: \"Applied Science & Engineering CAD 73,056\"."
+  },
+  "ubc": {
+    "tuitionByMajor": {
+      "soc": 51530,
+      "sci": 53082,
+      "eng": 53675,
+      "biz": 66678
+    },
+    "patchNote": "tuitionByMajor from the fee note: \"Arts CAD 51,530; Science 53,082; Applied Science 53,675; Commerce (Sauder) 66,678\"."
   }
 }
