@@ -34,6 +34,7 @@
     --faint: rgba(30, 30, 30, .28);
     --line: rgba(30, 30, 30, .14);
     --accent: #FF5B1F;
+    --safe: #1F7A4D;
     --sans: "Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --serif: "Instrument Serif", "Times New Roman", serif;
     --ease: cubic-bezier(.7, 0, .2, 1);
@@ -41,6 +42,7 @@
     color-scheme: light;
   }
   html[data-theme="dark"] {
+    --safe: #5BC08A;
     --bg: #121212;
     --ink: #ECECEC;
     --mute: rgba(236, 236, 236, .5);
@@ -401,6 +403,39 @@
   .pt-canvas { position: absolute; z-index: 1; pointer-events: none; }
   .contact-big.is-particles, .contact-big.is-particles em { color: transparent; }
 
+  /* ---------- inside UniExplore: the app's real model, drawn as one dot per university ---------- */
+  .model { border-top: 1px solid var(--line); }
+  .model-top { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; align-items: end; }
+  .model h2 { margin-top: 18px; font-size: clamp(48px, 7.4vw, 124px); font-weight: 500; letter-spacing: -.06em; line-height: .84; text-transform: uppercase; text-wrap: balance; }
+  .model h2 em { font-family: var(--serif); font-style: normal; font-weight: 400; letter-spacing: -.02em; text-transform: none; color: var(--accent); }
+  .model-lede { max-width: 42ch; font-size: 16px; line-height: 1.45; }
+  .model-ctl { display: grid; grid-template-columns: minmax(220px, 320px) 1fr auto; gap: 24px 40px; align-items: end; margin-top: 64px; }
+  .model-score { display: grid; gap: 4px; }
+  .model-score output { font-size: 64px; font-weight: 500; letter-spacing: -.05em; line-height: .9; }
+  .model-score output small { font-size: 22px; color: var(--mute); letter-spacing: 0; margin-left: 2px; }
+  .model-score input { width: 100%; margin: 10px 0 0; accent-color: var(--accent); cursor: pointer; }
+  .model-views { display: flex; flex-wrap: wrap; gap: 6px; }
+  .model-views button { font: 500 13px var(--sans); color: var(--ink); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; transition: background-color .25s, color .25s, border-color .25s; }
+  .model-views button:hover { border-color: var(--faint); }
+  .model-views button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .model-counts { display: flex; gap: 22px; font-size: 12px; font-weight: 500; color: var(--mute); }
+  .model-counts span { display: grid; gap: 2px; }
+  .model-counts b { font-size: 34px; font-weight: 500; letter-spacing: -.04em; line-height: 1; }
+  .c-reach b { color: var(--accent); } .c-target b { color: var(--ink); } .c-safe b { color: var(--safe); }
+  .model-field { position: relative; height: 440px; margin-top: 28px; }
+  .model-field canvas { display: block; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y; }
+  .model-tip { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; padding: 9px 12px; border-radius: 10px; background: var(--ink); color: var(--bg); font-size: 12px; line-height: 1.45; white-space: nowrap; opacity: 0; transform: translate(-50%, calc(-100% - 16px)); transition: opacity .15s; }
+  .model-tip b { font-size: 13px; font-weight: 600; }
+  .model-tip.on { opacity: 1; }
+  .model-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 18px; font-size: 13px; color: var(--mute); }
+  .model-foot a { color: var(--ink); font-weight: 500; }
+  @media (max-width: 820px) {
+    .model-top, .model-ctl { grid-template-columns: 1fr; gap: 24px; }
+    .model-ctl { margin-top: 40px; }
+    .model-score output { font-size: 52px; }
+    .model-field { height: 400px; margin-top: 18px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -512,6 +547,33 @@
       <div class="count" aria-hidden="true"><span class="label">Selected work</span><span class="num" data-f="num">01</span><span class="label">/05</span></div>
       <span class="label scroll-hint">Scroll</span>
     </div>
+  </section>
+
+  <section class="model pad" id="model" aria-labelledby="model-t">
+    <div class="model-top">
+      <div>
+        <span class="label">Inside UniExplore</span>
+        <h2 id="model-t"><span data-n>53</span> universities.<br>One <em>model.</em></h2>
+      </div>
+      <p class="model-lede">Every dot is a real university from UniExplore&rsquo;s dataset, with admit rates and fees taken from official pages. Drag the marks: the same model that runs the app re-sorts all of them, live.</p>
+    </div>
+    <div class="model-ctl">
+      <div class="model-score">
+        <label class="label" for="modelScore">Class 12, predicted</label>
+        <output id="modelOut" for="modelScore" class="num">88<small>%</small></output>
+        <input type="range" id="modelScore" min="60" max="100" step="1" value="88">
+      </div>
+      <div class="model-views" role="group" aria-label="Arrange the dots by">
+        <button type="button" data-view="chance" aria-pressed="true">Chance</button>
+        <button type="button" data-view="admit" aria-pressed="false">Admit rate</button>
+        <button type="button" data-view="cost" aria-pressed="false">Cost</button>
+        <button type="button" data-view="country" aria-pressed="false">Country</button>
+      </div>
+      <p class="model-counts num"><span class="c-reach"><b data-c="reach">&ndash;</b>Reach</span><span class="c-target"><b data-c="target">&ndash;</b>Target</span><span class="c-safe"><b data-c="safe">&ndash;</b>Safe</span></p>
+    </div>
+    <div class="model-field"><canvas aria-hidden="true"></canvas><div class="model-tip" aria-hidden="true"></div></div>
+    <div class="model-foot"><p id="modelWho">Example student.</p><a href="/uniexplore/">Put in your own marks &#8599;</a></div>
+    <p class="sr" aria-live="polite" id="modelSr"></p>
   </section>
 
   <section class="about pad" id="about" aria-label="About">
@@ -1193,6 +1255,237 @@
     if (ms.some(function (m) { return m.attributeName === 'data-mode'; })) { setTimeout(function () { build(false); }, 60); return; }
     readColors(); wake();
   }).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-mode'] });
+})();
+</script>
+<script>
+/* ---------- inside UniExplore: loads the app's own data + model and draws one dot per university ---------- */
+(function () {
+  var sec = document.getElementById('model');
+  if (!sec || !window.HTMLCanvasElement) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var field = sec.querySelector('.model-field'), cv = field.querySelector('canvas'), ctx = cv.getContext('2d');
+  var tip = sec.querySelector('.model-tip'), range = document.getElementById('modelScore'), out = document.getElementById('modelOut');
+  var srOut = document.getElementById('modelSr'), views = sec.querySelectorAll('[data-view]');
+  var M = null, P = null, dots = [], byId = {}, view = 'chance', W = 0, H = 0, dpr = 1, R = 7, running = false, shown = false;
+  var hover = null, col = {}, axis = null, srT = 0;
+  var PAD = { l: 6, r: 6, t: 34, b: 38 }, SIDE = 96;
+  var ZONES = [['reach', 0, 0.35, 'Reach'], ['target', 0.35, 0.68, 'Target'], ['safe', 0.68, 1, 'Safe']];
+  var COUNTRIES = ['US', 'UK', 'Australia', 'Canada', 'Singapore'];
+
+  function load(src) {
+    return new Promise(function (ok, no) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); });
+  }
+  function readColors() {
+    var cs = getComputedStyle(root);
+    ['accent', 'ink', 'safe', 'mute', 'line', 'bg', 'faint'].forEach(function (k) { col[k] = cs.getPropertyValue('--' + k).trim(); });
+    col.reach = col.accent; col.target = col.ink;
+  }
+  function size() {
+    var r = field.getBoundingClientRect();
+    W = Math.round(r.width); H = Math.round(r.height);
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    R = W < 560 ? 6 : W < 900 ? 7 : 9;
+  }
+
+  /* stack dots around a centre line without overlap, in order of x */
+  function swarm(list, cy, lo, hi) {
+    var placed = [], step = R * 1.1, gap = R * 2 + 2;
+    list.sort(function (a, b) { return a.tx - b.tx; }).forEach(function (d) {
+      for (var k = 0; k < 400; k++) {
+        var y = cy + (k % 2 ? 1 : -1) * Math.ceil(k / 2) * step, ok = true;
+        for (var j = placed.length - 1; j >= 0; j--) {
+          var p = placed[j];
+          if (d.tx - p.tx > gap) break;
+          if ((d.tx - p.tx) * (d.tx - p.tx) + (y - p.ty) * (y - p.ty) < gap * gap) { ok = false; break; }
+        }
+        if (ok && y > lo && y < hi) { d.ty = y; break; }
+        if (ok && k > 380) { d.ty = y; break; }
+      }
+      placed.push(d);
+    });
+  }
+  /* a tidy block of dots for values we don't have: never guessed onto the scale */
+  function block(list, x0, x1, cy) {
+    var gap = R * 2 + 3, per = Math.max(1, Math.floor((x1 - x0) / gap)), y0 = cy - (Math.ceil(list.length / per) - 1) * gap / 2;
+    list.forEach(function (d, i) { d.tx = x0 + gap / 2 + (i % per) * gap; d.ty = y0 + Math.floor(i / per) * gap; });
+    return y0;
+  }
+  function layout() {
+    var x0 = PAD.l + R, x1 = W - PAD.r - R, top = PAD.t + R, bot = H - PAD.b - R, cy = (top + bot) / 2;
+    axis = { kind: view, x0: x0, x1: x1, top: top, bot: bot, ticks: [], cols: [] };
+    if (view === 'chance') {
+      dots.forEach(function (d) { d.tx = x0 + d.r.c.p * (x1 - x0); });
+      swarm(dots.slice(), cy, top, bot);
+      axis.ticks = [0, 0.25, 0.5, 0.75, 1].map(function (v) { return [x0 + v * (x1 - x0), Math.round(v * 100) + '%']; });
+      axis.zones = ZONES.map(function (z) { return [z[0], x0 + z[1] * (x1 - x0), x0 + z[2] * (x1 - x0), z[3]]; });
+      axis.caption = 'Chance of getting in, for this student';
+    } else if (view === 'admit' || view === 'cost') {
+      var val = view === 'admit' ? function (d) { return d.r.u.acceptanceRate; } : function (d) { return d.r.cost == null ? null : d.r.cost / 1e5; };
+      var known = dots.filter(function (d) { return val(d) != null; }), unknown = dots.filter(function (d) { return val(d) == null; });
+      var xe = x1 - (unknown.length ? SIDE : 0), max = view === 'admit' ? 1 : Math.max.apply(null, known.map(val).concat([1]));
+      if (view === 'cost') max = Math.ceil(max / 25) * 25;
+      known.forEach(function (d) { d.tx = x0 + (val(d) / max) * (xe - x0); });
+      swarm(known, cy, top, bot);
+      var by = block(unknown.sort(function (a, b) { return b.r.c.p - a.r.c.p; }), xe + 18, x1, cy);
+      var steps = view === 'admit' ? [0, 0.25, 0.5, 0.75, 1] : [0, 0.25, 0.5, 0.75, 1].map(function (f) { return f * max; });
+      axis.ticks = steps.map(function (v) { return [x0 + (v / max) * (xe - x0), view === 'admit' ? Math.round(v * 100) + '%' : '₹' + Math.round(v) + 'L']; });
+      if (unknown.length) axis.cols = [[xe + 18, x1, view === 'admit' ? 'Not published' : 'Fee n/a', by - R - 14]];
+      axis.caption = view === 'admit' ? 'Share of applicants each university admits' : 'Yearly cost in INR, tuition plus living';
+    } else {
+      var w = (x1 - x0) / COUNTRIES.length, gap = R * 2 + 3, per = Math.max(1, Math.floor((w - 16) / gap));
+      var rows = Math.max.apply(null, COUNTRIES.map(function (c) { return Math.ceil(dots.filter(function (d) { return d.r.u.country === c; }).length / per); }));
+      var y0 = cy - (rows - 1) * gap / 2;
+      COUNTRIES.forEach(function (c, i) {
+        var list = dots.filter(function (d) { return d.r.u.country === c; }).sort(function (a, b) { return b.r.c.p - a.r.c.p; });
+        var cx0 = x0 + i * w + (w - Math.min(per, list.length) * gap) / 2;
+        list.forEach(function (d, k) { d.tx = cx0 + gap / 2 + (k % per) * gap; d.ty = y0 + Math.floor(k / per) * gap; });
+        axis.cols.push([x0 + i * w, x0 + (i + 1) * w, c + '  ' + list.length]);
+      });
+      axis.caption = 'Sorted best chance first';
+    }
+  }
+
+  function evaluate() {
+    var res = M.evaluate(P), counts = { reach: 0, target: 0, safe: 0 };
+    res.forEach(function (r) {
+      counts[r.c.band]++;
+      var d = byId[r.u.id];
+      if (!d) { d = byId[r.u.id] = { r: r, x: W / 2, y: H / 2, tx: 0, ty: 0, flash: 0, s: 1 }; dots.push(d); }
+      else if (d.r.c.band !== r.c.band) d.flash = 1;
+      d.r = r;
+    });
+    ['reach', 'target', 'safe'].forEach(function (b) { sec.querySelector('[data-c="' + b + '"]').textContent = counts[b]; });
+    clearTimeout(srT);
+    srT = setTimeout(function () { srOut.textContent = 'At ' + P.score + ' percent: ' + counts.reach + ' reach, ' + counts.target + ' target, ' + counts.safe + ' safe.'; }, 500);
+    layout();
+    wake();
+  }
+
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.font = '500 11px Geist, -apple-system, Arial, sans-serif';
+    ctx.textBaseline = 'alphabetic';
+    if (axis.zones) axis.zones.forEach(function (z) {
+      ctx.fillStyle = col[z[0]]; ctx.globalAlpha = z[0] === 'target' ? 0.025 : 0.045; ctx.fillRect(z[1] + 1, axis.top - R - 6, z[2] - z[1] - 2, axis.bot - axis.top + 2 * R + 12);
+      ctx.globalAlpha = 1; ctx.fillStyle = col[z[0]]; ctx.fillText(z[3].toUpperCase(), z[1] + 8, PAD.t - 14);
+    });
+    ctx.strokeStyle = col.line; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(axis.x0 - R, H - PAD.b + 4.5); ctx.lineTo(axis.x1 + R, H - PAD.b + 4.5); ctx.stroke();
+    ctx.fillStyle = col.mute;
+    axis.ticks.forEach(function (t, i) {
+      ctx.beginPath(); ctx.moveTo(t[0] + 0.5, H - PAD.b + 1); ctx.lineTo(t[0] + 0.5, H - PAD.b + 8); ctx.stroke();
+      ctx.textAlign = i === 0 ? 'left' : i === axis.ticks.length - 1 ? 'right' : 'center';
+      ctx.fillText(t[1], t[0], H - PAD.b + 22);
+    });
+    axis.cols.forEach(function (c) { ctx.textAlign = 'left'; ctx.fillText(c[2], c[0] + (axis.kind === 'country' ? 8 : 0), axis.kind === 'country' ? H - PAD.b + 22 : c[3]); });
+    ctx.textAlign = 'right'; ctx.fillText(axis.caption, W - PAD.r, H - 4);
+    ctx.textAlign = 'left';
+    for (var i = 0; i < dots.length; i++) {
+      var d = dots[i], r = R * d.s;
+      ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = col[d.r.c.band]; ctx.fill();
+      if (d.flash > 0.01) { ctx.beginPath(); ctx.arc(d.x, d.y, r + 10 * (1 - d.flash), 0, Math.PI * 2); ctx.strokeStyle = col[d.r.c.band]; ctx.globalAlpha = d.flash; ctx.lineWidth = 2; ctx.stroke(); ctx.globalAlpha = 1; ctx.lineWidth = 1; }
+      if (d.r.u.markAdmitted) { ctx.beginPath(); ctx.arc(d.x, d.y, r + 4, 0, Math.PI * 2); ctx.strokeStyle = col.ink; ctx.lineWidth = 1.5; ctx.stroke(); ctx.lineWidth = 1; }
+    }
+    /* labels last, so no dot sits on top of them */
+    ctx.font = '600 11px Geist, -apple-system, Arial, sans-serif';
+    var boxes = [];
+    dots.forEach(function (d) {
+      if (!d.r.u.markAdmitted) return;
+      var t = 'I got in: ' + (d.r.u.short || d.r.u.name), tw = ctx.measureText(t).width, bx = Math.max(2, Math.min(W - tw - 18, d.x - tw / 2 - 8)), by = d.y - R * d.s - 34, below = false;
+      if (boxes.some(function (b) { return bx < b[0] + b[2] && b[0] < bx + tw + 16 && Math.abs(b[1] - by) < 26; })) { by = d.y + R * d.s + 12; below = true; }
+      boxes.push([bx, by, tw + 16]);
+      ctx.fillStyle = col.ink; ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(bx, by, tw + 16, 22, 11); else ctx.rect(bx, by, tw + 16, 22);
+      ctx.fill();
+      ctx.beginPath(); ctx.moveTo(d.x, below ? by : by + 22); ctx.lineTo(d.x, below ? d.y + R * d.s + 5 : d.y - R * d.s - 5); ctx.strokeStyle = col.ink; ctx.stroke();
+      ctx.fillStyle = col.bg; ctx.fillText(t, bx + 8, by + 15);
+    });
+  }
+  function frame() {
+    var moving = false;
+    for (var i = 0; i < dots.length; i++) {
+      var d = dots[i], k = reduce ? 1 : 0.13, ts = d === hover ? 1.6 : 1;
+      d.x += (d.tx - d.x) * k; d.y += (d.ty - d.y) * k; d.s += (ts - d.s) * (reduce ? 1 : 0.25);
+      if (d.flash > 0) d.flash = reduce ? 0 : d.flash * 0.92 - 0.004;
+      if (Math.abs(d.tx - d.x) + Math.abs(d.ty - d.y) > 0.3 || Math.abs(ts - d.s) > 0.01 || d.flash > 0.01) moving = true;
+    }
+    draw();
+    if (moving) requestAnimationFrame(frame); else running = false;
+  }
+  function wake() { if (shown && axis && !running) { running = true; requestAnimationFrame(frame); } }
+
+  function pick(e) {
+    var r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top, best = null, bd = (R + 8) * (R + 8);
+    dots.forEach(function (d) { var dd = (d.x - x) * (d.x - x) + (d.y - y) * (d.y - y); if (dd < bd) { bd = dd; best = d; } });
+    return best;
+  }
+  function showTip(d) {
+    if (hover === d) return;
+    hover = d; wake();
+    if (!d) { tip.classList.remove('on'); cv.style.cursor = ''; return; }
+    var u = d.r.u, band = d.r.c.band, bits = [];
+    if (u.acceptanceRate != null) bits.push('admits ' + Math.round(u.acceptanceRate * 100) + '%');
+    bits.push(d.r.cost != null ? M.lakh(d.r.cost) + '/yr' : 'fee n/a');
+    tip.innerHTML = '<b>' + M.esc(u.short || u.name) + '</b> &middot; ' + M.esc(u.country) + (u.markAdmitted ? ' &middot; I got in' : '') +
+      '<br>' + band.charAt(0).toUpperCase() + band.slice(1) + ', about ' + Math.round(d.r.c.p * 100) + '% for this student<br>' + bits.join(' &middot; ');
+    tip.style.left = Math.max(90, Math.min(W - 90, d.tx)) + 'px'; tip.style.top = d.ty - R + 'px';
+    tip.classList.add('on'); cv.style.cursor = 'pointer';
+  }
+  cv.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') showTip(pick(e)); });
+  cv.addEventListener('pointerleave', function () { showTip(null); });
+  cv.addEventListener('click', function (e) {
+    var d = pick(e);
+    if (!d) { showTip(null); return; }
+    if (e.pointerType !== 'mouse' && hover !== d) { showTip(d); return; }  /* touch: first tap shows, second opens */
+    window.location.href = '/uniexplore/';
+  });
+
+  range.addEventListener('input', function () {
+    out.innerHTML = range.value + '<small>%</small>';
+    if (!M) return;
+    P.score = +range.value; evaluate(); showTip(null);
+  });
+  views.forEach(function (b) {
+    b.addEventListener('click', function () {
+      view = b.getAttribute('data-view');
+      views.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      if (M) { showTip(null); layout(); wake(); }
+    });
+  });
+
+  function start() {
+    M = window.UEM;
+    P = JSON.parse(JSON.stringify(M.EXAMPLE));
+    P.score = +range.value;
+    var h = P.hist || {};
+    document.getElementById('modelWho').textContent = 'Example student: CBSE, Class 11 at ' + h.m11 + '%, SAT ' + P.sat + ', IELTS ' + P.eng + ', Computer Science, every country. Chances are model estimates, not admissions promises.';
+    sec.querySelector('[data-n]').textContent = M.U.length;
+    readColors(); size(); evaluate();
+    if (!reduce) dots.forEach(function (d) { d.x = W / 2 + (Math.random() - 0.5) * 40; d.y = H / 2 + (Math.random() - 0.5) * 40; });
+    wake();
+  }
+  var loading = false;
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      if (e.target === sec && !loading) {
+        loading = true;
+        (window.UEM ? Promise.resolve() : load('/uniexplore/data.js').then(function () { return load('/uniexplore/model.js'); }))
+          .then(function () { (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start); })
+          .catch(function () { document.getElementById('modelWho').textContent = 'The live model could not load. Open UniExplore to use it.'; });
+      }
+      if (e.target === field) { shown = true; wake(); }
+    });
+  }, { rootMargin: '300px 0px 0px 0px', threshold: 0 }).observe(sec);
+  new IntersectionObserver(function (es) { if (es[0].isIntersecting) { shown = true; wake(); } }, { threshold: 0.25 }).observe(field);
+  var lastW = 0;
+  window.addEventListener('resize', function () { if (!M || field.clientWidth === lastW) return; lastW = field.clientWidth; size(); layout(); dots.forEach(function (d) { d.x = d.tx; d.y = d.ty; }); draw(); });
+  new MutationObserver(function () { if (M) { setTimeout(function () { readColors(); draw(); }, 30); } }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  new MutationObserver(function () { if (M && field.clientWidth && field.clientWidth !== W) { size(); layout(); dots.forEach(function (d) { d.x = d.tx; d.y = d.ty; }); draw(); } }).observe(root, { attributes: true, attributeFilter: ['data-mode'] });
 })();
 </script>
 <script>

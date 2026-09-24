@@ -9,6 +9,7 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
 - `index.html`: the portfolio. Vanilla HTML/CSS/JS in one file, Lenis smooth scroll, editorial look (light grey `#ECECEC`, black `#1E1E1E`, tiny labels, huge type, tilted stacked image plates).
   - Theme toggle is stored in localStorage `mp-theme`. Recruiter mode (`?mode=recruiter`, R key) is stored in `mp-mode`, and both are applied in a head script before paint.
   - GoatCounter analytics (`markpatel.goatcounter.com`) with a `?r=` per-person tag.
+  - `#model` ("Inside UniExplore"): lazy-loads `/uniexplore/data.js` + `model.js` near the viewport and draws one canvas dot per university for the model's example student; a Class 12 slider re-runs `UEM.evaluate` live; views: chance, admit rate, cost, country; unknown values go in their own column, never guessed; Mark's admits are ringed and labelled "I got in".
   - Effects live in the `fx` script near the end and the "designed plates" / "scroll warp + particle headline" CSS: work plates are CSS objects sized in container units (`cqw`); the contact headline is redrawn as canvas dots that scatter from the cursor; nav/index/panel names decode through glyphs; plates skew and RGB-split with scroll speed (desktop only); the HUD turns dark over #contact and the logo uses `mix-blend-mode: difference`. All of it is off under prefers-reduced-motion. Keep plate content factual (no invented numbers or outputs).
 - `404.html`, `og-image.png` (link preview), `favicon.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml`.
 - `uniexplore/`: UniExplore, a no-login admissions tool (see below). The portfolio's UniExplore card opens it through a cross-document view transition (`view-transition-name: ue-hero`).
@@ -17,7 +18,8 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
 
 ## UniExplore
 
-- `uniexplore/index.html` holds the whole app. Inputs:
+- The chance model (constants, `chance`, `evaluate`, `costFor` and helpers) lives in `uniexplore/model.js`, exposed as `window.UEM`. It is loaded after `data.js` by both the app and the portfolio's "Inside UniExplore" section (`#model` in `index.html`), so edit the model there, never in a copy. The app imports each name with `var x = UEM.x` at the top of its script.
+- `uniexplore/index.html` holds the app UI. Inputs:
   - board: CBSE, ISC, State, IB, A-Level or US GPA
   - predicted Class 12 score
   - final Class 9, 10 and 11 marks
