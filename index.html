@@ -188,6 +188,11 @@
   .sheet-points, .entry-points { display: grid; gap: 9px; font-size: 14px; line-height: 1.45; }
   .sheet-points li, .entry-points li { display: grid; grid-template-columns: 22px 1fr; }
   .sheet-points li::before, .entry-points li::before { content: "\2014"; color: var(--mute); }
+  @view-transition { navigation: auto; }
+  .sheet-cta, .live-cta { justify-self: start; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; background: var(--accent); color: #1E1E1E; font-size: 14px; font-weight: 600; text-decoration: none; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+  .sheet-cta:hover, .live-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -16px rgba(255, 91, 31, .9); }
+  .sheet-cta[hidden] { display: none; }
+  .live-cta { margin-top: 16px; }
   .sheet-nav { display: flex; gap: 10px; padding-top: 6px; }
   .sheet-nav button, .sheet-close { font: 500 13px var(--sans); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; cursor: pointer; transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
   .sheet-nav button:hover, .sheet-close:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
@@ -247,7 +252,7 @@
     .more-btn span { display: inline-block; margin-left: 6px; transition: transform .4s var(--ease); }
     .entry.is-open .more-btn span { transform: rotate(45deg); }
     .entry-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--ease); }
-    .entry-more > ul { overflow: hidden; min-height: 0; }
+    .entry-more > ul, .entry-more > .more-in { overflow: hidden; min-height: 0; }
     .entry.is-open .entry-more { grid-template-rows: 1fr; }
     .entry-points > li:first-child { margin-top: 14px; }
   }
@@ -388,7 +393,7 @@
       <div class="stage">
         <article class="entry is-current" id="e1">
           <figure class="plate"><img src="uniexplore-landing.jpg" alt="UniExplore landing page: Your path to top universities starts here" width="1600" height="889" decoding="async"></figure>
-          <div class="entry-meta"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">An AI admissions advisor that scores a student's profile and sorts universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>AI insights plus an advisor chat for guidance</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul></div></div>
+          <div class="entry-meta" data-live="/uniexplore/"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">An AI admissions advisor that scores a student's profile and sorts universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><div class="more-in"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>AI insights plus an advisor chat for guidance</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul><a class="live-cta" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a></div></div></div>
         </article>
 
         <article class="entry" id="e2">
@@ -486,7 +491,7 @@
     <h1 class="rc-name">Mark Patel</h1>
     <p class="rc-line">First year at Masters&rsquo; Union, Gurugram. From Ahmedabad. Coding since 10th grade: Python, SQL, HTML, and C because Python was too nice to me.</p>
     <dl class="rc-proof">
-      <div><dt>Hackathon</dt><dd>UniExplore, an AI admissions advisor that scores a profile and sorts universities into reach, target and safe. Built most of the product. Top 5 at HackHarvard India, January 2026.</dd></div>
+      <div><dt>Hackathon</dt><dd>UniExplore, an AI admissions advisor that scores a profile and sorts universities into reach, target and safe. Built most of the product. Top 5 at HackHarvard India, January 2026. Rebuilt as a live tool: <a href="/uniexplore/">markpatel.in/uniexplore</a>.</dd></div>
       <div><dt>Internships</dt><dd>Data science intern twice at OmniaSys, 2024 and 2025. Python and SQL on a transport management system: debugging, testing and small modules.</dd></div>
       <div><dt>Certified</dt><dd>Oracle Certified Professional, OCI Data Science. Oracle Certified Associate, MySQL HeatWave.</dd></div>
       <div><dt>Founded</dt><dd>Co-founded May Foundation, a youth-led nonprofit running mentorship, tuition and community drives, and built its website. Now closed.</dd></div>
@@ -513,6 +518,7 @@
     <dl class="sheet-fields"><div><dt>Type</dt><dd data-s="type"></dd></div><div><dt>Role</dt><dd data-s="role"></dd></div><div><dt>Where</dt><dd data-s="where"></dd></div></dl>
     <p class="sheet-desc"></p>
     <ul class="sheet-points"></ul>
+    <a class="sheet-cta" href="/uniexplore/" data-portal hidden>Try it live, no login &#8599;</a>
     <div class="sheet-nav"><button type="button" data-step="-1">&larr; Prev</button><button type="button" data-step="1">Next &rarr;</button></div>
   </div>
 </div>
@@ -708,6 +714,9 @@
     sheet.querySelector('.sheet-name').textContent = metaOf(i, 'name');
     ['type', 'role', 'where'].forEach(function (key) { sheet.querySelector('[data-s="' + key + '"]').textContent = metaOf(i, key); });
     sheet.querySelector('.sheet-desc').textContent = metaOf(i, 'desc');
+    var liveUrl = entries[i].querySelector('.entry-meta').getAttribute('data-live');
+    var cta = sheet.querySelector('.sheet-cta');
+    cta.hidden = !liveUrl; if (liveUrl) cta.setAttribute('href', liveUrl);
     var pts = entries[i].querySelector('.entry-points');
     sheet.querySelector('.sheet-points').innerHTML = pts ? pts.innerHTML : '';
     stepBtns[0].disabled = i === 0;
@@ -813,6 +822,15 @@
     if (ev.key === 'Escape') { ev.preventDefault(); closeSheet(); }
     else if (ev.key === 'ArrowRight') { ev.preventDefault(); stepSheet(1); }
     else if (ev.key === 'ArrowLeft') { ev.preventDefault(); stepSheet(-1); }
+  });
+
+  /* ---------- portal into live projects: the plate morphs into the app's hero ---------- */
+  document.querySelectorAll('[data-portal]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.querySelectorAll('.plate').forEach(function (pl) { pl.style.viewTransitionName = ''; });
+      var pl = openIndex !== -1 ? sheet.querySelector('.sheet-media .plate') : (link.closest('.entry') || document).querySelector('.plate');
+      if (pl) pl.style.viewTransitionName = 'ue-hero';
+    });
   });
 
   /* ---------- theme switch ---------- */

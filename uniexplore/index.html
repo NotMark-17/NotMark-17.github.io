@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(localStorage.getItem("mp-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<title>UniExplore · Where do you actually fit?</title>
+<meta name="description" content="Enter your marks, scores and activities. UniExplore sorts universities across the US, UK, Australia, Canada and Singapore into reach, target and safe, live. No sign-up. Built by Mark Patel.">
+<meta property="og:title" content="UniExplore by Mark Patel">
+<meta property="og:description" content="Where do you actually fit? Live reach, target and safe matching across five countries. No sign-up.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markpatel.in/uniexplore/">
+<meta property="og:image" content="https://markpatel.in/og-image.png">
+<link rel="canonical" href="https://markpatel.in/uniexplore/">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  @view-transition { navigation: auto; }
+  :root {
+    --bg: #ECECEC;
+    --ink: #1E1E1E;
+    --mute: rgba(30, 30, 30, .56);
+    --faint: rgba(30, 30, 30, .3);
+    --line: rgba(30, 30, 30, .13);
+    --card: #F5F5F4;
+    --well: rgba(30, 30, 30, .06);
+    --accent: #FF5B1F;
+    --reach: #FF5B1F;
+    --target: #1E1E1E;
+    --safe: #1F7A4D;
+    --warn: #B4531A;
+    --sans: "Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --ease: cubic-bezier(.7, 0, .2, 1);
+    color-scheme: light;
+  }
+  html[data-theme="dark"] {
+    --bg: #121212;
+    --ink: #ECECEC;
+    --mute: rgba(236, 236, 236, .56);
+    --faint: rgba(236, 236, 236, .3);
+    --line: rgba(236, 236, 236, .13);
+    --card: #1B1B1B;
+    --well: rgba(236, 236, 236, .07);
+    --target: #ECECEC;
+    --safe: #5BC08A;
+    --warn: #F0A06A;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  button, input, select { font: inherit; color: inherit; }
+  p, h1, h2, h3, h4, ul, ol, dl, dd, fieldset { margin: 0; padding: 0; }
+  fieldset { border: 0; min-width: 0; }
+  ul, ol { list-style: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .label { font-size: 11.5px; font-weight: 500; letter-spacing: .02em; color: var(--mute); }
+  .num { font-variant-numeric: tabular-nums; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- top bar ---------- */
+  .top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 32px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .top-l { display: flex; align-items: baseline; gap: 18px; min-width: 0; }
+  .back { font-size: 13px; font-weight: 500; text-decoration: none; color: var(--mute); white-space: nowrap; }
+  .back:hover { color: var(--ink); }
+  .wordmark { font-size: 17px; font-weight: 700; letter-spacing: -.03em; white-space: nowrap; }
+  .wordmark i { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: 0; color: var(--accent); }
+  .top-r { display: flex; gap: 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; font-size: 13px; font-weight: 500; background: none; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; white-space: nowrap; transition: border-color .2s, background-color .2s; }
+  .btn:hover { border-color: var(--faint); }
+  .btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 40px; align-items: end; padding: 56px 32px 36px; view-transition-name: ue-hero; }
+  .hero h1 { font-size: clamp(44px, 6.4vw, 104px); font-weight: 600; letter-spacing: -.055em; line-height: .86; text-wrap: balance; }
+  .hero h1 em { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.02em; color: var(--accent); }
+  .hero-side { display: grid; gap: 16px; max-width: 46ch; }
+  .hero-side p { font-size: 15px; color: var(--ink); }
+  .hero-stats { display: flex; gap: 28px; }
+  .hero-stats b { display: block; font-size: 28px; font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+
+  /* ---------- layout ---------- */
+  .app { display: grid; grid-template-columns: 372px minmax(0, 1fr); gap: 36px; padding: 0 32px 72px; align-items: start; }
+
+  /* ---------- profile ---------- */
+  .profile { position: sticky; top: 72px; max-height: calc(100svh - 88px); overflow: auto; overscroll-behavior: contain; display: grid; gap: 22px; padding: 4px 6px 24px 2px; scrollbar-width: thin; }
+  .p-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .p-head h2 { font-size: 22px; font-weight: 600; letter-spacing: -.035em; }
+  .example { font-size: 12px; color: var(--accent); font-weight: 500; }
+  .step { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .step legend { display: flex; justify-content: space-between; width: 100%; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; }
+  .step legend span { color: var(--mute); font-weight: 500; letter-spacing: .02em; text-transform: none; }
+  .row { display: grid; gap: 6px; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .seg { display: flex; flex-wrap: wrap; gap: 4px; }
+  .seg button { height: 30px; padding: 0 11px; font-size: 12.5px; font-weight: 500; border: 1px solid var(--line); border-radius: 999px; background: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .field { width: 100%; height: 36px; padding: 0 10px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; font-size: 13.5px; }
+  select.field { padding-right: 28px; appearance: none; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 15px) 16px, calc(100% - 10px) 16px; background-size: 5px 5px; background-repeat: no-repeat; }
+  .big-slider { display: grid; gap: 4px; }
+  .big-slider output { font-size: 44px; font-weight: 600; letter-spacing: -.05em; line-height: 1; }
+  .big-slider output small { font-size: 16px; color: var(--mute); font-weight: 500; letter-spacing: 0; margin-left: 4px; }
+  input[type="range"] { width: 100%; accent-color: var(--accent); height: 22px; margin: 0; }
+  .hint { font-size: 12px; color: var(--mute); }
+  .acts { display: grid; gap: 6px; }
+  .act { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+  .act-name { font-size: 13px; }
+  .lvl { display: flex; gap: 3px; }
+  .lvl button { width: 26px; height: 22px; padding: 0; font-size: 10.5px; font-weight: 600; border: 1px solid var(--line); background: none; border-radius: 4px; cursor: pointer; color: var(--mute); }
+  .lvl button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #1E1E1E; }
+  .lvl button[data-l="0"][aria-pressed="true"] { background: var(--well); border-color: var(--line); color: var(--ink); }
+  .toggle { display: flex; align-items: center; gap: 10px; font-size: 13px; cursor: pointer; }
+  .toggle input { width: 16px; height: 16px; accent-color: var(--accent); margin: 0; }
+
+  /* ---------- results ---------- */
+  .results { display: grid; gap: 28px; min-width: 0; scroll-margin-top: 72px; }
+  .summary { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 28px; align-items: center; padding: 20px 22px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  .ring { position: relative; width: 96px; height: 96px; }
+  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 7; }
+  .ring .trk { stroke: var(--well); }
+  .ring .val { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset .6s var(--ease); }
+  .ring b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 28px; font-weight: 600; letter-spacing: -.04em; }
+  .bars { display: grid; gap: 7px; }
+  .bar { display: grid; grid-template-columns: 88px minmax(0, 1fr) 30px; gap: 10px; align-items: center; font-size: 12px; }
+  .bar i { display: block; height: 4px; background: var(--well); border-radius: 2px; overflow: hidden; }
+  .bar i::after { content: ""; display: block; height: 100%; width: var(--w, 0%); background: var(--ink); border-radius: 2px; transition: width .6s var(--ease); }
+  .bar span:last-child { text-align: right; color: var(--mute); }
+  .counts { display: flex; gap: 22px; }
+  .count b { display: block; font-size: 34px; font-weight: 600; letter-spacing: -.05em; line-height: 1; }
+  .count.reach b { color: var(--reach); }
+  .count.safe b { color: var(--safe); }
+
+  .sec-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 12px; }
+  .sec-h h3 { font-size: 20px; font-weight: 600; letter-spacing: -.035em; }
+  .sec-h h3 em { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.01em; }
+
+  .moves { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  .move { display: grid; gap: 8px; align-content: start; padding: 14px 14px 12px; border: 1px solid var(--line); border-radius: 10px; }
+  .move > b { font-size: 30px; font-weight: 600; letter-spacing: -.05em; line-height: 1; color: var(--accent); }
+  .move p b { font-weight: 600; }
+  .move p { font-size: 13px; }
+  .move .who { font-size: 12px; color: var(--mute); }
+  .move .btn { justify-self: start; height: 28px; font-size: 12px; }
+  .moves-empty { font-size: 13px; color: var(--mute); padding: 14px; border: 1px dashed var(--line); border-radius: 10px; }
+
+  .find { margin-bottom: 14px; max-width: 360px; }
+  .card[hidden] { display: none; }
+  .weak { margin-top: 8px; font-size: 12px; color: var(--mute); }
+  .weak b { color: var(--ink); font-weight: 600; }
+  .tabs { display: none; gap: 4px; margin-bottom: 12px; }
+  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+  .col { display: grid; gap: 8px; align-content: start; min-height: 120px; }
+  .col-h { display: flex; justify-content: space-between; align-items: baseline; padding: 0 2px 8px; border-bottom: 2px solid currentColor; margin-bottom: 4px; }
+  .col-h h4 { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .col-h span { font-size: 12px; }
+  .col[data-band="reach"] .col-h { color: var(--reach); }
+  .col[data-band="target"] .col-h { color: var(--target); }
+  .col[data-band="safe"] .col-h { color: var(--safe); }
+  .col-empty { font-size: 12.5px; color: var(--mute); padding: 12px 2px; }
+
+  .card { position: relative; display: grid; gap: 8px; padding: 13px 13px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; text-align: left; width: 100%; transition: border-color .2s, box-shadow .25s; will-change: transform; }
+  .card:hover { border-color: var(--faint); box-shadow: 0 10px 24px -18px rgba(0, 0, 0, .45); }
+  .card-top { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+  .card h5 { font-size: 14.5px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+  .card .where { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  .pct { font-size: 20px; font-weight: 600; letter-spacing: -.04em; line-height: 1; white-space: nowrap; }
+  .pct small { font-size: 11px; color: var(--mute); font-weight: 500; letter-spacing: 0; }
+  .meter { position: relative; height: 5px; background: var(--well); border-radius: 3px; overflow: hidden; }
+  .meter i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; transition: width .5s var(--ease), background-color .3s; }
+  .card[data-band="reach"] .meter i { background: var(--reach); }
+  .card[data-band="target"] .meter i { background: var(--target); }
+  .card[data-band="safe"] .meter i { background: var(--safe); }
+  .card-foot { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag { font-size: 10.5px; font-weight: 600; letter-spacing: .02em; padding: 2px 6px; border-radius: 3px; background: var(--well); color: var(--ink); white-space: nowrap; }
+  .tag.warn { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+  .tag.mark { background: var(--accent); color: #1E1E1E; }
+  .pick { position: absolute; top: 10px; right: 10px; }
+  .cmp-box { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--mute); cursor: pointer; }
+  .cmp-box input { width: 14px; height: 14px; accent-color: var(--accent); margin: 0; }
+
+  .roadmap { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .rm { display: grid; grid-template-columns: 130px minmax(0, 1fr) auto; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .rm time { font-family: var(--mono); font-size: 12px; color: var(--mute); }
+  .rm p { font-size: 13.5px; }
+  .rm .rm-c { font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--mute); text-transform: uppercase; }
+  .rm.is-now time { color: var(--accent); }
+
+  .foot { padding: 28px 32px 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; font-size: 12px; color: var(--mute); }
+  .foot a { color: var(--ink); }
+
+  /* ---------- drawer ---------- */
+  .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, .28); opacity: 0; transition: opacity .3s; }
+  .scrim.on { opacity: 1; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 41; width: min(520px, 100%); background: var(--bg); border-left: 1px solid var(--line); overflow: auto; overscroll-behavior: contain; transform: translateX(100%); transition: transform .45s var(--ease); display: grid; align-content: start; gap: 22px; padding: 22px 26px 40px; }
+  .drawer.on { transform: none; }
+  .d-top { display: flex; justify-content: space-between; align-items: center; }
+  .drawer h2 { font-size: 34px; font-weight: 600; letter-spacing: -.05em; line-height: .95; }
+  .d-where { font-size: 13px; color: var(--mute); margin-top: 6px; }
+  .d-chance { display: flex; align-items: baseline; gap: 12px; }
+  .d-chance b { font-size: 56px; font-weight: 600; letter-spacing: -.06em; line-height: 1; }
+  .d-band { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .vs { display: grid; border-top: 1px solid var(--line); }
+  .vs > div { display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, 1fr) 22px; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; align-items: baseline; }
+  .vs .h { font-size: 11px; color: var(--mute); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .ok { color: var(--safe); font-weight: 700; }
+  .no { color: var(--reach); font-weight: 700; }
+  .why { display: grid; gap: 6px; }
+  .why li { font-size: 13.5px; padding-left: 16px; position: relative; }
+  .why li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 2px; background: var(--accent); }
+  .d-sources { font-size: 12px; color: var(--mute); display: grid; gap: 3px; }
+  .d-sources a { color: var(--mute); word-break: break-all; }
+
+  /* ---------- compare ---------- */
+  .tray { position: fixed; left: 50%; bottom: 18px; z-index: 35; transform: translate(-50%, 140%); display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; background: var(--ink); color: var(--bg); border-radius: 999px; box-shadow: 0 16px 40px -18px rgba(0, 0, 0, .6); transition: transform .4s var(--ease); font-size: 13px; }
+  .tray.on { transform: translate(-50%, 0); }
+  .tray .btn { border-color: color-mix(in srgb, var(--bg) 30%, transparent); color: var(--bg); }
+  .tray .btn.solid { background: var(--accent); border-color: var(--accent); color: #1E1E1E; }
+  dialog.cmp { width: min(980px, calc(100% - 32px)); max-height: calc(100svh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); }
+  dialog.cmp::backdrop { background: rgba(0, 0, 0, .35); }
+  .cmp-in { padding: 22px 24px 26px; display: grid; gap: 16px; }
+  .cmp-scroll { overflow-x: auto; }
+  .cmp table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
+  .cmp th, .cmp td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .cmp th { font-size: 11px; color: var(--mute); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; width: 140px; }
+  .cmp thead td { font-size: 16px; font-weight: 600; letter-spacing: -.02em; }
+
+  .jump { position: fixed; right: 14px; bottom: 16px; z-index: 34; display: none; align-items: center; gap: 6px; height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--accent); color: #1E1E1E; font-size: 13px; font-weight: 600; box-shadow: 0 12px 28px -14px rgba(0, 0, 0, .5); cursor: pointer; }
+  .jump span { font-weight: 500; opacity: .8; }
+  @media (max-width: 1180px) { .jump:not([hidden]) { display: inline-flex; } }
+  .toast { position: fixed; left: 50%; top: 18px; z-index: 60; transform: translate(-50%, -160%); padding: 9px 16px; background: var(--ink); color: var(--bg); border-radius: 999px; font-size: 13px; transition: transform .35s var(--ease); }
+  .toast.on { transform: translate(-50%, 0); }
+
+  @media (max-width: 1180px) {
+    .app { grid-template-columns: 1fr; }
+    .profile { position: static; max-height: none; overflow: visible; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+    .p-head { grid-column: 1 / -1; }
+  }
+  @media (max-width: 860px) {
+    .top { padding: 12px 18px; }
+    .top-r .btn span { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 34px 18px 26px; gap: 22px; }
+    .app { padding: 0 18px 90px; gap: 30px; }
+    .profile { grid-template-columns: 1fr; }
+    .summary { grid-template-columns: auto minmax(0, 1fr); }
+    .counts { grid-column: 1 / -1; justify-content: space-between; }
+    .tabs { display: flex; }
+    .board { grid-template-columns: 1fr; }
+    .board .col { display: none; }
+    .board .col.is-tab { display: grid; }
+    .rm { grid-template-columns: 96px minmax(0, 1fr); }
+    .rm .rm-c { display: none; }
+    .foot { padding: 24px 18px 90px; }
+  }
+  @media (max-width: 520px) {
+    .top-l .back span { display: none; }
+    .hero-stats { gap: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    @view-transition { navigation: none; }
+  }
+  @media print {
+    .top, .profile, .moves, .tray, .scrim, .drawer, .tabs, .foot .btn { display: none !important; }
+    .app { grid-template-columns: 1fr; }
+    .board { grid-template-columns: repeat(3, 1fr); }
+    .board .col { display: grid !important; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-l">
+    <a class="back" href="/" aria-label="Back to markpatel.in">&larr;<span> markpatel.in</span></a>
+    <span class="wordmark">Uni<i>Explore</i></span>
+  </div>
+  <div class="top-r">
+    <button class="btn" type="button" id="shareBtn" title="Copy a link to this profile">&#8599;<span> Share profile</span></button>
+    <button class="btn" type="button" id="freshBtn" title="Clear the example and start with your own">&#8634;<span> Start fresh</span></button>
+    <button class="btn" type="button" data-theme-toggle aria-pressed="false">Light</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <p class="label">Admissions, minus the guesswork &middot; rebuilt from a HackHarvard India Top 5 project</p>
+    <h1 style="margin-top:14px">Where do you <em>actually</em> fit?</h1>
+  </div>
+  <div class="hero-side">
+    <p>Put in your marks, scores and what you&rsquo;ve done. Every university below moves between <b style="color:var(--reach)">reach</b>, <b>target</b> and <b style="color:var(--safe)">safe</b> as you type. No sign-up, and nothing leaves your browser.</p>
+    <div class="hero-stats">
+      <div><b class="num" id="statUnis">0</b><span class="label">universities</span></div>
+      <div><b class="num">5</b><span class="label">countries</span></div>
+      <div><b class="num">0</b><span class="label">logins</span></div>
+    </div>
+  </div>
+</section>
+
+<main class="app">
+  <aside class="profile" aria-label="Your profile">
+    <div class="p-head">
+      <h2>Your profile</h2>
+      <span class="example" id="exampleTag">Example student &middot; make it yours</span>
+    </div>
+
+    <fieldset class="step">
+      <legend>Academics <span>what you scored</span></legend>
+      <div class="row">
+        <span class="label" id="boardL">Board / curriculum</span>
+        <div class="seg" role="group" aria-labelledby="boardL" data-seg="board">
+          <button type="button" data-v="cbse">CBSE</button>
+          <button type="button" data-v="isc">ISC</button>
+          <button type="button" data-v="state">State</button>
+          <button type="button" data-v="ib">IB</button>
+          <button type="button" data-v="alevel">A-Level</button>
+          <button type="button" data-v="gpa">US GPA</button>
+        </div>
+      </div>
+      <div class="row big-slider" id="scoreRow">
+        <label class="label" for="score" id="scoreLabel">Class 12 / predicted %</label>
+        <output id="scoreOut" for="score">88<small>%</small></output>
+        <input type="range" id="score" min="50" max="100" step="0.5" value="88">
+        <select class="field" id="alevel" hidden aria-label="A-Level predicted grades"></select>
+      </div>
+      <div class="row">
+        <label class="label" for="stream">Stream</label>
+        <select class="field" id="stream">
+          <option value="pcm">Science, with Maths (PCM)</option>
+          <option value="pcb">Science, Biology (PCB)</option>
+          <option value="pcmb">Science, PCMB</option>
+          <option value="com">Commerce, with Maths</option>
+          <option value="comnm">Commerce, without Maths</option>
+          <option value="hum">Humanities</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset class="step">
+      <legend>Tests <span>all optional</span></legend>
+      <div class="row-2">
+        <div class="row"><label class="label" for="sat">SAT (400&ndash;1600)</label><input class="field num" id="sat" type="number" min="400" max="1600" step="10" placeholder="Not taken"></div>
+        <div class="row"><label class="label" for="act">ACT (1&ndash;36)</label><input class="field num" id="act" type="number" min="1" max="36" step="1" placeholder="Not taken"></div>
+      </div>
+      <div class="row-2">
+        <div class="row"><label class="label" for="engType">English test</label>
+          <select class="field" id="engType"><option value="ielts">IELTS</option><option value="toefl">TOEFL iBT</option><option value="duolingo">Duolingo</option><option value="none">Not taken yet</option></select></div>
+        <div class="row"><label class="label" for="eng" id="engLabel">Overall band</label><input class="field num" id="eng" type="number" step="0.5"></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="step">
+      <legend>Beyond marks <span>click a level</span></legend>
+      <p class="hint">&mdash; none &middot; S school &middot; C city/state &middot; N national or international</p>
+      <div class="acts" id="acts"></div>
+    </fieldset>
+
+    <fieldset class="step">
+      <legend>Goals <span>where and what</span></legend>
+      <div class="row">
+        <label class="label" for="major">Intended major</label>
+        <select class="field" id="major">
+          <option value="cs">Computer science / data</option>
+          <option value="eng">Engineering</option>
+          <option value="biz">Business / economics / finance</option>
+          <option value="sci">Natural sciences / maths</option>
+          <option value="soc">Social sciences / humanities</option>
+          <option value="design">Design / architecture / arts</option>
+          <option value="health">Medicine / health sciences</option>
+        </select>
+      </div>
+      <div class="row">
+        <span class="label" id="ctyL">Countries</span>
+        <div class="seg" role="group" aria-labelledby="ctyL" data-multi="countries">
+          <button type="button" data-v="US">US</button>
+          <button type="button" data-v="UK">UK</button>
+          <button type="button" data-v="Australia">Australia</button>
+          <button type="button" data-v="Canada">Canada</button>
+          <button type="button" data-v="Singapore">Singapore</button>
+        </div>
+      </div>
+      <div class="row big-slider">
+        <label class="label" for="budget">Budget per year, all in</label>
+        <output id="budgetOut" for="budget">&#8377;60L</output>
+        <input type="range" id="budget" min="10" max="120" step="5" value="60">
+        <p class="hint">Tuition plus living. Anything above this gets flagged, not hidden.</p>
+      </div>
+      <label class="toggle"><input type="checkbox" id="needAid"> I&rsquo;ll need a scholarship or aid to go</label>
+      <div class="row">
+        <label class="label" for="intake">Starting university in</label>
+        <select class="field" id="intake"></select>
+      </div>
+    </fieldset>
+  </aside>
+
+  <section class="results" aria-live="polite" aria-busy="false">
+    <div class="summary">
+      <div class="ring" aria-label="Profile strength">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="trk" cx="50" cy="50" r="44"/><circle class="val" id="ringVal" cx="50" cy="50" r="44" stroke-dasharray="276.46" stroke-dashoffset="276.46"/></svg>
+        <b class="num" id="ringNum">0</b>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:8px">Profile strength</p>
+        <div class="bars" id="bars"></div>
+        <p class="weak" id="weak"></p>
+      </div>
+      <div class="counts">
+        <div class="count reach"><b class="num" id="cReach">0</b><span class="label">Reach</span></div>
+        <div class="count target"><b class="num" id="cTarget">0</b><span class="label">Target</span></div>
+        <div class="count safe"><b class="num" id="cSafe">0</b><span class="label">Safe</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-h"><h3>Moves that <em>change your list</em></h3><span class="label">Simulated on your profile, not generic advice</span></div>
+      <div class="moves" id="moves"></div>
+    </div>
+
+    <div>
+      <div class="sec-h"><h3>Your list</h3><span class="label" id="boardNote"></span></div>
+      <input class="field find" id="find" type="search" placeholder="Find a university, city or country" aria-label="Filter universities" autocomplete="off">
+      <div class="tabs seg" role="tablist" id="tabs">
+        <button type="button" role="tab" data-t="reach">Reach</button>
+        <button type="button" role="tab" data-t="target" aria-pressed="true">Target</button>
+        <button type="button" role="tab" data-t="safe">Safe</button>
+      </div>
+      <div class="board" id="board">
+        <div class="col" data-band="reach"><div class="col-h"><h4>Reach</h4><span class="num" data-n>0</span></div><p class="col-empty" hidden>Nothing here. Aim higher?</p></div>
+        <div class="col is-tab" data-band="target"><div class="col-h"><h4>Target</h4><span class="num" data-n>0</span></div><p class="col-empty" hidden>No targets yet. Try the moves above.</p></div>
+        <div class="col" data-band="safe"><div class="col-h"><h4>Safe</h4><span class="num" data-n>0</span></div><p class="col-empty" hidden>No safe options yet. Widen countries or budget.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-h"><h3>Your <em>roadmap</em></h3><span class="label" id="rmNote"></span></div>
+      <ol class="roadmap" id="roadmap"></ol>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Chances are estimates from published admissions data, not predictions. Each university lists its sources. Currency conversions are approximate.</p>
+  <p>Built by <a href="/">Mark Patel</a>. Originally a HackHarvard India Top 5 project.</p>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="dName" role="dialog"></aside>
+
+<div class="tray" id="tray" aria-live="polite">
+  <span id="trayText">0 selected</span>
+  <button class="btn" type="button" id="trayClear">Clear</button>
+  <button class="btn solid" type="button" id="trayGo">Compare</button>
+</div>
+<dialog class="cmp" id="cmpDlg" aria-labelledby="cmpH"><div class="cmp-in">
+  <div class="sec-h"><h3 id="cmpH">Side by side</h3><button class="btn" type="button" id="cmpClose">Close</button></div>
+  <div class="cmp-scroll"><table id="cmpTable"></table></div>
+</div></dialog>
+<button class="jump" id="jump" type="button" hidden>See your list <span class="num" id="jumpN"></span> &darr;</button>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  'use strict';
+  var U = (window.UE_DATA || []).slice();
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ---------- constants ---------- */
+  var FX = { USD: 86, GBP: 115, AUD: 57, CAD: 63, SGD: 66 };              /* approximate INR rates */
+  var LIVING = { US: 18000, UK: 15000, Australia: 27000, Canada: 20000, Singapore: 15000 };
+  var CUR = { US: 'USD', UK: 'GBP', Australia: 'AUD', Canada: 'CAD', Singapore: 'SGD' };
+  var BASE = { US: 0.5, UK: 0.6, Australia: 0.85, Canada: 0.55, Singapore: 0.15 };
+  var COMPETITIVE = { cs: 1, eng: 1, biz: 1, health: 1 };
+  var ACTS = [
+    ['leadership', 'Leadership role'],
+    ['competition', 'Olympiads & competitions'],
+    ['research', 'Research or paper'],
+    ['project', 'Built a product or project'],
+    ['internship', 'Internship or work'],
+    ['service', 'Sustained community work'],
+    ['arts', 'Sport, music or art']
+  ];
+  var ALEVELS = ['A*A*A*', 'A*A*A', 'A*AA', 'AAA', 'AAB', 'ABB', 'BBB', 'BBC', 'BCC', 'CCC'];
+  var ALEVEL_PCT = [98, 96, 94, 91, 88, 85, 81, 78, 75, 72];
+  var ENG = {
+    ielts: { min: 4, max: 9, step: 0.5, label: 'Overall band', key: 'ieltsMin', top: 7.5 },
+    toefl: { min: 40, max: 120, step: 1, label: 'Total score', key: 'toeflMin', top: 105 },
+    duolingo: { min: 60, max: 160, step: 5, label: 'Overall score', key: 'duolingoMin', top: 130 }
+  };
+  /* Mark's own application year: applied to these; admitted where marked. */
+  var MARK = {
+    applied: ['arizona state', 'massachusetts amherst', 'penn', 'purdue', 'rutgers', 'washington', 'ohio state', 'michigan state', 'illinois', "king's college", 'leeds', 'manchester', 'warwick', 'university of sydney', 'swinburne', 'monash', 'adelaide', 'macquarie'],
+    admitted: ['penn', 'university of sydney']
+  };
+  var EXAMPLE = {
+    board: 'cbse', score: 88, alevel: 'AAB', stream: 'pcm',
+    sat: 1380, act: null, engType: 'ielts', eng: 7,
+    acts: { leadership: 2, competition: 1, research: 0, project: 3, internship: 2, service: 1, arts: 0 },
+    major: 'cs', countries: ['US', 'UK', 'Australia', 'Canada', 'Singapore'],
+    budget: 60, needAid: false, intake: new Date().getFullYear() + 1, example: true
+  };
+  var FRESH = {
+    board: 'cbse', score: 80, alevel: 'ABB', stream: 'pcm',
+    sat: null, act: null, engType: 'none', eng: null,
+    acts: { leadership: 0, competition: 0, research: 0, project: 0, internship: 0, service: 0, arts: 0 },
+    major: 'cs', countries: ['US', 'UK', 'Australia', 'Canada', 'Singapore'],
+    budget: 50, needAid: false, intake: new Date().getFullYear() + 1, example: false
+  };
+
+  /* ---------- helpers ---------- */
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function sig(x) { return 1 / (1 + Math.exp(-x)); }
+  function logit(p) { p = clamp(p, 0.01, 0.99); return Math.log(p / (1 - p)); }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function lakh(inr) { var l = inr / 1e5; return '₹' + (l >= 100 ? (l / 100).toFixed(2).replace(/\.?0+$/, '') + 'Cr' : Math.round(l) + 'L'); }
+  function norm(s) { return String(s || '').toLowerCase(); }
+  function actToSat(a) { var t = { 36: 1590, 35: 1550, 34: 1520, 33: 1490, 32: 1450, 31: 1420, 30: 1390, 29: 1350, 28: 1310, 27: 1280, 26: 1240, 25: 1210, 24: 1180, 23: 1140, 22: 1110, 21: 1080, 20: 1040, 19: 1010, 18: 970 }; return t[a] || (a > 36 ? 1600 : a < 18 ? 950 : null); }
+
+  /* normalise the three research files into one shape */
+  U = U.map(function (u) {
+    var c = u.country;
+    var cur = u.currency || CUR[c] || 'USD';
+    var tuition = u.tuitionUSD != null ? u.tuitionUSD : u.tuitionGBP != null ? u.tuitionGBP : u.tuition;
+    var living = u.livingUSD != null ? u.livingUSD : u.livingGBP != null ? u.livingGBP : u.living;
+    var livingEst = living == null;
+    if (livingEst) living = LIVING[c] || 18000;
+    var cost = tuition != null ? Math.round((tuition + living) * (FX[cur] || 86)) : null;
+    var n = norm(u.name);
+    return Object.assign({}, u, {
+      cur: cur, tuitionN: tuition, livingN: living, livingEst: livingEst, costINR: cost,
+      markApplied: MARK.applied.some(function (k) { return n.indexOf(k) !== -1 && !(k === 'penn' && n.indexOf('pennsylvania') === -1 && n.indexOf('penn state') === -1) && !(k === 'washington' && n.indexOf('university of washington') === -1); }),
+      markAdmitted: MARK.admitted.some(function (k) { return (k === 'penn' ? /penn state|pennsylvania state/.test(n) : n.indexOf(k) !== -1); })
+    });
+  });
+
+  /* ---------- the model ---------- */
+  function toPct(P) {
+    var boost = P.boost || 0;
+    if (P.board === 'ib') return 60 + (P.score - 24) * (38 / 21) + boost;
+    if (P.board === 'gpa') return 60 + (P.score - 2) * 19 + boost;
+    if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); return (i < 0 ? 85 : ALEVEL_PCT[i]) + boost; }
+    return P.score + boost;
+  }
+  function reqPct(u, P) {
+    var hi = COMPETITIVE[P.major];
+    if (u.indiaReq && (u.indiaReq.typical || u.indiaReq.high)) {
+      var t = u.indiaReq.typical || u.indiaReq.high, h = u.indiaReq.high || t;
+      return hi ? h : t;
+    }
+    var bump = hi ? 3 : 0;   /* no separate bar published: competitive courses still sit higher */
+    if (u.gpaAvg) return 60 + (u.gpaAvg - 2) * 19 + bump;
+    var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country];
+    return 97 - ar * 20 + bump;
+  }
+  function actScore(P) {
+    var w = { leadership: 1.1, competition: 1.3, research: 1.3, project: 1.2, internship: 0.9, service: 0.8, arts: 0.8 };
+    var s = 0, max = 0;
+    Object.keys(w).forEach(function (k) { s += (P.acts[k] || 0) * w[k]; max += 3 * w[k]; });
+    return clamp(s / (max * 0.55), 0, 1);   /* strong at ~55% of the maximum: nobody does everything */
+  }
+  function satOf(P) { return P.sat || (P.act ? actToSat(P.act) : null); }
+  function engCheck(u, P) {
+    if (P.engType === 'none' || P.eng == null || P.eng === '') return { state: 'missing' };
+    var need = u[ENG[P.engType].key];
+    if (need == null) return { state: 'unknown' };
+    return P.eng >= need ? { state: 'ok', need: need } : { state: 'short', need: need, gap: +(need - P.eng).toFixed(1) };
+  }
+  function chance(u, P) {
+    var A = toPct(P), req = reqPct(u, P);
+    var z = (A - req) / 4;
+    var sat = satOf(P), notes = [];
+    if (u.country === 'US') {
+      if (u.testPolicy === 'blind') { notes.push('blind'); }
+      else if (sat && u.satMid50) {
+        var mid = (u.satMid50[0] + u.satMid50[1]) / 2, spread = Math.max(60, u.satMid50[1] - u.satMid50[0]);
+        z += (sat - mid) / spread * 1.2;
+      } else if (!sat && u.testPolicy === 'required') { z -= 1.6; notes.push('needs-test'); }
+      else if (!sat && u.testPolicy === 'optional') { z -= 0.25; }
+      z += (actScore(P) - 0.35) * 2.2;
+    } else {
+      z += (actScore(P) - 0.35) * 0.5;
+      if (sat && u.satUsed) z += Math.max(0, (sat - 1300) / 200) * 0.4;
+    }
+    var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country] || 0.5;
+    var p = sig(logit(ar) + z * 0.9);
+    if (ar < 0.12) p = Math.min(p, ar * 3.2);
+    p = clamp(p, 0.02, 0.97);
+    var band = p >= 0.68 ? 'safe' : p >= 0.35 ? 'target' : 'reach';
+    return { p: p, band: band, A: A, req: req, sat: sat, notes: notes };
+  }
+  var RANK = { reach: 0, target: 1, safe: 2 };
+
+  function evaluate(P) {
+    return U.filter(function (u) { return P.countries.indexOf(u.country) !== -1; }).map(function (u) {
+      var c = chance(u, P);
+      var e = engCheck(u, P);
+      var over = u.costINR != null && u.costINR > P.budget * 1e5;
+      var aidRisk = P.needAid && (u.intlAid === 'none' || u.intlAid === 'limited');
+      return { u: u, c: c, e: e, over: over, aidRisk: aidRisk };
+    }).sort(function (a, b) { return b.c.p - a.c.p; });
+  }
+  function strength(P) {
+    var A = toPct(P);
+    var acad = clamp((A - 60) / 38 * 100, 0, 100);
+    var sat = satOf(P);
+    var test = sat ? clamp((sat - 1000) / 600 * 100, 0, 100) : 45;
+    var eng = 40;
+    if (P.engType !== 'none' && P.eng != null && P.eng !== '') {
+      var cfg = ENG[P.engType]; eng = clamp((P.eng - cfg.min) / (cfg.top - cfg.min) * 100, 0, 100);
+    }
+    var act = actScore(P) * 100;
+    var total = Math.round(acad * 0.45 + test * 0.15 + eng * 0.1 + act * 0.3);
+    return { total: total, parts: [['Academics', acad], ['Tests', test], ['English', eng], ['Beyond marks', act]] };
+  }
+
+  /* ---------- moves: simulate a change, count who moves up ---------- */
+  var MOVES = [
+    { id: 'marks', test: function (P) { return toPct(P) < 97; }, apply: function (P) { P.boost = (P.boost || 0) + 4; },
+      text: function () { return 'Push your boards <b>4 points higher</b>'; }, doIt: function (P) { if (P.board === 'ib') P.score = Math.min(45, P.score + 2); else if (P.board === 'gpa') P.score = Math.min(4, +(P.score + 0.2).toFixed(2)); else if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); P.alevel = ALEVELS[Math.max(0, i - 1)]; } else P.score = Math.min(100, P.score + 4); } },
+    { id: 'sat', test: function (P) { var s = satOf(P); return !s || s < 1480; }, apply: function (P) { P.sat = 1480; P.act = null; },
+      text: function (P) { return satOf(P) ? 'Retake the SAT and hit <b>1480</b>' : 'Take the SAT and score <b>1480</b>'; }, doIt: function (P) { P.sat = 1480; P.act = null; } },
+    { id: 'eng', test: function (P) { return P.engType === 'none' || P.eng == null || P.eng < ENG[P.engType].top; },
+      apply: function (P) { if (P.engType === 'none') P.engType = 'ielts'; P.eng = ENG[P.engType].top; },
+      text: function (P) { var t = P.engType === 'none' ? 'ielts' : P.engType; return 'Get ' + { ielts: 'IELTS', toefl: 'TOEFL', duolingo: 'Duolingo' }[t] + ' to <b>' + ENG[t].top + '</b>'; },
+      doIt: function (P) { if (P.engType === 'none') P.engType = 'ielts'; P.eng = ENG[P.engType].top; } },
+    { id: 'comp', test: function (P) { return P.acts.competition < 3; }, apply: function (P) { P.acts.competition = 3; },
+      text: function () { return 'Place at a <b>national-level</b> competition or olympiad'; }, doIt: function (P) { P.acts.competition = 3; } },
+    { id: 'research', test: function (P) { return P.acts.research < 2; }, apply: function (P) { P.acts.research = 2; },
+      text: function () { return 'Do a real <b>research project</b> with a mentor'; }, doIt: function (P) { P.acts.research = 2; } },
+    { id: 'project', test: function (P) { return P.acts.project < 3; }, apply: function (P) { P.acts.project = 3; },
+      text: function () { return 'Ship a project <b>people actually use</b>'; }, doIt: function (P) { P.acts.project = 3; } },
+    { id: 'budget', test: function (P) { return P.budget < 120; }, apply: function (P) { P.budget = Math.min(120, P.budget + 20); },
+      text: function () { return 'Stretch the budget by <b>&#8377;20L a year</b>'; }, doIt: function (P) { P.budget = Math.min(120, P.budget + 20); }, budget: true }
+  ];
+  function scoreMove(P, base, m) {
+    var Q = clone(P); m.apply(Q);
+    var after = evaluate(Q), byId = {};
+    after.forEach(function (r) { byId[r.u.id] = r; });
+    var up = [], fits = [];
+    base.forEach(function (r) {
+      var a = byId[r.u.id]; if (!a) return;
+      if (RANK[a.c.band] > RANK[r.c.band]) up.push(r.u);
+      if (r.over && !a.over) fits.push(r.u);
+    });
+    return { m: m, up: up, fits: fits, n: m.budget ? fits.length : up.length };
+  }
+
+  /* ---------- state ---------- */
+  var P;
+  function load() {
+    try {
+      var h = location.hash.match(/p=([^&]+)/);
+      if (h) { var q = JSON.parse(decodeURIComponent(escape(atob(h[1])))); if (q && q.board) return Object.assign(clone(FRESH), q, { example: false }); }
+    } catch (e) {}
+    try { var s = JSON.parse(localStorage.getItem('ue-profile')); if (s && s.board) return Object.assign(clone(FRESH), s); } catch (e) {}
+    return clone(EXAMPLE);
+  }
+  function save() { try { localStorage.setItem('ue-profile', JSON.stringify(P)); } catch (e) {} }
+
+  /* ---------- inputs ---------- */
+  var scoreEl = $('#score'), scoreOut = $('#scoreOut'), alevelEl = $('#alevel');
+  ALEVELS.forEach(function (g) { var o = document.createElement('option'); o.value = o.textContent = g; alevelEl.appendChild(o); });
+  var intakeEl = $('#intake'), y0 = new Date().getFullYear();
+  for (var y = y0; y <= y0 + 3; y++) { var o = document.createElement('option'); o.value = y; o.textContent = 'Fall / autumn ' + y; intakeEl.appendChild(o); }
+  var actsEl = $('#acts');
+  ACTS.forEach(function (a) {
+    var row = document.createElement('div'); row.className = 'act';
+    row.innerHTML = '<span class="act-name" id="al-' + a[0] + '">' + a[1] + '</span><div class="lvl" role="group" aria-labelledby="al-' + a[0] + '" data-act="' + a[0] + '">' +
+      ['&mdash;', 'S', 'C', 'N'].map(function (t, i) { return '<button type="button" data-l="' + i + '" aria-label="' + ['None', 'School level', 'City or state level', 'National or international'][i] + '">' + t + '</button>'; }).join('') + '</div>';
+    actsEl.appendChild(row);
+  });
+
+  function scoreCfg() {
+    return { cbse: [50, 100, 0.5, '%', 'Class 12 / predicted %'], isc: [50, 100, 0.5, '%', 'Class 12 / predicted %'], state: [50, 100, 0.5, '%', 'Class 12 / predicted %'],
+      ib: [24, 45, 1, ' pts', 'IB predicted points'], gpa: [2, 4, 0.05, ' GPA', 'Unweighted GPA (4.0 scale)'], alevel: null }[P.board];
+  }
+  function syncInputs() {
+    $$('[data-seg="board"] button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.v === P.board ? 'true' : 'false'); });
+    var cfg = scoreCfg();
+    if (cfg) {
+      scoreEl.hidden = false; scoreOut.hidden = false; alevelEl.hidden = true;
+      scoreEl.min = cfg[0]; scoreEl.max = cfg[1]; scoreEl.step = cfg[2];
+      P.score = clamp(P.score, cfg[0], cfg[1]);
+      scoreEl.value = P.score; $('#scoreLabel').textContent = cfg[4];
+      scoreOut.innerHTML = (P.board === 'gpa' ? Number(P.score).toFixed(2) : P.score) + '<small>' + cfg[3].trim() + '</small>';
+      $('#scoreLabel').setAttribute('for', 'score');
+    } else {
+      scoreEl.hidden = true; scoreOut.hidden = true; alevelEl.hidden = false; alevelEl.value = P.alevel;
+      $('#scoreLabel').textContent = 'Predicted A-Level grades'; $('#scoreLabel').setAttribute('for', 'alevel');
+    }
+    $('#stream').value = P.stream;
+    $('#sat').value = P.sat || ''; $('#act').value = P.act || '';
+    $('#engType').value = P.engType;
+    var ec = ENG[P.engType], engEl = $('#eng');
+    engEl.disabled = !ec; engEl.placeholder = ec ? '' : '—';
+    if (ec) { engEl.min = ec.min; engEl.max = ec.max; engEl.step = ec.step; $('#engLabel').textContent = ec.label; }
+    engEl.value = ec && P.eng != null ? P.eng : '';
+    $$('.lvl').forEach(function (g) { var k = g.dataset.act; $$('button', g).forEach(function (b) { b.setAttribute('aria-pressed', +b.dataset.l === (P.acts[k] || 0) ? 'true' : 'false'); }); });
+    $('#major').value = P.major;
+    $$('[data-multi="countries"] button').forEach(function (b) { b.setAttribute('aria-pressed', P.countries.indexOf(b.dataset.v) !== -1 ? 'true' : 'false'); });
+    $('#budget').value = P.budget; $('#budgetOut').textContent = '₹' + P.budget + 'L';
+    $('#needAid').checked = !!P.needAid;
+    intakeEl.value = P.intake;
+    $('#exampleTag').hidden = !P.example;
+  }
+  function change(fn) { fn(); P.example = false; save(); syncInputs(); render(); }
+
+  $$('[data-seg="board"] button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      change(function () {
+        var pct = toPct(P); P.board = b.dataset.v;
+        if (P.board === 'ib') P.score = Math.round(clamp(24 + (pct - 60) * 21 / 38, 24, 45));
+        else if (P.board === 'gpa') P.score = +clamp(2 + (pct - 60) / 19, 2, 4).toFixed(2);
+        else if (P.board !== 'alevel') P.score = Math.round(clamp(pct, 50, 100) * 2) / 2;
+      });
+    });
+  });
+  scoreEl.addEventListener('input', function () { change(function () { P.score = +scoreEl.value; }); });
+  alevelEl.addEventListener('change', function () { change(function () { P.alevel = alevelEl.value; }); });
+  $('#stream').addEventListener('change', function (e) { change(function () { P.stream = e.target.value; }); });
+  $('#sat').addEventListener('change', function (e) { change(function () { var v = parseInt(e.target.value, 10); P.sat = v >= 400 && v <= 1600 ? v : null; if (P.sat) P.act = null; }); });
+  $('#act').addEventListener('change', function (e) { change(function () { var v = parseInt(e.target.value, 10); P.act = v >= 1 && v <= 36 ? v : null; if (P.act) P.sat = null; }); });
+  $('#engType').addEventListener('change', function (e) { change(function () { P.engType = e.target.value; P.eng = ENG[P.engType] ? ENG[P.engType].top - (P.engType === 'ielts' ? 1 : P.engType === 'toefl' ? 15 : 20) : null; }); });
+  $('#eng').addEventListener('change', function (e) { change(function () { var c = ENG[P.engType], v = parseFloat(e.target.value); P.eng = c && v >= c.min && v <= c.max ? v : null; }); });
+  $$('.lvl').forEach(function (g) { g.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; change(function () { P.acts[g.dataset.act] = +b.dataset.l; }); }); });
+  $('#major').addEventListener('change', function (e) { change(function () { P.major = e.target.value; }); });
+  $$('[data-multi="countries"] button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      change(function () {
+        var i = P.countries.indexOf(b.dataset.v);
+        if (i === -1) P.countries.push(b.dataset.v); else if (P.countries.length > 1) P.countries.splice(i, 1);
+      });
+    });
+  });
+  $('#budget').addEventListener('input', function (e) { change(function () { P.budget = +e.target.value; }); });
+  $('#needAid').addEventListener('change', function (e) { change(function () { P.needAid = e.target.checked; }); });
+  intakeEl.addEventListener('change', function (e) { change(function () { P.intake = +e.target.value; }); });
+
+  /* ---------- render ---------- */
+  var cards = {};
+  var board = $('#board');
+  var cols = {}; $$('.col', board).forEach(function (c) { cols[c.dataset.band] = c; });
+  var picked = [];
+  var lastResults = [];
+
+  function cardFor(r) {
+    var u = r.u, el = cards[u.id];
+    if (!el) {
+      el = document.createElement('article'); el.className = 'card'; el.tabIndex = 0; el.dataset.id = u.id;
+      el.setAttribute('role', 'button');
+      el.addEventListener('click', function (e) { if (e.target.closest('.cmp-box')) return; openDrawer(u.id); });
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrawer(u.id); } });
+      cards[u.id] = el;
+    }
+    var pct = Math.round(r.c.p * 100);
+    var tags = [];
+    if (u.markAdmitted) tags.push('<span class="tag mark">Mark got in</span>');
+    else if (u.markApplied) tags.push('<span class="tag">Mark applied</span>');
+    if (r.over) tags.push('<span class="tag warn">Over budget</span>');
+    if (r.e.state === 'short') tags.push('<span class="tag warn">English +' + r.e.gap + '</span>');
+    if (r.c.notes.indexOf('needs-test') !== -1) tags.push('<span class="tag warn">Needs SAT/ACT</span>');
+    if (r.aidRisk) tags.push('<span class="tag warn">Little aid</span>');
+    el.dataset.band = r.c.band;
+    el.setAttribute('aria-label', u.name + ', ' + r.c.band + ', about ' + pct + ' percent');
+    el.innerHTML =
+      '<div class="card-top"><div><h5>' + esc(u.short || u.name) + '</h5><p class="where">' + esc(u.city) + ' &middot; ' + esc(u.country) + (u.acceptanceRate != null ? ' &middot; admits ' + Math.round(u.acceptanceRate * 100) + '%' : '') + '</p></div>' +
+      '<span class="pct num">' + pct + '<small>%</small></span></div>' +
+      '<div class="meter"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="card-foot"><span class="num">' + (u.costINR ? lakh(u.costINR) + '/yr' : 'Cost n/a') + '</span>' +
+      '<label class="cmp-box"><input type="checkbox" ' + (picked.indexOf(u.id) !== -1 ? 'checked' : '') + ' aria-label="Compare ' + esc(u.name) + '"> Compare</label></div>' +
+      (tags.length ? '<div class="tags">' + tags.join('') + '</div>' : '');
+    var box = $('.cmp-box input', el);
+    box.addEventListener('change', function () { togglePick(u.id, box.checked); });
+    return el;
+  }
+
+  function render() {
+    var res = evaluate(P);
+    lastResults = res;
+    /* FLIP: remember where every card was */
+    var first = {};
+    Object.keys(cards).forEach(function (id) { if (cards[id].isConnected) first[id] = cards[id].getBoundingClientRect(); });
+    var counts = { reach: 0, target: 0, safe: 0 }, seen = {};
+    res.forEach(function (r) { counts[r.c.band]++; seen[r.u.id] = 1; cols[r.c.band].appendChild(cardFor(r)); });
+    Object.keys(cards).forEach(function (id) { if (!seen[id] && cards[id].isConnected) cards[id].remove(); });
+    ['reach', 'target', 'safe'].forEach(function (b) {
+      $('[data-n]', cols[b]).textContent = counts[b];
+      $('.col-empty', cols[b]).hidden = counts[b] > 0;
+    });
+    if (!reduce) {
+      Object.keys(first).forEach(function (id) {
+        var el = cards[id]; if (!el.isConnected) return;
+        var l = el.getBoundingClientRect(), f = first[id];
+        var dx = f.left - l.left, dy = f.top - l.top;
+        if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+        el.animate([{ transform: 'translate(' + dx + 'px,' + dy + 'px)' }, { transform: 'none' }], { duration: 520, easing: 'cubic-bezier(.7,0,.2,1)' });
+      });
+    }
+    $('#jumpN').textContent = counts.reach + ' \u00B7 ' + counts.target + ' \u00B7 ' + counts.safe;
+    $('#cReach').textContent = counts.reach; $('#cTarget').textContent = counts.target; $('#cSafe').textContent = counts.safe;
+    var overN = res.filter(function (r) { return r.over; }).length;
+    $('#boardNote').textContent = res.length + ' universities' + (overN ? ' · ' + overN + ' over budget' : '');
+    /* strength */
+    var s = strength(P);
+    $('#ringNum').textContent = s.total;
+    $('#ringVal').style.strokeDashoffset = (276.46 * (1 - s.total / 100)).toFixed(1);
+    $('#bars').innerHTML = s.parts.map(function (p) { return '<div class="bar"><span>' + p[0] + '</span><i style="--w:' + Math.round(p[1]) + '%"></i><span class="num">' + Math.round(p[1]) + '</span></div>'; }).join('');
+    var weakest = s.parts.slice().sort(function (x, y) { return x[1] - y[1]; })[0];
+    $('#weak').innerHTML = weakest[1] < 70 ? 'Weakest area: <b>' + weakest[0] + '</b>. The moves below show what fixing it is worth.' : 'No weak spots. Now it\u2019s about essays and fit.';
+    applyFind();
+    renderMoves(res);
+    renderRoadmap();
+    updateTray();
+  }
+
+  function renderMoves(base) {
+    var list = MOVES.filter(function (m) { return m.test(P); }).map(function (m) { return scoreMove(P, base, m); })
+      .filter(function (x) { return x.n > 0; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 4);
+    var el = $('#moves');
+    if (!list.length) { el.innerHTML = '<p class="moves-empty">Nothing we can simulate moves your list right now. That usually means you’re already in good shape for your chosen countries.</p>'; return; }
+    el.innerHTML = list.map(function (x, i) {
+      var names = (x.m.budget ? x.fits : x.up).map(function (u) { return u.short || u.name; });
+      return '<div class="move"><b class="num">+' + x.n + '</b><p>' + x.m.text(P) + '</p>' +
+        '<p class="who">' + (x.m.budget ? 'Brings into budget: ' : 'Moves up a band: ') + esc(names.slice(0, 4).join(', ')) + (names.length > 4 ? ' +' + (names.length - 4) + ' more' : '') + '</p>' +
+        '<button class="btn" type="button" data-move="' + x.m.id + '">Try it on my profile</button></div>';
+    }).join('');
+    $$('[data-move]', el).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var m = MOVES.filter(function (mm) { return mm.id === b.dataset.move; })[0];
+        change(function () { m.doIt(P); });
+        toast('Applied. Watch the list move.');
+      });
+    });
+  }
+
+  function renderRoadmap() {
+    var Y = +P.intake, has = function (c) { return P.countries.indexOf(c) !== -1; };
+    var items = [];
+    var add = function (y, m, d, text, c) { items.push({ t: new Date(y, m, d || 1), text: text, c: c }); };
+    add(Y - 2, 3, 1, 'Build your long list and start the activities that take time: research, a real project, competitions.', 'All');
+    if (satOf(P) == null && (has('US'))) add(Y - 1, 2, 1, 'Take the SAT or ACT for the first time. Leave room for a retake.', 'US');
+    if (P.engType === 'none' || P.eng == null) add(Y - 1, 4, 1, 'Book IELTS, TOEFL or Duolingo. Most scores are valid for two years.', 'All');
+    if (has('US')) add(Y - 1, 7, 1, 'Common App opens. Draft the personal essay and ask two teachers for recommendations.', 'US');
+    if (has('UK')) add(Y - 1, 8, 1, 'UCAS opens. Write one personal statement that works for every course you pick.', 'UK');
+    if (has('UK') && P.major === 'health') add(Y - 1, 9, 15, 'UCAS deadline for medicine, dentistry and veterinary courses.', 'UK');
+    if (has('US')) add(Y - 1, 10, 1, 'Early Action and Early Decision deadlines at most US universities.', 'US');
+    if (has('Singapore')) add(Y - 1, 9, 1, 'NUS and NTU applications open for international students (they close early in the new year).', 'Singapore');
+    if (has('US')) add(Y, 0, 1, 'Regular Decision deadlines (1–15 January).', 'US');
+    if (has('Canada')) add(Y, 0, 15, 'Most Canadian deadlines fall between mid-January and early February.', 'Canada');
+    if (has('UK')) add(Y, 0, 14, 'UCAS equal-consideration deadline, usually mid-to-late January.', 'UK');
+    if (has('Australia')) add(Y, 1, 1, 'Australian applications are rolling. Apply about six months before your intake.', 'Australia');
+    if (has('US')) add(Y, 3, 1, 'US decisions arrive. Compare aid offers before 1 May.', 'US');
+    add(Y, 4, 15, 'Accept an offer, pay the deposit and start the student visa.', 'All');
+    items.sort(function (a, b) { return a.t - b.t; });
+    var now = new Date(), nextSet = false;
+    var fmt = new Intl.DateTimeFormat('en-GB', { month: 'short', year: 'numeric' });
+    $('#roadmap').innerHTML = items.map(function (it) {
+      var isNow = !nextSet && it.t >= now; if (isNow) nextSet = true;
+      var past = it.t < now;
+      return '<li class="rm' + (isNow ? ' is-now' : '') + '"' + (past ? ' style="opacity:.45"' : '') + '><time datetime="' + it.t.toISOString().slice(0, 10) + '">' + fmt.format(it.t) + '</time><p>' + it.text + '</p><span class="rm-c">' + it.c + '</span></li>';
+    }).join('');
+    $('#rmNote').textContent = 'Typical dates for a ' + Y + ' start. Check each university for exact deadlines.';
+  }
+
+  /* ---------- drawer ---------- */
+  var drawer = $('#drawer'), scrim = $('#scrim'), lastFocus = null;
+  function row(h, you, need, ok) {
+    return '<div><span class="h">' + h + '</span><span>' + you + '</span><span>' + need + '</span><span class="' + (ok === true ? 'ok' : ok === false ? 'no' : '') + '">' + (ok === true ? '✓' : ok === false ? '✕' : '') + '</span></div>';
+  }
+  function openDrawer(id) {
+    var r = lastResults.filter(function (x) { return x.u.id === id; })[0]; if (!r) return;
+    var u = r.u, c = r.c, pct = Math.round(c.p * 100);
+    var lo = Math.max(1, pct - 8), hi = Math.min(99, pct + 8);
+    var why = [];
+    var margin = c.A - c.req;
+    why.push(margin >= 0 ? 'Your academics sit about <b>' + Math.round(margin) + ' points above</b> what they typically ask of Indian applicants' + (COMPETITIVE[P.major] ? ' for competitive courses.' : '.') : 'Your academics are about <b>' + Math.round(-margin) + ' points below</b> their usual bar' + (COMPETITIVE[P.major] ? ' for competitive courses like yours.' : '.'));
+    if (u.country === 'US') {
+      if (u.testPolicy === 'blind') why.push('They are <b>test-blind</b>: SAT and ACT scores aren\u2019t looked at, so your marks and what you\u2019ve done carry everything.');
+      else if (c.sat && u.satMid50) why.push(c.sat >= u.satMid50[1] ? 'Your SAT is above their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). That helps a lot.' : c.sat >= u.satMid50[0] ? 'Your SAT is inside their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + ').' : 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). Consider applying test-optional if they allow it.');
+      else if (!c.sat && u.testPolicy !== 'blind') why.push(u.testPolicy === 'required' ? 'They <b>require</b> the SAT or ACT. Without one, you can’t apply.' : 'You’d be applying test-optional. Fine, but a strong score still helps internationals.');
+      why.push('US admissions read the whole profile, so what you do beyond marks moves the needle here more than anywhere else.');
+    }
+    if (u.acceptanceRate != null && u.acceptanceRate < 0.12) why.push('They admit under 12% of applicants. Nobody is “safe” here.');
+    if (r.e.state === 'short') why.push('Your English score is ' + r.e.gap + ' short of their minimum. Many offer a pathway course, but plan a retake.');
+    if (r.e.state === 'missing') why.push('Add an English test score to check eligibility.');
+    if (r.over) why.push('Cost is about <b>' + lakh(u.costINR) + '/yr</b>, above your ' + '₹' + P.budget + 'L budget.');
+    if (r.aidRisk) why.push('Aid for international students here is ' + u.intlAid + '. Don’t count on it.');
+    if (u.markAdmitted) why.push('<b>Mark applied here and got in.</b>');
+    else if (u.markApplied) why.push('Mark applied here in his own application year.');
+
+    var ec = r.e, engName = { ielts: 'IELTS', toefl: 'TOEFL', duolingo: 'Duolingo', none: 'English' }[P.engType];
+    var reqLabel = u.indiaReq ? (COMPETITIVE[P.major] ? (u.indiaReq.high || u.indiaReq.typical) : (u.indiaReq.typical || u.indiaReq.high)) + '%' : Math.round(c.req) + '% (est.)';
+    var vs = '<div class="vs"><div><span class="h"></span><span class="h">You</span><span class="h">They look for</span><span></span></div>' +
+      row('Academics', Math.round(c.A) + '%', reqLabel, c.A >= c.req) +
+      (u.country === 'US' ? u.testPolicy === 'blind' ? row('SAT', c.sat || '—', 'Not used', null) : row('SAT', c.sat || '—', u.satMid50 ? u.satMid50[0] + '–' + u.satMid50[1] : (u.testPolicy || 'n/a'), u.satMid50 && c.sat ? c.sat >= u.satMid50[0] : (u.testPolicy === 'required' && !c.sat ? false : null)) : '') +
+      row(engName, P.engType === 'none' || P.eng == null ? '—' : P.eng, ec.need != null ? ec.need + '+' : 'check', ec.state === 'ok' ? true : ec.state === 'short' ? false : null) +
+      row('Cost / yr', '₹' + P.budget + 'L budget', u.costINR ? lakh(u.costINR) : 'n/a', u.costINR ? !r.over : null) +
+      '</div>';
+
+    var cost = u.tuitionN != null ? '<p class="hint">Tuition ~' + u.cur + ' ' + Math.round(u.tuitionN).toLocaleString('en-IN') + ' + living ~' + u.cur + ' ' + Math.round(u.livingN).toLocaleString('en-IN') + (u.livingEst ? ' (our estimate)' : '') + ' a year.' + (u.tuitionNote ? ' ' + esc(u.tuitionNote) : '') + '</p>' : '';
+    var src = (u.sources || []).map(function (s) { return '<a href="' + esc(s) + '" target="_blank" rel="noopener">' + esc(s.replace(/^https?:\/\//, '').slice(0, 70)) + '</a>'; }).join('');
+
+    drawer.innerHTML =
+      '<div class="d-top"><span class="label">' + esc(u.city) + ' &middot; ' + esc(u.country) + '</span><button class="btn" type="button" id="dClose">Close &times;</button></div>' +
+      '<div><h2 id="dName">' + esc(u.name) + '</h2>' + (u.strengths && u.strengths.length ? '<p class="d-where">Known for ' + esc(u.strengths.slice(0, 4).join(', ')) + '</p>' : '') + '</div>' +
+      '<div><div class="d-chance"><b class="num">' + lo + '–' + hi + '%</b><span class="d-band" style="color:var(--' + c.band + ')">' + c.band + '</span></div><p class="hint">Estimated chance for your profile' + (u.acceptanceRate != null ? '. Overall admit rate ' + Math.round(u.acceptanceRate * 100) + '%.' : '.') + '</p></div>' +
+      '<div><p class="label" style="margin-bottom:8px">Why</p><ul class="why">' + why.map(function (w) { return '<li>' + w + '</li>'; }).join('') + '</ul></div>' +
+      '<div><p class="label" style="margin-bottom:8px">You vs them</p>' + vs + cost + '</div>' +
+      (u.deadlines ? '<div><p class="label" style="margin-bottom:4px">Deadlines</p><p>' + esc(u.deadlines) + '</p></div>' : '') +
+      (u.note || u.indiaReqNote ? '<p class="hint">' + esc([u.indiaReqNote, u.note].filter(Boolean).join(' ')) + '</p>' : '') +
+      (src ? '<div class="d-sources"><span class="label">Sources</span>' + src + '</div>' : '');
+    lastFocus = document.activeElement;
+    scrim.hidden = false; drawer.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(function () { scrim.classList.add('on'); drawer.classList.add('on'); });
+    $('#dClose').addEventListener('click', closeDrawer);
+    $('#dClose').focus({ preventScroll: true });
+  }
+  function closeDrawer() {
+    scrim.classList.remove('on'); drawer.classList.remove('on'); drawer.setAttribute('aria-hidden', 'true');
+    setTimeout(function () { scrim.hidden = true; }, 320);
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  }
+  scrim.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && drawer.classList.contains('on')) closeDrawer(); });
+
+  /* ---------- compare ---------- */
+  function togglePick(id, on) {
+    var i = picked.indexOf(id);
+    if (on && i === -1) { if (picked.length >= 3) { toast('Compare up to three at a time.'); cards[id] && ($('.cmp-box input', cards[id]).checked = false); return; } picked.push(id); }
+    if (!on && i !== -1) picked.splice(i, 1);
+    updateTray();
+  }
+  function updateTray() {
+    picked = picked.filter(function (id) { return lastResults.some(function (r) { return r.u.id === id; }); });
+    $('#trayText').textContent = picked.length + ' selected';
+    $('#tray').classList.toggle('on', picked.length > 0);
+    $('#trayGo').disabled = picked.length < 2;
+  }
+  $('#trayClear').addEventListener('click', function () { picked = []; $$('.cmp-box input').forEach(function (b) { b.checked = false; }); updateTray(); });
+  $('#trayGo').addEventListener('click', function () {
+    var rs = picked.map(function (id) { return lastResults.filter(function (r) { return r.u.id === id; })[0]; });
+    var line = function (h, f) { return '<tr><th>' + h + '</th>' + rs.map(function (r) { return '<td>' + f(r) + '</td>'; }).join('') + '</tr>'; };
+    $('#cmpTable').innerHTML = '<thead><tr><th></th>' + rs.map(function (r) { return '<td>' + esc(r.u.name) + '</td>'; }).join('') + '</tr></thead><tbody>' +
+      line('Your chance', function (r) { return '<b style="color:var(--' + r.c.band + ')">' + Math.round(r.c.p * 100) + '%</b> ' + r.c.band; }) +
+      line('Where', function (r) { return esc(r.u.city + ', ' + r.u.country); }) +
+      line('Admit rate', function (r) { return r.u.acceptanceRate != null ? Math.round(r.u.acceptanceRate * 100) + '%' : '—'; }) +
+      line('Academic bar', function (r) { return Math.round(r.c.req) + '% (you ' + Math.round(r.c.A) + '%)'; }) +
+      line('SAT mid-50', function (r) { return r.u.satMid50 ? r.u.satMid50.join('–') : (r.u.country === 'US' ? esc(r.u.testPolicy || '—') : 'Not used'); }) +
+      line('IELTS min', function (r) { return r.u.ieltsMin != null ? r.u.ieltsMin : '—'; }) +
+      line('Cost / yr', function (r) { return r.u.costINR ? lakh(r.u.costINR) : '—'; }) +
+      line('Aid for you', function (r) { return esc(r.u.intlAid || '—'); }) +
+      line('Known for', function (r) { return esc((r.u.strengths || []).slice(0, 3).join(', ')); }) +
+      line('Deadlines', function (r) { return esc(r.u.deadlines || '—'); }) + '</tbody>';
+    $('#cmpDlg').showModal();
+  });
+  $('#cmpClose').addEventListener('click', function () { $('#cmpDlg').close(); });
+
+  /* ---------- find ---------- */
+  var findEl = $('#find');
+  function applyFind() {
+    var q = norm(findEl.value).trim();
+    lastResults.forEach(function (r) {
+      var el = cards[r.u.id]; if (!el) return;
+      el.hidden = !!q && norm(r.u.name + ' ' + (r.u.short || '') + ' ' + r.u.city + ' ' + r.u.country).indexOf(q) === -1;
+    });
+  }
+  findEl.addEventListener('input', applyFind);
+
+  /* ---------- mobile tabs ---------- */
+  $$('#tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      $$('#tabs button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      $$('.col', board).forEach(function (c) { c.classList.toggle('is-tab', c.dataset.band === b.dataset.t); });
+    });
+  });
+
+  /* ---------- share, reset, theme ---------- */
+  var toastT;
+  function toast(msg) { var t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('on'); }, 2200); }
+  $('#shareBtn').addEventListener('click', function () {
+    var q = clone(P); delete q.example; delete q.boost;
+    var url = location.origin + location.pathname + '#p=' + btoa(unescape(encodeURIComponent(JSON.stringify(q))));
+    var done = function () { toast('Link copied. Anyone with it sees this profile.'); };
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, function () { prompt('Copy this link', url); }); else prompt('Copy this link', url);
+  });
+  $('#freshBtn').addEventListener('click', function () { P = clone(FRESH); history.replaceState(null, '', location.pathname); save(); syncInputs(); render(); toast('Blank profile. Start with your marks.'); });
+  var themeBtn = $('[data-theme-toggle]');
+  function applyTheme(dark) {
+    if (dark) document.documentElement.setAttribute('data-theme', 'dark'); else document.documentElement.removeAttribute('data-theme');
+    themeBtn.textContent = dark ? 'Dark' : 'Light'; themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  }
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+  themeBtn.addEventListener('click', function () { var d = document.documentElement.getAttribute('data-theme') !== 'dark'; applyTheme(d); try { localStorage.setItem('mp-theme', d ? 'dark' : 'light'); } catch (e) {} });
+
+  /* ---------- mobile: jump from the form to the results ---------- */
+  var jump = $('#jump'), resultsEl = $('.results');
+  jump.addEventListener('click', function () { resultsEl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { es.forEach(function (e) { jump.hidden = e.isIntersecting || e.boundingClientRect.top < 0; }); }, { threshold: 0 }).observe(resultsEl);
+  }
+
+  /* ---------- go ---------- */
+  $('#statUnis').textContent = U.length;
+  P = load();
+  syncInputs();
+  render();
+})();
+</script>
+<script>
+  window.goatcounter = { path: function (p) { try { var r = (new URLSearchParams(location.search).get('r') || '').replace(/[^\w.-]/g, '').slice(0, 40); return p + (r ? '?r=' + r : ''); } catch (e) { return p; } } };
+</script>
+<script data-goatcounter="https://markpatel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
