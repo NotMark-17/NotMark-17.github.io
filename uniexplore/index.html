@@ -107,6 +107,8 @@
   .big-slider output small { font-size: 16px; color: var(--mute); font-weight: 500; letter-spacing: 0; margin-left: 4px; }
   input[type="range"] { width: 100%; accent-color: var(--accent); height: 22px; margin: 0; }
   .hint { font-size: 12px; color: var(--mute); }
+  .hist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .hist label { display: grid; gap: 4px; font-size: 11.5px; color: var(--mute); font-weight: 500; }
   .acts { display: grid; gap: 6px; }
   .act { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; }
   .act-name { font-size: 13px; }
@@ -325,10 +327,19 @@
         </div>
       </div>
       <div class="row big-slider" id="scoreRow">
-        <label class="label" for="score" id="scoreLabel">Class 12 / predicted %</label>
+        <label class="label" for="score" id="scoreLabel">Class 12, predicted %</label>
         <output id="scoreOut" for="score">88<small>%</small></output>
         <input type="range" id="score" min="50" max="100" step="0.5" value="88">
         <select class="field" id="alevel" hidden aria-label="A-Level predicted grades"></select>
+      </div>
+      <div class="row" id="histRow">
+        <span class="label">Earlier years, final %</span>
+        <div class="hist">
+          <label><span>Class 9</span><input class="field num" id="m9" type="number" min="33" max="100" step="0.1" placeholder="&mdash;"></label>
+          <label><span>Class 10</span><input class="field num" id="m10" type="number" min="33" max="100" step="0.1" placeholder="&mdash;"></label>
+          <label><span>Class 11</span><input class="field num" id="m11" type="number" min="33" max="100" step="0.1" placeholder="&mdash;"></label>
+        </div>
+        <p class="hint" id="histHint">US universities read all four years, and 11th counts most. The UK and Australia go by your predicted 12th, checked against your 11th.</p>
       </div>
       <div class="row">
         <label class="label" for="stream">Stream</label>
@@ -502,14 +513,14 @@
     admitted: ['penn', 'university of sydney']
   };
   var EXAMPLE = {
-    board: 'cbse', score: 88, alevel: 'AAB', stream: 'pcm',
+    board: 'cbse', score: 88, alevel: 'AAB', stream: 'pcm', hist: { m9: 86, m10: 91, m11: 84 },
     sat: 1380, act: null, engType: 'ielts', eng: 7,
     acts: { leadership: 2, competition: 1, research: 0, project: 3, internship: 2, service: 1, arts: 0 },
     major: 'cs', countries: ['US', 'UK', 'Australia', 'Canada', 'Singapore'],
     budget: 60, needAid: false, intake: new Date().getFullYear() + 1, example: true
   };
   var FRESH = {
-    board: 'cbse', score: 80, alevel: 'ABB', stream: 'pcm',
+    board: 'cbse', score: 80, alevel: 'ABB', stream: 'pcm', hist: { m9: null, m10: null, m11: null },
     sat: null, act: null, engType: 'none', eng: null,
     acts: { leadership: 0, competition: 0, research: 0, project: 0, internship: 0, service: 0, arts: 0 },
     major: 'cs', countries: ['US', 'UK', 'Australia', 'Canada', 'Singapore'],
@@ -547,13 +558,34 @@
   });
 
   /* ---------- the model ---------- */
-  function toPct(P) {
+  /* How much each year counts when you apply from an Indian board.
+     US: the whole transcript, 11th heaviest (12th finals aren't out yet).
+     UK / Australia / Singapore: predicted 12th leads; 10th boards matter for UK and Singapore.
+     Canada: final 11th plus predicted 12th. */
+  var YEAR_W = {
+    US: { m9: .15, m10: .25, m11: .35, m12: .25 },
+    UK: { m10: .25, m11: .15, m12: .6 },
+    Australia: { m11: .3, m12: .7 },
+    Canada: { m10: .1, m11: .4, m12: .5 },
+    Singapore: { m10: .3, m11: .1, m12: .6 },
+    all: { m9: .1, m10: .25, m11: .3, m12: .35 }
+  };
+  var INDIAN = { cbse: 1, isc: 1, state: 1 };
+  function hv(P, k) { var v = P.hist && P.hist[k]; return v == null || v === '' || isNaN(v) ? null : +v; }
+  function toPct(P, country) {
     var boost = P.boost || 0;
     if (P.board === 'ib') return 60 + (P.score - 24) * (38 / 21) + boost;
     if (P.board === 'gpa') return gpaToPct(P.score) + boost;
     if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); return (i < 0 ? 85 : ALEVEL_PCT[i]) + boost; }
-    return P.score + boost;
+    var w = YEAR_W[country] || YEAR_W.all, m11 = hv(P, 'm11');
+    var pred = P.score;
+    /* predictions far above your 11th get discounted outside the US */
+    if (country && country !== 'US' && m11 != null && pred > m11 + 8) pred = m11 + 8 + (pred - m11 - 8) / 2;
+    var sum = 0, wt = 0;
+    Object.keys(w).forEach(function (k) { var v = k === 'm12' ? pred : hv(P, k); if (v == null) v = pred; sum += v * w[k]; wt += w[k]; });
+    return sum / wt + boost;
   }
+  function trend(P) { var a = hv(P, 'm10'), b = hv(P, 'm11'); return a == null || b == null ? 0 : b - a; }
   function reqPct(u, P) {
     var hi = COMPETITIVE[P.major];
     if (u.indiaReq && (u.indiaReq.typical || u.indiaReq.high)) {
@@ -579,8 +611,9 @@
     return P.eng >= need ? { state: 'ok', need: need } : { state: 'short', need: need, gap: +(need - P.eng).toFixed(1) };
   }
   function chance(u, P) {
-    var A = toPct(P), req = reqPct(u, P);
+    var A = toPct(P, u.country), req = reqPct(u, P);
     var z = (A - req) / 4;
+    if (u.country === 'US' && INDIAN[P.board]) z += clamp(trend(P) / 10, -0.3, 0.3);   /* rising marks read well */
     var sat = satOf(P), notes = [];
     if (u.country === 'US') {
       if (u.testPolicy === 'blind') { notes.push('blind'); }
@@ -686,7 +719,7 @@
   });
 
   function scoreCfg() {
-    return { cbse: [50, 100, 0.5, '%', 'Class 12 / predicted %'], isc: [50, 100, 0.5, '%', 'Class 12 / predicted %'], state: [50, 100, 0.5, '%', 'Class 12 / predicted %'],
+    return { cbse: [50, 100, 0.5, '%', 'Class 12, predicted %'], isc: [50, 100, 0.5, '%', 'Class 12, predicted %'], state: [50, 100, 0.5, '%', 'Class 12, predicted %'],
       ib: [24, 45, 1, ' pts', 'IB predicted points'], gpa: [2, 4, 0.05, ' GPA', 'Unweighted GPA (4.0 scale)'], alevel: null }[P.board];
   }
   function syncInputs() {
@@ -694,6 +727,8 @@
     var cfg = scoreCfg();
     if (cfg) {
       scoreEl.hidden = false; scoreOut.hidden = false; alevelEl.hidden = true;
+      $('#histRow').hidden = !INDIAN[P.board];
+      ['m9', 'm10', 'm11'].forEach(function (k) { var v = hv(P, k); $('#' + k).value = v == null ? '' : v; });
       scoreEl.min = cfg[0]; scoreEl.max = cfg[1]; scoreEl.step = cfg[2];
       P.score = clamp(P.score, cfg[0], cfg[1]);
       scoreEl.value = P.score; $('#scoreLabel').textContent = cfg[4];
@@ -701,6 +736,7 @@
       $('#scoreLabel').setAttribute('for', 'score');
     } else {
       scoreEl.hidden = true; scoreOut.hidden = true; alevelEl.hidden = false; alevelEl.value = P.alevel;
+      $('#histRow').hidden = true;
       $('#scoreLabel').textContent = 'Predicted A-Level grades'; $('#scoreLabel').setAttribute('for', 'alevel');
     }
     $('#stream').value = P.stream;
@@ -723,7 +759,7 @@
   $$('[data-seg="board"] button').forEach(function (b) {
     b.addEventListener('click', function () {
       change(function () {
-        var pct = toPct(P); P.board = b.dataset.v;
+        var wasIndian = INDIAN[P.board], pct = wasIndian ? P.score : toPct(P); P.board = b.dataset.v;
         if (P.board === 'ib') P.score = Math.round(clamp(24 + (pct - 60) * 21 / 38, 24, 45));
         else if (P.board === 'gpa') P.score = +clamp(pctToGpa(pct), 2, 4).toFixed(2);
         else if (P.board !== 'alevel') P.score = Math.round(clamp(pct, 50, 100) * 2) / 2;
@@ -731,6 +767,11 @@
     });
   });
   scoreEl.addEventListener('input', function () { change(function () { P.score = +scoreEl.value; }); });
+  ['m9', 'm10', 'm11'].forEach(function (k) {
+    $('#' + k).addEventListener('change', function (e) {
+      change(function () { var v = parseFloat(e.target.value); P.hist = P.hist || {}; P.hist[k] = v >= 33 && v <= 100 ? v : null; });
+    });
+  });
   alevelEl.addEventListener('change', function () { change(function () { P.alevel = alevelEl.value; }); });
   $('#stream').addEventListener('change', function (e) { change(function () { P.stream = e.target.value; }); });
   $('#sat').addEventListener('change', function (e) { change(function () { var v = parseInt(e.target.value, 10); P.sat = v >= 400 && v <= 1600 ? v : null; if (P.sat) P.act = null; }); });
@@ -890,6 +931,11 @@
     var why = [];
     var margin = c.A - c.req;
     why.push(margin >= 0 ? 'Your academics sit about <b>' + Math.round(margin) + ' points above</b> what they typically ask of Indian applicants' + (COMPETITIVE[P.major] ? ' for competitive courses.' : '.') : 'Your academics are about <b>' + Math.round(-margin) + ' points below</b> their usual bar' + (COMPETITIVE[P.major] ? ' for competitive courses like yours.' : '.'));
+    if (INDIAN[P.board]) {
+      var m11 = hv(P, 'm11'), tr = trend(P);
+      if (u.country === 'US') why.push('US universities read your whole transcript, so this blends Class 9 to 12 with <b>11th weighted most</b>' + (hv(P, 'm10') != null && m11 != null ? (tr >= 3 ? ', and your marks are <b>rising</b>, which helps.' : tr <= -3 ? ', and your marks <b>dipped</b> after 10th, which they will notice.' : '.') : '. Add your 9th to 11th marks for a sharper estimate.'));
+      else why.push('Here your <b>predicted 12th</b> leads' + (u.country === 'UK' || u.country === 'Singapore' ? ', with your 10th boards also read' : '') + (m11 != null && P.score > m11 + 8 ? '. It\u2019s well above your 11th, so we discount it the way admissions teams do.' : '.'));
+    }
     if (u.country === 'US') {
       if (u.testPolicy === 'blind') why.push('They are <b>test-blind</b>: SAT and ACT scores aren\u2019t looked at, so your marks and what you\u2019ve done carry everything.');
       else if (c.sat && u.satMid50) why.push(c.sat >= u.satMid50[1] ? 'Your SAT is above their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). That helps a lot.' : c.sat >= u.satMid50[0] ? 'Your SAT is inside their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + ').' : (u.testPolicy === 'optional' ? 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), but they\u2019re <b>test-optional</b>: don\u2019t send it. The estimate assumes you won\u2019t.' : 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), and they require a score, so it counts against you. A retake is worth it here.'));
@@ -907,7 +953,7 @@
     var ec = r.e, engName = { ielts: 'IELTS', toefl: 'TOEFL', duolingo: 'Duolingo', none: 'English' }[P.engType];
     var reqLabel = u.indiaReq ? (COMPETITIVE[P.major] ? (u.indiaReq.high || u.indiaReq.typical) : (u.indiaReq.typical || u.indiaReq.high)) + '%' : Math.round(c.req) + '% (est.)';
     var vs = '<div class="vs"><div><span class="h"></span><span class="h">You</span><span class="h">They look for</span><span></span></div>' +
-      row('Academics', Math.round(c.A) + '%', reqLabel, c.A >= c.req) +
+      row(INDIAN[P.board] ? 'Marks, weighted' : 'Academics', Math.round(c.A) + '%', reqLabel, c.A >= c.req) +
       (u.country === 'US' ? u.testPolicy === 'blind' ? row('SAT', c.sat || '—', 'Not used', null) : row('SAT', c.sat || '—', u.satMid50 ? u.satMid50[0] + '–' + u.satMid50[1] : (u.testPolicy || 'n/a'), u.satMid50 && c.sat ? c.sat >= u.satMid50[0] : (u.testPolicy === 'required' && !c.sat ? false : null)) : '') +
       row(engName, P.engType === 'none' || P.eng == null ? '—' : P.eng, ec.need != null ? ec.need + '+' : 'check', ec.state === 'ok' ? true : ec.state === 'short' ? false : null) +
       row('Cost / yr', '₹' + P.budget + 'L budget', u.costINR ? lakh(u.costINR) : 'n/a', u.costINR ? !r.over : null) +
