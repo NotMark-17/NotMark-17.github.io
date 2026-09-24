@@ -288,6 +288,30 @@
     .board .col { display: grid !important; }
     .card { break-inside: avoid; }
   }
+
+  /* ---------- simpler page: basics first, extras folded, results in tabs ---------- */
+  .hero { padding-top: 40px; padding-bottom: 28px; }
+  .hero h1 { font-size: clamp(40px, 5.2vw, 84px); }
+  .hero-side p { font-size: 16px; line-height: 1.45; }
+  .more { border-top: 1px solid var(--line); }
+  .more summary { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 14px 0; cursor: pointer; list-style: none; }
+  .more summary::-webkit-details-marker { display: none; }
+  .more-t { flex: none; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .more-t::before { content: "+"; display: inline-block; width: 1.3em; color: var(--accent); font-size: 15px; transition: transform .3s var(--ease); }
+  .more[open] .more-t::before { transform: rotate(45deg); }
+  .more-s { min-width: 0; overflow: hidden; font-size: 12px; color: var(--mute); text-align: right; text-overflow: ellipsis; white-space: nowrap; }
+  .more-in { display: grid; gap: 12px; padding-bottom: 18px; }
+  .sum-line { margin-top: 6px; max-width: 42ch; font-size: 13px; color: var(--mute); }
+  .linkish { font: inherit; color: var(--ink); background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .rtabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); }
+  .rtabs button { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; font: 600 15px var(--sans); letter-spacing: -.02em; color: var(--mute); background: none; border: 0; cursor: pointer; }
+  .rtabs button:hover { color: var(--ink); }
+  .rtabs button[aria-selected="true"] { color: var(--ink); }
+  .rtabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -1px; height: 2px; background: var(--accent); }
+  .rt-n { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--accent); color: #1E1E1E; font-size: 11px; font-weight: 700; }
+  .rt-n:empty { display: none; }
+  .rpanel { display: grid; gap: 28px; min-width: 0; }
+  .rpanel[hidden] { display: none; }
 </style>
 <style id="ue-motion">
   /* =====================================================================
@@ -452,16 +476,10 @@
 
 <section class="hero">
   <div>
-    <p class="label">Admissions, minus the guesswork &middot; rebuilt from a HackHarvard India Top 5 project</p>
-    <h1 style="margin-top:14px">Where do you <em>actually</em> fit?</h1>
+    <h1>Where do you <em>actually</em> fit?</h1>
   </div>
   <div class="hero-side">
-    <p>Put in your marks, scores and what you&rsquo;ve done. Every university below moves between <b style="color:var(--reach)">reach</b>, <b>target</b> and <b style="color:var(--safe)">safe</b> as you type. No sign-up, and nothing leaves your browser.</p>
-    <div class="hero-stats">
-      <div><b class="num" id="statUnis">0</b><span class="label">universities</span></div>
-      <div><b class="num">5</b><span class="label">countries</span></div>
-      <div><b class="num">0</b><span class="label">logins</span></div>
-    </div>
+    <p>Your marks in, <b class="num" id="statUnis">53</b> universities across 5 countries sorted into <b style="color:var(--reach)">reach</b>, <b>target</b> and <b style="color:var(--safe)">safe</b>. No sign-up.</p>
   </div>
 </section>
 
@@ -473,7 +491,7 @@
     </div>
 
     <fieldset class="step">
-      <legend>Academics <span>what you scored</span></legend>
+      <legend>The basics <span>what counts most</span></legend>
       <div class="row">
         <span class="label" id="boardL">Board / curriculum</span>
         <div class="seg" role="group" aria-labelledby="boardL" data-seg="board">
@@ -511,34 +529,6 @@
           <option value="hum">Humanities</option>
         </select>
       </div>
-    </fieldset>
-
-    <fieldset class="step">
-      <legend>Tests <span>all optional</span></legend>
-      <div class="row-2">
-        <div class="row"><label class="label" for="sat">SAT (400&ndash;1600)</label><input class="field num" id="sat" type="number" min="400" max="1600" step="10" placeholder="Not taken"></div>
-        <div class="row"><label class="label" for="act">ACT (1&ndash;36)</label><input class="field num" id="act" type="number" min="1" max="36" step="1" placeholder="Not taken"></div>
-      </div>
-      <div class="row-2">
-        <div class="row"><label class="label" for="apN">AP exams taken</label><input class="field num" id="apN" type="number" min="0" max="38" step="1" placeholder="None"></div>
-        <div class="row"><label class="label" for="ap45">AP scored 4 or 5</label><input class="field num" id="ap45" type="number" min="0" max="38" step="1" placeholder="None"></div>
-      </div>
-      <p class="hint">AP counts most in the US. Only 4s and 5s add anything, and you choose which scores to send.</p>
-      <div class="row-2">
-        <div class="row"><label class="label" for="engType">English test</label>
-          <select class="field" id="engType"><option value="ielts">IELTS</option><option value="toefl">TOEFL iBT</option><option value="duolingo">Duolingo</option><option value="none">Not taken yet</option></select></div>
-        <div class="row"><label class="label" for="eng" id="engLabel">Overall band</label><input class="field num" id="eng" type="number" step="0.5"></div>
-      </div>
-    </fieldset>
-
-    <fieldset class="step">
-      <legend>Beyond marks <span>click a level</span></legend>
-      <p class="hint">&mdash; none &middot; S school &middot; C city/state &middot; N national or international</p>
-      <div class="acts" id="acts"></div>
-    </fieldset>
-
-    <fieldset class="step">
-      <legend>Goals <span>where and what</span></legend>
       <div class="row">
         <label class="label" for="major">Intended major</label>
         <select class="field" id="major">
@@ -561,6 +551,37 @@
           <button type="button" data-v="Singapore">Singapore</button>
         </div>
       </div>
+    </fieldset>
+
+    <details class="more" id="moreTests">
+      <summary><span class="more-t">Tests</span><span class="more-s" id="sumTests"></span></summary>
+      <div class="more-in">
+      <div class="row-2">
+        <div class="row"><label class="label" for="sat">SAT (400&ndash;1600)</label><input class="field num" id="sat" type="number" min="400" max="1600" step="10" placeholder="Not taken"></div>
+        <div class="row"><label class="label" for="act">ACT (1&ndash;36)</label><input class="field num" id="act" type="number" min="1" max="36" step="1" placeholder="Not taken"></div>
+      </div>
+      <div class="row-2">
+        <div class="row"><label class="label" for="apN">AP exams taken</label><input class="field num" id="apN" type="number" min="0" max="38" step="1" placeholder="None"></div>
+        <div class="row"><label class="label" for="ap45">AP scored 4 or 5</label><input class="field num" id="ap45" type="number" min="0" max="38" step="1" placeholder="None"></div>
+      </div>
+      <p class="hint">AP counts most in the US. Only 4s and 5s add anything, and you choose which scores to send.</p>
+      <div class="row-2">
+        <div class="row"><label class="label" for="engType">English test</label>
+          <select class="field" id="engType"><option value="ielts">IELTS</option><option value="toefl">TOEFL iBT</option><option value="duolingo">Duolingo</option><option value="none">Not taken yet</option></select></div>
+        <div class="row"><label class="label" for="eng" id="engLabel">Overall band</label><input class="field num" id="eng" type="number" step="0.5"></div>
+      </div>
+      </div>
+    </details>
+    <details class="more" id="moreActs">
+      <summary><span class="more-t">Beyond marks</span><span class="more-s" id="sumActs"></span></summary>
+      <div class="more-in">
+      <p class="hint">&mdash; none &middot; S school &middot; C city/state &middot; N national or international</p>
+      <div class="acts" id="acts"></div>
+      </div>
+    </details>
+    <details class="more" id="moreMoney">
+      <summary><span class="more-t">Budget and timing</span><span class="more-s" id="sumMoney"></span></summary>
+      <div class="more-in">
       <div class="row big-slider">
         <label class="label" for="budget">Budget per year, all in</label>
         <output id="budgetOut" for="budget">&#8377;60L</output>
@@ -572,7 +593,8 @@
         <label class="label" for="intake">Starting university in</label>
         <select class="field" id="intake"></select>
       </div>
-    </fieldset>
+      </div>
+    </details>
   </aside>
 
   <section class="results" aria-live="polite" aria-busy="false">
@@ -582,9 +604,8 @@
         <b class="num" id="ringNum">0</b>
       </div>
       <div>
-        <p class="label" style="margin-bottom:8px">Profile strength</p>
-        <div class="bars" id="bars"></div>
-        <p class="weak" id="weak"></p>
+        <p class="label">Profile strength</p>
+        <p class="sum-line">Where you stand for the countries you picked. See <button type="button" class="linkish" data-goto="improve">what would move it</button>.</p>
       </div>
       <div class="counts">
         <div class="count reach"><b class="num" id="cReach">0</b><span class="label">Reach</span></div>
@@ -593,13 +614,14 @@
       </div>
     </div>
 
-    <div>
-      <div class="sec-h"><h3>Moves that <em>change your list</em></h3><span class="label">Simulated on your profile, not generic advice</span></div>
-      <div class="moves" id="moves"></div>
+    <div class="rtabs" role="tablist" aria-label="Results">
+      <button type="button" role="tab" id="rt-list" aria-controls="rp-list" aria-selected="true">Your list</button>
+      <button type="button" role="tab" id="rt-improve" aria-controls="rp-improve" aria-selected="false" tabindex="-1">Improve <span class="rt-n num" id="rtMoves"></span></button>
+      <button type="button" role="tab" id="rt-time" aria-controls="rp-time" aria-selected="false" tabindex="-1">Timeline</button>
     </div>
-
+    <div class="rpanel" id="rp-list" role="tabpanel" aria-labelledby="rt-list">
     <div>
-      <div class="sec-h"><h3>Your list</h3><span class="label" id="boardNote"></span></div>
+      <div class="sec-h"><h3 class="sr">Your list</h3><span class="label" id="boardNote"></span></div>
       <input class="field find" id="find" type="search" placeholder="Find a university, city or country" aria-label="Filter universities" autocomplete="off">
       <div class="tabs seg" role="tablist" id="tabs">
         <button type="button" role="tab" data-t="reach">Reach</button>
@@ -613,9 +635,24 @@
       </div>
     </div>
 
+    </div>
+    <div class="rpanel" id="rp-improve" role="tabpanel" aria-labelledby="rt-improve" hidden>
+      <div>
+        <div class="sec-h"><h3>Profile <em>strength</em></h3><span class="label">Weakest area first</span></div>
+        <div class="bars" id="bars"></div>
+        <p class="weak" id="weak"></p>
+      </div>
+    <div>
+      <div class="sec-h"><h3>Moves that <em>change your list</em></h3><span class="label">Simulated on your profile, not generic advice</span></div>
+      <div class="moves" id="moves"></div>
+    </div>
+
+    </div>
+    <div class="rpanel" id="rp-time" role="tabpanel" aria-labelledby="rt-time" hidden>
     <div>
       <div class="sec-h"><h3>Your <em>roadmap</em></h3><span class="label" id="rmNote"></span></div>
       <ol class="roadmap" id="roadmap"></ol>
+    </div>
     </div>
   </section>
 </main>
@@ -1174,6 +1211,43 @@
 
   /* ---------- go ---------- */
   $('#statUnis').textContent = U.length;
+
+  /* ---------- one-line summaries on the folded sections ---------- */
+  function sums() {
+    var t = [], sat = satOf(P);
+    if (sat) t.push(P.act ? 'ACT ' + P.act : 'SAT ' + sat);
+    if (+P.ap45) t.push(P.ap45 + ' AP at 4+');
+    if (P.engType !== 'none' && P.eng != null && P.eng !== '') t.push({ ielts: 'IELTS', toefl: 'TOEFL', duolingo: 'Duolingo' }[P.engType] + ' ' + P.eng);
+    $('#sumTests').textContent = t.length ? t.join(' \u00B7 ') : 'None yet';
+    var n = Object.keys(P.acts).filter(function (k) { return P.acts[k] > 0; }).length;
+    $('#sumActs').textContent = n ? n + ' of ' + Object.keys(P.acts).length + ' added' : 'None yet';
+    $('#sumMoney').textContent = '\u20B9' + P.budget + 'L a year' + (P.needAid ? ' \u00B7 needs aid' : '') + ' \u00B7 ' + P.intake;
+    var mv = $$('#moves .move:not(.gate)').length;
+    $('#rtMoves').textContent = mv || '';
+  }
+  var render0 = render;
+  render = function () { render0(); sums(); };
+
+  /* ---------- results tabs ---------- */
+  var rtabs = $$('.rtabs [role="tab"]');
+  function showTab(id, focus) {
+    rtabs.forEach(function (b) {
+      var on = b.id === 'rt-' + id;
+      b.setAttribute('aria-selected', on ? 'true' : 'false'); b.tabIndex = on ? 0 : -1;
+      $('#' + b.getAttribute('aria-controls')).hidden = !on;
+      if (on && focus) b.focus();
+    });
+  }
+  rtabs.forEach(function (b, i) {
+    b.addEventListener('click', function () { showTab(b.id.slice(3)); });
+    b.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); showTab(rtabs[(i + d + rtabs.length) % rtabs.length].id.slice(3), true); }
+    });
+  });
+  $$('[data-goto]').forEach(function (b) { b.addEventListener('click', function () { showTab(b.getAttribute('data-goto')); $('.rtabs').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }); });
+  /* trying a move or jumping to the list: show the list first, so the cards can be seen moving */
+  document.addEventListener('click', function (e) { if (e.target.closest('[data-move], #jump')) showTab('list'); }, true);
   P = load();
   syncInputs();
   render();

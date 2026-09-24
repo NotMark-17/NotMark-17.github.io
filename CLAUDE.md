@@ -19,6 +19,7 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
 ## UniExplore
 
 - The chance model (constants, `chance`, `evaluate`, `costFor` and helpers) lives in `uniexplore/model.js`, exposed as `window.UEM`. It is loaded after `data.js` by both the app and the portfolio's "Inside UniExplore" section (`#model` in `index.html`), so edit the model there, never in a copy. The app imports each name with `var x = UEM.x` at the top of its script.
+- Layout (kept deliberately simple, Mark asked for less on one page): a compact hero; the profile shows only "The basics" (board, Class 12, Class 9-11, stream, major, countries) with Tests, Beyond marks, and Budget and timing folded into `<details class="more">` sections that show a one-line summary (`sums()`); results are a slim summary (strength ring + counts) and three tabs: Your list (default), Improve (strength bars + moves, badge = number of moves), Timeline (roadmap). Trying a move or tapping the jump pill switches to Your list first so the cards can be seen moving. Don't add new always-visible sections; fold or tab them.
 - `uniexplore/index.html` holds the app UI. Inputs:
   - board: CBSE, ISC, State, IB, A-Level or US GPA
   - predicted Class 12 score
