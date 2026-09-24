@@ -632,6 +632,7 @@
     var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country] || 0.5;
     var p = sig(logit(ar) + z * 0.9);
     if (ar < 0.12) p = Math.min(p, ar * 3.2);
+    if (u.indiaReqMin && INDIAN[P.board] && A < u.indiaReqMin) { p = Math.min(p, 0.05); notes.push('below-min'); }   /* published hard minimum */
     p = clamp(p, 0.02, 0.97);
     var band = p >= 0.68 ? 'safe' : p >= 0.35 ? 'target' : 'reach';
     return { p: p, band: band, A: A, req: req, sat: sat, notes: notes };
@@ -814,6 +815,7 @@
     else if (u.markApplied) tags.push('<span class="tag">Mark applied</span>');
     if (r.over) tags.push('<span class="tag warn">Over budget</span>');
     if (r.e.state === 'short') tags.push('<span class="tag warn">English +' + r.e.gap + '</span>');
+    if (r.c.notes.indexOf('below-min') !== -1) tags.push('<span class="tag warn">Below their minimum</span>');
     if (r.c.notes.indexOf('needs-test') !== -1) tags.push('<span class="tag warn">Needs SAT/ACT</span>');
     if (r.c.notes.indexOf('withhold') !== -1) tags.push('<span class="tag">Don\u2019t send your SAT</span>');
     if (r.aidRisk) tags.push('<span class="tag warn">Little aid</span>');
@@ -942,6 +944,7 @@
       else if (!c.sat && u.testPolicy !== 'blind') why.push(u.testPolicy === 'required' ? 'They <b>require</b> the SAT or ACT. Without one, you can’t apply.' : 'You’d be applying test-optional. Fine, but a strong score still helps internationals.');
       why.push('US admissions read the whole profile, so what you do beyond marks moves the needle here more than anywhere else.');
     }
+    if (c.notes.indexOf('below-min') !== -1) why.push('They set a hard minimum of <b>' + u.indiaReqMin + '%</b> for Indian boards. Below it, your application usually isn\u2019t considered.');
     if (u.acceptanceRate != null && u.acceptanceRate < 0.12) why.push('They admit under 12% of applicants. Nobody is “safe” here.');
     if (r.e.state === 'short') why.push('Your English score is ' + r.e.gap + ' short of their minimum. Many offer a pathway course, but plan a retake.');
     if (r.e.state === 'missing') why.push('Add an English test score to check eligibility.');
