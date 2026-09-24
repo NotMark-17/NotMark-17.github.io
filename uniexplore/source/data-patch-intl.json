@@ -1,0 +1,65 @@
+{
+  "ntu": {
+    "tuition": 21400,
+    "tuitionNote": "AY2026-27, international students with MOE Tuition Grant (non-ASEAN 'Other International Students', incl. 9% GST): S$21,400 standard programmes, S$21,800 Business/Accountancy, S$91,250 Medicine. ASEAN internationals pay S$18,050. Non-subsidised (no TG): S$36,350-40,600 (Business S$45,600).",
+    "sources": [
+      "https://www.ntu.edu.sg/admissions/undergraduate/financial-matters/tuition-fees/accepted-programme-offer-in-2026",
+      "https://www.ntu.edu.sg/admissions/undergraduate/admission-guide/international-qualifications/india-standard-12"
+    ],
+    "patchNote": "Indians fall under 'Other International Students' (non-ASEAN) TG rate; TG carries a 3-year Singapore work bond. IELTS: min Overall 6, Writing 6 (only if English not medium of study/2nd language). Minimum to apply with India Std 12: at least 90% in all subjects incl. English (excl. other languages/technical subjects); NTU publishes no grade profile for Indian applicants, so indiaReq typical/high not set (indiaReqMin = official eligibility floor).",
+    "ieltsMin": 6.0,
+    "indiaReqMin": 90
+  },
+  "mcgill": {
+    "tuition": 63000,
+    "tuitionNote": "2026-27 new international undergrads, tuition only (30 credits, guaranteed/locked for program): Arts C$54,000; Science C$64,785.90; Engineering C$65,167.50; Management (BCom) C$71,687.40; Arts & Science C$56,000.10. Total with ancillary fees + health insurance ~C$57.6k-75.3k. Typical value = approx midpoint of Arts-BCom range.",
+    "ieltsMin": 6.5,
+    "sources": [
+      "https://www.mcgill.ca/student-accounts/files/student-accounts/new_intl_ugrad_degree_students_admitted_2026-27_0.pdf",
+      "https://www.mcgill.ca/undergraduate-admissions/apply/english-proficiency"
+    ],
+    "patchNote": "IELTS Academic 6.5 overall, each component 6.0+. McGill India page publishes no percentage/competitive range for CBSE/ISC, so indiaReq not set."
+  },
+  "nus": {
+    "ieltsMin": 6.5,
+    "sources": [
+      "https://www.nus.edu.sg/oam/docs/default-source/default-document-library/english-test-scores.pdf"
+    ],
+    "patchNote": "IELTS Academic 6.5 in Overall, Reading and Writing (NUS English Language Test Scores doc, updated Sept 2026). No official Indian-qualification grade profile found; indiaReq not set."
+  },
+  "unsw": {
+    "tuition": 56000,
+    "tuitionNote": "2026 international UG fees charged per UOC (48 UOC = 1 year): Arts A$985/UOC (A$47,280/yr); Business/Commerce A$1,180 (A$56,640); Engineering & Computer Science A$1,270 (A$60,960); Science A$1,305 (A$62,640); max non-medicine A$1,350 (A$64,800); Medicine A$2,075 (A$99,600). Typical = approx midpoint of A$47k-65k.",
+    "ieltsMin": 6.5,
+    "living": 35600,
+    "livingNote": "UNSW published Sydney estimates (annual totals incl. rent, food, utilities, phone, transport, lifestyle): on-campus apartment A$28,860-49,920 (52 wks); on-campus college A$22,220-34,440 (44 wks); share house A$30,680-40,560; 1-bed unit A$40,820-69,420. Value = share-house midpoint. Visa financial capacity A$29,710/yr.",
+    "sources": [
+      "https://www.unsw.edu.au/student/managing-your-studies/fees/international",
+      "https://www.unsw.edu.au/study/how-to-apply/english-language-requirements",
+      "https://www.unsw.edu.au/study/how-to-apply/fees"
+    ],
+    "patchNote": "IELTS Academic 6.5 overall, min 6.0 each subtest (some programs e.g. Education/Social Work/some Business higher)."
+  },
+  "anu": {
+    "ieltsMin": 6.5,
+    "sources": [
+      "https://study.anu.edu.au/apply/english-language-requirements"
+    ],
+    "patchNote": "IELTS Academic (incl. UKVI, One Skill Retake) overall 6.5 with 6.0 in each of Reading, Writing, Listening, Speaking (official domain search snippet). ANU uses its own 20-point conversion for AISSC, not percentages."
+  },
+  "macquarie": {
+    "ieltsMin": 6.5,
+    "sources": [
+      "https://www.mq.edu.au/study/admissions-and-entry/apply/international/english-language-requirements"
+    ],
+    "patchNote": "Most UG courses require 'Competent English' = Academic IELTS 6.5 overall (official domain snippet); Law/Medicine/Education higher. CBSE = avg of best 4 externally examined subjects, but % cut-offs sit in a 403-blocked PDF; indiaReq/tuition not confirmed."
+  },
+  "sydney": {
+    "living": 24505,
+    "livingNote": "USyd living-costs page states 'at least A$24,505 per year' (~A$2,042/month), citing the Home Affairs visa financial-capacity figure. That figure appears stale: the current Home Affairs requirement is A$29,710/yr (as cited on UNSW's page). Consider using 29,710 or flagging.",
+    "sources": [
+      "https://www.sydney.edu.au/study/fees-and-loans/other-costs/living-costs.html"
+    ],
+    "patchNote": "Living = minimum visa-based figure published by USyd, not a lifestyle estimate."
+  }
+}

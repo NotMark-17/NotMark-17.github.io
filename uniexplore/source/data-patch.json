@@ -1,0 +1,181 @@
+{
+  "uiuc": {
+    "tuitionUSD": 42248,
+    "sources": [
+      "https://www.admissions.illinois.edu/tuition/"
+    ],
+    "patchNote": "2026-27 international tuition & fees range $42,248-$53,078 by major (value = low/base end; Engineering/Business etc. higher). UIUC publishes no English-test minimums, only admitted-student typical ranges (TOEFL 105-112, DET 135-145, IELTS 7.5-8) - left blank."
+  },
+  "ucsd": {
+    "ieltsMin": 7,
+    "toeflMin": 83,
+    "duolingoMin": 115,
+    "sources": [
+      "https://admissions.ucsd.edu/international/",
+      "https://students.ucsd.edu/finances/fees/registration/2026-27/index.html"
+    ],
+    "patchNote": "TOEFL 83 applies to tests before Jan 2026; new TOEFL scale minimum is 4.5 (from Jan 2026). All required minimums. Tuition: 2026-27 entering cohort, per quarter tuition $4,734 + student services $462 + NRST $13,090 + campus fees ~$821 (x3 quarters) ~= $57,380/yr; excludes mandatory health insurance ($3,195/yr, waivable) and one-time fees.",
+    "tuitionUSD": 57380
+  },
+  "ucd": {
+    "ieltsMin": 6.5,
+    "toeflMin": 80,
+    "duolingoMin": 115,
+    "sources": [
+      "https://www.ucdavis.edu/admissions/undergraduate/international/exams-visas",
+      "https://admission.universityofcalifornia.edu/admission-requirements/international-applicants/english-language-proficiency-toefl-ielts.html"
+    ],
+    "patchNote": "UC Davis defers to UC-system minimums (UC official site). TOEFL 80 for tests before Jan 2026; new scale 4.5. UC notes a campus may require higher for selection."
+  },
+  "gatech": {
+    "ieltsMin": 6,
+    "toeflMin": 69,
+    "sources": [
+      "https://admission.gatech.edu/international/first-year",
+      "https://www.usg.edu/international-education/esl-programs/english-proficiency-requirements/",
+      "https://finaid.gatech.edu/costs/undergraduate-costs"
+    ],
+    "patchNote": "Georgia Tech's page defers to University System of Georgia approved methods; these are USG system minimums (TOEFL 69 pre-2026 / 3.5 new scale; IELTS 6). GT publishes no higher number. Duolingo does not satisfy USG requirement. Tuition: 2026-27 international tuition $35,610 + mandatory fees $1,716.",
+    "tuitionUSD": 37326
+  },
+  "osu": {
+    "tuitionUSD": 47374,
+    "sources": [
+      "https://undergrad.osu.edu/cost-and-aid/basic-costs"
+    ],
+    "patchNote": "2026-27 Columbus international tuition incl. instructional/general fees, nonresident surcharge and $3,103 international undergraduate fee."
+  },
+  "utaustin": {
+    "ieltsMin": 6.5,
+    "toeflMin": 79,
+    "duolingoMin": 115,
+    "sources": [
+      "https://admissions.utexas.edu/apply/frequently-asked-questions/"
+    ],
+    "patchNote": "Required minimums from UT Admissions international FAQ."
+  },
+  "nyu": {
+    "toeflMin": 100,
+    "sources": [
+      "https://www.nyu.edu/admissions/undergraduate-admissions/how-to-apply/standardized-tests/english-language-testing.html"
+    ],
+    "patchNote": "NYU has NO minimums; 100+ TOEFL iBT (tests on/before Jan 20 2026; 5+ on new scale) is the published 'competitive' recommended score. IELTS/DET competitive scores not confirmed."
+  },
+  "rutgers": {
+    "tuitionUSD": 40839,
+    "acceptanceRate": 0.653,
+    "satMid50": [
+      1270,
+      1480
+    ],
+    "sources": [
+      "https://admissions.rutgers.edu/costs-and-aid/tuition-fees",
+      "https://oirap.rutgers.edu/CDS/2023/New%20Brunswick%20CDS_2023-2024_final_V1.pdf",
+      "https://admissions.rutgers.edu/apply/how-we-make-decisions"
+    ],
+    "patchNote": "Tuition: 2026-27 NB non-resident tuition $36,831 + fees $4,008 (international pay same; +$500 SEVIS fee, insurance extra). Acceptance: Fall 2023 CDS (latest published on Rutgers OIRAP) 28,326 admitted / 43,347 applied. SAT: CDS 2023-24 leaves composite blank; value = sum of section 25th/75th (ERW 630-720, Math 640-760) for enrolled students, approximate. Admissions site's fall-2026 admitted mid-50 by school: SAS 1380-1520, Engineering 1400-1520, Business 1390-1510."
+  },
+  "purdue": {
+    "acceptanceRate": 0.434,
+    "sources": [
+      "https://admissions.purdue.edu/become-student/class-profile/",
+      "https://www.purdue.edu/newsroom/2025/Q3/demand-for-purdue-education-breaks-record-across-undergrad-master-and-doctoral-levels-most-selective-incoming-class-and-highest-graduation-rate/"
+    ],
+    "patchNote": "Fall 2025 overall admission rate 43.4% of 86,953 applications (in-state 71%, out-of-state 39% per Purdue newsroom)."
+  },
+  "kcl": {
+    "ieltsMin": 7.0,
+    "livingGBP": 15930,
+    "sources": [
+      "https://www.kcl.ac.uk/study/undergraduate/how-to-apply/english-language-requirements",
+      "https://www.kcl.ac.uk/study/student-experience/living-expenses"
+    ],
+    "patchNote": "IELTS: Band B (7.0 overall, 6.5 each) covers most UG faculties; Band D (6.5) for many Natural/Mathematical/Engineering Sciences courses. Living: 2026-27 average \u00a31,770/month x 9-month UG year = \u00a315,930 (KCL range \u00a311,979-\u00a321,078; 12 months = \u00a321,240). Tuition not confirmed (course pages only)."
+  },
+  "ucl": {
+    "ieltsMin": 6.5,
+    "sources": [
+      "https://www.ucl.ac.uk/prospective-students/international/applying-ucl/english-language-entry-requirements"
+    ],
+    "patchNote": "IELTS: Level 1 (formerly 'Standard') = 6.5 overall, 6.0 each; many UCL programmes require Level 2 (7.0) or higher - course-dependent. Tuition and living not confirmed (UCL pages blocked fetch)."
+  },
+  "edinburgh": {
+    "livingGBP": 13914,
+    "sources": [
+      "https://study.ed.ac.uk/undergraduate/fees-funding/living-costs",
+      "https://study.ed.ac.uk/undergraduate/entry-requirements/english-language"
+    ],
+    "patchNote": "Living: 2026-27 average \u00a31,546/month = \u00a313,914 for 39-week academic year (\u00a318,552 full year). IELTS: standard 6.5 overall (5.5 each); Business 7.0, Nursing/Social Work higher. Tuition not confirmed (degree finder behind login redirect).",
+    "ieltsMin": 6.5
+  },
+  "oxford": {
+    "tuitionGBP": 50100,
+    "sources": [
+      "https://lincoln.ox.ac.uk/asset/Undergraduate-Fees-and-Funding-booklet-2026.WEB_.pdf",
+      "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/course-fees?wssl=1"
+    ],
+    "patchNote": "2026 entry overseas annual course fee \u00a337,380-\u00a362,820 (midpoint \u00a350,100; clinical Medicine higher). No separate college fee: the single course fee covers University and college services. Living 2026: \u00a31,405-\u00a32,105/month, \u00a312,645-\u00a318,945 for 9 months."
+  },
+  "imperial": {
+    "ieltsMin": 6.5,
+    "livingGBP": 16717,
+    "sources": [
+      "https://www.imperial.ac.uk/study/apply/english-language/",
+      "https://www.imperial.ac.uk/study/fees-and-funding/living-costs/"
+    ],
+    "patchNote": "IELTS: standard level 6.5 (6.0 each); higher level 7.0 for some courses. Living: 2026 UG average range \u00a316,392-\u00a317,042 per 9-month academic year (value = midpoint)."
+  },
+  "manchester": {
+    "livingGBP": 14840,
+    "sources": [
+      "https://www.manchester.ac.uk/study/undergraduate/fees-and-funding/cost-of-living/",
+      "https://www.manchester.ac.uk/study/international/admissions/undergraduate-application-process/undergraduate-entry-requirements/"
+    ],
+    "patchNote": "Living: 2026/27 first-year UG estimate \u00a314,840 for 41-week year (\u00a315,030 self-catered). IELTS not set: Manchester states UG requirements 'usually IELTS 6.0-7.0', course-dependent, no single standard."
+  },
+  "warwick": {
+    "sources": [
+      "https://warwick.ac.uk/study/undergraduate/applying/english-language-requirements/"
+    ],
+    "patchNote": "IELTS not set: Warwick uses bands (A 6.0, B 6.5, C 7.0) by course with no stated standard."
+  },
+  "lse": {
+    "ieltsMin": 7.0,
+    "livingGBP": 13950,
+    "sources": [
+      "https://www.lse.ac.uk/study-at-lse/Undergraduate/Prospective-Students/How-to-Apply/English-language-requirements",
+      "https://www.lse.ac.uk/study-at-lse/Undergraduate/fees-and-funding"
+    ],
+    "patchNote": "IELTS 7.0 overall (high component minimums) for most UG programmes. Living: LSE publishes 'at least \u00a31,550 per month' only; value = \u00a31,550 x 9 months (derived; 12 months = \u00a318,600)."
+  },
+  "bristol": {
+    "livingGBP": 12609,
+    "sources": [
+      "https://www.bristol.ac.uk/students/support/finances/advice/set-up-finances/living-expenses/"
+    ],
+    "patchNote": "Living: Bristol publishes 2025/26 UG average \u00a31,401/month only; value = x9 months (derived; x12 = \u00a316,812). IELTS not set: course-specific 'profiles', no single standard."
+  },
+  "glasgow": {
+    "ieltsMin": 6.5,
+    "livingGBP": 12600,
+    "sources": [
+      "https://www.gla.ac.uk/international/englishlanguage/",
+      "https://www.gla.ac.uk/study/studentlife/costofliving/"
+    ],
+    "patchNote": "IELTS 6.5 (no subtest below 6.0) is the standard UG requirement per search snippet from gla.ac.uk English language page; some courses higher. Living: Glasgow publishes \u00a31,100-\u00a31,700/month (Aug 2026); value = midpoint \u00a31,400 x 9 months (derived)."
+  },
+  "nottingham": {
+    "livingGBP": 9000,
+    "sources": [
+      "https://www.nottingham.ac.uk/studywithus/ugstudy/campaigns/int-info-page.html"
+    ],
+    "patchNote": "Living: Nottingham publishes 'around \u00a3800 to \u00a31,200 per month' incl. accommodation; value = midpoint \u00a31,000 x 9 months (derived). IELTS not confirmed on a citable page (course-specific)."
+  },
+  "leeds": {
+    "livingGBP": 12480,
+    "sources": [
+      "https://www.leeds.ac.uk/research-fees/doc/living-expenses"
+    ],
+    "patchNote": "2026/27 average for 39-week academic year (range \u00a36,670-\u00a318,170; 52 weeks avg \u00a316,640)."
+  }
+}

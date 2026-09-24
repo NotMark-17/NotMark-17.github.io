@@ -1,0 +1,511 @@
+[
+  {
+    "id": "usyd",
+    "name": "University of Sydney",
+    "country": "Australia",
+    "city": "Sydney",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 81,
+      "high": 94
+    },
+    "indiaReqNote": "ISC % (average of best 4 incl. English) from USyd International Guide 2027 table: B Arts (ATAR 75) = ISC 81; Engineering Hons / Economics (ATAR 85) = ISC 87; Advanced Computing (ATAR 90) = ISC 90; B Commerce (ATAR 96) = ISC 94. CBSE is NOT a percentage at USyd: sum of 5 grade points (A1=4 ... D2=0.5, max 20): Arts 12.5, Engineering 15.5, Adv Computing 17, Commerce 19.",
+    "ibReq": {
+      "typical": 31,
+      "high": 38
+    },
+    "ieltsMin": 6.5,
+    "toeflMin": 85,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": 55100,
+    "currency": "AUD",
+    "tuitionNote": "2027 indicative Year-1 fees: AUD 55,100 (Arts) to 59,100 (Commerce/Economics) to 63,600 (Engineering/Advanced Computing). Increases annually.",
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Commerce",
+      "Engineering",
+      "Law",
+      "Medicine & health",
+      "Arts & social sciences"
+    ],
+    "deadlines": null,
+    "note": "IELTS 7.0 (6.0 each band) and TOEFL 96 for Commerce/Economics/PPE; 6.5/85 for Arts, Engineering, Computing. IB typical figure is for ATAR-85 courses (Arts itself is IB 26). Tables are indicative, not guaranteed.",
+    "sources": [
+      "https://www.sydney.edu.au/content/dam/corporate/documents/study/how-to-apply/international-admission-guide.pdf",
+      "https://www.sydney.edu.au/content/dam/corporate/documents/study/how-to-apply/usyd-international-guide-explanation-of-admission-scores.pdf.coredownload.pdf"
+    ]
+  },
+  {
+    "id": "swinburne",
+    "name": "Swinburne University of Technology",
+    "country": "Australia",
+    "city": "Melbourne",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "Swinburne publishes India requirements only through an interactive country selector; no CBSE/ISC % could be retrieved.",
+    "ibReq": null,
+    "ieltsMin": 6.0,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": 42600,
+    "currency": "AUD",
+    "tuitionNote": "AUD 42,600/yr for Bachelor of Computer Science (2026 rate).",
+    "living": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Engineering",
+      "Computer science & IT",
+      "Design",
+      "Aviation",
+      "Business"
+    ],
+    "deadlines": "Sem 1 2027 (starts 1 Mar): apply by 24 Feb 2027; Sem 2 2027 (starts 2 Aug): apply by 28 Jul 2027",
+    "note": "International applicants are automatically considered for a scholarship of up to 20% off tuition. IELTS 6.0 with no band below 6.0 (Computer Science).",
+    "sources": [
+      "https://www.swinburne.edu.au/course/undergraduate/bachelor-of-computer-science/",
+      "https://www.swinburne.edu.au/study/international/apply/entry-requirements/"
+    ]
+  },
+  {
+    "id": "monash",
+    "name": "Monash University",
+    "country": "Australia",
+    "city": "Melbourne",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "Monash accepts CBSE, ISC and 4 state boards (Maharashtra, Tamil Nadu, Karnataka, West Bengal); per-course CBSE/ISC scores are in the 2027 International UG Course Guide, but monash.edu blocked automated fetches (HTTP 403), so no value is recorded.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "AUD",
+    "tuitionNote": null,
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Pharmacy",
+      "Medicine & health",
+      "Engineering",
+      "Business",
+      "IT"
+    ],
+    "deadlines": null,
+    "note": "Values left null: official pages returned 403 during research. Check the 2027 International UG Course Guide.",
+    "sources": [
+      "https://www.monash.edu/india/study/monash-application-process",
+      "https://www.monash.edu/__data/assets/pdf_file/0005/3941744/undergraduate-international-course-guide.pdf"
+    ]
+  },
+  {
+    "id": "adelaide",
+    "name": "Adelaide University (formerly University of Adelaide)",
+    "country": "Australia",
+    "city": "Adelaide",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 70,
+      "high": null
+    },
+    "indiaReqNote": "Official 'Undergraduate admission by country' sheet: CBSE (AISSC) or ISC with at least 70% average in best four approved subjects (institution minimum; ATAR-70 equivalent). State boards need 80%. Degree-specific higher cut-offs are not published in that sheet.",
+    "ibReq": {
+      "typical": 25,
+      "high": null
+    },
+    "ieltsMin": 6.0,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "AUD",
+    "tuitionNote": null,
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Engineering",
+      "Health sciences",
+      "Agriculture & wine science",
+      "Business",
+      "Defence & cyber"
+    ],
+    "deadlines": null,
+    "note": "University of Adelaide and UniSA merged into Adelaide University, teaching from 2026; figures above are the merged university's current published minimums. IELTS 6.0 is the minimum; some degrees require more.",
+    "sources": [
+      "https://adelaide.edu.au/content/dam/adelaideuniversity/documents/study/pdfs/AU_Undergraduate_Admission_By_Country.pdf",
+      "https://adelaide.edu.au/study/international-students/how-to-apply/entry-requirements/"
+    ]
+  },
+  {
+    "id": "macquarie",
+    "name": "Macquarie University",
+    "country": "Australia",
+    "city": "Sydney",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "Macquarie converts CBSE (average of best 4 externally examined subjects) and ISC (English + best 3) to ATAR, but its official pages/PDFs returned HTTP 403, so no percentage is recorded.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "AUD",
+    "tuitionNote": null,
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Actuarial studies",
+      "Business",
+      "Linguistics",
+      "Earth & environmental sciences",
+      "IT"
+    ],
+    "deadlines": null,
+    "note": "Values left null: official pages returned 403 during research.",
+    "sources": [
+      "https://www.mq.edu.au/study/admissions-and-entry/apply/international/international-academic-requirements"
+    ]
+  },
+  {
+    "id": "unimelb",
+    "name": "University of Melbourne",
+    "country": "Australia",
+    "city": "Melbourne",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "Melbourne publishes indicative CBSE/ISC scores (average of best four final-year subjects) on a dedicated page, but it returned HTTP 403, so no value is recorded.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "AUD",
+    "tuitionNote": null,
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Commerce",
+      "Science",
+      "Law",
+      "Medicine & biomedicine",
+      "Arts"
+    ],
+    "deadlines": null,
+    "note": "Values left null: official pages returned 403 during research. Undergraduate entry is into 'generalist' degrees (Arts, Commerce, Science, Design, Biomedicine); professional degrees are mostly at graduate level.",
+    "sources": [
+      "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/international-applications/entry-requirements/indicative-entry-scores-international-students/qualifications/india-all-india-senior-school-certificate-cbse-and-indian-school-certificate-isc"
+    ]
+  },
+  {
+    "id": "unsw",
+    "name": "UNSW Sydney",
+    "country": "Australia",
+    "city": "Sydney",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 75,
+      "high": 85
+    },
+    "indiaReqNote": "CBSE (AISSCE) % = average of English/Hindi + best 4 externally examined subjects, from UNSW 'Undergraduate entry requirements for 2027': B Arts / B Science (ATAR 78) = 75%; B Engineering (Hons) (ATAR 89) = 81%; B Commerce (ATAR 92) and B Advanced CS (ATAR 91) = 85%; Actuarial (ATAR 97) = 90%. ISC is higher: Arts/Science 83, Engineering 90, Commerce 92, Actuarial 95.",
+    "ibReq": {
+      "typical": 29,
+      "high": 36
+    },
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "AUD",
+    "tuitionNote": null,
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Engineering",
+      "Computer science",
+      "Business & commerce",
+      "Law",
+      "Actuarial studies"
+    ],
+    "deadlines": null,
+    "note": "Table is a guide only. Engineering (Hons) needs IB 35. Mapping of table columns was inferred from the PDF text layout.",
+    "sources": [
+      "https://www.unsw.edu.au/content/dam/pdfs/future-students/2027-int-ug-entry-table.pdf"
+    ]
+  },
+  {
+    "id": "anu",
+    "name": "Australian National University",
+    "country": "Australia",
+    "city": "Canberra",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 84,
+      "high": 87
+    },
+    "indiaReqNote": "ANU ISC table (English + best 3): ATAR 80 = 84, ATAR 85 = 87, ATAR 90 = 90. 2027 program ATARs: B Commerce 80, B Advanced Computing (Hons) 85, B Engineering (Hons) 85. CBSE uses grade points (English/Hindi + best 4, A1=4 ... max 20): ATAR 80 = 14.0, ATAR 85 = 15.5.",
+    "ibReq": {
+      "typical": 31,
+      "high": 33
+    },
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": 57640,
+    "currency": "AUD",
+    "tuitionNote": "AUD 57,640/yr indicative (2027) for B Commerce and B Advanced Computing (Hons).",
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Politics & international relations",
+      "Economics",
+      "Computing",
+      "Science",
+      "Asia-Pacific studies"
+    ],
+    "deadlines": null,
+    "note": "Meeting indicative scores does not guarantee entry.",
+    "sources": [
+      "https://study.anu.edu.au/apply/international-applications/indicative-entry-requirement/indian-school-certificate-isc",
+      "https://study.anu.edu.au/apply/international-applications/indicative-entry-requirement/india-all-india-senior-school",
+      "https://programsandcourses.anu.edu.au/program/BCOMM",
+      "https://programsandcourses.anu.edu.au/program/AACOM"
+    ]
+  },
+  {
+    "id": "uq",
+    "name": "University of Queensland",
+    "country": "Australia",
+    "city": "Brisbane",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "UQ shows India CBSE/ISC minimums only in an interactive per-program selector (score = average of best 4 subjects); no value could be retrieved. For reference, the MD provisional-entry pathway needs 97.5 (CBSE/CISCE).",
+    "ibReq": null,
+    "ieltsMin": 6.5,
+    "toeflMin": 87,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": 60952,
+    "currency": "AUD",
+    "tuitionNote": "AUD 60,952/yr for B Engineering (Hons), 2027.",
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Engineering",
+      "Biotech & life sciences",
+      "Business",
+      "Agriculture & environment",
+      "Health"
+    ],
+    "deadlines": "Sem 1: 30 Nov of the previous year; Sem 2: 31 May",
+    "note": "B Engineering (Hons) 2027: ATAR 84 / IB 32. IELTS 6.5 overall, 6.0 each band; TOEFL iBT 87.",
+    "sources": [
+      "https://study.uq.edu.au/study-options/programs/bachelor-engineering-honours-2455",
+      "https://study.uq.edu.au/sites/default/files/2024-07/md-provisional-minimum-entry-scores.pdf"
+    ]
+  },
+  {
+    "id": "uoft",
+    "name": "University of Toronto (St. George)",
+    "country": "Canada",
+    "city": "Toronto",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "U of T accepts CBSE (AISSC) and ISC but publishes no minimum percentage. Programs needing calculus (business, engineering, science) require Class XII Standard Mathematics.",
+    "ibReq": null,
+    "ieltsMin": 6.5,
+    "toeflMin": 89,
+    "duolingoMin": 120,
+    "satUsed": true,
+    "tuition": 66356,
+    "currency": "CAD",
+    "tuitionNote": "2025-26 international tuition + incidentals: Arts/Science/Commerce CAD 66,356-67,173; Applied Science & Engineering CAD 73,056 (includes UHIP). 2026-27 figures not yet in the viewbook.",
+    "living": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Engineering",
+      "Computer science",
+      "Life sciences",
+      "Commerce",
+      "Humanities"
+    ],
+    "deadlines": "Early consideration 7 Nov; final application deadline 15 Jan",
+    "note": "Test-optional for 2026 admission: SAT/ACT considered if submitted; Engineering expects competitive candidates from US-style curricula to send SAT/ACT. Lester B. Pearson International Scholarship covers tuition and living for 4 years (nomination-based). TOEFL 89 (22 speaking/writing) is for tests before 21 Jan 2026. Duolingo 120 with 120 Production.",
+    "sources": [
+      "https://future.utoronto.ca/sites/default/files/assets/files/2025/2026-27-International-UAB_1.pdf",
+      "https://future.utoronto.ca/international-high-school-requirements-country"
+    ]
+  },
+  {
+    "id": "ubc",
+    "name": "University of British Columbia (Vancouver)",
+    "country": "Canada",
+    "city": "Vancouver",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": "UBC recognises the Indian Senior School Certificate (CBSE) and ISC but publishes no minimum percentage.",
+    "ibReq": null,
+    "ieltsMin": 6.5,
+    "toeflMin": 90,
+    "duolingoMin": 125,
+    "satUsed": null,
+    "tuition": 51530,
+    "currency": "CAD",
+    "tuitionNote": "2026/27 new international students, 30 credits: Arts CAD 51,530; Science 53,082; Applied Science 53,675; Commerce (Sauder) 66,678. Increases capped at 3%/yr for 4 years.",
+    "living": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Forestry & environment",
+      "Computer science",
+      "Business (Sauder)",
+      "Engineering",
+      "Life sciences"
+    ],
+    "deadlines": null,
+    "note": "International Major Entrance Scholarship (IMES) worth CAD 10,000-25,000/yr for 2026/27. IELTS 6.5 with no band below 6.0; TOEFL 90 (22/22/21/21); Duolingo 125.",
+    "sources": [
+      "https://vancouver.calendar.ubc.ca/fees/tuition-fees/undergraduate",
+      "https://you.ubc.ca/applying-ubc/requirements/english-language-competency/",
+      "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/"
+    ]
+  },
+  {
+    "id": "waterloo",
+    "name": "University of Waterloo",
+    "country": "Canada",
+    "city": "Waterloo",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 80,
+      "high": 85
+    },
+    "indiaReqNote": "Published MINIMUM Standard XII overall % for Indian-system applicants (CBSE/ISC): Honours Arts 80% (English at least 70%); Computer Science 85% overall, plus at least 90% in Standard XII Maths (Applied Maths not accepted) and one other course. Admitted students' averages are typically well above these minimums. Assessed on Class 10 boards, Class 11 finals and predicted Class 12.",
+    "ibReq": null,
+    "ieltsMin": 7.0,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": 58000,
+    "currency": "CAD",
+    "tuitionNote": "2026-27 first-year international estimates (tuition + incidentals, 2 terms): Science CAD 54,000; Arts 58,000; Math 62,000; Computer Science 73,000; Engineering/Software Eng 75,000.",
+    "living": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Computer science",
+      "Engineering",
+      "Mathematics",
+      "Co-op programs",
+      "Software engineering"
+    ],
+    "deadlines": null,
+    "note": "IELTS 7.0 overall with every band at least 6.0. Admission Information Form required for CS. Co-op fee CAD 836/term.",
+    "sources": [
+      "https://uwaterloo.ca/future-students/admissions/admission-requirements/computer-science/high-school/international-system/indian-system",
+      "https://uwaterloo.ca/future-students/admissions/admission-requirements/honours-arts/high-school/international-system/indian-system",
+      "https://uwaterloo.ca/future-students/financing/tuition",
+      "https://uwaterloo.ca/future-students/admissions/english-language-requirements"
+    ]
+  },
+  {
+    "id": "mcgill",
+    "name": "McGill University",
+    "country": "Canada",
+    "city": "Montreal",
+    "acceptanceRate": 0.475,
+    "indiaReq": null,
+    "indiaReqNote": "McGill publishes no CBSE/ISC percentage; applicants are assessed on Class X results, Class 11 and mid-year Class 12 transcripts (no predicted/positional grades), or the final Class XII certificate.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "CAD",
+    "tuitionNote": null,
+    "living": null,
+    "intlAid": null,
+    "strengths": [
+      "Medicine & life sciences",
+      "Law",
+      "Arts",
+      "Engineering",
+      "Management"
+    ],
+    "deadlines": "Application 15 Jan; supporting documents 1 Mar",
+    "note": "acceptanceRate calculated from McGill's Fall 2025 figures: 18,132 offers / 38,135 undergraduate + professional applicants (all applicant groups, not India-specific).",
+    "sources": [
+      "https://www.mcgill.ca/undergraduate-admissions/apply/requirements/international/india",
+      "https://www.mcgill.ca/es/admissions-profile"
+    ]
+  },
+  {
+    "id": "nus",
+    "name": "National University of Singapore",
+    "country": "Singapore",
+    "city": "Singapore",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": null,
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": 21400,
+    "currency": "SGD",
+    "tuitionNote": "AY2026/27 new intake, international (non-ASEAN) WITH MOE Tuition Grant: SGD 21,400 (Computing, Engineering, Humanities & Sciences), 22,200 (Business), 30,450 (Law). Without Tuition Grant: 33,400 (Business), 36,650 (H&S), 39,700 (Computing/Engineering). Fees include GST and are fixed for the cohort.",
+    "living": null,
+    "intlAid": "need-based",
+    "strengths": [
+      "Computer science",
+      "Engineering",
+      "Business",
+      "Law",
+      "Life sciences"
+    ],
+    "deadlines": null,
+    "note": "The Tuition Grant requires a bond to work for a Singapore entity for 3 years after graduation (MOE scheme; NTU's page states the 3 years). Indian-qualification cut-offs, English minimums and admit rates are not published in a retrievable form.",
+    "sources": [
+      "https://www.nus.edu.sg/registrar/docs/default-source/administrative-policies-procedures/ugtuitioncurrent.pdf",
+      "https://nus.edu.sg/oam/financial-aid/overview-eligibility/full-time-undergraduates"
+    ]
+  },
+  {
+    "id": "ntu",
+    "name": "Nanyang Technological University",
+    "country": "Singapore",
+    "city": "Singapore",
+    "acceptanceRate": null,
+    "indiaReq": null,
+    "indiaReqNote": null,
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuition": null,
+    "currency": "SGD",
+    "tuitionNote": "NTU 2026 fee page gives subsidised (with Tuition Grant) fees of SGD 18,050-21,400 and non-subsidised fees of SGD 36,350-40,600/yr, fixed at the 2026 rate for the whole degree. It was unclear whether 18,050 is an ASEAN or a lab-based rate, so tuition is left null. Likely non-ASEAN subsidised value: 21,400.",
+    "living": null,
+    "intlAid": "need-based",
+    "strengths": [
+      "Engineering",
+      "Computer science & AI",
+      "Materials science",
+      "Business",
+      "Communication studies"
+    ],
+    "deadlines": null,
+    "note": "Tuition Grant holders must sign an agreement to work for a Singapore entity for 3 years after graduation. Students paying non-subsidised fees cannot apply for financial aid.",
+    "sources": [
+      "https://www.ntu.edu.sg/admissions/undergraduate/financial-matters/tuition-fees/accepted-programme-offer-in-2026",
+      "https://www.ntu.edu.sg/admissions/undergraduate/financial-matters/tuition-fees"
+    ]
+  }
+]

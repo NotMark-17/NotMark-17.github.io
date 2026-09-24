@@ -1,0 +1,403 @@
+[
+  {
+    "id": "kcl",
+    "name": "King's College London",
+    "country": "UK",
+    "city": "London",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 80,
+      "high": 90
+    },
+    "indiaReqNote": "CBSE/CISCE Class XII only. ~80% overall generally considered for direct entry; 90%+ advantageous for highly competitive programmes; ~85% in required subjects. Exact per-course figures are on course pages (not verified per course). UNVERIFIED: taken from search summary, not a fetched official page.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": null,
+    "tuitionNote": "International fee varies by course; not verifiable from official KCL pages (course fee pages did not render).",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Law",
+      "Medicine & Health Sciences",
+      "International Relations & War Studies",
+      "Nursing",
+      "Business"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.kcl.ac.uk/study/international/region/south-asia",
+      "https://www.kcl.ac.uk/study/undergraduate/how-to-apply/entry-requirements"
+    ]
+  },
+  {
+    "id": "leeds",
+    "name": "University of Leeds",
+    "country": "UK",
+    "city": "Leeds",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 75,
+      "high": 85
+    },
+    "indiaReqNote": "Overall average across Standard XII. Range published as 60-85% overall with 75-90% in two relevant subjects. For AAA courses (CBSE/CISCE): 75% overall incl. 80% in two academic non-maths subjects, min 70% English & Maths; AAB: 70% overall. State boards ~5% higher.",
+    "ibReq": null,
+    "ieltsMin": 6.0,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 33700,
+    "tuitionNote": "Computer Science BSc international fee £33,700/yr (shown on 2027-entry course page, fixed for course duration). Classroom-based courses likely lower; full range not verified.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Business",
+      "Computer Science",
+      "Engineering",
+      "Medicine & Health",
+      "Media & Communication"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.leeds.ac.uk/dir-record/profiles/21864/india",
+      "https://business.leeds.ac.uk/dir-record/lubs-qualifications/511/india",
+      "https://courses.leeds.ac.uk/3260/computer-science-bsc"
+    ]
+  },
+  {
+    "id": "manchester",
+    "name": "University of Manchester",
+    "country": "UK",
+    "city": "Manchester",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 80,
+      "high": 95
+    },
+    "indiaReqNote": "CBSE/ISC: minimum 80-95% overall depending on course, plus subject-specific requirements. Basis (all vs best subjects) not specified. Foundation year: 70% overall.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 34150,
+    "tuitionNote": "UNCERTAIN: search summary of manchester.ac.uk pages cited £33,100 (2026/27, course unspecified) and £35,200 (BSc IT for Business Management); fees vary by course. Midpoint of those two.",
+    "livingGBP": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Engineering",
+      "Business (Alliance MBS)",
+      "Computer Science",
+      "Materials Science",
+      "Economics"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.manchester.ac.uk/study/international/country-specific-information/india/",
+      "https://www.manchester.ac.uk/study/international/finance-and-scholarships/fees/"
+    ]
+  },
+  {
+    "id": "warwick",
+    "name": "University of Warwick",
+    "country": "UK",
+    "city": "Coventry",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 85,
+      "high": 92
+    },
+    "indiaReqNote": "Average across 5 subjects (CBSE/ISC). A*A*A+ = 92%, A*AA = 90%, AAA = 85%, AAB = 83%, ABB = 80%. CBSE Applied Maths not accepted for CS, Maths, Statistics.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 31700,
+    "tuitionNote": "2026/27 overseas bands: Band 1 £27,870 (humanities/social sciences), Band 2 £35,530 (STEM, Economics, Management, Psychology). Medicine separate.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Economics",
+      "Mathematics",
+      "Business (WBS)",
+      "Computer Science",
+      "Engineering"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://warwick.ac.uk/study/international/countryinformation/southasia/india/india-entry-requirements/",
+      "https://warwick.ac.uk/services/finance/studentfinance/fees/overseasfees/"
+    ]
+  },
+  {
+    "id": "ucl",
+    "name": "University College London",
+    "country": "UK",
+    "city": "London",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 90,
+      "high": 95
+    },
+    "indiaReqNote": "CBSE/CISCE Standard 12, per-subject mapping: A* = 95, A = 90, B = 85 in examination subjects; e.g. A*AA = 95,95,95,90,90 across five subjects. Typical = AAA-level programmes, high = A*AA/A*A*A.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": null,
+    "tuitionNote": "UCL fee schedule page returned 403; not verified.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Architecture (Bartlett)",
+      "Medicine & Life Sciences",
+      "Economics",
+      "Computer Science",
+      "Law"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.ucl.ac.uk/prospective-students/international/india",
+      "https://www.ucl.ac.uk/prospective-students/international/undergraduate-equivalent-international-qualifications-202425"
+    ]
+  },
+  {
+    "id": "imperial",
+    "name": "Imperial College London",
+    "country": "UK",
+    "city": "London",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 90,
+      "high": 92
+    },
+    "indiaReqNote": "Official minimum: 90% overall across five subjects with 90% in relevant subjects (CBSE/CISCE). Some courses higher; 'high' of 92% (with 90-95% in Maths/sciences) is from a search summary of imperial.ac.uk, not fully verified. English 70% in Class XII needed.",
+    "ibReq": {
+      "typical": 38,
+      "high": 42
+    },
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 45500,
+    "tuitionNote": "2026/27 overseas fee for all Faculty of Engineering departments (incl. Computing) is £45,500; other faculties vary, Medicine higher.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Engineering",
+      "Computing",
+      "Medicine",
+      "Natural Sciences",
+      "Business"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.imperial.ac.uk/study/apply/undergraduate/entry-requirements/accepted-qualifications/",
+      "https://www.imperial.ac.uk/students/fees-and-funding/tuition-fees/undergraduate-tuition-fees/2026-27/faculty-of-engineering/"
+    ]
+  },
+  {
+    "id": "edinburgh",
+    "name": "University of Edinburgh",
+    "country": "UK",
+    "city": "Edinburgh",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 80,
+      "high": 85
+    },
+    "indiaReqNote": "Minimum requirements: Arts/Humanities/Social Sciences 80% overall with three subjects at 75%; Science & Engineering 80% overall and 80% in required subjects; Medicine/Vet 85% overall. No separate competitive threshold published.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": null,
+    "tuitionNote": "Fees listed per programme in degree finder; not extracted. Fixed annual fee for international students.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Informatics/AI",
+      "Medicine & Veterinary",
+      "Linguistics",
+      "Philosophy",
+      "Economics"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Vet)",
+    "sources": [
+      "https://www.ed.ac.uk/studying/international/country/asia/south-asia/india",
+      "https://study.ed.ac.uk/undergraduate/fees-funding/fees-costs/international-eu-eea"
+    ]
+  },
+  {
+    "id": "lse",
+    "name": "London School of Economics and Political Science",
+    "country": "UK",
+    "city": "London",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 90,
+      "high": 95
+    },
+    "indiaReqNote": "CBSE/CISCE only. A*AA = 95%+ overall average with 3 subjects at 95%+; AAA = 90%+ overall with 5 subjects at 90%+; AAB = 85%+. 95% Maths where A* Maths required; Applied Maths not accepted from 2027/28 for Maths programmes.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 29800,
+    "tuitionNote": "2026/27 overseas UG fee for new entrants £28,900-£30,700 by programme tier (fixed for duration).",
+    "livingGBP": null,
+    "intlAid": "need-based",
+    "strengths": [
+      "Economics",
+      "Finance",
+      "Politics & International Relations",
+      "Law",
+      "Social Sciences"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.lse.ac.uk/study-at-lse/international-students/india",
+      "https://info.lse.ac.uk/staff/divisions/Planning-Division/Assets/Documents/Table-of-Fees-2026-27-and-PGR-structure-combined-28Nov2025.pdf",
+      "https://www.lse.ac.uk/study-at-lse/Undergraduate/fees-and-funding/LSE-financial-support-Overseas-students"
+    ]
+  },
+  {
+    "id": "bristol",
+    "name": "University of Bristol",
+    "country": "UK",
+    "city": "Bristol",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 80,
+      "high": 90
+    },
+    "indiaReqNote": "CBSE/CISCE typical offers range from 80% (ABB) to 90% (A*AA); varies by course and subjects. Many departments accept CBSE/CISCE English at 80%+ with MOI letter. From search summary of bristol.ac.uk India page (direct fetch blocked).",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 29450,
+    "tuitionNote": "2026/27 overseas starters: £25,500 (Law) to £33,400 (Computer Science, Psychology); Economics/History £28,200. Excludes Medicine/Dentistry/Vet.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Engineering",
+      "Computer Science",
+      "Economics",
+      "Law",
+      "Life Sciences"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.bristol.ac.uk/international/countries/india.html",
+      "https://www.bristol.ac.uk/students/support/finances/tuition-fees/ug/overseas/26-27/2026-starters/"
+    ]
+  },
+  {
+    "id": "glasgow",
+    "name": "University of Glasgow",
+    "country": "UK",
+    "city": "Glasgow",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 80,
+      "high": 85
+    },
+    "indiaReqNote": "CBSE and ISC overall score: A*AA = 85%, AAA = 80%, AAB/ABB/BBB = 75%. State boards higher (up to 90% for A*AA). Medicine/Dentistry/Vet assessed separately.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 30465,
+    "tuitionNote": "2026/27 international: £27,720 (Arts & Social Sciences) to £33,210 (Science, Engineering, Nursing, Life Sciences). MBChB £62,730, BDS £58,500.",
+    "livingGBP": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Medicine & Life Sciences",
+      "Engineering",
+      "Law",
+      "Accountancy & Finance",
+      "Veterinary Medicine"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.gla.ac.uk/international/country/india/",
+      "https://www.gla.ac.uk/undergraduate/fees/intlfees/"
+    ]
+  },
+  {
+    "id": "nottingham",
+    "name": "University of Nottingham",
+    "country": "UK",
+    "city": "Nottingham",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 87,
+      "high": 93
+    },
+    "indiaReqNote": "Average of four highest graded Class XII subjects (CBSE/CISCE). A*AA = 93%, AAA = 90%, AAB = 87%, ABB = 84%, BBB = 80%. CBSE/CISCE English 85% meets the highest English requirement.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 29350,
+    "tuitionNote": "2026/27 UK campus international: £24,700 (History) to £34,000 (Sport Rehabilitation); Computer Science £33,000; Economics/Law £26,800. Excludes Medicine/Vet and foundation years.",
+    "livingGBP": null,
+    "intlAid": "merit",
+    "strengths": [
+      "Pharmacy",
+      "Engineering",
+      "Business",
+      "Economics",
+      "Medicine & Veterinary"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.nottingham.ac.uk/studywithus/international-applicants/country-info/countryinformation/india.aspx",
+      "https://www.nottingham.ac.uk/fees/tuitionfees/202627/undergraduate.aspx"
+    ]
+  },
+  {
+    "id": "southampton",
+    "name": "University of Southampton",
+    "country": "UK",
+    "city": "Southampton",
+    "acceptanceRate": null,
+    "indiaReq": {
+      "typical": 75,
+      "high": null
+    },
+    "indiaReqNote": "At least 75% from CBSE/CISCE/Metro State Boards as baseline; exact per-course percentages on course pages (not extracted), so 'high' is null.",
+    "ibReq": null,
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "satUsed": null,
+    "tuitionGBP": 30450,
+    "tuitionNote": "2026/27 overseas: £26,800 (Nursing & Midwifery) to £34,100 (Chemistry, Physics, Audiology); Computer Science £33,000; Economics £28,300; Law £28,400. Excludes Medicine.",
+    "livingGBP": null,
+    "intlAid": null,
+    "strengths": [
+      "Engineering",
+      "Electronics & Computer Science",
+      "Ocean & Earth Science",
+      "Aeronautics & Astronautics",
+      "Law"
+    ],
+    "deadlines": "UCAS mid-January equal-consideration deadline (Oct 15 for Medicine/Dentistry/Vet)",
+    "sources": [
+      "https://www.southampton.ac.uk/uni-life/international/your-country/asia/india.page",
+      "https://www.southampton.ac.uk/courses/fees/undergraduate/tuition-fees.page"
+    ]
+  }
+]

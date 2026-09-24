@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /demos/
+Disallow: /uniexplore/source/
+Disallow: /CLAUDE.md
 
 Sitemap: https://markpatel.in/sitemap.xml

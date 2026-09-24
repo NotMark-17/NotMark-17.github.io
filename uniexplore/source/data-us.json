@@ -1,0 +1,648 @@
+[
+  {
+    "id": "asu",
+    "name": "Arizona State University",
+    "country": "US",
+    "city": "Tempe",
+    "state": "AZ",
+    "acceptanceRate": 0.884,
+    "gpaAvg": 3.52,
+    "satMid50": null,
+    "actMid50": null,
+    "testPolicy": "optional",
+    "ieltsMin": 6.0,
+    "toeflMin": 61,
+    "duolingoMin": 95,
+    "tuitionUSD": 36175,
+    "livingUSD": 19050,
+    "intlAid": "merit",
+    "strengths": [
+      "Business (W. P. Carey)",
+      "Engineering (Fulton)",
+      "Journalism (Cronkite)",
+      "Sustainability",
+      "Computer Science"
+    ],
+    "deadlines": "Rolling · priority Nov 1",
+    "sources": [
+      "https://www.collegedata.fyi/schools/arizona-state-university-campus-immersion/2025-26",
+      "https://uoia.asu.edu/sites/g/files/litvpz1436/files/2025-04/ASU%20Campus%20Immersion%20-%20Common%20Data%20Set%202024-25.pdf",
+      "https://admission.asu.edu/apply/international/undergrad/english-proficiency"
+    ],
+    "notes": "Admit rate/GPA from CDS 2025-26; tuition/living from CDS 2024-25 G1 (nonresident tuition+fees; food&housing+other). SAT/ACT ranges not reported in CDS. Engineering/selective programs need TOEFL 79. intlAid 'merit' not verified this pass."
+  },
+  {
+    "id": "umass",
+    "name": "University of Massachusetts Amherst",
+    "country": "US",
+    "city": "Amherst",
+    "state": "MA",
+    "acceptanceRate": 0.599,
+    "gpaAvg": null,
+    "satMid50": [
+      1330,
+      1480
+    ],
+    "actMid50": [
+      30,
+      34
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": 6.5,
+    "toeflMin": 80,
+    "duolingoMin": 115,
+    "tuitionUSD": 42259,
+    "livingUSD": 16726,
+    "intlAid": "merit",
+    "strengths": [
+      "Computer Science",
+      "Engineering",
+      "Nursing",
+      "Sport Management",
+      "Hospitality & Tourism"
+    ],
+    "deadlines": "EA (Nov) · RD Jan 15",
+    "sources": [
+      "https://www.collegedata.fyi/schools/university-of-massachusetts-amherst/2025-26",
+      "https://www.umass.edu/uair/data/common-data-set",
+      "https://www.umass.edu/admissions/english-language-proficiency"
+    ],
+    "notes": "CDS avg GPA 4.05 is weighted, so gpaAvg null. livingUSD = food&housing only. TOEFL for tests after Jan 21 2026: 4.5 (new scale). intlAid not verified this pass."
+  },
+  {
+    "id": "psu",
+    "name": "Penn State University Park",
+    "country": "US",
+    "city": "University Park",
+    "state": "PA",
+    "acceptanceRate": 0.553,
+    "gpaAvg": 3.67,
+    "satMid50": [
+      1280,
+      1410
+    ],
+    "actMid50": [
+      28,
+      32
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": 6.5,
+    "toeflMin": 80,
+    "duolingoMin": 120,
+    "tuitionUSD": 45214,
+    "livingUSD": 19080,
+    "intlAid": "limited",
+    "strengths": [
+      "Engineering",
+      "Business (Smeal)",
+      "Supply Chain Management",
+      "Meteorology",
+      "Information Sciences & Technology"
+    ],
+    "deadlines": "Rolling (no closing date)",
+    "sources": [
+      "https://www.collegedata.fyi/schools/pennsylvania-state-university-main-campus/2025-26",
+      "https://www.psu.edu/resources/international-students/admission-requirements"
+    ],
+    "notes": "Tuition from CDS 2025-26 G1 (may reflect 2026-27; varies by college). TOEFL after Jan 21 2026: 4.5."
+  },
+  {
+    "id": "purdue",
+    "name": "Purdue University",
+    "country": "US",
+    "city": "West Lafayette",
+    "state": "IN",
+    "acceptanceRate": null,
+    "gpaAvg": null,
+    "satMid50": [
+      1220,
+      1470
+    ],
+    "actMid50": [
+      28,
+      34
+    ],
+    "testPolicy": "required",
+    "ieltsMin": 6.5,
+    "toeflMin": 88,
+    "duolingoMin": 115,
+    "tuitionUSD": 32104,
+    "livingUSD": null,
+    "intlAid": "limited",
+    "strengths": [
+      "Engineering",
+      "Aeronautics & Astronautics",
+      "Computer Science",
+      "Agriculture",
+      "Pharmacy"
+    ],
+    "deadlines": "EA Nov 1 · RD Jan 15",
+    "sources": [
+      "https://www.collegedata.fyi/schools/purdue/2025-26",
+      "https://admissions.purdue.edu/become-student/english-proficiency/",
+      "https://www.purdue.edu/treasurer/finance/bursar-office/tuition/fee-rates-2025-2026/undergraduate-tuition-and-fees-2025-2026/"
+    ],
+    "notes": "Acceptance rate null: CDS 2025-26 applied count unreported and it now combines Indianapolis/Polytechnic Statewide. testPolicy 'required' per Purdue policy but CDS extract said 'considered if submitted' - verify. Tuition = 2025-26 international base (incl. $3,310 intl tuition); Engineering/Business/Nursing differentials extra. Deadlines not verified this pass."
+  },
+  {
+    "id": "rutgers",
+    "name": "Rutgers University–New Brunswick",
+    "country": "US",
+    "city": "New Brunswick",
+    "state": "NJ",
+    "acceptanceRate": null,
+    "gpaAvg": null,
+    "satMid50": null,
+    "actMid50": null,
+    "testPolicy": "optional",
+    "ieltsMin": 6.5,
+    "toeflMin": 79,
+    "duolingoMin": 115,
+    "tuitionUSD": null,
+    "livingUSD": null,
+    "intlAid": "limited",
+    "strengths": [
+      "Pharmacy",
+      "Business",
+      "Engineering",
+      "Computer Science",
+      "Public Health"
+    ],
+    "deadlines": "EA Nov 1 · RD Dec 1",
+    "sources": [
+      "https://admissions.rutgers.edu/apply/international-applicants",
+      "https://oirap.rutgers.edu/CDS/2023/New%20Brunswick%20CDS_2023-2024_final_V1.pdf"
+    ],
+    "notes": "Recent CDS not located; admit rate/SAT/tuition left null (secondary sources suggest ~0.59 and SAT 1320-1490). testPolicy/deadlines not verified this pass. TOEFL after Jan 22 2026: 4.5."
+  },
+  {
+    "id": "uw",
+    "name": "University of Washington",
+    "country": "US",
+    "city": "Seattle",
+    "state": "WA",
+    "acceptanceRate": 0.417,
+    "gpaAvg": 3.84,
+    "satMid50": [
+      1320,
+      1502
+    ],
+    "actMid50": [
+      30,
+      34
+    ],
+    "testPolicy": "blind",
+    "ieltsMin": 6.0,
+    "toeflMin": 76,
+    "duolingoMin": 110,
+    "tuitionUSD": 44640,
+    "livingUSD": 20913,
+    "intlAid": "limited",
+    "strengths": [
+      "Computer Science",
+      "Engineering",
+      "Health Sciences",
+      "Business (Foster)",
+      "Biology"
+    ],
+    "deadlines": "Nov 15",
+    "sources": [
+      "https://www.collegedata.fyi/schools/uw/2025-26",
+      "https://admit.washington.edu/apply/first-year/how-to-apply/english-proficiency/"
+    ],
+    "notes": "CDS C8 says SAT/ACT not used in admission decisions (hence 'blind'); verify. TOEFL after Jan 21 2026: 4.0."
+  },
+  {
+    "id": "osu",
+    "name": "Ohio State University",
+    "country": "US",
+    "city": "Columbus",
+    "state": "OH",
+    "acceptanceRate": 0.492,
+    "gpaAvg": null,
+    "satMid50": [
+      1300,
+      1440
+    ],
+    "actMid50": [
+      27,
+      32
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": 6.5,
+    "toeflMin": 79,
+    "duolingoMin": null,
+    "tuitionUSD": null,
+    "livingUSD": null,
+    "intlAid": "limited",
+    "strengths": [
+      "Business (Fisher)",
+      "Engineering",
+      "Agriculture",
+      "Nursing",
+      "Data Analytics"
+    ],
+    "deadlines": "EA Nov 1 · RD Feb 1",
+    "sources": [
+      "https://www.collegedata.fyi/schools/osu/2025-26",
+      "https://undergrad.osu.edu/apply/international-freshmen/apply-step-by-step",
+      "https://sfa.osu.edu/international-student/about-aid/financial-aid-eligibility"
+    ],
+    "notes": "Tuition not captured (intl pays nonresident tuition + $3,103 intl fee). Duolingo min unclear. testPolicy/deadlines not verified this pass."
+  },
+  {
+    "id": "msu",
+    "name": "Michigan State University",
+    "country": "US",
+    "city": "East Lansing",
+    "state": "MI",
+    "acceptanceRate": 0.832,
+    "gpaAvg": null,
+    "satMid50": [
+      1100,
+      1310
+    ],
+    "actMid50": [
+      25,
+      31
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": 6.5,
+    "toeflMin": 79,
+    "duolingoMin": null,
+    "tuitionUSD": 46258,
+    "livingUSD": 17373,
+    "intlAid": "limited",
+    "strengths": [
+      "Supply Chain Management",
+      "Education",
+      "Hospitality Business",
+      "Agriculture",
+      "Engineering"
+    ],
+    "deadlines": null,
+    "sources": [
+      "https://www.collegedata.fyi/schools/michigan-state-university/2025-26",
+      "https://admissions.msu.edu/apply/international/language-requirements",
+      "https://admissions.msu.edu/cost-aid"
+    ],
+    "notes": "Tuition/living from MSU 2025-26 international cost estimate (search summary of msu.edu). TOEFL 79 requires no subscore below 17. testPolicy not verified this pass."
+  },
+  {
+    "id": "uiuc",
+    "name": "University of Illinois Urbana-Champaign",
+    "country": "US",
+    "city": "Urbana-Champaign",
+    "state": "IL",
+    "acceptanceRate": 0.366,
+    "gpaAvg": null,
+    "satMid50": [
+      1390,
+      1520
+    ],
+    "actMid50": [
+      31,
+      34
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": null,
+    "livingUSD": null,
+    "intlAid": "limited",
+    "strengths": [
+      "Computer Science",
+      "Engineering (Grainger)",
+      "Accountancy",
+      "Agriculture",
+      "Physics"
+    ],
+    "deadlines": "EA Nov 1 · RD Jan 5",
+    "sources": [
+      "https://www.commondatasets.fyi/uiuc",
+      "https://www.admissions.illinois.edu/international-requirements/"
+    ],
+    "notes": "English minimums not published on the page fetched. International tuition varies by program; not captured. testPolicy not verified this pass."
+  },
+  {
+    "id": "ucd",
+    "name": "University of California, Davis",
+    "country": "US",
+    "city": "Davis",
+    "state": "CA",
+    "acceptanceRate": 0.418,
+    "gpaAvg": null,
+    "satMid50": null,
+    "actMid50": null,
+    "testPolicy": "blind",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 54953,
+    "livingUSD": 22948,
+    "intlAid": "limited",
+    "strengths": [
+      "Agriculture",
+      "Animal Science / Veterinary",
+      "Biological Sciences",
+      "Engineering",
+      "Environmental Science"
+    ],
+    "deadlines": "Nov 30",
+    "sources": [
+      "https://aggiedata.ucdavis.edu/sites/g/files/dgvnsk1841/files/media/documents/CDS_UCD.pdf"
+    ],
+    "notes": "Admit rate is Fall 2024 (CDS 2024-25). Tuition = nonresident tuition+fees from CDS 2024-25 G1 (2025-26). UC English minimums not verified this pass."
+  },
+  {
+    "id": "ucsd",
+    "name": "University of California, San Diego",
+    "country": "US",
+    "city": "La Jolla",
+    "state": "CA",
+    "acceptanceRate": 0.286,
+    "gpaAvg": 3.88,
+    "satMid50": null,
+    "actMid50": null,
+    "testPolicy": "blind",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": null,
+    "livingUSD": 23203,
+    "intlAid": "limited",
+    "strengths": [
+      "Biology",
+      "Computer Science",
+      "Engineering",
+      "Cognitive Science",
+      "Oceanography"
+    ],
+    "deadlines": "Nov 30",
+    "sources": [
+      "https://www.collegedata.fyi/schools/uc-san-diego/2025-26",
+      "https://fas.ucsd.edu/cost-of-attendance/undergraduates/index.html"
+    ],
+    "notes": "Nonresident tuition not in CDS; UCSD lists Nonresident Supplemental Tuition $34,200 (2024 cohort, 2025-26) on top of resident charges. UC English minimums not verified this pass."
+  },
+  {
+    "id": "nyu",
+    "name": "New York University",
+    "country": "US",
+    "city": "New York",
+    "state": "NY",
+    "acceptanceRate": 0.091,
+    "gpaAvg": null,
+    "satMid50": [
+      1480,
+      1550
+    ],
+    "actMid50": [
+      34,
+      35
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 68574,
+    "livingUSD": 27304,
+    "intlAid": "limited",
+    "strengths": [
+      "Business (Stern)",
+      "Film (Tisch)",
+      "Performing Arts",
+      "Economics",
+      "Mathematics (Courant)"
+    ],
+    "deadlines": "ED I Nov 1 · ED II Jan 1 · RD Jan 5",
+    "sources": [
+      "https://www.collegedata.fyi/schools/nyu/2025-26",
+      "https://www.nyu.edu/admissions/undergraduate-admissions/how-to-apply/standardized-tests/english-language-testing.html"
+    ],
+    "notes": "No minimum English scores; competitive TOEFL 100+ (5+ after Jan 21 2026). Tuition figure from CDS 2025-26 G1 (may be 2026-27). testPolicy/deadlines not verified this pass."
+  },
+  {
+    "id": "neu",
+    "name": "Northeastern University",
+    "country": "US",
+    "city": "Boston",
+    "state": "MA",
+    "acceptanceRate": 0.056,
+    "gpaAvg": null,
+    "satMid50": [
+      1440,
+      1510
+    ],
+    "actMid50": [
+      33,
+      34
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 72700,
+    "livingUSD": 23892,
+    "intlAid": "limited",
+    "strengths": [
+      "Co-op / Experiential Learning",
+      "Business (D'Amore-McKim)",
+      "Computer Science (Khoury)",
+      "Engineering",
+      "Health Sciences"
+    ],
+    "deadlines": "ED/EA Nov 1 · RD Jan 1",
+    "sources": [
+      "https://www.commondatasets.fyi/northeastern",
+      "https://admissions.northeastern.edu/application-information/international-applicants/"
+    ],
+    "notes": "Avg GPA 4.22 is weighted, so null. Test policy: official site summary says test-optional, but one secondary source claimed a return to required for fall 2026 - verify. English minimums not published."
+  },
+  {
+    "id": "gatech",
+    "name": "Georgia Institute of Technology",
+    "country": "US",
+    "city": "Atlanta",
+    "state": "GA",
+    "acceptanceRate": 0.133,
+    "gpaAvg": null,
+    "satMid50": [
+      1370,
+      1530
+    ],
+    "actMid50": [
+      31,
+      35
+    ],
+    "testPolicy": "required",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": null,
+    "livingUSD": null,
+    "intlAid": "limited",
+    "strengths": [
+      "Engineering",
+      "Computer Science",
+      "Industrial Engineering",
+      "Aerospace Engineering",
+      "Business (Scheller)"
+    ],
+    "deadlines": null,
+    "sources": [
+      "https://www.collegedata.fyi/schools/georgia-tech/2025-26",
+      "https://admission.gatech.edu/international/first-year",
+      "https://admission.gatech.edu/first-year/standardized-tests"
+    ],
+    "notes": "SAT/ACT required. Avg GPA 4.17 is weighted, so null. Duolingo does not satisfy the USG English requirement (supplementary only). Tuition not captured."
+  },
+  {
+    "id": "utaustin",
+    "name": "University of Texas at Austin",
+    "country": "US",
+    "city": "Austin",
+    "state": "TX",
+    "acceptanceRate": 0.222,
+    "gpaAvg": null,
+    "satMid50": null,
+    "actMid50": null,
+    "testPolicy": "required",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 44816,
+    "livingUSD": null,
+    "intlAid": "limited",
+    "strengths": [
+      "Business (McCombs)",
+      "Computer Science",
+      "Engineering (Cockrell)",
+      "Petroleum Engineering",
+      "Communication"
+    ],
+    "deadlines": "Dec 1",
+    "sources": [
+      "https://www.commondatasets.fyi/ut-austin",
+      "https://news.utexas.edu/2024/03/11/ut-austin-reinstates-standardized-test-scores-in-admissions/",
+      "https://admissions.utexas.edu/apply/international-students/"
+    ],
+    "notes": "UT did not report SAT/ACT ranges in CDS 2025-26. Tuition = nonresident tuition (UT flat-rate). English minimums not found."
+  },
+  {
+    "id": "bu",
+    "name": "Boston University",
+    "country": "US",
+    "city": "Boston",
+    "state": "MA",
+    "acceptanceRate": 0.128,
+    "gpaAvg": 3.86,
+    "satMid50": [
+      1420,
+      1510
+    ],
+    "actMid50": [
+      33,
+      34
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": 7.0,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 71372,
+    "livingUSD": 21425,
+    "intlAid": "merit",
+    "strengths": [
+      "Communication",
+      "Business (Questrom)",
+      "Engineering",
+      "Biomedical Engineering",
+      "Health Sciences"
+    ],
+    "deadlines": null,
+    "sources": [
+      "https://www.collegedata.fyi/schools/boston-university/2025-26",
+      "https://www.bu.edu/admissions/apply/international/",
+      "https://www.bu.edu/finaid/undergraduate-students/international/"
+    ],
+    "notes": "Internationals ineligible for need-based aid; merit scholarships available (apply by Dec 1). Competitive DET 125-135 (no stated minimum)."
+  },
+  {
+    "id": "usc",
+    "name": "University of Southern California",
+    "country": "US",
+    "city": "Los Angeles",
+    "state": "CA",
+    "acceptanceRate": 0.112,
+    "gpaAvg": 3.85,
+    "satMid50": [
+      1470,
+      1540
+    ],
+    "actMid50": [
+      32,
+      35
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": 7.0,
+    "toeflMin": 100,
+    "duolingoMin": 130,
+    "tuitionUSD": 68687,
+    "livingUSD": 21020,
+    "intlAid": "merit",
+    "strengths": [
+      "Film & Cinematic Arts",
+      "Business (Marshall)",
+      "Engineering (Viterbi)",
+      "Communication (Annenberg)",
+      "Music (Thornton)"
+    ],
+    "deadlines": "EA Nov 1 · RD Jan 15",
+    "sources": [
+      "https://www.collegedata.fyi/schools/usc/2025-26",
+      "https://admission.usc.edu/prospective-students/how-to-apply/international-students/",
+      "https://admission.usc.edu/test-optional-faq/"
+    ],
+    "notes": "TOEFL 100 with 20+ per section (5 on new scale after Jan 21 2026). Deadlines not verified this pass."
+  },
+  {
+    "id": "cmu",
+    "name": "Carnegie Mellon University",
+    "country": "US",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "acceptanceRate": 0.111,
+    "gpaAvg": 3.89,
+    "satMid50": [
+      1500,
+      1560
+    ],
+    "actMid50": [
+      34,
+      36
+    ],
+    "testPolicy": "required",
+    "ieltsMin": 7.5,
+    "toeflMin": 102,
+    "duolingoMin": 135,
+    "tuitionUSD": 67020,
+    "livingUSD": 18894,
+    "intlAid": "limited",
+    "strengths": [
+      "Computer Science",
+      "Robotics / AI",
+      "Engineering",
+      "Drama & Fine Arts",
+      "Business (Tepper)"
+    ],
+    "deadlines": "ED Nov 1 · RD Jan 1",
+    "sources": [
+      "https://www.cmu.edu/ira/CDS/pdf/cds_2025_26/cds-2025-c-first-time-first-year-admission.pdf",
+      "https://www.cmu.edu/admission/admission/international-applicants",
+      "https://www.cmu.edu/sfs/tuition/undergraduate/2526.html",
+      "https://www.cmu.edu/admission/admission/standardized-testing"
+    ],
+    "notes": "Fall 2026: SCS requires SAT/ACT; most colleges 'test flexible' (some test required); CFA test-optional. tuitionUSD excludes mandatory fees; livingUSD = standard double + first-year meal plan only. Drama/Music deadline Dec 1."
+  }
+]

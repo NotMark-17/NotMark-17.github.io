@@ -1,0 +1,299 @@
+[
+  {
+    "id": "harvard",
+    "name": "Harvard University",
+    "country": "US",
+    "city": "Cambridge",
+    "state": "MA",
+    "acceptanceRate": 0.0418,
+    "gpaAvg": null,
+    "satMid50": null,
+    "actMid50": [
+      33,
+      35
+    ],
+    "testPolicy": "required",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 64796,
+    "livingUSD": 25630,
+    "intlAid": "need-based",
+    "strengths": [
+      "Economics",
+      "Government",
+      "Computer Science",
+      "Biology & Life Sciences",
+      "Applied Mathematics"
+    ],
+    "deadlines": "REA Nov 1; RD Jan 1",
+    "note": "Fall 2025 entry (CDS 2025-26): 2,003 admits of 47,893 applicants. SAT/ACT required again from Fall 2025 entry; CDS does not report an SAT composite range (sections: EBRW 720-770, Math 730-790), so satMid50 is null. Reported average HS GPA 4.22 is on a weighted scale, so gpaAvg is null. No English proficiency test minimum is published or required. Need-blind for all applicants including internationals; meets 100% of demonstrated need; internationals get the same aid as US students. Cost is 2025-26: tuition $59,320 + fees $5,476; living = housing $13,532 + food $8,598 + personal $2,500 + books $1,000 (excluding travel and health insurance).",
+    "sources": [
+      "https://oira.harvard.edu/files/2026/07/CDS_2025-2026.pdf",
+      "https://oira.harvard.edu/factbook/fact-book-ug-tuition/",
+      "https://college.harvard.edu/financial-aid/how-aid-works"
+    ]
+  },
+  {
+    "id": "stanford",
+    "name": "Stanford University",
+    "country": "US",
+    "city": "Stanford",
+    "state": "CA",
+    "acceptanceRate": 0.038,
+    "gpaAvg": 3.94,
+    "satMid50": [
+      1520,
+      1570
+    ],
+    "actMid50": [
+      34,
+      36
+    ],
+    "testPolicy": "required",
+    "ieltsMin": null,
+    "toeflMin": null,
+    "duolingoMin": null,
+    "tuitionUSD": 68574,
+    "livingUSD": 28971,
+    "intlAid": "need-based",
+    "strengths": [
+      "Computer Science",
+      "Engineering",
+      "Human Biology",
+      "Economics",
+      "Entrepreneurship"
+    ],
+    "deadlines": "REA Nov 1; RD Jan 5",
+    "note": "Fall 2025 entry (CDS 2025-26): 2,302 admits of 60,646 applicants. GPA 3.94 is the CDS C12 average; the CDS does not say whether it is weighted. SAT/ACT required again for Fall 2026 applicants onward. No English proficiency test minimum published, so the English fields are null. Need-based aid for internationals, but admission is need-aware (not need-blind) for them; meets full need once admitted. Cost from CDS section G (form labels it 2026-27): tuition $67,731 + fees $843; living = food & housing $22,944 + books $855 + other $5,172.",
+    "sources": [
+      "https://irds.stanford.edu/data-findings/cds",
+      "https://drive.google.com/file/d/1GIPKgVj1d86dkmLkHI_mZVCk_iY6kiCp/view"
+    ]
+  },
+  {
+    "id": "mit",
+    "name": "Massachusetts Institute of Technology",
+    "country": "US",
+    "city": "Cambridge",
+    "state": "MA",
+    "acceptanceRate": 0.0456,
+    "gpaAvg": null,
+    "satMid50": [
+      1520,
+      1570
+    ],
+    "actMid50": [
+      34,
+      35
+    ],
+    "testPolicy": "required",
+    "ieltsMin": 7.0,
+    "toeflMin": 90,
+    "duolingoMin": 120,
+    "tuitionUSD": 67140,
+    "livingUSD": 25620,
+    "intlAid": "need-based",
+    "strengths": [
+      "Engineering",
+      "Computer Science",
+      "Mathematics",
+      "Physics",
+      "Economics"
+    ],
+    "deadlines": "EA Nov 1; RA early January (check mitadmissions.org)",
+    "note": "Fall 2025 entry (CDS 2025-26): 1,334 admits of 29,281 applicants. MIT does not report GPA. English test needed only if English is not your home or school language or you have used it fewer than 5 years; recommended scores are IELTS 7.5, TOEFL 100 and DET 125. TOEFL tests taken after Jan 21 2026 use the new 1-6 scale (min 5.0). Need-blind for international applicants too, meets full need (411 nonresidents received avg $81,991). Costs are 2026-27 (the only year on the official page): tuition $66,720 + student life fee $420; living = housing $14,090 + food $8,104 + books $930 + personal $2,496.",
+    "sources": [
+      "https://ir.mit.edu/projects/2025-26-common-data-set/",
+      "https://mitadmissions.org/apply/firstyear/tests-scores/",
+      "https://sfs.mit.edu/undergraduate-students/the-cost-of-attendance/annual-student-budget/"
+    ]
+  },
+  {
+    "id": "cornell",
+    "name": "Cornell University",
+    "country": "US",
+    "city": "Ithaca",
+    "state": "NY",
+    "acceptanceRate": 0.0838,
+    "gpaAvg": null,
+    "satMid50": [
+      1490,
+      1550
+    ],
+    "actMid50": [
+      33,
+      35
+    ],
+    "testPolicy": "required",
+    "ieltsMin": 7.5,
+    "toeflMin": 100,
+    "duolingoMin": 130,
+    "tuitionUSD": 74970,
+    "livingUSD": 24764,
+    "intlAid": "need-based",
+    "strengths": [
+      "Engineering",
+      "Computer Science",
+      "Hotel Administration",
+      "Agriculture & Life Sciences",
+      "Industrial & Labor Relations"
+    ],
+    "deadlines": "ED Nov 1; RD Jan 2",
+    "note": "Fall 2025 entry (CDS 2025-26): 6,077 admits of 72,523 applicants. The nonresident admit rate is much lower: 664 of 18,566 (about 3.6%). No average GPA reported. SAT/ACT required. English minimums are the 'most competitive' scores on the admissions site; TOEFL tests from Jan 2026 need 5.0 (5.5 recommended) on the new scale. Need-aware for internationals, meets full demonstrated need once admitted; you must apply for aid when applying or you can never get it. Costs from CDS section G (2026-27): tuition $73,946 + fees $1,024; living = food & housing $21,348 + books $1,234 + other $2,182.",
+    "sources": [
+      "https://irp.cornell.edu/common-data-set",
+      "http://irp.cornell.edu/wp-content/uploads/2026/09/CDS-Cornell-2025-2026-v2.xlsx",
+      "https://admissions.cornell.edu/how-to-apply/first-year-international-applicants",
+      "https://admissions.cornell.edu/resources/submit-english-language-proficiency"
+    ]
+  },
+  {
+    "id": "umich",
+    "name": "University of Michigan (Ann Arbor)",
+    "country": "US",
+    "city": "Ann Arbor",
+    "state": "MI",
+    "acceptanceRate": 0.1642,
+    "gpaAvg": 3.9,
+    "satMid50": [
+      1370,
+      1530
+    ],
+    "actMid50": [
+      32,
+      34
+    ],
+    "testPolicy": "optional",
+    "ieltsMin": null,
+    "toeflMin": 100,
+    "duolingoMin": null,
+    "tuitionUSD": 68096,
+    "livingUSD": 20898,
+    "intlAid": "limited",
+    "strengths": [
+      "Engineering",
+      "Business (Ross)",
+      "Computer Science",
+      "Economics",
+      "Public Policy"
+    ],
+    "deadlines": "EA Nov 1; RD Feb 1",
+    "note": "Fall 2025 entry (CDS 2025-26): 17,915 admits of 109,112 applicants. CDS C8 lists SAT/ACT as 'Recommended' (not required) for Fall 2027. GPA 3.9 is the CDS C12 average; the scale is not stated. TOEFL 100 (section minimums apply) is from secondary sources; the official exams page returned 403. IELTS minimum is unverified, and sources disagree on whether Duolingo is accepted, so those are null. Need-based aid for internationals is very limited. Costs from CDS section G (2026-27, first-year international): tuition $66,602 + required fees $494 + international student fee $1,000; living = food & housing $17,220 + books $1,220 + other $2,458. Tuition varies by school/college and is higher in upper-division years.",
+    "sources": [
+      "https://obp.umich.edu/wp-content/uploads/pubdata/cds/cds_2025-26_umaa.pdf",
+      "https://admissions.umich.edu/apply/international-applicants/exams-visas"
+    ]
+  },
+  {
+    "id": "ucla",
+    "name": "University of California, Los Angeles",
+    "country": "US",
+    "city": "Los Angeles",
+    "state": "CA",
+    "acceptanceRate": 0.094,
+    "gpaAvg": 4.0,
+    "satMid50": null,
+    "actMid50": null,
+    "testPolicy": "blind",
+    "ieltsMin": 6.5,
+    "toeflMin": 80,
+    "duolingoMin": 115,
+    "tuitionUSD": 55700,
+    "livingUSD": 24216,
+    "intlAid": "none",
+    "strengths": [
+      "Psychology",
+      "Biology",
+      "Economics",
+      "Computer Science",
+      "Film & Theater"
+    ],
+    "deadlines": "UC Application Oct 1 - Dec 1",
+    "note": "Fall 2025 entry: 13,659 admits of 145,085 applicants (9.4%). gpaAvg is the median unweighted GPA of admits (UC-calculated from grades 10-11, middle 50% 3.95-4.00); median weighted is 4.61. UC is test-blind, so SAT/ACT are not considered. English minimums are the UC system-wide standard (TOEFL iBT 80 / IELTS 6.5 / DET 115) and were not checked on a UCLA page this pass. No need-based aid for internationals. Costs are nonresident on-campus figures (page labels 2025-26, updated Jul 2026): university fees $16,430 + nonresident supplemental tuition $39,270; living = food & housing $19,867 + books $1,588 + personal $2,761 (health insurance $3,885 and transport $969 are extra).",
+    "sources": [
+      "https://admission.ucla.edu/apply/first-year/first-year-profile",
+      "https://admission.ucla.edu/tuition-aid/tuition-fees"
+    ]
+  },
+  {
+    "id": "oxford",
+    "name": "University of Oxford",
+    "country": "UK",
+    "city": "Oxford",
+    "acceptanceRate": 0.167,
+    "indiaReq": {
+      "typical": 90,
+      "high": 95
+    },
+    "indiaReqNote": "Oxford accepts only CBSE and CISCE (ISC) Class XII, not state boards or NIOS. Oxford's 2012/2014 announcement set 90% in each of five Class XII subjects. Recent secondary summaries describe ISC as 90% overall with 95%+ in four subjects (including relevant ones) and 85%+ in the fifth; CBSE is tiered by course. 'high' = 95% in relevant subjects. The official international-qualifications page blocked automated access (403), so check it.",
+    "ibReq": {
+      "typical": 38,
+      "high": 40
+    },
+    "ieltsMin": 7.0,
+    "toeflMin": 100,
+    "duolingoMin": null,
+    "satUsed": false,
+    "tuitionGBP": null,
+    "tuitionNote": "2026-27 overseas course fees could not be retrieved (ox.ac.uk returned 403). Fees vary by course band, and Medicine is much higher. Oxford no longer charges a separate college fee; it is included in the course fee. Check ox.ac.uk/admissions/undergraduate/fees-and-funding/course-fees.",
+    "livingGBP": 15795,
+    "intlAid": "limited",
+    "strengths": [
+      "PPE",
+      "Law",
+      "Medicine",
+      "Mathematics & Computer Science",
+      "History"
+    ],
+    "deadlines": "UCAS Oct 15 (6pm UK); admissions tests in October/November; interviews in December",
+    "note": "acceptanceRate 16.7% = 3,891 offers of 23,329 applications, as quoted from the Annual Admissions Statistical Report via search; the PDF itself was blocked (403). Treat as approximate. Most courses need a subject admissions test (e.g. TSA, MAT, PAT, LNAT, UCAT for Medicine), and shortlisted applicants are interviewed in December. CBSE/ISC are accepted on their own, so SAT/AP are not needed for Indian-board applicants; SAT is used only with a US-style diploma. English: IELTS 7.0 is the standard level (7.5 for the higher level) and TOEFL iBT 100 (110 higher), TOEFL only if taken before Jan 21 2026; these figures are from memory of Oxford's policy, not a page fetched this pass. Duolingo is not accepted. Living cost uses the official 2026-27 estimate of GBP 1,405-2,105 per month x 9 months, midpoint. Almost no need-based aid for internationals (limited scholarships such as Reach Oxford; check eligibility).",
+    "sources": [
+      "https://www.ox.ac.uk/admissions/undergraduate/applying-to-oxford/for-international-students/international-qualifications",
+      "https://www.ox.ac.uk/news/2014-11-13-oxford-targets-indian-students-major-recruitment-trip",
+      "https://www.ox.ac.uk/sites/files/oxford/AnnualAdmissionsStatisticalReport2025.pdf",
+      "https://www.ox.ac.uk/admissions/undergraduate/fees-and-funding/living-costs",
+      "https://www.ox.ac.uk/admissions/undergraduate/applying-to-oxford/for-international-students/ELR"
+    ]
+  },
+  {
+    "id": "cambridge",
+    "name": "University of Cambridge",
+    "country": "UK",
+    "city": "Cambridge",
+    "acceptanceRate": 0.2173,
+    "indiaReq": {
+      "typical": 90,
+      "high": null
+    },
+    "indiaReqNote": "CBSE Class XII: minimum A1 in five relevant subjects (A1 = top eighth of candidates per subject, roughly 90%+), accepted only by some colleges (about 19) and for a limited list of mostly arts/humanities courses. CISCE/ISC and NIOS: 90%+ in five or more relevant subjects. For other courses and colleges you need extra qualifications, e.g. 5+ AP tests at score 5 plus A1s in Class XII, or A Levels/IB. No official 'high' percentage is published, so it is null.",
+    "ibReq": {
+      "typical": 40,
+      "high": 42
+    },
+    "ieltsMin": 7.5,
+    "toeflMin": 110,
+    "duolingoMin": null,
+    "satUsed": false,
+    "tuitionGBP": 36633,
+    "tuitionNote": "2026-27 international university fee: GBP 29,052 (most arts/humanities) to 44,214 (sciences/engineering/CS); Medicine and Vet Med GBP 70,554. tuitionGBP is the midpoint of the non-medical range. There is a separate compulsory college fee of GBP 11,500-14,950 per year depending on college. International fees are fixed for the whole course.",
+    "livingGBP": 11745,
+    "intlAid": "limited",
+    "strengths": [
+      "Natural Sciences",
+      "Mathematics",
+      "Engineering",
+      "Computer Science",
+      "Economics"
+    ],
+    "deadlines": "UCAS Oct 15 (6pm UK) + My Cambridge Application; admissions tests in Oct/Nov; interviews in December",
+    "note": "2025 cycle: 4,893 offers of 22,513 applications (21.7%). Much tougher for internationals: overseas-school applicants got 1,101 offers of 7,633 (14.4%), and India-domiciled applicants got 38 offers of 370 (about 10%). Most courses use an admissions test (e.g. ESAT, TMUA, LNAT, UCAT for Medicine, or college-set assessments), and nearly all shortlisted applicants are interviewed. SAT is not used; for most courses CBSE applicants need AP scores (5+ APs at 5). English: IELTS 7.5 (7.0 per element) or TOEFL iBT 110 (25 per component; only tests before Jan 21 2026). Duolingo is not accepted. Living cost is the official 2026-27 term-time estimate (GBP 15,660 if staying all year). Scholarships for internationals are limited and competitive (Cambridge Trust).",
+    "sources": [
+      "https://www.undergraduate.study.cam.ac.uk/sites/default/files/2026-05/ug_admissions_statistics_2025_cycle.pdf",
+      "https://www.undergraduate.study.cam.ac.uk/international-students/international-entry-requirements",
+      "https://www.undergraduate.study.cam.ac.uk/files/publications/undergraduate_tuition_fees_2026-27.pdf",
+      "https://www.undergraduate.study.cam.ac.uk/fees-and-finance/living-costs",
+      "https://www.undergraduate.study.cam.ac.uk/apply/before/entry-requirements"
+    ]
+  }
+]
