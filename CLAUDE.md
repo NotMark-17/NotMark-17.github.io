@@ -9,6 +9,7 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
 - `index.html`: the portfolio. Vanilla HTML/CSS/JS in one file, Lenis smooth scroll, editorial look (light grey `#ECECEC`, black `#1E1E1E`, tiny labels, huge type, tilted stacked image plates).
   - Theme toggle is stored in localStorage `mp-theme`. Recruiter mode (`?mode=recruiter`, R key) is stored in `mp-mode`, and both are applied in a head script before paint.
   - GoatCounter analytics (`markpatel.goatcounter.com`) with a `?r=` per-person tag.
+  - Effects live in the `fx` script near the end and the "designed plates" / "scroll warp + particle headline" CSS: work plates are CSS objects sized in container units (`cqw`); the contact headline is redrawn as canvas dots that scatter from the cursor; nav/index/panel names decode through glyphs; plates skew and RGB-split with scroll speed (desktop only); the HUD turns dark over #contact and the logo uses `mix-blend-mode: difference`. All of it is off under prefers-reduced-motion. Keep plate content factual (no invented numbers or outputs).
 - `404.html`, `og-image.png` (link preview), `favicon.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml`.
 - `uniexplore/`: UniExplore, a no-login admissions tool (see below). The portfolio's UniExplore card opens it through a cross-document view transition (`view-transition-name: ue-hero`).
 - `uniexplore-landing.jpg`: the plate image for that card, a 16:10 screenshot of the live app. If you change the image, bump the `?v=` in `index.html`.
