@@ -524,6 +524,9 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function lakh(inr) { var l = inr / 1e5; return '₹' + (l >= 100 ? (l / 100).toFixed(2).replace(/\.?0+$/, '') + 'Cr' : Math.round(l) + 'L'); }
   function norm(s) { return String(s || '').toLowerCase(); }
+  /* US GPAs run higher than Indian board marks: 4.0 ~ 93%, 3.5 ~ 82%, 3.0 ~ 72%, 2.5 ~ 64% */
+  function gpaToPct(g) { return g >= 3 ? 72 + (g - 3) * 21 : 72 - (3 - g) * 16; }
+  function pctToGpa(p) { return p >= 72 ? 3 + (p - 72) / 21 : 3 - (72 - p) / 16; }
   function actToSat(a) { var t = { 36: 1590, 35: 1550, 34: 1520, 33: 1490, 32: 1450, 31: 1420, 30: 1390, 29: 1350, 28: 1310, 27: 1280, 26: 1240, 25: 1210, 24: 1180, 23: 1140, 22: 1110, 21: 1080, 20: 1040, 19: 1010, 18: 970 }; return t[a] || (a > 36 ? 1600 : a < 18 ? 950 : null); }
 
   /* normalise the three research files into one shape */
@@ -547,7 +550,7 @@
   function toPct(P) {
     var boost = P.boost || 0;
     if (P.board === 'ib') return 60 + (P.score - 24) * (38 / 21) + boost;
-    if (P.board === 'gpa') return 60 + (P.score - 2) * 19 + boost;
+    if (P.board === 'gpa') return gpaToPct(P.score) + boost;
     if (P.board === 'alevel') { var i = ALEVELS.indexOf(P.alevel); return (i < 0 ? 85 : ALEVEL_PCT[i]) + boost; }
     return P.score + boost;
   }
@@ -558,9 +561,9 @@
       return hi ? h : t;
     }
     var bump = hi ? 3 : 0;   /* no separate bar published: competitive courses still sit higher */
-    if (u.gpaAvg) return 60 + (u.gpaAvg - 2) * 19 + bump;
+    if (u.gpaAvg) return gpaToPct(u.gpaAvg) + bump;
     var ar = u.acceptanceRate != null ? u.acceptanceRate : BASE[u.country];
-    return 97 - ar * 20 + bump;
+    return (u.country === 'US' ? 97 - ar * 30 : 97 - ar * 20) + bump;
   }
   function actScore(P) {
     var w = { leadership: 1.1, competition: 1.3, research: 1.3, project: 1.2, internship: 0.9, service: 0.8, arts: 0.8 };
@@ -583,7 +586,9 @@
       if (u.testPolicy === 'blind') { notes.push('blind'); }
       else if (sat && u.satMid50) {
         var mid = (u.satMid50[0] + u.satMid50[1]) / 2, spread = Math.max(60, u.satMid50[1] - u.satMid50[0]);
-        z += (sat - mid) / spread * 1.2;
+        var eff = (sat - mid) / spread * 1.2;
+        if (u.testPolicy === 'optional' && eff < -0.25) { eff = -0.25; notes.push('withhold'); }   /* you'd simply not send it */
+        z += eff;
       } else if (!sat && u.testPolicy === 'required') { z -= 1.6; notes.push('needs-test'); }
       else if (!sat && u.testPolicy === 'optional') { z -= 0.25; }
       z += (actScore(P) - 0.35) * 2.2;
@@ -720,7 +725,7 @@
       change(function () {
         var pct = toPct(P); P.board = b.dataset.v;
         if (P.board === 'ib') P.score = Math.round(clamp(24 + (pct - 60) * 21 / 38, 24, 45));
-        else if (P.board === 'gpa') P.score = +clamp(2 + (pct - 60) / 19, 2, 4).toFixed(2);
+        else if (P.board === 'gpa') P.score = +clamp(pctToGpa(pct), 2, 4).toFixed(2);
         else if (P.board !== 'alevel') P.score = Math.round(clamp(pct, 50, 100) * 2) / 2;
       });
     });
@@ -769,6 +774,7 @@
     if (r.over) tags.push('<span class="tag warn">Over budget</span>');
     if (r.e.state === 'short') tags.push('<span class="tag warn">English +' + r.e.gap + '</span>');
     if (r.c.notes.indexOf('needs-test') !== -1) tags.push('<span class="tag warn">Needs SAT/ACT</span>');
+    if (r.c.notes.indexOf('withhold') !== -1) tags.push('<span class="tag">Don\u2019t send your SAT</span>');
     if (r.aidRisk) tags.push('<span class="tag warn">Little aid</span>');
     el.dataset.band = r.c.band;
     el.setAttribute('aria-label', u.name + ', ' + r.c.band + ', about ' + pct + ' percent');
@@ -886,7 +892,7 @@
     why.push(margin >= 0 ? 'Your academics sit about <b>' + Math.round(margin) + ' points above</b> what they typically ask of Indian applicants' + (COMPETITIVE[P.major] ? ' for competitive courses.' : '.') : 'Your academics are about <b>' + Math.round(-margin) + ' points below</b> their usual bar' + (COMPETITIVE[P.major] ? ' for competitive courses like yours.' : '.'));
     if (u.country === 'US') {
       if (u.testPolicy === 'blind') why.push('They are <b>test-blind</b>: SAT and ACT scores aren\u2019t looked at, so your marks and what you\u2019ve done carry everything.');
-      else if (c.sat && u.satMid50) why.push(c.sat >= u.satMid50[1] ? 'Your SAT is above their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). That helps a lot.' : c.sat >= u.satMid50[0] ? 'Your SAT is inside their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + ').' : 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). Consider applying test-optional if they allow it.');
+      else if (c.sat && u.satMid50) why.push(c.sat >= u.satMid50[1] ? 'Your SAT is above their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '). That helps a lot.' : c.sat >= u.satMid50[0] ? 'Your SAT is inside their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + ').' : (u.testPolicy === 'optional' ? 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), but they\u2019re <b>test-optional</b>: don\u2019t send it. The estimate assumes you won\u2019t.' : 'Your SAT is below their middle 50% (' + u.satMid50[0] + '–' + u.satMid50[1] + '), and they require a score, so it counts against you. A retake is worth it here.'));
       else if (!c.sat && u.testPolicy !== 'blind') why.push(u.testPolicy === 'required' ? 'They <b>require</b> the SAT or ACT. Without one, you can’t apply.' : 'You’d be applying test-optional. Fine, but a strong score still helps internationals.');
       why.push('US admissions read the whole profile, so what you do beyond marks moves the needle here more than anywhere else.');
     }
