@@ -401,6 +401,24 @@
   .pt-canvas { position: absolute; z-index: 1; pointer-events: none; }
   .contact-big.is-particles, .contact-big.is-particles em { color: transparent; }
 
+  /* ---------- dot-flood theme switch, magnetic statement, holographic certificates ---------- */
+  .flood { position: fixed; inset: 0; z-index: 100; width: 100%; height: 100%; pointer-events: none; transition: opacity .28s ease-out; }
+  .statement .mg-w { white-space: nowrap; }
+  .cert { --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%; --foil: 0; }
+  .c1 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-5deg); }
+  .c2 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(3deg); }
+  .entry.is-active-m .c1, .entry.is-current .c1 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-8deg) translate(-1.5cqw, -1cqw); }
+  .entry.is-active-m .c2, .entry.is-current .c2 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(6deg) translate(1.5cqw, 1cqw); }
+  .cert.holo { z-index: 2; transition: transform .12s linear; }
+  .cert::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: var(--foil); mix-blend-mode: multiply; transition: opacity .45s var(--ease);
+    background: radial-gradient(circle at var(--mx) var(--my), #fff 0, rgba(255, 255, 255, .85) 12%, rgba(255, 255, 255, 0) 42%),
+      repeating-linear-gradient(115deg, #ffb3cf 0, #b5f3ff 8%, #fdf7a8 16%, #c9b8ff 24%, #ffb3cf 32%);
+    background-size: 100% 100%, 260% 260%; background-position: center, var(--mx) var(--my); }
+  @media (hover: none) {
+    .entry.is-active-m .cert::after, .sheet .cert::after { --foil: .75; animation: holo 5s linear infinite; }
+    @keyframes holo { from { background-position: center, 0% 50%; } to { background-position: center, 260% 50%; } }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -930,11 +948,45 @@
     });
   }
   applyTheme(document.documentElement.getAttribute('data-theme') === 'dark', false);
+  /* the new theme floods out from the button as a grid of dots, then the page swaps underneath */
+  var flooding = false;
+  function dotFlood(btn, color, done) {
+    flooding = true;
+    var cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+    var W = window.innerWidth, H = window.innerHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.className = 'flood'; cv.setAttribute('aria-hidden', 'true');
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    document.body.appendChild(cv);
+    var r = btn.getBoundingClientRect(), ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+    var S = W < 600 ? 12 : 16, MAXR = S * 0.76, GROW = 170;
+    var far = Math.max(Math.hypot(ox, oy), Math.hypot(W - ox, oy), Math.hypot(ox, H - oy), Math.hypot(W - ox, H - oy));
+    var SPEED = far / 560, END = far / SPEED + GROW, t0 = performance.now(), accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#FF5B1F';
+    (function step(now) {
+      var t = now - t0;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      var front = new Path2D(), body = new Path2D();
+      for (var y = S / 2; y < H + S; y += S) for (var x = S / 2; x < W + S; x += S) {
+        var k = (t - Math.hypot(x - ox, y - oy) / SPEED) / GROW;
+        if (k <= 0) continue;
+        var rr = Math.min(MAXR, k * MAXR), path = k < 0.55 ? front : body;
+        path.moveTo(x + rr, y); path.arc(x, y, rr, 0, Math.PI * 2);
+      }
+      ctx.fillStyle = color; ctx.fill(body);
+      ctx.fillStyle = accent; ctx.fill(front);
+      if (t < END) { requestAnimationFrame(step); return; }
+      done();
+      requestAnimationFrame(function () { cv.style.opacity = '0'; });
+      setTimeout(function () { cv.remove(); flooding = false; }, 320);
+    })(t0);
+  }
   themeBtns.forEach(function (b) {
     b.addEventListener('click', function () {
+      if (flooding) return;
       var dark = document.documentElement.getAttribute('data-theme') !== 'dark';
-      applyTheme(dark, true);
-      try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      function done() { applyTheme(dark, false); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} }
+      if (reduce || !window.Path2D || document.documentElement.getAttribute('data-mode') === 'recruiter') { applyTheme(dark, true); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} return; }
+      dotFlood(b, dark ? '#121212' : '#ECECEC', done);
     });
   });
 
@@ -1103,6 +1155,70 @@
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
+
+  /* magnetic statement: letters near the cursor thicken; stroke only, so nothing reflows */
+  var st = document.querySelector('.statement');
+  if (st && !reduce) (function () {
+    var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = st.textContent.replace(/\s+/g, ' ').trim();
+    (function wrap(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 1) { wrap(n); return; }
+        if (n.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          var w = document.createElement('span'); w.className = 'mg-w'; w.setAttribute('aria-hidden', 'true');
+          part.split('').forEach(function (ch) { var l = document.createElement('span'); l.className = 'mg'; l.textContent = ch; w.appendChild(l); });
+          frag.appendChild(w);
+        });
+        n.parentNode.replaceChild(frag, n);
+      });
+    })(st);
+    st.appendChild(sr);
+    var ls = Array.prototype.slice.call(st.querySelectorAll('.mg')), pos = [], cur = ls.map(function () { return 0; });
+    var px = -1e4, py = -1e4, run = false, fs = 60, sweep = null;
+    function measure() {
+      var b = st.getBoundingClientRect(); fs = parseFloat(getComputedStyle(st).fontSize);
+      pos = ls.map(function (l) { var r = l.getBoundingClientRect(); return [r.left - b.left + r.width / 2, r.top - b.top + r.height / 2]; });
+    }
+    function tick(now) {
+      var b = st.getBoundingClientRect(), sig = fs * 1.15, moving = false, x = px - b.left, y = py - b.top, onlyX = false;
+      if (sweep) { var t = (now - sweep) / 1500; if (t > 1) { sweep = null; x = -1e4; } else { x = -fs * 2 + t * (b.width + fs * 4); onlyX = true; } }
+      for (var i = 0; i < ls.length; i++) {
+        var dx = pos[i][0] - x, dy = onlyX ? 0 : pos[i][1] - y;
+        var target = Math.exp(-(dx * dx + dy * dy) / (2 * sig * sig));
+        var v = cur[i] + (target - cur[i]) * 0.2;
+        if (Math.abs(v - cur[i]) > 0.002 || target > 0.01) moving = true;
+        if (Math.abs(v - cur[i]) > 0.001) { cur[i] = v; ls[i].style.webkitTextStroke = (v * fs * 0.075).toFixed(2) + 'px currentColor'; }
+      }
+      if (moving || sweep) requestAnimationFrame(tick); else run = false;
+    }
+    function go() { if (!run) { run = true; requestAnimationFrame(tick); } }
+    var zone = st.closest('section') || st;
+    zone.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; px = e.clientX; py = e.clientY; go(); });
+    zone.addEventListener('pointerleave', function () { px = py = -1e4; go(); });
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(measure);
+    window.addEventListener('resize', function () { measure(); });
+    /* phones: one wave runs through the line the first time it's on screen */
+    if (window.matchMedia('(hover: none)').matches) new IntersectionObserver(function (es, o) {
+      if (!es[0].isIntersecting) return; o.disconnect(); measure(); sweep = performance.now(); go();
+    }, { threshold: 0.6 }).observe(st);
+  })();
+
+  /* holographic certificates: tilt toward the cursor, rainbow foil slides, glare follows */
+  var holo = null;
+  function holoOff(c) { c.classList.remove('holo'); ['--rx', '--ry', '--mx', '--my', '--foil'].forEach(function (k) { c.style.removeProperty(k); }); }
+  if (!reduce) document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var c = e.target.closest ? e.target.closest('.cert') : null;
+    if (c !== holo) { if (holo) holoOff(holo); holo = c; if (c) c.classList.add('holo'); }
+    if (!c) return;
+    var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    c.style.setProperty('--mx', (x * 100).toFixed(1) + '%'); c.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    c.style.setProperty('--rx', ((0.5 - y) * 14).toFixed(2) + 'deg'); c.style.setProperty('--ry', ((x - 0.5) * 18).toFixed(2) + 'deg');
+    c.style.setProperty('--foil', '1');
+  }, { passive: true });
 
   /* particle headline: the contact line is drawn in dots that scatter from the cursor */
   var h2 = document.querySelector('.contact-big');
