@@ -79,30 +79,6 @@
   .hud-mail { text-align: right; }
   .hud-mail a { font-size: 13px; font-weight: 500; }
 
-  /* ---------- hero: cut-out portrait, name strip sliding behind (after dennissnellenberg.com) ---------- */
-  .hero { position: relative; height: 100svh; min-height: 620px; overflow: hidden; }
-  .hero-strip { position: absolute; left: 0; right: 0; top: 58%; transform: translateY(-50%); pointer-events: none; }
-  .hero-track { display: inline-flex; white-space: nowrap; font-size: clamp(120px, 16vw, 300px); font-weight: 500; letter-spacing: -.055em; line-height: .9; text-transform: uppercase; will-change: transform; }
-  .hero-track span { padding-right: .18em; }
-  .hero-me { position: absolute; left: 50%; bottom: 0; width: min(calc((100svh - 140px) * 1.117), 78vw); transform: translateX(-50%); }
-  .hero-me img { display: block; width: 100%; height: auto; }
-  .hero-note { position: absolute; z-index: 2; top: calc(140px + 12svh); display: grid; gap: 6px; font-size: clamp(18px, 1.7vw, 26px); font-weight: 500; line-height: 1.05; letter-spacing: -.02em; text-transform: uppercase; }
-  .hero-note .label { text-transform: none; letter-spacing: .01em; }
-  .hero-l { left: var(--left); max-width: 15ch; }
-  .hero-r { right: 24px; text-align: right; }
-  .hero-r b { display: block; font-weight: 500; color: var(--accent); font-size: 1.4em; line-height: .8; }
-  .hero-hint { position: absolute; z-index: 2; right: 24px; bottom: 18px; }
-  @media (max-width: 1100px) { .hero-note { top: calc(140px + 4svh); } }
-  @media (max-width: 820px) {
-    .hero { height: auto; min-height: 0; padding-top: 84px; }
-    .hero-strip { top: 60%; }
-    .hero-track { font-size: 30vw; }
-    .hero-me { position: relative; left: auto; width: 112vw; margin-left: -6vw; transform: none; }
-    .hero-note, .hero-hint { display: none; }
-    .hero { border-bottom: 1px solid var(--line); }
-    .hero + .m-intro { padding-top: 28px; }
-  }
-
   /* ---------- work (sticky stage) ---------- */
   .work { position: relative; height: calc(100svh + (var(--n) - 1) * 75svh); }
   .work-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; grid-template-columns: 250px minmax(0, 1fr) 300px; gap: 24px; padding: 150px 24px 24px var(--left); }
@@ -458,7 +434,7 @@
 </head>
 <body>
 
-<a class="logo" href="#top" aria-label="Mark Patel, back to top"><b>MARK PATEL</b><small>&copy;2026 &middot; Ahmedabad &rarr; Gurugram</small></a>
+<a class="logo" href="#work" aria-label="Mark Patel, back to top"><b>MARK PATEL</b><small>&copy;2026 &middot; Ahmedabad &rarr; Gurugram</small></a>
 
 <header class="hud">
   <div class="menu">
@@ -495,16 +471,9 @@
 
 <main>
   <h1 class="sr d-only">Mark Patel, student developer from Ahmedabad, now in Gurugram</h1>
-  <section class="hero" id="top" aria-label="Intro">
-    <div class="hero-strip" aria-hidden="true"><div class="hero-track"><span>Mark Patel &mdash;</span><span>Mark Patel &mdash;</span><span>Mark Patel &mdash;</span></div></div>
-    <div class="hero-me"><img src="mark.webp?v=2" alt="Mark Patel in a grey denim jacket and maroon T-shirt" width="1100" height="985" fetchpriority="high"></div>
-    <p class="hero-note hero-l"><span class="label">Currently</span>First year, Masters' Union</p>
-    <p class="hero-note hero-r"><b aria-hidden="true">&#8600;</b>Student developer<br>Not just a vibe coder</p>
-    <span class="label hero-hint">Scroll for work &darr;</span>
-  </section>
-  <section class="m-intro" aria-label="About me in short">
+  <section class="m-intro" id="top" aria-label="Intro">
     <p class="label">Portfolio &copy;2026</p>
-    <h1 class="m-name sr">Mark Patel</h1>
+    <h1 class="m-name">Mark<br>Patel</h1>
     <p class="m-tag">Not just a vibe coder. Coding since 10th grade.</p>
     <dl class="m-meta">
       <div><dt>From</dt><dd>Ahmedabad, now in Gurugram<span class="t" data-ist>--:--</span></dd></div>
@@ -1195,27 +1164,6 @@
   }
   function kick() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
   window.addEventListener('scroll', kick, { passive: true });
-
-  /* hero: the name strip loops on the compositor; scrolling speeds it up and flips its direction. Paused off screen. */
-  (function () {
-    var hero = document.querySelector('.hero'), track = hero && hero.querySelector('.hero-track'), me = hero && hero.querySelector('.hero-me img');
-    if (!hero || !track || reduce || !Element.prototype.animate) return;
-    var loop = track.animate([{ transform: 'translate3d(0, 0, 0)' }, { transform: 'translate3d(-33.3333%, 0, 0)' }], { duration: 26000, iterations: Infinity });
-    if (me) me.animate([{ transform: 'translate3d(0, 6%, 0)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 1100, easing: 'cubic-bezier(.2, .8, .2, 1)' });
-    track.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, easing: 'ease-out' });
-    var dir = 1, rate = 1, lastY = window.scrollY, going = false, inView = true;
-    new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) loop.play(); else loop.pause(); }).observe(hero);
-    function step() {
-      var y = window.scrollY, dy = y - lastY; lastY = y;
-      if (dy) dir = dy > 0 ? 1 : -1;
-      var target = dir * (1 + Math.min(Math.abs(dy) / 6, 4));
-      rate += (target - rate) * 0.12;
-      if (Math.abs(rate - dir) < 0.02 && !dy) { rate = dir; going = false; }
-      if (inView) loop.updatePlaybackRate(rate);
-      if (going) requestAnimationFrame(step);
-    }
-    window.addEventListener('scroll', function () { if (!going && inView) { going = true; requestAnimationFrame(step); } else if (!inView) lastY = window.scrollY; }, { passive: true });
-  })();
 
   /* magnetic statement: each letter has a pre-stroked twin; twins near the cursor fade in. Only opacity changes. */
   var st = document.querySelector('.statement');
