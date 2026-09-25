@@ -386,8 +386,9 @@
   @keyframes raise { from { transform: rotateX(82deg) rotate(4deg); } to { transform: rotateX(16deg) rotate(4deg); } }
 
   /* ---------- logo stays readable on any ground; HUD turns dark over the contact section ---------- */
-  .logo { color: #FFF; mix-blend-mode: difference; }
-  .logo small { color: rgba(255, 255, 255, .5); }
+  .logo b, .logo small { transition: color .3s var(--ease); }
+  html.logo-b-dark .logo b { color: var(--bg); }
+  html.logo-s-dark .logo small { color: var(--bg); opacity: .6; }
   .hud { transition: background-color .4s var(--ease), color .4s var(--ease); }
   html.hud-dark .hud { background: var(--ink); color: var(--bg); }
   html.hud-dark .hud .label { color: inherit; opacity: .55; }
@@ -396,35 +397,32 @@
   html.hud-dark .hud .rc-open:hover { color: inherit; opacity: 1; }
 
   /* ---------- scroll warp + particle headline ---------- */
-  .stage.warp .entry .plate { filter: drop-shadow(var(--rgb, 0px) 0 0 rgba(255, 40, 90, .55)) drop-shadow(calc(var(--rgb, 0px) * -1) 0 0 rgba(0, 190, 255, .55)); }
   .contact { position: relative; overflow: hidden; overflow: clip; }
   .pt-canvas { position: absolute; z-index: 1; pointer-events: none; }
   .contact-big.is-particles, .contact-big.is-particles em { color: transparent; }
 
-  /* ---------- paint theme switch, magnetic statement, holographic certificates ---------- */
-  /* theme change: the new page is revealed as a circle spreading from the button (GPU view transition) */
-  :root.theme-vt::view-transition-old(root), :root.theme-vt::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-  :root.theme-vt::view-transition-new(root) { z-index: 2; }
-  :root.theme-vt *, :root.theme-vt *::before, :root.theme-vt *::after { transition: none !important; }
-  /* magnetic statement: a stroked copy revealed through a soft spotlight; only the mask moves */
-  .statement { position: relative; --x: -999px; --y: -999px; --a: 0; }
-  .st-bold { position: absolute; inset: 0; pointer-events: none; -webkit-text-stroke: calc(var(--k) * .021em) currentColor;
-    -webkit-mask-image: radial-gradient(circle calc(var(--a) * (2.3em - var(--k) * .5em)) at var(--x) var(--y), #000 0 64%, transparent 100%);
-    mask-image: radial-gradient(circle calc(var(--a) * (2.3em - var(--k) * .5em)) at var(--x) var(--y), #000 0 64%, transparent 100%);
-    will-change: mask-image; }
-  /* holographic certificates: foil and glare are pre-painted layers that only translate */
+  /* ---------- paint theme switch, magnetic statement, holographic certificates ----------
+     Everything here moves layers that are already drawn (transform / opacity), so the GPU does it without repainting. */
+  .paint { position: fixed; z-index: 200; border-radius: 50%; pointer-events: none; will-change: transform, opacity; transform: scale(0); }
+  /* magnetic statement: each letter carries a pre-stroked twin that fades in near the cursor */
+  .statement { font-kerning: none; }
+  .statement .mg { position: relative; }
+  .statement .mg-b { position: absolute; left: 0; top: 0; line-height: normal; -webkit-text-stroke: .06em currentColor; opacity: 0; pointer-events: none; }
+  .statement.mg-on .mg-b { will-change: opacity; }
+  /* holographic certificates: foil and glare sit under the text, only translate, and exist only while hovered */
   .cert { --rx: 0deg; --ry: 0deg; overflow: hidden; }
+  .cert > span:not(.foil):not(.glare) { position: relative; z-index: 1; }
   .c1 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-5deg); }
   .c2 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(3deg); }
   .entry.is-active-m .c1, .entry.is-current .c1 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(-8deg) translate(-1.5cqw, -1cqw); }
   .entry.is-active-m .c2, .entry.is-current .c2 { transform: perspective(90cqw) rotateX(var(--rx)) rotateY(var(--ry)) rotate(6deg) translate(1.5cqw, 1cqw); }
   .cert.holo { z-index: 2; transition: none; will-change: transform; }
-  .cert .foil { position: absolute; left: -50%; top: -50%; width: 200%; height: 200%; pointer-events: none; opacity: 0; mix-blend-mode: multiply; will-change: transform, opacity;
-    background: repeating-linear-gradient(115deg, #ffb3cf 0, #b5f3ff 3.5%, #fdf7a8 7%, #c9b8ff 10.5%, #ffb3cf 14%); }
-  .cert .glare { position: absolute; left: 0; top: 0; width: 80%; aspect-ratio: 1; border-radius: 50%; pointer-events: none; opacity: 0; will-change: transform, opacity;
-    background: radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(255, 255, 255, .35) 55%, rgba(255, 255, 255, 0)); }
+  .cert .foil, .cert .glare { position: absolute; z-index: 0; pointer-events: none; opacity: 0; visibility: hidden; }
+  .cert.holo .foil, .cert.holo .glare { visibility: visible; will-change: transform, opacity; }
+  .cert .foil { left: -50%; top: -50%; width: 200%; height: 200%; background: repeating-linear-gradient(115deg, #ffd0e2 0, #d2f6ff 3.5%, #fefbc8 7%, #ddd2ff 10.5%, #ffd0e2 14%); }
+  .cert .glare { left: 0; top: 0; width: 80%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0)); }
   @media (hover: none) {
-    .entry.is-active-m .cert .foil, .sheet .cert .foil { opacity: .5; animation: holo 6s ease-in-out infinite alternate; }
+    .entry.is-active-m .cert .foil, .sheet .cert .foil { visibility: visible; opacity: .55; animation: holo 6s ease-in-out infinite alternate; }
     @keyframes holo { from { transform: translate3d(-18%, -8%, 0); } to { transform: translate3d(18%, 8%, 0); } }
   }
 
@@ -957,23 +955,37 @@
     });
   }
   applyTheme(document.documentElement.getAttribute('data-theme') === 'dark', false);
-  /* the new theme spreads from the button like paint: a clip-path circle on the view transition, run on the GPU */
+  /* the new theme spreads from the button like paint: one circle scaled on the compositor, the theme swaps
+     underneath while it covers the screen, then it fades. Nothing is repainted while it moves. */
   var painting = false;
   themeBtns.forEach(function (b) {
     b.addEventListener('click', function () {
       if (painting) return;
       var root = document.documentElement, dark = root.getAttribute('data-theme') !== 'dark';
       function done() { applyTheme(dark, false); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} }
-      if (reduce || !document.startViewTransition || root.getAttribute('data-mode') === 'recruiter') { applyTheme(dark, true); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} return; }
+      if (reduce || !Element.prototype.animate || root.getAttribute('data-mode') === 'recruiter') { applyTheme(dark, true); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} return; }
       var r = b.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
-      var end = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-      painting = true; root.classList.add('theme-vt');
-      var vt = document.startViewTransition(done);
-      vt.ready.then(function () {
-        root.animate({ clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + end + 'px at ' + x + 'px ' + y + 'px)'] },
-          { duration: 820, easing: 'cubic-bezier(.22, 1, .36, 1)', pseudoElement: '::view-transition-new(root)' });
-      }).catch(function () {});
-      vt.finished.then(function () { root.classList.remove('theme-vt'); painting = false; }, function () { root.classList.remove('theme-vt'); painting = false; });
+      var far = Math.ceil(Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))) + 2;
+      /* a modest circle scaled up keeps the layer small enough for Safari to hold in memory */
+      var size = Math.min(far * 2, 1200), end = (far * 2) / size;
+      var c = document.createElement('div');
+      c.className = 'paint'; c.setAttribute('aria-hidden', 'true');
+      c.style.left = (x - size / 2) + 'px'; c.style.top = (y - size / 2) + 'px'; c.style.width = c.style.height = size + 'px';
+      c.style.background = dark ? '#121212' : '#ECECEC';
+      document.body.appendChild(c);
+      painting = true;
+      var grow = c.animate([{ transform: 'scale(0)' }, { transform: 'scale(' + end.toFixed(3) + ')' }], { duration: 560, easing: 'cubic-bezier(.33, 1, .68, 1)', fill: 'forwards' });
+      var finished = false;
+      function lift() { if (finished) return; finished = true; c.remove(); painting = false; }
+      setTimeout(function () { if (!finished) { if (document.documentElement.getAttribute('data-theme') !== (dark ? 'dark' : null)) done(); lift(); } }, 2500);
+      grow.onfinish = function () {
+        done();
+        /* wait until the new theme has been painted under the paint, then lift it */
+        requestAnimationFrame(function () { requestAnimationFrame(function () {
+          var fade = c.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-out', fill: 'forwards' });
+          fade.onfinish = lift;
+        }); });
+      };
     });
   });
 
@@ -1115,61 +1127,111 @@
   if (pn) new MutationObserver(function () { if (pn.textContent !== pn._shown) decode(pn, pn.textContent, 480); })
     .observe(pn, { childList: true, characterData: true, subtree: true });
 
-  /* scroll warp on the work plates + dark HUD over the contact section */
-  var stage = document.querySelector('#work .stage');
+  /* scroll-driven, and only while scrolling: a light skew on the work plates, and HUD/logo colour over the contact section */
+  var stage = document.querySelector('#work .stage'), work = document.getElementById('work');
   var contact = document.getElementById('contact'), hud = document.querySelector('.hud');
-  var lastY = window.scrollY, v = 0, warping = false;
-  function loop() {
+  var logoB = document.querySelector('.logo b'), logoS = document.querySelector('.logo small');
+  var lastY = window.scrollY, v = 0, skewed = false, ticking = false, workIn = false, lines = [];
+  if (work && window.IntersectionObserver) new IntersectionObserver(function (es) { workIn = es[0].isIntersecting; }).observe(work);
+  /* colour switches: a 1px observer line across the HUD bottom and through each part of the logo; no layout reads while scrolling */
+  function watchLine(y, cls) {
+    if (y <= 0 || y >= window.innerHeight - 1) { root.classList.remove(cls); return; }
+    var io = new IntersectionObserver(function (es) { root.classList.toggle(cls, es[es.length - 1].isIntersecting); },
+      { rootMargin: -Math.round(y) + 'px 0px ' + -Math.round(window.innerHeight - y - 1) + 'px 0px' });
+    io.observe(contact); lines.push(io);
+  }
+  function setLines() {
+    lines.forEach(function (io) { io.disconnect(); }); lines = [];
+    if (!contact || !window.IntersectionObserver) return;
+    var shown = function (el) { return el && el.getClientRects().length > 0; };
+    var mid = function (el) { if (!shown(el)) return -1; var r = el.getBoundingClientRect(); return r.top + r.height / 2; };
+    watchLine(shown(hud) ? hud.offsetHeight - 1 : -1, 'hud-dark');
+    watchLine(mid(logoB), 'logo-b-dark');
+    watchLine(mid(logoS), 'logo-s-dark');
+  }
+  setLines();
+  var lt = 0;
+  window.addEventListener('resize', function () { clearTimeout(lt); lt = setTimeout(setLines, 150); });
+  function tick() {
     var y = window.scrollY, dy = y - lastY;
     lastY = y;
-    if (contact && hud && (dy || !loop.ran)) {
-      loop.ran = true;
-      var hh = hud.offsetHeight, r = contact.getBoundingClientRect();
-      root.classList.toggle('hud-dark', r.top < hh && r.bottom > hh / 2);
-    }
-    /* jumps (sheet closing, anchor links) are not scroll speed */
     if (Math.abs(dy) > window.innerHeight * 0.5 || root.classList.contains('sheet-open')) dy = 0;
     v += (dy - v) * 0.2;
-    if (warping && (!desktop.matches || reduce)) { stage.style.transform = ''; stage.classList.remove('warp'); warping = false; }
-    if (stage && desktop.matches && !reduce) {
-      var a = Math.max(-1, Math.min(1, v / 55));
-      if (Math.abs(a) > 0.03) {
-        stage.style.transform = 'skewY(' + (a * 2.6).toFixed(2) + 'deg)';
-        stage.style.setProperty('--rgb', (a * 7).toFixed(1) + 'px');
-        if (!warping) { stage.classList.add('warp'); warping = true; }
-      } else if (warping) { stage.style.transform = ''; stage.classList.remove('warp'); warping = false; }
-    }
-    requestAnimationFrame(loop);
+    var a = Math.max(-1, Math.min(1, v / 60));
+    if (stage && workIn && desktop.matches && !reduce && Math.abs(a) > 0.04) { stage.style.transform = 'skewY(' + (a * 1.4).toFixed(2) + 'deg)'; skewed = true; }
+    else if (skewed) { stage.style.transform = ''; skewed = false; }
+    if (Math.abs(v) > 0.3 || dy) requestAnimationFrame(tick); else { ticking = false; v = 0; if (skewed) { stage.style.transform = ''; skewed = false; } }
   }
-  requestAnimationFrame(loop);
+  function kick() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
+  window.addEventListener('scroll', kick, { passive: true });
 
-  /* magnetic statement: a thicker copy of the line shows through a soft spotlight that trails the cursor */
+  /* magnetic statement: each letter has a pre-stroked twin; twins near the cursor fade in. Only opacity changes. */
   var st = document.querySelector('.statement');
   if (st && !reduce) (function () {
-    var html = st.innerHTML, ov = st;
-    [1, 2, 3].forEach(function (k) { var l = document.createElement('span'); l.className = 'st-bold'; l.style.setProperty('--k', k); l.setAttribute('aria-hidden', 'true'); l.innerHTML = html; st.appendChild(l); });
-    var tx = 0, ty = 0, x = null, y = 0, a = 0, ta = 0, run = false, sweep = null;
-    function tick(now) {
-      if (sweep) {
-        var t = (now - sweep) / 1700, w = st.offsetWidth;
-        if (t >= 1) { sweep = null; ta = 0; } else { tx = -0.15 * w + t * 1.3 * w; ty = st.offsetHeight / 2; ta = 1; }
-      }
-      if (x === null) { x = tx; y = ty; }
-      x += (tx - x) * 0.18; y += (ty - y) * 0.18; a += (ta - a) * 0.12;
-      ov.style.setProperty('--x', x.toFixed(1) + 'px'); ov.style.setProperty('--y', y.toFixed(1) + 'px'); ov.style.setProperty('--a', a.toFixed(3));
-      if (sweep || Math.abs(tx - x) + Math.abs(ty - y) > 0.4 || Math.abs(ta - a) > 0.003) requestAnimationFrame(tick);
-      else { run = false; if (ta === 0) x = null; }
+    /* letters are split only the first time someone hovers (or, on touch, scrolls to it), so the page stays light */
+    var twins = [], letters = [], cur = [], built = false;
+    function build() {
+    if (built) return; built = true;
+    var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = st.textContent.replace(/\s+/g, ' ').trim();
+    (function wrap(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 1) { wrap(n); return; }
+        if (n.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          var w = document.createElement('span'); w.className = 'mg-w'; w.setAttribute('aria-hidden', 'true');
+          part.split('').forEach(function (ch) {
+            var l = document.createElement('span'); l.className = 'mg'; l.textContent = ch;
+            var t = document.createElement('span'); t.className = 'mg-b'; t.textContent = ch; l.appendChild(t);
+            w.appendChild(l);
+          });
+          frag.appendChild(w);
+        });
+        n.parentNode.replaceChild(frag, n);
+      });
+    })(st);
+    st.appendChild(sr);
+    twins = Array.prototype.slice.call(st.querySelectorAll('.mg-b')); letters = twins.map(function (t) { return t.parentNode; });
+    cur = twins.map(function () { return 0; }); pos = null;
     }
-    function go() { if (!run) { run = true; requestAnimationFrame(tick); } }
-    var zone = st.closest('section') || st;
+    var pos = null, tx = -1e4, ty = -1e4, x = -1e4, y = -1e4, run = false, sweep = null, fs = 60;
+    function measure() {
+      var b = st.getBoundingClientRect(); fs = parseFloat(getComputedStyle(st).fontSize) || 60;
+      pos = letters.map(function (l) { var r = l.getBoundingClientRect(); return [r.left - b.left + r.width / 2, r.top - b.top + r.height / 2]; });
+    }
+    function tick(now) {
+      if (!pos) measure();
+      if (sweep) { var t = (now - sweep) / 1600, w = st.offsetWidth; if (t >= 1) { sweep = null; tx = -1e4; } else { tx = -fs + t * (w + 2 * fs); ty = null; } }
+      if (x < -9e3) { x = tx; y = ty; }
+      x += (tx - x) * 0.25; if (ty !== null && y !== null) y += (ty - y) * 0.25;
+      var sig2 = 2 * Math.pow(fs * 0.95, 2), busy = !!sweep;
+      for (var i = 0; i < twins.length; i++) {
+        var dx = pos[i][0] - x, dy = ty === null ? 0 : pos[i][1] - y;
+        var target = tx < -9e3 ? 0 : Math.exp(-(dx * dx + dy * dy) / sig2);
+        var v = cur[i] + (target - cur[i]) * 0.3;
+        if (Math.abs(v - cur[i]) > 0.004) { busy = true; }
+        if (Math.abs(v - cur[i]) > 0.01 || (v < 0.01 && cur[i] >= 0.01)) { cur[i] = v < 0.01 ? 0 : v; twins[i].style.opacity = cur[i] ? cur[i].toFixed(2) : ''; }
+        else cur[i] = v;
+      }
+      if (busy || Math.abs(tx - x) > 0.5) requestAnimationFrame(tick);
+      else { run = false; st.classList.toggle('mg-on', tx > -9e3); if (tx < -9e3) x = -1e4; }
+    }
+    function go() { build(); st.classList.add('mg-on'); if (!run) { run = true; requestAnimationFrame(tick); } }
+    var zone = st.closest('section') || st, rect = null;
+    zone.addEventListener('pointerenter', function () { rect = null; });
     zone.addEventListener('pointermove', function (e) {
       if (e.pointerType !== 'mouse') return;
-      var b = st.getBoundingClientRect(); tx = e.clientX - b.left; ty = e.clientY - b.top;
-      ta = e.clientY > b.top - 120 && e.clientY < b.bottom + 120 ? 1 : 0; go();
+      var b = st.getBoundingClientRect();
+      if (e.clientY < b.top - fs || e.clientY > b.bottom + fs) { if (tx > -9e3) { tx = -1e4; go(); } return; }
+      tx = e.clientX - b.left; ty = e.clientY - b.top; go();
     }, { passive: true });
-    zone.addEventListener('pointerleave', function () { ta = 0; go(); });
+    zone.addEventListener('pointerleave', function () { tx = -1e4; go(); });
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { pos = null; });
+    window.addEventListener('resize', function () { pos = null; });
     if (window.matchMedia('(hover: none)').matches) new IntersectionObserver(function (es, o) {
-      if (!es[0].isIntersecting) return; o.disconnect(); sweep = performance.now(); x = null; go();
+      if (!es[0].isIntersecting) return; o.disconnect(); pos = null; sweep = performance.now(); x = -1e4; go();
     }, { threshold: 0.6 }).observe(st);
   })();
 
@@ -1236,7 +1298,7 @@
     h2.classList.remove('is-particles');
     var sr = sec.getBoundingClientRect(), hr = h2.getBoundingClientRect();
     W = Math.ceil(hr.width + PAD * 2); H = Math.ceil(hr.height + PAD * 2);
-    dpr = Math.min(2, window.devicePixelRatio || 1);
+    dpr = Math.min(1.5, window.devicePixelRatio || 1);
     cv.style.left = (hr.left - sr.left - PAD) + 'px'; cv.style.top = (hr.top - sr.top - PAD) + 'px';
     cv.style.width = W + 'px'; cv.style.height = H + 'px';
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
@@ -1256,7 +1318,7 @@
         o.fillText(word, r.left - hr.left + PAD, r.top - hr.top + PAD + (r.height - asc - desc) / 2 + asc);
       }
     }
-    var data = o.getImageData(0, 0, W, H).data, step = Math.max(3, Math.round(hr.height / 95));
+    var data = o.getImageData(0, 0, W, H).data, step = Math.max(4, Math.round(hr.height / 66));
     var fresh = [];
     for (var y = 0; y < H; y += step) for (var x = 0; x < W; x += step) {
       var i = (y * W + x) * 4;
@@ -1299,7 +1361,7 @@
   }, { threshold: 0.25 }).observe(h2);
   var rt = 0;
   var lastW = window.innerWidth;
-  window.addEventListener('resize', function () { loop.ran = false; if (!started || window.innerWidth === lastW) return; lastW = window.innerWidth; clearTimeout(rt); rt = setTimeout(function () { build(false); }, 200); });
+  window.addEventListener('resize', function () { if (!started || window.innerWidth === lastW) return; lastW = window.innerWidth; clearTimeout(rt); rt = setTimeout(function () { build(false); }, 200); });
   new MutationObserver(function (ms) {
     if (!started) return;
     if (ms.some(function (m) { return m.attributeName === 'data-mode'; })) { setTimeout(function () { build(false); }, 60); return; }
