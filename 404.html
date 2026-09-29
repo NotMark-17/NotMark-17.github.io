@@ -3,32 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>try{if(localStorage.getItem("mp-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<meta name="color-scheme" content="dark">
 <title>404 · Mark Patel</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #ECECEC;
-    --ink: #1E1E1E;
-    --mute: rgba(30, 30, 30, .5);
-    --line: rgba(30, 30, 30, .14);
+    --bg: #000000;
+    --ink: #EDEDED;
+    --mute: rgba(237, 237, 237, .56);
+    --line: rgba(237, 237, 237, .12);
     --accent: #FF5B1F;
-    --sans: "Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --serif: "Instrument Serif", "Times New Roman", serif;
+    --sans: "DM Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --serif: "Rajdhani", "Arial Narrow", sans-serif;
+    --mono: "DM Mono", ui-monospace, Menlo, monospace;
     --ease: cubic-bezier(.7, 0, .2, 1);
     --left: 88px;
-    color-scheme: light;
-  }
-  html[data-theme="dark"] {
-    --bg: #121212;
-    --ink: #ECECEC;
-    --mute: rgba(236, 236, 236, .5);
-    --line: rgba(236, 236, 236, .14);
     color-scheme: dark;
   }
   * { box-sizing: border-box; }
@@ -42,7 +36,7 @@
   .logo { position: fixed; left: 22px; top: 20px; z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; }
   .logo b { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 30px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
   .logo small { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; font-weight: 500; color: var(--mute); letter-spacing: .02em; }
-  .hud { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto auto; gap: 28px; padding: 18px 24px 16px var(--left); }
+  .hud { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; padding: 18px 24px 16px var(--left); }
   .hud-val { font-size: 13px; font-weight: 500; }
   .path { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .path s { text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
@@ -74,8 +68,7 @@
   .plate[data-pos="2"] { z-index: 1; transform: translate(-6%, -14%) rotate(-8deg) scale(.86); }
   .stack:hover .plate[data-pos="0"] { transform: rotate(-1deg) scale(1.015); }
   .p-light { background: #fff; color: #1E1E1E; }
-  .p-dark { background: #1E1E1E; color: #ECECEC; }
-  html[data-theme="dark"] .p-dark { background: #2A2A2A; }
+  .p-dark { background: #1A1A1A; color: #EDEDED; }
   .p-accent { background: #FF5B1F; color: #1E1E1E; }
   .pt-row { display: flex; justify-content: space-between; gap: 16px; font-size: 12px; font-weight: 500; letter-spacing: .01em; }
   .pt-big { font-size: clamp(88px, 11vw, 170px); font-weight: 600; letter-spacing: -.06em; line-height: .8; }
@@ -95,6 +88,10 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
   }
+  .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .hud-val { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .logo b { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; }
+  h1, .pt-big { font-family: var(--serif); font-weight: 500; letter-spacing: -.03em; }
 </style>
 </head>
 <body>
@@ -104,8 +101,6 @@
 <header class="hud">
   <div><span class="label">You asked for</span><p class="hud-val path"><s data-path>/this-page</s></p></div>
   <div class="status"><span class="label">Status</span><p class="hud-val"><span class="dot"></span>Lost, still coding</p></div>
-  <div><span class="label">Mode</span><button class="theme-btn" type="button" data-theme-toggle aria-pressed="false">Light</button></div>
-  <div class="hud-mail"><span class="label">Say hi</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
 </header>
 
 <main class="lost">
@@ -156,19 +151,6 @@
     });
   });
 
-  var root = document.documentElement;
-  var btn = document.querySelector('[data-theme-toggle]');
-  function apply(dark) {
-    root.setAttribute('data-theme', dark ? 'dark' : 'light');
-    btn.textContent = dark ? 'Dark' : 'Light';
-    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-  }
-  apply(root.getAttribute('data-theme') === 'dark');
-  btn.addEventListener('click', function () {
-    var dark = root.getAttribute('data-theme') !== 'dark';
-    apply(dark);
-    try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {}
-  });
 })();
 </script>
 <script>
@@ -177,8 +159,7 @@
     try {
       var q = new URLSearchParams(location.search);
       var r = (q.get('r') || '').replace(/[^\w.-]/g, '').slice(0, 40);
-      var rec = document.documentElement.getAttribute('data-mode') === 'recruiter';
-      return p + (r ? '?r=' + r : '') + (rec ? (r ? '&' : '?') + 'mode=recruiter' : '');
+      return p + (r ? '?r=' + r : '');
     } catch (e) { return p; }
   } };
 </script>
