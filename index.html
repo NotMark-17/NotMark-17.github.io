@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
 <script>try{var d=document.documentElement;d.setAttribute("data-theme","dark");localStorage.removeItem("mp-mode")}catch(e){}</script>
-<script>try{var d=document.documentElement,q=location.search;if(!d.hasAttribute("data-mode")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(/[?&]intro\b/.test(q)||!sessionStorage.getItem("mp-intro")))d.classList.add("intro-on")}catch(e){}</script>
+<script>try{var d=document.documentElement,q=location.search;if(!d.hasAttribute("data-mode")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(/[?&]intro\b/.test(q)||!(document.referrer&&new URL(document.referrer).origin===location.origin)))d.classList.add("intro-on")}catch(e){}</script>
 <title>Mark Patel · Student developer, Gurugram</title>
 <link rel="canonical" href="https://markpatel.in/">
 <meta property="og:type" content="website">
