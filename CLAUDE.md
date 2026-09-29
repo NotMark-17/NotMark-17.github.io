@@ -6,8 +6,8 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
 
 ## Layout
 
-- `index.html`: the portfolio. Vanilla HTML/CSS/JS in one file, Lenis smooth scroll. Dark only (black `#000`, ink `#EDEDED`, accent orange `#FF5B1F`); fonts Rajdhani (display, via `--serif`), DM Sans (text), DM Mono (labels). Inspired by curtisdesignr.me, but Mark removed the parts that felt copied or cluttered: no coordinates, no orange stats/"folder box" section, no "Receipts"/CRT section, no photo (he removed it from the hero), no photo glitch, no light theme, no recruiter mode, no About `.statement`, no clock/email/LinkedIn in the HUD or hero (they live in Contact), no ring cursor. Don't bring those back.
-  - Flow: intro "video" (REC/timecode viewfinder, boot log, hard cuts of big words, "MARK PATEL" title card, then it breaks into pixels on a canvas; once per session, `?intro` forces it, skippable) → hero (`.hero` pinned inside `.hero-pin`: huge MARK / PATEL, bio, tag, "IN", "Coding since 10th") → manifesto lights up word by word as you scroll → work stage → About → Ask me → Contact ("Slide into my inbox." as cursor-scattering canvas dots).
+- `index.html`: the portfolio. Vanilla HTML/CSS/JS in one file, Lenis smooth scroll. Dark only (black `#000`, ink `#EDEDED`, accent orange `#FF5B1F`); fonts Rajdhani (display, via `--serif`), DM Sans (text), DM Mono (labels). Mark removed these on purpose: no coordinates, no orange stats/"folder box" section, no "Receipts"/CRT section, no photo (he removed it from the hero), no photo glitch, no light theme, no recruiter mode, no About `.statement`, no clock/email/LinkedIn in the HUD or hero (they live in Contact), no ring cursor. Don't bring those back.
+  - Flow: intro "video" (REC/timecode viewfinder, boot log, hard cuts of big words, "MARK PATEL" title card, then it breaks into pixels on a canvas; plays on every fresh visit but not when arriving from another page of the site, `?intro` forces it, skippable) → hero (`.hero` pinned inside `.hero-pin`: huge MARK / PATEL, bio, tag, "IN", "Coding since 10th") → manifesto lights up word by word as you scroll → work stage → About → Ask me → Contact ("Slide into my inbox." as cursor-scattering canvas dots).
   - Cursor (mouse only, `.mcur`; note `.cur` is the console plate's caret): an orange chomper that turns into a ↗ button over links. Seven bugs crawl over the whole site in a fixed layer (WAAPI transform paths); the chomper eats them, counter "Bugs fixed n/7" bottom left, respawn after all are caught.
   - Sound (`window.mpSound`, synthesized with Web Audio, no files): hover ticks, clicks. Switch in the HUD and mobile menu, localStorage `mp-sound`; on by default for mouse devices, only after the first click.
   - GoatCounter analytics (`markpatel.goatcounter.com`) with a `?r=` per-person tag.
@@ -54,7 +54,7 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
 - Known data gaps:
   - Tuition for King's College London, UCL, Edinburgh, Monash, Adelaide, Macquarie and Melbourne.
   - IELTS minimums for several UK universities.
-- Mark's real outcomes: he applied to 18 universities (the `MARK.applied` list) and was admitted to Penn State and the University of Sydney. He got into Penn State with a low SAT. Ask him before adding any other results.
+- Mark's own admissions results are private. Ask him before adding any.
 - Motion lives in the `ue-motion` style block and the motion script at the end of `uniexplore/index.html`. It only reads what `render()` wrote to the page, never the model, and turns off under prefers-reduced-motion. `change()` holds its re-render while a button or card is being pressed, so a click right after typing a mark still lands.
 - Test it by running `python3 -m http.server` at the repo root and opening `/uniexplore/`. Check that all 53 cards render and the console shows no errors.
 

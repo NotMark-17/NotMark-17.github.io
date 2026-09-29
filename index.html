@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
-<script>try{var d=document.documentElement;d.setAttribute("data-theme","dark");localStorage.removeItem("mp-mode")}catch(e){}</script>
+<script>try{var d=document.documentElement;d.setAttribute("data-theme","dark");d.classList.add("js");localStorage.removeItem("mp-mode")}catch(e){}</script>
 <script>try{var d=document.documentElement,q=location.search;if(!d.hasAttribute("data-mode")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(/[?&]intro\b/.test(q)||!(document.referrer&&new URL(document.referrer).origin===location.origin)))d.classList.add("intro-on")}catch(e){}</script>
 <title>Mark Patel · Student developer, Gurugram</title>
 <link rel="canonical" href="https://markpatel.in/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://markpatel.in/">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mark Patel", "url": "https://markpatel.in/", "jobTitle": "Student developer", "description": "Coding since 10th grade. From Ahmedabad, now in Gurugram at Masters' Union.", "homeLocation": {"@type": "Place", "name": "Gurugram, India"}, "affiliation": {"@type": "CollegeOrUniversity", "name": "Masters' Union"}, "alumniOf": {"@type": "HighSchool", "name": "Delhi Public School Gandhinagar"}, "sameAs": ["https://www.linkedin.com/in/mark-patel-0aa212338"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mark Patel", "url": "https://markpatel.in/", "jobTitle": "Student developer", "knowsAbout": ["Python", "SQL", "HTML", "Data analysis"], "description": "Coding since 10th grade. From Ahmedabad, now in Gurugram at Masters' Union.", "homeLocation": {"@type": "Place", "name": "Gurugram, India"}, "affiliation": {"@type": "CollegeOrUniversity", "name": "Masters' Union"}, "alumniOf": {"@type": "HighSchool", "name": "Delhi Public School Gandhinagar"}, "sameAs": ["https://www.linkedin.com/in/mark-patel-0aa212338"]}</script>
 <meta name="description" content="Mark Patel. Coding since 10th grade, from Ahmedabad, now in Gurugram at Masters' Union. Not just a vibe coder.">
 <meta property="og:title" content="Mark Patel">
 <meta property="og:description" content="Coding since 10th grade. Not just a vibe coder.">
@@ -146,7 +146,7 @@
   .list-wrap::after { bottom: 0; background: linear-gradient(transparent, var(--bg)); }
   .list { position: absolute; left: 0; right: 0; top: 0; transition: transform .9s var(--ease); }
   .js .list { transition: none; will-change: transform; }
-  .list li a { display: grid; gap: 2px; padding: 14px 0; text-align: center; text-decoration: none; opacity: .28; transition: opacity .5s var(--ease); }
+  .list li a { display: grid; gap: 2px; padding: 14px 0; text-align: center; text-decoration: none; opacity: .45; transition: opacity .5s var(--ease); }
   .list li.is-active a, .list li a:hover { opacity: 1; }
   .list .cat { font-size: 11px; font-weight: 500; color: var(--mute); }
   .list .nm { font-family: var(--serif); font-size: 22px; line-height: 1.05; text-transform: uppercase; }
@@ -173,8 +173,6 @@
   .about-grid h3 { font-size: 12px; font-weight: 500; color: var(--mute); margin-bottom: 14px; }
   .about-grid li { font-size: 14px; font-weight: 500; line-height: 1.5; }
   .about-grid li small { color: var(--mute); font-size: 12px; }
-  .statement { margin-top: 110px; max-width: 16ch; font-size: clamp(38px, 5.6vw, 92px); font-weight: 500; line-height: .95; letter-spacing: -.045em; text-transform: uppercase; }
-  .statement em { font-style: normal; color: var(--accent); }
 
   /* ---------- ask ---------- */
   .ask { border-top: 1px solid var(--line); }
@@ -274,8 +272,7 @@
     .about-top .about-mid { grid-column: 1 / -1; grid-row: 3; text-align: left; }
     .giant { font-size: 42vw; }
     .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 20px; margin-top: 70px; }
-    .statement { margin-top: 70px; }
-    .sec-head, .qa li { grid-template-columns: 1fr; gap: 10px; }
+      .sec-head, .qa li { grid-template-columns: 1fr; gap: 10px; }
     .q { padding-top: 0; }
     .links { grid-template-columns: 1fr; }
     footer { padding: 20px; }
@@ -297,7 +294,6 @@
   @media (max-width: 820px) { .d-only { display: none; } }
   .theme-btn { font: 500 13px var(--sans); color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; }
   .theme-btn::before { content: "\25D0"; margin-right: 6px; }
-  html.theme-anim, html.theme-anim * { transition: background-color .45s ease, color .45s ease, border-color .45s ease !important; }
   @media (max-width: 820px) {
     .logo, .hud { display: none; }
     .m-bar { display: flex; position: fixed; top: 0; left: 0; right: 0; z-index: 60; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--bg); border-bottom: 1px solid var(--line); }
@@ -333,34 +329,6 @@
     .entry-meta .no { display: none; }
     .plate-type .pt-big { font-size: 15vw; }
     section.pad { padding-top: 72px; }
-  }
-  /* ---------- recruiter mode ---------- */
-  #recruiter { display: none; }
-  html[data-mode="recruiter"] body > *:not(#recruiter) { display: none !important; }
-  html[data-mode="recruiter"] #recruiter { display: flex; }
-  html[data-mode="recruiter"], html[data-mode="recruiter"] body { height: auto; overflow-y: auto; }
-  #recruiter { min-height: 100svh; flex-direction: column; justify-content: space-between; gap: 48px; padding: 20px 40px 40px; }
-  .rc-top { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
-  .rc-actions { display: flex; gap: 24px; align-items: baseline; }
-  .rc-exit { font: inherit; font-size: 13px; font-weight: 500; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
-  .rc-name { font-size: clamp(44px, 7.4vw, 124px); font-weight: 600; letter-spacing: -.055em; line-height: .88; text-transform: uppercase; margin: 0 0 16px; }
-  .rc-line { max-width: 62ch; font-size: clamp(15px, 1.25vw, 19px); margin: 0 0 36px; }
-  .rc-proof { margin: 0 0 36px; border-top: 1px solid var(--line); }
-  .rc-proof > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 13px 0; border-bottom: 1px solid var(--line); }
-  .rc-proof dt { font-size: 12px; font-weight: 500; color: var(--mute); }
-  .rc-proof dd { margin: 0; font-size: 15px; }
-  .rc-contact { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 15px; font-weight: 500; }
-  .rc-contact .rc-mute { color: var(--mute); }
-  .hud-mail .rc-open { display: block; margin-top: 3px; font: inherit; font-size: 12px; font-weight: 500; color: var(--mute); background: none; border: 0; padding: 0; cursor: pointer; }
-  .hud-mail .rc-open:hover { color: var(--ink); }
-  .m-menu-foot .rc-open { justify-self: start; font: inherit; font-size: 14px; font-weight: 500; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-  @media (max-width: 820px) {
-    #recruiter { padding: 20px 20px 32px; gap: 32px; }
-    .rc-proof > div { grid-template-columns: 1fr; gap: 3px; }
-  }
-  @media print {
-    html[data-mode="recruiter"] .rc-top .rc-actions { display: none; }
-    html[data-mode="recruiter"] #recruiter { min-height: 0; padding: 0; }
   }
   /* ---------- designed plates (sized in container units so the sheet and mobile scale them too) ---------- */
   .plate { container-type: inline-size; }
@@ -425,12 +393,7 @@
 
   /* ---------- paint theme switch, magnetic statement, holographic certificates ----------
      Everything here moves layers that are already drawn (transform / opacity), so the GPU does it without repainting. */
-  .paint { position: fixed; z-index: 200; border-radius: 50%; pointer-events: none; will-change: transform, opacity; transform: scale(0); }
   /* magnetic statement: each letter carries a pre-stroked twin that fades in near the cursor */
-  .statement { font-kerning: none; }
-  .statement .mg { position: relative; }
-  .statement .mg-b { position: absolute; left: 0; top: 0; line-height: normal; -webkit-text-stroke: .06em currentColor; opacity: 0; pointer-events: none; }
-  .statement.mg-on .mg-b { will-change: opacity; }
   /* holographic certificates: foil and glare sit under the text, only translate, and exist only while hovered */
   .cert { --rx: 0deg; --ry: 0deg; overflow: hidden; }
   .cert > span:not(.foil):not(.glare) { position: relative; z-index: 1; }
@@ -456,7 +419,6 @@
   .logo small { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
   .count .num, .m-count .num, .giant, .statement, .sec-head h2, .contact-big, .rc-name, .m-menu nav a, .facts { font-family: var(--serif); font-weight: 400; letter-spacing: -.035em; }
   .facts { font-weight: 500; letter-spacing: 0; }
-  .statement, .contact-big { font-weight: 500; }
   .contact-big em { letter-spacing: -.035em; }
   .gridlines { position: fixed; inset: 0; z-index: 31; pointer-events: none; }
   .gridlines i { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(237, 237, 237, .065); }
@@ -477,7 +439,6 @@
   .hero-mail { left: var(--left); top: 150px; display: grid; gap: 4px; padding-left: 12px; border-left: 2px solid var(--accent); font: 400 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
   .hero-mail a { text-decoration: none; transition: color .25s ease; }
   .hero-mail a:hover { color: var(--accent); }
-  .hud .rc-open { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
   .hero-from { left: calc(78.5% + 14px); top: 150px; }
   .hero-iso { right: 30px; top: 128px; font: 400 clamp(84px, 8.4vw, 136px)/.8 var(--serif); letter-spacing: -.06em; }
   .hero-bio { left: var(--left); top: 31%; width: min(40%, 520px); text-indent: 34%; font: 400 clamp(15px, 1.2vw, 18px)/1.6 var(--sans); color: rgba(237, 237, 237, .6); }
@@ -550,19 +511,11 @@
       linear-gradient(var(--ink), var(--ink)) 100% calc(100% - 5px) / 11px 1px no-repeat, linear-gradient(var(--ink), var(--ink)) calc(100% - 5px) 100% / 1px 11px no-repeat; opacity: .55; }
   @media (max-width: 820px) { .entry::after { display: none; } }
 
-  /* HUD and logo go accent-coloured over the orange sections (1px observer lines, no scroll work) */
   .hud, .logo b, .logo small { transition: background-color .3s ease, color .3s ease; }
-  html.hud-dark .hud { background: var(--accent); color: #000; }
-  html.hud-dark .hud .label, html.hud-dark .hud .t, html.hud-dark .hud .rc-open { color: rgba(0, 0, 0, .62); }
-  html.hud-dark .hud a, html.hud-dark .hud .hud-val { color: #000; }
-  html.hud-dark .hud .dot, html.hud-dark .hud .dot::after { background: #000; }
-  html.logo-b-dark .logo b, html.logo-s-dark .logo small { color: #000; }
   /* ---------- sound switch ---------- */
   .snd { display: block; margin: 0 0 0 auto; padding: 0; border: 0; background: none; color: var(--mute); font: 400 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
   .snd[aria-pressed="true"] { color: var(--accent); }
   .snd:hover { color: var(--ink); }
-  html.hud-dark .hud .snd { color: rgba(0, 0, 0, .62); }
-  html.hud-dark .hud .snd[aria-pressed="true"] { color: #000; }
   .m-menu-foot .snd { margin: 0 0 10px; font-size: 12px; }
   /* ---------- cursor: an orange chomper that eats the bugs on the first screen; an arrow button over links ---------- */
   .mcur { position: fixed; left: 0; top: 0; z-index: 500; width: 26px; height: 26px; margin: -13px 0 0 -13px; pointer-events: none; will-change: transform; opacity: 0; transition: opacity .2s ease; }
@@ -614,7 +567,7 @@ window.mpSound = (function () {
   function ctx() {
     if (!on || !gest) return null;
     if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; } master = ac.createGain(); master.gain.value = .5; master.connect(ac.destination); }
-    if (ac.state === 'suspended') ac.resume();
+    if (ac.state !== 'running' && ac.state !== 'closed') ac.resume();
     return ac;
   }
   function env(g, t, a, p, d) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(p, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + d); }
@@ -679,7 +632,7 @@ window.mpSound = (function () {
     .forEach(function (l, i) { at(90 + i * 115, function () { var p = document.createElement('p'); p.textContent = l; boot.appendChild(p); }); });
 
   /* 2. hard cuts, like a hype edit */
-  var cuts = [['Ahmedabad', 'k'], ['Gurugram', 'o'], ['Python', 'k'], ['SQL', 's'], ['C', 'o'], ['10th grade', 'k'], ['Not a vibe coder', 'o']];
+  var cuts = [['Ahmedabad', 'k'], ['Gurugram', 'o'], ['Python', 'k'], ['SQL', 's'], ['C', 'o'], ['10th grade', 'k'], ['Not just a vibe coder', 'o']];
   at(1000, function () { boot.style.display = 'none'; });
   cuts.forEach(function (c, i) {
     at(1000 + i * 170, function () {
@@ -701,13 +654,13 @@ window.mpSound = (function () {
   });
 
   /* 4. break into pixels when the page is ready */
-  function whenReady() { if (loaded || performance.now() - t0 > 5200) pixels(); else timers.push(setTimeout(whenReady, 80)); }
+  function whenReady() { if (loaded || performance.now() - t0 > 5200) { try { pixels(); } catch (err) { done(); } } else timers.push(setTimeout(whenReady, 80)); }
   at(TOTAL - 250, whenReady);
 
-  function skip() { if (ended) return; timers.forEach(clearTimeout); pixels(); }
+  function skip() { if (ended) return; timers.forEach(clearTimeout); try { pixels(); } catch (err) { done(); } }
   ov.querySelector('.iv-skip').addEventListener('click', skip);
   ov.addEventListener('pointerdown', function (e) { if (!e.target.closest('.iv-skip')) skip(); });
-  window.addEventListener('keydown', function (e) { if (root.classList.contains('intro-on') && (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); skip(); } });
+  window.addEventListener('keydown', function (e) { if (!ended && root.classList.contains('intro-on') && (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); skip(); } });
 
   function pixels() {
     if (ended) return; ended = true;
@@ -750,7 +703,7 @@ window.mpSound = (function () {
     </nav>
   </div>
   <div class="status"><span class="label">Status</span><p class="hud-val"><span class="sr">Building since 10th grade</span><span class="dot"></span><span data-type aria-hidden="true">Building since 10th grade</span><span class="caret" aria-hidden="true"></span></p></div>
-  <div class="hud-mail"><span class="label">Sound</span><button class="snd" type="button" data-sound aria-pressed="false">Sound &middot; Off</button></div>
+  <div class="hud-mail"><span class="label">Sound</span><button class="snd" type="button" data-sound aria-pressed="false" aria-label="Sound effects">Sound &middot; Off</button></div>
 </header>
 
 <div class="m-bar">
@@ -766,14 +719,14 @@ window.mpSound = (function () {
     <a href="#ask">Ask me</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="m-menu-foot"><button class="snd" type="button" data-sound aria-pressed="false">Sound &middot; Off</button><span class="label">From Ahmedabad, now in Gurugram</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
+  <div class="m-menu-foot"><button class="snd" type="button" data-sound aria-pressed="false" aria-label="Sound effects">Sound &middot; Off</button><span class="label">From Ahmedabad, now in Gurugram</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
 </div>
 
 <main>
   <div class="hero-pin">
   <section class="hero" id="top" aria-label="Intro">
     <span class="label hero-from">From</span>
-    <p class="hero-iso" aria-label="India">IN</p>
+    <p class="hero-iso"><span aria-hidden="true">IN</span><span class="sr">India</span></p>
     <p class="hero-bio">I'm a student from Ahmedabad, now in Gurugram at Masters' Union. I write <code>&lt;code/&gt;</code> in Python and SQL, and I'm learning C because Python was <em>too nice</em> to me.</p>
     <span class="hero-tag">Student developer</span>
     <h1 class="hero-name" aria-label="Mark Patel"><span class="l1">Mark</span> <span class="l2">Patel</span></h1>
@@ -783,7 +736,8 @@ window.mpSound = (function () {
   </section>
   </div>
 
-  <section class="work" id="work" style="--n:5" aria-label="Selected work">
+  <section class="work" id="work" style="--n:5" aria-labelledby="work-t">
+    <h2 class="sr" id="work-t">Selected work</h2>
     <div class="work-sticky">
       <div class="m-count" aria-hidden="true"><span class="label">Selected work, swipe &rarr;</span><span><span class="num" data-m="num">01</span><span class="label"> / 05</span></span></div>
 
@@ -794,23 +748,23 @@ window.mpSound = (function () {
           <div><dt>Role</dt><dd data-f="role">Built most of it, team project</dd></div>
           <div><dt>Where</dt><dd data-f="where">HackHarvard India, Top 5</dd></div>
         </dl>
-        <p class="panel-desc" data-f="desc">An AI admissions advisor that scores a student's profile and sorts universities into reach, target and safe.</p>
+        <p class="panel-desc" data-f="desc">Built most of it at HackHarvard India, Top 5. Rebuilt it as a no-login tool that sorts 53 universities into reach, target and safe.</p>
       </div>
 
       <div class="stage">
         <article class="entry is-current" id="e1">
-          <figure class="plate"><img src="uniexplore-landing.jpg?v=4" alt="UniExplore: where do you actually fit? Live profile strength, reach, target and safe counts, and moves that change your list" width="1600" height="1000" decoding="async"></figure>
-          <div class="entry-meta" data-live="/uniexplore/"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">An AI admissions advisor that scores a student's profile and sorts universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><div class="more-in"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>AI insights plus an advisor chat for guidance</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul><a class="live-cta" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a></div></div></div>
+          <figure class="plate"><img loading="lazy" src="uniexplore-landing.jpg?v=4" alt="UniExplore: where do you actually fit? Live profile strength, reach, target and safe counts, and moves that change your list" width="1600" height="1000" decoding="async"></figure>
+          <div class="entry-meta" data-live="/uniexplore/"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">Built most of it at HackHarvard India, Top 5. Rebuilt it as a no-login tool that sorts 53 universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><div class="more-in"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>Rebuilt afterwards as a live, no-login tool: 53 universities across 5 countries</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul><a class="live-cta" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a></div></div></div>
         </article>
 
         <article class="entry" id="e2">
-          <figure class="plate plate-type p-dark pl-console" aria-hidden="true"><span class="pt-top"><span>Internship &times;2 &middot; 2024, 2025</span><span>02</span></span><div class="con"><p class="con-bar"><i></i><i></i><i></i><span>tms &mdash; zsh</span></p><div class="con-body"><p class="ln"><b>$</b> psql tms -c <span class="s">"SELECT * FROM trips LIMIT 5;"</span></p><p class="ln"><b>$</b> python -m pytest tms/ -q</p><p class="ln ok">........................ [100%]</p><p class="ln"><b>$</b> git commit -m <span class="s">"fix: trip status bug"</span></p><p class="ln"><b>$</b> <span class="cur"></span></p></div></div><span class="pt-big">Omnia<br>Sys</span></figure>
+          <figure class="plate plate-type p-dark pl-console" aria-hidden="true"><span class="pt-top"><span>Internship &times;2 &middot; 2024, 2025</span><span>02</span></span><div class="con"><p class="con-bar"><i></i><i></i><i></i><span>omniasys</span></p><div class="con-body"><p class="ln"><b>&gt;</b> Python</p><p class="ln"><b>&gt;</b> SQL</p><p class="ln"><b>&gt;</b> Debugging &amp; testing</p><p class="ln"><b>&gt;</b> Transport management system</p><p class="ln"><b>&gt;</b> <span class="cur"></span></p></div></div><span class="pt-big">Omnia<br>Sys</span></figure>
           <div class="entry-meta"><span class="no">02</span><h3 data-k="name">OmniaSys</h3><p data-k="desc">Two summer internships, 2024 and 2025, on a transport management system: debugging, testing and small modules in Python and SQL.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Internship</dd></div><div><dt>Role</dt><dd data-k="role">Data science intern</dd></div><div><dt>Where</dt><dd data-k="where">OmniaSys, Ahmedabad</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>May to June 2024, and May to June 2025</li><li>Worked on modules for a transport management system</li><li>Debugging and testing web applications</li><li>Python and SQL</li></ul></div></div>
         </article>
 
         <article class="entry" id="e3">
           <figure class="plate plate-type p-light pl-certs" aria-hidden="true"><span class="pt-top"><span>Certification</span><span>03</span></span><div class="certs"><div class="cert c1"><span class="cert-org">Oracle &middot; Certified Associate</span><span class="cert-name">MySQL HeatWave Implementation</span><span class="cert-foot"><span>Mark Patel</span><i class="seal">OCA</i></span></div><div class="cert c2"><span class="cert-org">Oracle &middot; Certified Professional</span><span class="cert-name">OCI Data Science</span><span class="cert-foot"><span>Mark Patel &middot; 2025</span><i class="seal">OCP</i></span></div></div><span class="pt-big">&times;2</span></figure>
-          <div class="entry-meta"><span class="no">03</span><h3 data-k="name">Oracle Certified</h3><p data-k="desc">Oracle Certified Professional in OCI Data Science (2025), plus Oracle Certified Associate in MySQL HeatWave Implementation.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Certification</dd></div><div><dt>Role</dt><dd data-k="role">Candidate</dd></div><div><dt>Where</dt><dd data-k="where">Oracle</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>Oracle Certified Professional: OCI Data Science, 2025</li><li>Oracle Certified Associate: MySQL HeatWave Implementation</li></ul></div></div>
+          <div class="entry-meta"><span class="no">03</span><h3 data-k="name">Oracle Certified</h3><p data-k="desc">Oracle Certified Professional in OCI Data Science (2025), plus Oracle Certified Associate in MySQL HeatWave Implementation.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Certification</dd></div><div><dt>Role</dt><dd data-k="role">Certified</dd></div><div><dt>Where</dt><dd data-k="where">Oracle</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>Oracle Certified Professional: OCI Data Science, 2025</li><li>Oracle Certified Associate: MySQL HeatWave Implementation</li></ul></div></div>
         </article>
 
         <article class="entry" id="e4">
@@ -841,7 +795,8 @@ window.mpSound = (function () {
     </div>
   </section>
 
-  <section class="about pad" id="about" aria-label="About">
+  <section class="about pad" id="about" aria-labelledby="about-t">
+    <h2 class="sr" id="about-t">About</h2>
     <div class="about-top">
       <ul class="facts">
         <li>Not just a vibe coder</li>
@@ -926,7 +881,10 @@ window.mpSound = (function () {
       var el = document.getElementById(a.getAttribute('href').slice(1));
       if (!el) return;
       ev.preventDefault();
-      scrollToY(el.getBoundingClientRect().top + window.scrollY);
+      scrollToY(el.id === 'top' ? 0 : el.getBoundingClientRect().top + window.scrollY);
+      /* move keyboard focus to the section too, so Tab continues from there */
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
     });
   });
 
@@ -1012,7 +970,7 @@ window.mpSound = (function () {
     }
   }
   function clear() {
-    entries.forEach(function (e) { e.style.transform = ''; e.style.opacity = ''; });
+    entries.forEach(function (e) { e.style.transform = ''; e.style.opacity = ''; e.style.pointerEvents = ''; });
     list.style.transform = '';
     cache = entries.map(function () { return ''; });
   }
@@ -1061,6 +1019,7 @@ window.mpSound = (function () {
   }
   function toggleMore(e) {
     var open = e.classList.toggle('is-open');
+    var more = e.querySelector('.entry-more'); if (more) more.inert = !open;
     var b = e.querySelector('.more-btn');
     if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
@@ -1078,6 +1037,7 @@ window.mpSound = (function () {
     plate.setAttribute('aria-label', 'Show details: ' + metaOf(k, 'name'));
     plate.removeAttribute('aria-hidden');
     plate.tabIndex = (k === 0 || !desktop.matches) ? 0 : -1;
+    var mo = e.querySelector('.entry-more'); if (mo) mo.inert = true;
     function activate() {
       if (!desktop.matches) { toggleMore(e); return; }
       if (k === active) { openSheet(k); } else { scrollToY(m.top + (k / (n - 1)) * m.total); }
@@ -1216,53 +1176,6 @@ window.mpSound = (function () {
     });
   });
 
-  /* ---------- theme switch ---------- */
-  var themeBtns = document.querySelectorAll('[data-theme-toggle]');
-  function applyTheme(dark, animate) {
-    var root = document.documentElement;
-    if (animate && !reduce) { root.classList.add('theme-anim'); setTimeout(function () { root.classList.remove('theme-anim'); }, 500); }
-    if (dark) { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); }
-    themeBtns.forEach(function (b) {
-      b.textContent = dark ? 'Dark' : 'Light';
-      b.setAttribute('aria-pressed', dark ? 'true' : 'false');
-      b.setAttribute('aria-label', dark ? 'Dark mode on, switch to light' : 'Light mode on, switch to dark');
-    });
-  }
-  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark', false);
-  /* the new theme spreads from the button like paint: one circle scaled on the compositor, the theme swaps
-     underneath while it covers the screen, then it fades. Nothing is repainted while it moves. */
-  var painting = false;
-  themeBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      if (painting) return;
-      var root = document.documentElement, dark = root.getAttribute('data-theme') !== 'dark';
-      function done() { applyTheme(dark, false); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} }
-      if (reduce || !Element.prototype.animate || root.getAttribute('data-mode') === 'recruiter') { applyTheme(dark, true); try { localStorage.setItem('mp-theme', dark ? 'dark' : 'light'); } catch (e) {} return; }
-      var r = b.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
-      var far = Math.ceil(Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))) + 2;
-      /* a modest circle scaled up keeps the layer small enough for Safari to hold in memory */
-      var size = Math.min(far * 2, 1200), end = (far * 2) / size;
-      var c = document.createElement('div');
-      c.className = 'paint'; c.setAttribute('aria-hidden', 'true');
-      c.style.left = (x - size / 2) + 'px'; c.style.top = (y - size / 2) + 'px'; c.style.width = c.style.height = size + 'px';
-      c.style.background = dark ? '#121212' : '#ECECEC';
-      document.body.appendChild(c);
-      painting = true;
-      var grow = c.animate([{ transform: 'scale(0)' }, { transform: 'scale(' + end.toFixed(3) + ')' }], { duration: 560, easing: 'cubic-bezier(.33, 1, .68, 1)', fill: 'forwards' });
-      var finished = false;
-      function lift() { if (finished) return; finished = true; c.remove(); painting = false; }
-      setTimeout(function () { if (!finished) { if (document.documentElement.getAttribute('data-theme') !== (dark ? 'dark' : null)) done(); lift(); } }, 2500);
-      grow.onfinish = function () {
-        done();
-        /* wait until the new theme has been painted under the paint, then lift it */
-        requestAnimationFrame(function () { requestAnimationFrame(function () {
-          var fade = c.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-out', fill: 'forwards' });
-          fade.onfinish = lift;
-        }); });
-      };
-    });
-  });
-
   /* ---------- mobile menu ---------- */
   var menuBtn = document.querySelector('.menu-btn');
   var mMenu = document.getElementById('m-menu');
@@ -1315,7 +1228,7 @@ window.mpSound = (function () {
 
   /* status line types itself */
   var typers = document.querySelectorAll('[data-type]');
-  var lines = ['Building since 10th grade', 'Replies faster than HR', 'Will debug for coffee', 'Learning C, on purpose'];
+  var lines = ['Building since 10th grade', 'Currently fighting C pointers', 'Will debug for coffee', 'Learning C, on purpose'];
   if (!reduce && typers.length) {
     var li = 0, ci = lines[0].length, del = true;
     var tick = function () {
@@ -1397,7 +1310,6 @@ window.mpSound = (function () {
       man.replaceChild(frag, node);
     }
     var last = man.querySelector('.m-last'); if (last) words.push(last);
-    if (reduce) { words.forEach(function (w) { w.classList.add('on'); }); return; }
     var lit = 0, out = false, ticking = false, near = true;
     new IntersectionObserver(function (es) { near = es[0].isIntersecting; if (near) kick(); }).observe(pin);
     function update() {
@@ -1406,7 +1318,8 @@ window.mpSound = (function () {
       var r = pin.getBoundingClientRect(), span = Math.max(1, pin.offsetHeight - window.innerHeight);
       var p = Math.min(1, Math.max(0, -r.top / span));
       var o = p > 0.06; if (o !== out) { hero.classList.toggle('out', o); out = o; }
-      var n = Math.round(words.length * Math.min(1, Math.max(0, (p - 0.12) / 0.62)));
+      /* reduced motion: the whole manifesto swaps in at once instead of word by word */
+      var n = reduce ? (o ? words.length : 0) : Math.round(words.length * Math.min(1, Math.max(0, (p - 0.12) / 0.62)));
       while (lit < n) words[lit++].classList.add('on');
       while (lit > n) words[--lit].classList.remove('on');
     }
@@ -1478,6 +1391,7 @@ window.mpSound = (function () {
     var checking = false;
     function check() {
       checking = false;
+      if (root.classList.contains('intro-on') || root.classList.contains('sheet-open') || !layer.getClientRects().length) return;
       bugs.forEach(function (b) {
         if (b.classList.contains('gone')) return;
         var r = b.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
@@ -1520,7 +1434,7 @@ window.mpSound = (function () {
   (function () {
     if (reduce) return;
     function enter() {
-      var els = Array.prototype.slice.call(document.querySelectorAll('.hero-name span, .hero-iso, .hero-yr'));
+      var els = Array.prototype.slice.call(document.querySelectorAll('.hero-name span, .hero-iso > span[aria-hidden], .hero-yr'));
       els.forEach(function (el, i) {
         var node = el.lastChild, txt = node.textContent, dur = 900;
         var fake = { set textContent(v) { node.textContent = v; }, get textContent() { return node.textContent; }, closest: function () { return null; } };
@@ -1536,33 +1450,10 @@ window.mpSound = (function () {
     else if (root.classList.contains('intro-on')) root.addEventListener('intro:reveal', enter, { once: true });
   })();
 
-  /* scroll-driven, and only while scrolling: a light skew on the work plates, and HUD/logo colour over the contact section */
+  /* scroll-driven, and only while scrolling: a light skew on the work plates */
   var stage = document.querySelector('#work .stage'), work = document.getElementById('work');
-  var contact = document.getElementById('contact'), hud = document.querySelector('.hud');
-  var logoB = document.querySelector('.logo b'), logoS = document.querySelector('.logo small');
-  var lastY = window.scrollY, v = 0, skewed = false, ticking = false, workIn = false, lines = [];
+  var lastY = window.scrollY, v = 0, skewed = false, ticking = false, workIn = false;
   if (work && window.IntersectionObserver) new IntersectionObserver(function (es) { workIn = es[0].isIntersecting; }).observe(work);
-  /* colour switches: a 1px observer line across the HUD bottom and through each part of the logo; no layout reads while scrolling */
-  var accs = Array.prototype.slice.call(document.querySelectorAll('.stats'));
-  function watchLine(y, cls) {
-    if (y <= 0 || y >= window.innerHeight - 1) { root.classList.remove(cls); return; }
-    var hit = new Set();
-    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) hit.add(e.target); else hit.delete(e.target); }); root.classList.toggle(cls, hit.size > 0); },
-      { rootMargin: -Math.round(y) + 'px 0px ' + -Math.round(window.innerHeight - y - 1) + 'px 0px' });
-    accs.forEach(function (el) { io.observe(el); }); lines.push(io);
-  }
-  function setLines() {
-    lines.forEach(function (io) { io.disconnect(); }); lines = [];
-    if (!accs.length || !window.IntersectionObserver) return;
-    var shown = function (el) { return el && el.getClientRects().length > 0; };
-    var mid = function (el) { if (!shown(el)) return -1; var r = el.getBoundingClientRect(); return r.top + r.height / 2; };
-    watchLine(shown(hud) ? hud.offsetHeight - 1 : -1, 'hud-dark');
-    watchLine(mid(logoB), 'logo-b-dark');
-    watchLine(mid(logoS), 'logo-s-dark');
-  }
-  setLines();
-  var lt = 0;
-  window.addEventListener('resize', function () { clearTimeout(lt); lt = setTimeout(setLines, 150); });
   function tick() {
     var y = window.scrollY, dy = y - lastY;
     lastY = y;
@@ -1575,76 +1466,6 @@ window.mpSound = (function () {
   }
   function kick() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
   window.addEventListener('scroll', kick, { passive: true });
-
-  /* magnetic statement: each letter has a pre-stroked twin; twins near the cursor fade in. Only opacity changes. */
-  var st = document.querySelector('.statement');
-  if (st && !reduce) (function () {
-    /* letters are split only the first time someone hovers (or, on touch, scrolls to it), so the page stays light */
-    var twins = [], letters = [], cur = [], built = false;
-    function build() {
-    if (built) return; built = true;
-    var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = st.textContent.replace(/\s+/g, ' ').trim();
-    (function wrap(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-        if (n.nodeType === 1) { wrap(n); return; }
-        if (n.nodeType !== 3) return;
-        var frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(function (part) {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-          var w = document.createElement('span'); w.className = 'mg-w'; w.setAttribute('aria-hidden', 'true');
-          part.split('').forEach(function (ch) {
-            var l = document.createElement('span'); l.className = 'mg'; l.textContent = ch;
-            var t = document.createElement('span'); t.className = 'mg-b'; t.textContent = ch; l.appendChild(t);
-            w.appendChild(l);
-          });
-          frag.appendChild(w);
-        });
-        n.parentNode.replaceChild(frag, n);
-      });
-    })(st);
-    st.appendChild(sr);
-    twins = Array.prototype.slice.call(st.querySelectorAll('.mg-b')); letters = twins.map(function (t) { return t.parentNode; });
-    cur = twins.map(function () { return 0; }); pos = null;
-    }
-    var pos = null, tx = -1e4, ty = -1e4, x = -1e4, y = -1e4, run = false, sweep = null, fs = 60;
-    function measure() {
-      var b = st.getBoundingClientRect(); fs = parseFloat(getComputedStyle(st).fontSize) || 60;
-      pos = letters.map(function (l) { var r = l.getBoundingClientRect(); return [r.left - b.left + r.width / 2, r.top - b.top + r.height / 2]; });
-    }
-    function tick(now) {
-      if (!pos) measure();
-      if (sweep) { var t = (now - sweep) / 1600, w = st.offsetWidth; if (t >= 1) { sweep = null; tx = -1e4; } else { tx = -fs + t * (w + 2 * fs); ty = null; } }
-      if (x < -9e3) { x = tx; y = ty; }
-      x += (tx - x) * 0.25; if (ty !== null && y !== null) y += (ty - y) * 0.25;
-      var sig2 = 2 * Math.pow(fs * 0.95, 2), busy = !!sweep;
-      for (var i = 0; i < twins.length; i++) {
-        var dx = pos[i][0] - x, dy = ty === null ? 0 : pos[i][1] - y;
-        var target = tx < -9e3 ? 0 : Math.exp(-(dx * dx + dy * dy) / sig2);
-        var v = cur[i] + (target - cur[i]) * 0.3;
-        if (Math.abs(v - cur[i]) > 0.004) { busy = true; }
-        if (Math.abs(v - cur[i]) > 0.01 || (v < 0.01 && cur[i] >= 0.01)) { cur[i] = v < 0.01 ? 0 : v; twins[i].style.opacity = cur[i] ? cur[i].toFixed(2) : ''; }
-        else cur[i] = v;
-      }
-      if (busy || Math.abs(tx - x) > 0.5) requestAnimationFrame(tick);
-      else { run = false; st.classList.toggle('mg-on', tx > -9e3); if (tx < -9e3) x = -1e4; }
-    }
-    function go() { build(); st.classList.add('mg-on'); if (!run) { run = true; requestAnimationFrame(tick); } }
-    var zone = st.closest('section') || st, rect = null;
-    zone.addEventListener('pointerenter', function () { rect = null; });
-    zone.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      var b = st.getBoundingClientRect();
-      if (e.clientY < b.top - fs || e.clientY > b.bottom + fs) { if (tx > -9e3) { tx = -1e4; go(); } return; }
-      tx = e.clientX - b.left; ty = e.clientY - b.top; go();
-    }, { passive: true });
-    zone.addEventListener('pointerleave', function () { tx = -1e4; go(); });
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { pos = null; });
-    window.addEventListener('resize', function () { pos = null; });
-    if (window.matchMedia('(hover: none)').matches) new IntersectionObserver(function (es, o) {
-      if (!es[0].isIntersecting) return; o.disconnect(); pos = null; sweep = performance.now(); x = -1e4; go();
-    }, { threshold: 0.6 }).observe(st);
-  })();
 
   /* holographic certificates: the card tilts, a pre-painted foil and glare slide; eased every frame, no repaints */
   if (!reduce) (function () {
@@ -1696,7 +1517,7 @@ window.mpSound = (function () {
   cv.className = 'pt-canvas'; cv.setAttribute('aria-hidden', 'true');
   sec.appendChild(cv);
   var PAD = 70, pts = [], cols = ['#ECECEC', '#FF5B1F'], W = 0, H = 0, dpr = 1, size = 2;
-  var mx = -1e4, my = -1e4, running = false, started = false, touchT = 0, pending = false;
+  var mx = -1e4, my = -1e4, running = false, started = false, touchT = 0;
 
   function readColors() {
     var rs = getComputedStyle(root);
@@ -1704,8 +1525,7 @@ window.mpSound = (function () {
     cols[1] = rs.getPropertyValue('--accent').trim() || '#FF5B1F';
   }
   function build(scatter) {
-    if (!h2.offsetWidth) { pending = true; return; }
-    pending = false;
+    if (!h2.offsetWidth) return;
     h2.classList.remove('is-particles');
     var sr = sec.getBoundingClientRect(), hr = h2.getBoundingClientRect();
     W = Math.ceil(hr.width + PAD * 2); H = Math.ceil(hr.height + PAD * 2);
@@ -1750,7 +1570,7 @@ window.mpSound = (function () {
       p.vx = (p.vx + (p.hx - p.x) * 0.05) * 0.85;
       p.vy = (p.vy + (p.hy - p.y) * 0.05) * 0.85;
       p.x += p.vx; p.y += p.vy;
-      if (!moving && (Math.abs(p.vx) + Math.abs(p.vy) > 0.03 || Math.abs(p.hx - p.x) + Math.abs(p.hy - p.y) > 0.4)) moving = true;
+      if (!moving && Math.abs(p.vx) + Math.abs(p.vy) > 0.03) moving = true;
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
@@ -1758,13 +1578,16 @@ window.mpSound = (function () {
       ctx.fillStyle = cols[c];
       for (var j = 0; j < pts.length; j++) { var q = pts[j]; if (q.c === c) ctx.fillRect(q.x, q.y, size, size); }
     }
-    if (moving) requestAnimationFrame(frame); else running = false;
+    /* stop once settled; if the cursor just rests on the dots, stop ~1s after it last moved (the dots under it only jitter) */
+    var resting = mx > -1e3 && performance.now() - lastMove > 1100;
+    if (moving && !resting) requestAnimationFrame(frame); else running = false;
   }
   function wake() { if (!running) { running = true; requestAnimationFrame(frame); } }
-  function point(e) { var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; wake(); }
+  var lastMove = 0;
+  function point(e) { var r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; lastMove = performance.now(); wake(); }
   sec.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') point(e); });
-  sec.addEventListener('pointerdown', function (e) { point(e); clearTimeout(touchT); if (e.pointerType !== 'mouse') touchT = setTimeout(function () { mx = my = -1e4; }, 450); });
-  sec.addEventListener('pointerleave', function () { mx = my = -1e4; });
+  sec.addEventListener('pointerdown', function (e) { point(e); clearTimeout(touchT); if (e.pointerType !== 'mouse') touchT = setTimeout(function () { mx = my = -1e4; lastMove = performance.now(); wake(); }, 450); });
+  sec.addEventListener('pointerleave', function () { mx = my = -1e4; lastMove = performance.now(); wake(); });
   new IntersectionObserver(function (es) {
     if (!es[0].isIntersecting || started) return;
     started = true;
@@ -1773,11 +1596,6 @@ window.mpSound = (function () {
   var rt = 0;
   var lastW = window.innerWidth;
   window.addEventListener('resize', function () { if (!started || window.innerWidth === lastW) return; lastW = window.innerWidth; clearTimeout(rt); rt = setTimeout(function () { build(false); }, 200); });
-  new MutationObserver(function (ms) {
-    if (!started) return;
-    if (ms.some(function (m) { return m.attributeName === 'data-mode'; })) { setTimeout(function () { build(false); }, 60); return; }
-    readColors(); wake();
-  }).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-mode'] });
 })();
 </script>
 <script>
@@ -1786,8 +1604,7 @@ window.mpSound = (function () {
     try {
       var q = new URLSearchParams(location.search);
       var r = (q.get('r') || '').replace(/[^\w.-]/g, '').slice(0, 40);
-      var rec = document.documentElement.getAttribute('data-mode') === 'recruiter';
-      return p + (r ? '?r=' + r : '') + (rec ? (r ? '&' : '?') + 'mode=recruiter' : '');
+      return p + (r ? '?r=' + r : '');
     } catch (e) { return p; }
   } };
 </script>
