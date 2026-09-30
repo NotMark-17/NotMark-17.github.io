@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
-<script>try{var d=document.documentElement;d.setAttribute("data-theme","dark");d.classList.add("js");localStorage.removeItem("mp-mode")}catch(e){}</script>
+<script>try{var d=document.documentElement;d.setAttribute("data-theme","dark");d.classList.add("js","fonts-wait");localStorage.removeItem("mp-mode")}catch(e){}</script>
 <script>try{var d=document.documentElement,q=location.search;if(!d.hasAttribute("data-mode")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(/[?&]intro\b/.test(q)||!(document.referrer&&new URL(document.referrer).origin===location.origin)))d.classList.add("intro-on")}catch(e){}</script>
 <title>Mark Patel · Student developer, Gurugram</title>
 <link rel="canonical" href="https://markpatel.in/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://markpatel.in/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Mark Patel", "url": "https://markpatel.in/", "jobTitle": "Student developer", "knowsAbout": ["Python", "SQL", "HTML", "Data analysis"], "description": "Coding since 10th grade. From Ahmedabad, now in Gurugram at Masters' Union.", "homeLocation": {"@type": "Place", "name": "Gurugram, India"}, "affiliation": {"@type": "CollegeOrUniversity", "name": "Masters' Union"}, "alumniOf": {"@type": "HighSchool", "name": "Delhi Public School Gandhinagar"}, "sameAs": ["https://www.linkedin.com/in/mark-patel-0aa212338"]}</script>
-<meta name="description" content="Mark Patel. Coding since 10th grade, from Ahmedabad, now in Gurugram at Masters' Union. Not just a vibe coder.">
+<meta name="description" content="Mark Patel, student developer from Ahmedabad, now at Masters' Union, Gurugram. Python and SQL, two OmniaSys internships, Oracle certified, HackHarvard India Top 5. Not just a vibe coder.">
 <meta property="og:title" content="Mark Patel">
 <meta property="og:description" content="Coding since 10th grade. Not just a vibe coder.">
 <meta property="og:site_name" content="Mark Patel">
@@ -93,7 +93,7 @@
   .iv-n { right: 24px; bottom: 14px; font: 500 38px/1 var(--serif); letter-spacing: 0; font-variant-numeric: tabular-nums; }
   .intro.ttl .iv { color: #000; }
   .intro.ttl .iv-rec i { background: #000; }
-  .iv-boot { position: absolute; left: 24px; bottom: 70px; display: grid; gap: 4px; font-size: 13px; letter-spacing: .06em; text-transform: none; }
+  .iv-boot { position: absolute; left: 24px; bottom: 70px; height: 11em; display: grid; align-content: start; gap: 4px; font-size: 13px; letter-spacing: .06em; text-transform: none; }
   .iv-boot p { margin: 0; }
   .iv-cut { position: absolute; inset: 0; display: none; place-items: center; }
   .iv-cut.on { display: grid; }
@@ -111,6 +111,7 @@
   .intro.ttl .iv-skip { color: #000; }
   @media (max-width: 820px), (max-height: 520px) and (pointer: coarse) { .iv-lab { display: none; } }
   .scr { color: var(--accent) !important; }
+  html.fonts-wait .hero { visibility: hidden; }
 
   /* ---------- work (sticky stage) ---------- */
   .work { position: relative; height: calc(100svh + (var(--n) - 1) * 75svh); }
@@ -653,7 +654,8 @@ window.mpSound = (function () {
   at(1000, function () { boot.style.display = 'none'; });
   cuts.forEach(function (c, i) {
     at(1000 + i * 170, function () {
-      cut.className = 'iv-cut on ' + c[1]; word.textContent = c[0]; fit(word, c[0], 0.2);
+      cut.className = 'iv-cut on ' + c[1];
+      var nw = document.createElement('span'); nw.textContent = c[0]; fit(nw, c[0], 0.2); cut.replaceChildren(nw); word = nw;
       word.animate([{ transform: 'scale(1.22) translate3d(' + ((Math.random() - .5) * 30).toFixed(0) + 'px,0,0)' }, { transform: 'scale(1)' }], { duration: 170, easing: 'cubic-bezier(.2, .9, .3, 1)' });
     });
   });
@@ -791,7 +793,7 @@ window.mpSound = (function () {
 
         <article class="entry" id="e5">
           <figure class="plate plate-type p-accent pl-mun" aria-hidden="true"><span class="pt-top"><span>Model United Nations</span><span>05</span></span><div class="placard"><span class="placard-face"><small>Delegate</small>Mark Patel</span></div><span class="pt-big">10+<small>conferences</small></span></figure>
-          <div class="entry-meta"><span class="no">05</span><h3 data-k="name">Model UN</h3><p data-k="desc">Ten-plus conferences and recognition in multiple committees. I argue with research.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Debate</dd></div><div><dt>Role</dt><dd data-k="role">Delegate</dd></div><div><dt>Where</dt><dd data-k="where">10+ conferences</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>10+ Model United Nations conferences</li><li>Recognised in multiple committees</li><li>Public speaking, diplomacy and policy writing</li></ul></div></div>
+          <div class="entry-meta"><span class="no">05</span><h3 data-k="name">Model UN</h3><p data-k="desc">Ten-plus conferences and recognition in multiple committees. I bring sources, not volume.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Debate</dd></div><div><dt>Role</dt><dd data-k="role">Delegate</dd></div><div><dt>Where</dt><dd data-k="where">10+ conferences</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><ul class="entry-points" data-k="points"><li>10+ Model United Nations conferences</li><li>Recognised in multiple committees</li><li>Public speaking, diplomacy and policy writing</li></ul></div></div>
         </article>
       </div>
 
@@ -850,7 +852,7 @@ window.mpSound = (function () {
     <span class="label">Contact</span>
     <h2 class="contact-big" id="contact-t">Slide into<br>my <em>inbox.</em></h2>
     <ul class="links">
-      <li><span class="label">Internships, projects, questions</span><br><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></li>
+      <li><span class="label">Work, projects, questions</span><br><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></li>
       <li><span class="label">The professional version</span><br><a href="https://www.linkedin.com/in/mark-patel-0aa212338" target="_blank" rel="noopener">LinkedIn &nearr;</a></li>
       <li><span class="label">Local time, Gurugram</span><br><span class="v"><span data-ist>--:--</span> IST</span></li>
     </ul>
@@ -878,6 +880,8 @@ window.mpSound = (function () {
 <script>
 (function () {
   document.documentElement.classList.add('js');
+  /* show the hero once the display font is in (never more than 2.5s), so nothing jumps */
+  (function () { var r = document.documentElement, go = function () { r.classList.remove('fonts-wait'); }; setTimeout(go, 2500); if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go(); })();
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var desktop = window.matchMedia('(min-width: 821px) and (min-height: 521px), (min-width: 821px) and (pointer: fine)');
 
@@ -890,7 +894,7 @@ window.mpSound = (function () {
   /* smooth scroll (falls back to native if Lenis didn't load) */
   var lenis = (!reduce && window.Lenis) ? new window.Lenis({ lerp: 0.14, wheelMultiplier: 1, smoothWheel: true }) : null;
   function scrollToY(y) {
-    if (lenis) { lenis.scrollTo(y, { duration: 1.1 }); }
+    if (lenis) { wakeLoop(); lenis.scrollTo(y, { duration: 1.1 }); }
     else { window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' }); }
   }
   document.querySelectorAll('.nav a, .logo').forEach(function (a) {
@@ -1001,21 +1005,23 @@ window.mpSound = (function () {
     });
   });
 
-  var lastY = -1, dirty = true;
+  /* one frame loop for Lenis + the work stage; it sleeps once the page has been still for ~half a second */
+  var lastY = -1, dirty = true, looping = false, still = 0;
   function loop(time) {
     if (lenis) lenis.raf(time);
-    if (desktop.matches) {
-      var y = window.scrollY;
-      if (dirty || y !== lastY) { lastY = y; dirty = false; render(); }
-    }
-    requestAnimationFrame(loop);
+    var y = window.scrollY, moved = y !== lastY;
+    if (desktop.matches && (dirty || moved)) { dirty = false; render(); }
+    lastY = y;
+    still = (moved || (lenis && lenis.isScrolling)) ? 0 : still + 1;
+    if (still < 30) requestAnimationFrame(loop); else looping = false;
   }
-  function refresh() { if (desktop.matches) { measure(); dirty = true; } else { clear(); } }
+  function wakeLoop() { still = 0; if (!looping) { looping = true; requestAnimationFrame(loop); } }
+  ['wheel', 'touchstart', 'touchmove', 'keydown', 'scroll', 'pointerdown'].forEach(function (t) { window.addEventListener(t, wakeLoop, { passive: true }); });
+  function refresh() { if (desktop.matches) { measure(); dirty = true; } else { clear(); } wakeLoop(); }
   window.addEventListener('resize', refresh);
   if (desktop.addEventListener) desktop.addEventListener('change', refresh);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
   refresh();
-  requestAnimationFrame(loop);
 
   /* ---------- details: hover caption, cursor, click-to-open sheet ---------- */
   var sheet = document.getElementById('sheet');
@@ -1455,7 +1461,12 @@ window.mpSound = (function () {
       els.forEach(function (el, i) {
         var node = el.lastChild, txt = node.textContent, dur = 900;
         var fake = { set textContent(v) { node.textContent = v; }, get textContent() { return node.textContent; }, closest: function () { return null; } };
-        setTimeout(function () { el.classList.add('scr'); decode(fake, txt, dur); setTimeout(function () { el.classList.remove('scr'); }, dur + 40); }, 80 + i * 90);
+        setTimeout(function () {
+          var bw = el.getBoundingClientRect().width;
+          el.style.width = bw + 'px'; el.style.whiteSpace = 'nowrap'; if (getComputedStyle(el).display === 'inline') el.style.display = 'inline-block';
+          el.classList.add('scr'); decode(fake, txt, dur);
+          setTimeout(function () { el.classList.remove('scr'); el.style.width = el.style.whiteSpace = el.style.display = ''; }, dur + 40);
+        }, 80 + i * 90);
       });
       var rise = [['.hero-bio', 250, 24], ['.hero-mail', 150, 16], ['.hero-tag', 450, 16], ['.hero-k1', 550, 12], ['.hero-k2', 600, 12], ['.hero-from', 200, 12], ['.hero-scroll', 700, 12]];
       rise.forEach(function (r) {
