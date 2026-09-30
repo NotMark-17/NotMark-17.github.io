@@ -16,7 +16,7 @@ Custom domain via `CNAME` (DNS at GoDaddy). The Google Search Console verificati
   - Keep plate content factual (no invented numbers or outputs).
 - `404.html`, `og-image.png` (link preview), `favicon.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml`.
 - `uniexplore/`: UniExplore, a no-login admissions tool (see below). The portfolio's UniExplore card opens it through a cross-document view transition (`view-transition-name: ue-hero`).
-- `uniexplore-landing.jpg`: the plate image for that card, a 16:10 screenshot of the live app. If you change the image, bump the `?v=` in `index.html`.
+- `uniexplore-landing.jpg`: the plate image for that card, a 16:10 screenshot of the live app (the page uses the 1280px `uniexplore-landing.webp`; keep both in sync). If you change the image, bump the `?v=` in `index.html`.
 - `demos/`: spec websites pitched to local businesses. Each has a "demo, not affiliated" banner and `noindex`, and `/demos/` is disallowed in robots.txt. Leave them alone unless asked.
 
 ## UniExplore

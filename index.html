@@ -122,6 +122,7 @@
   .fields dt { color: var(--mute); }
   .panel-name { font-family: var(--serif); font-size: 34px; line-height: 1; text-transform: uppercase; }
   .panel-desc { font-size: 13px; line-height: 1.45; max-width: 30ch; }
+  .panel-live[hidden] { display: none; }
   .stage { position: relative; }
   .entry { position: absolute; left: 50%; top: 52%; width: min(40vw, 620px); transform: translate(-50%, -50%) translateY(80vh) rotate(9deg); opacity: 0; transition: transform 1s var(--ease), opacity .7s var(--ease); backface-visibility: hidden; }
   .js .entry { transition: none; will-change: transform, opacity; }
@@ -768,11 +769,12 @@ window.mpSound = (function () {
           <div><dt>Where</dt><dd data-f="where">HackHarvard India, Top 5</dd></div>
         </dl>
         <p class="panel-desc" data-f="desc">Built most of it at HackHarvard India, Top 5. Rebuilt it as a no-login tool that sorts 53 universities into reach, target and safe.</p>
+        <a class="live-cta panel-live" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a>
       </div>
 
       <div class="stage">
         <article class="entry is-current" id="e1">
-          <figure class="plate"><img loading="lazy" src="uniexplore-landing.jpg?v=4" alt="UniExplore: where do you actually fit? Live profile strength, reach, target and safe counts, and moves that change your list" width="1600" height="1000" decoding="async"></figure>
+          <figure class="plate"><img loading="lazy" src="uniexplore-landing.webp?v=5" width="1280" height="800" alt="UniExplore: where do you actually fit? Live profile strength, reach, target and safe counts, and moves that change your list" decoding="async"></figure>
           <div class="entry-meta" data-live="/uniexplore/"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">Built most of it at HackHarvard India, Top 5. Rebuilt it as a no-login tool that sorts 53 universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><div class="more-in"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>Rebuilt afterwards as a live, no-login tool: 53 universities across 5 countries</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul><a class="live-cta" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a></div></div></div>
         </article>
 
@@ -917,6 +919,7 @@ window.mpSound = (function () {
   var wrap = work.querySelector('.list-wrap');
   var panel = {};
   work.querySelectorAll('[data-f]').forEach(function (el) { panel[el.getAttribute('data-f')] = el; });
+  var panelLive = work.querySelector('.panel-live');
   var n = entries.length, active = 0;
   var m = { top: 0, total: 1, vh: 1, w: 1, h: 1, wrapH: 0, centers: [] };
   var cache = entries.map(function () { return ''; });
@@ -966,6 +969,9 @@ window.mpSound = (function () {
       if (src && panel[key]) panel[key].textContent = src.textContent;
     });
     panel.num.textContent = String(i + 1).padStart(2, '0');
+    /* projects with a live version get a direct link beside the card */
+    var live = meta.getAttribute('data-live');
+    if (panelLive) { panelLive.hidden = !live; if (live) panelLive.setAttribute('href', live); }
     /* measure list positions again once the active item's description is visible */
     m.centers = items.map(function (li) { return li.offsetTop + li.offsetHeight / 2; });
   }
