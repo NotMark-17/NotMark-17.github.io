@@ -103,7 +103,7 @@
     "sources": [
       "https://www.mq.edu.au/study/admissions-and-entry/apply/international/english-language-requirements"
     ],
-    "patchNote": "Most UG courses require 'Competent English' = Academic IELTS 6.5 overall (official domain snippet); Law/Medicine/Education higher. CBSE = avg of best 4 externally examined subjects, but % cut-offs sit in a 403-blocked PDF; indiaReq/tuition not confirmed."
+    "patchNote": "Most UG courses require 'Competent English' = Academic IELTS 6.5 overall; Law/Medicine/Education higher. CBSE = avg of best 4 externally examined subjects, but the % cut-offs aren't recorded here yet; entry scores and tuition still need confirming on official pages."
   },
   "sydney": {
     "living": 24505,

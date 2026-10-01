@@ -573,6 +573,8 @@
     .hero-name { font-size: min(27vw, 40svh); }
     .entry, .entry.is-current, .entry.is-prev1, .entry.is-prev2, .entry.is-gone { flex-basis: min(84%, 105svh); }
     .hero .manifesto { font-size: min(38px, 9vw); }
+    /* links like markpatel.in/#about land below the fixed top bar */
+    section[id] { scroll-margin-top: 74px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -743,7 +745,7 @@ window.mpSound = (function () {
     <a href="#ask">Ask me</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="m-menu-foot"><button class="snd" type="button" data-sound aria-pressed="false" aria-label="Sound effects">Sound &middot; Off</button><span class="label">From Ahmedabad, now in Gurugram</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a></div>
+  <div class="m-menu-foot"><button class="snd" type="button" data-sound aria-pressed="false" aria-label="Sound effects">Sound &middot; Off</button><span class="label">From Ahmedabad, now in Gurugram</span><a href="mailto:markpatel2100@gmail.com">markpatel2100@gmail.com</a><a href="https://www.linkedin.com/in/mark-patel-0aa212338" target="_blank" rel="noopener">LinkedIn &#8599;</a></div>
 </div>
 
 <main>
@@ -779,7 +781,7 @@ window.mpSound = (function () {
       <div class="stage">
         <article class="entry is-current" id="e1">
           <figure class="plate"><img loading="lazy" src="uniexplore-landing.webp?v=5" width="1280" height="800" alt="UniExplore: where do you actually fit? Live profile strength, reach, target and safe counts, and moves that change your list" decoding="async"></figure>
-          <div class="entry-meta" data-live="/uniexplore/"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">Built most of it at HackHarvard India, Top 5. Rebuilt it as a no-login tool that sorts 53 universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><div class="more-in"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>Rebuilt afterwards as a live, no-login tool: 53 universities across 5 countries</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul><a class="live-cta" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a></div></div></div>
+          <div class="entry-meta" data-live="/uniexplore/"><span class="no">01</span><h3 data-k="name">UniExplore</h3><p data-k="desc">Built most of it at HackHarvard India, Top 5. Rebuilt it as a no-login tool that sorts 53 universities into reach, target and safe.</p><dl class="fields"><div><dt>Type</dt><dd data-k="type">Hackathon</dd></div><div><dt>Role</dt><dd data-k="role">Built most of it, team project</dd></div><div><dt>Where</dt><dd data-k="where">HackHarvard India, Top 5</dd></div></dl><a class="live-cta" href="/uniexplore/" data-portal>Try it live, no login &#8599;</a><button class="more-btn" type="button" aria-expanded="false">Details <span>+</span></button><div class="entry-more"><div class="more-in"><ul class="entry-points" data-k="points"><li>Built most of the product during the hackathon; my teammates made the pitch deck</li><li>Scores a student's profile across academics and activities</li><li>Sorts universities into reach, target and safe</li><li>Rebuilt afterwards as a live, no-login tool: 53 universities across 5 countries</li><li>Selected in the Top 5 at HackHarvard India, January 2026</li></ul></div></div></div>
         </article>
 
         <article class="entry" id="e2">
@@ -1233,7 +1235,7 @@ window.mpSound = (function () {
       if (!el) return;
       ev.preventDefault();
       setMenu(false);
-      scrollToY(Math.max(0, el.getBoundingClientRect().top + window.scrollY - 56));
+      scrollToY(Math.max(0, el.getBoundingClientRect().top + window.scrollY - 74));
     });
   });
 

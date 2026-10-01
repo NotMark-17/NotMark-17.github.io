@@ -76,7 +76,7 @@
     "city": "Melbourne",
     "acceptanceRate": null,
     "indiaReq": null,
-    "indiaReqNote": "Monash accepts CBSE, ISC and 4 state boards (Maharashtra, Tamil Nadu, Karnataka, West Bengal); per-course CBSE/ISC scores are in the 2027 International UG Course Guide, but monash.edu blocked automated fetches (HTTP 403), so no value is recorded.",
+    "indiaReqNote": "Monash accepts CBSE, ISC and 4 state boards (Maharashtra, Tamil Nadu, Karnataka, West Bengal); per-course CBSE/ISC scores are in the 2027 International UG Course Guide, so no single value is recorded here.",
     "ibReq": null,
     "ieltsMin": null,
     "toeflMin": null,
@@ -95,7 +95,7 @@
       "IT"
     ],
     "deadlines": null,
-    "note": "Values left null: official pages returned 403 during research. Check the 2027 International UG Course Guide.",
+    "note": "Values left blank until they're confirmed on official pages. Check the 2027 International UG Course Guide.",
     "sources": [
       "https://www.monash.edu/india/study/monash-application-process",
       "https://www.monash.edu/__data/assets/pdf_file/0005/3941744/undergraduate-international-course-guide.pdf"
@@ -146,7 +146,7 @@
     "city": "Sydney",
     "acceptanceRate": null,
     "indiaReq": null,
-    "indiaReqNote": "Macquarie converts CBSE (average of best 4 externally examined subjects) and ISC (English + best 3) to ATAR, but its official pages/PDFs returned HTTP 403, so no percentage is recorded.",
+    "indiaReqNote": "Macquarie converts CBSE (average of best 4 externally examined subjects) and ISC (English + best 3) to ATAR, but no official percentage is recorded here yet.",
     "ibReq": null,
     "ieltsMin": null,
     "toeflMin": null,
@@ -165,7 +165,7 @@
       "IT"
     ],
     "deadlines": null,
-    "note": "Values left null: official pages returned 403 during research.",
+    "note": "Values left blank until they're confirmed on official pages.",
     "sources": [
       "https://www.mq.edu.au/study/admissions-and-entry/apply/international/international-academic-requirements"
     ]
@@ -177,7 +177,7 @@
     "city": "Melbourne",
     "acceptanceRate": null,
     "indiaReq": null,
-    "indiaReqNote": "Melbourne publishes indicative CBSE/ISC scores (average of best four final-year subjects) on a dedicated page, but it returned HTTP 403, so no value is recorded.",
+    "indiaReqNote": "Melbourne publishes indicative CBSE/ISC scores (average of best four final-year subjects) on a dedicated page; no value is recorded here yet, so check it.",
     "ibReq": null,
     "ieltsMin": null,
     "toeflMin": null,
@@ -196,7 +196,7 @@
       "Arts"
     ],
     "deadlines": null,
-    "note": "Values left null: official pages returned 403 during research. Undergraduate entry is into 'generalist' degrees (Arts, Commerce, Science, Design, Biomedicine); professional degrees are mostly at graduate level.",
+    "note": "Values left blank until they're confirmed on official pages. Undergraduate entry is into 'generalist' degrees (Arts, Commerce, Science, Design, Biomedicine); professional degrees are mostly at graduate level.",
     "sources": [
       "https://study.unimelb.edu.au/how-to-apply/undergraduate-study/international-applications/entry-requirements/indicative-entry-scores-international-students/qualifications/india-all-india-senior-school-certificate-cbse-and-indian-school-certificate-isc"
     ]
